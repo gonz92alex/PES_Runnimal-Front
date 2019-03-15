@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="back" translatable="false">atras</string>
+    <string name="Login" translatable="false">iniciar session</string>
+</resources>
