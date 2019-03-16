@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
-public class signup_act extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity {
     private static final int CAMERA_REQUEST = 1888;
     private ImageView ImageViewProfile;
     @Override
