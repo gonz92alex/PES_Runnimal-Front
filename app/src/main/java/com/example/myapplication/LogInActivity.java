@@ -18,4 +18,8 @@ public class LogInActivity extends AppCompatActivity {
         startActivity(BackIntent);
     }
 
+    public void SignUpEv(View view) {
+        Intent SignUpIntent = new Intent(this, SignUpActivity.class);
+        startActivity(SignUpIntent);
+    }
 }
