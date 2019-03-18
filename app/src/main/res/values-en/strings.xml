@@ -3,4 +3,6 @@
     <string name="app_name">My Application</string>
     <string name="back" translatable="false">back</string>
     <string name="Login" translatable="false">login</string>
+    <string name="title_profile">Perfil</string>
+    <string name="title_trainings">Enrenamientos</string>
 </resources>
