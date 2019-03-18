@@ -3,6 +3,8 @@ package com.example.myapplication;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -12,6 +14,8 @@ import com.example.myapplication.dummy.DummyContent;
 public class GodActivity extends AppCompatActivity implements EntrenamientoFragment.OnListFragmentInteractionListener {
 
     private TextView mTextMessage;
+
+    private boolean isFragmentDisplayed = false;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -24,6 +28,7 @@ public class GodActivity extends AppCompatActivity implements EntrenamientoFragm
                     return true;
                 case R.id.navigation_dashboard:
                     mTextMessage.setText(R.string.title_trainings);
+                    displayFragment();
                     return true;
                 case R.id.navigation_notifications:
                     mTextMessage.setText(R.string.title_profile);
@@ -32,6 +37,20 @@ public class GodActivity extends AppCompatActivity implements EntrenamientoFragm
             return false;
         }
     };
+
+    public void displayFragment() {
+        EntrenamientoFragment entrenamientoFragment = EntrenamientoFragment.newInstance(1);
+        // Get the FragmentManager and start a transaction.
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager
+                .beginTransaction();
+
+        // Add the SimpleFragment.
+        fragmentTransaction.add(R.id.fragment_container,
+                entrenamientoFragment).addToBackStack(null).commit();
+        // Set boolean flag to indicate fragment is open.
+        isFragmentDisplayed = true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
