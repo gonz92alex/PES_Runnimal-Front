@@ -9,7 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.example.myapplication.dummy.DummyContent;
+import com.example.myapplication.entrenamiento.EntrenamientoContent;
 
 public class GodActivity extends AppCompatActivity implements EntrenamientoFragment.OnListFragmentInteractionListener {
 
@@ -63,7 +63,7 @@ public class GodActivity extends AppCompatActivity implements EntrenamientoFragm
     }
 
     @Override
-    public void onListFragmentInteraction(DummyContent.DummyItem item) {
+    public void onListFragmentInteraction(EntrenamientoContent.EntrenamientoItem item) {
 
     }
 

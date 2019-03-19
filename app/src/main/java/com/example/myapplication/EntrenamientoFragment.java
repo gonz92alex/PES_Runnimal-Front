@@ -10,8 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.myapplication.dummy.DummyContent;
-import com.example.myapplication.dummy.DummyContent.DummyItem;
+import com.example.myapplication.entrenamiento.EntrenamientoContent;
+import com.example.myapplication.entrenamiento.EntrenamientoContent.EntrenamientoItem;
 
 import java.util.List;
 
@@ -69,7 +69,7 @@ public class EntrenamientoFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyEntrenamientoRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+            recyclerView.setAdapter(new MyEntrenamientoRecyclerViewAdapter(EntrenamientoContent.ITEMS, mListener));
         }
         return view;
     }
@@ -104,6 +104,6 @@ public class EntrenamientoFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyItem item);
+        void onListFragmentInteraction(EntrenamientoItem item);
     }
 }

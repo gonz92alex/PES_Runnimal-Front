@@ -7,21 +7,21 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.myapplication.EntrenamientoFragment.OnListFragmentInteractionListener;
-import com.example.myapplication.dummy.DummyContent.DummyItem;
+import com.example.myapplication.entrenamiento.EntrenamientoContent.EntrenamientoItem;
 
 import java.util.List;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
+ * {@link RecyclerView.Adapter} that can display a {@link EntrenamientoItem} and makes a call to the
  * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
 public class MyEntrenamientoRecyclerViewAdapter extends RecyclerView.Adapter<MyEntrenamientoRecyclerViewAdapter.ViewHolder> {
 
-    private final List<DummyItem> mValues;
+    private final List<EntrenamientoItem> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public MyEntrenamientoRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
+    public MyEntrenamientoRecyclerViewAdapter(List<EntrenamientoItem> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -60,7 +60,7 @@ public class MyEntrenamientoRecyclerViewAdapter extends RecyclerView.Adapter<MyE
         public final View mView;
         public final TextView mIdView;
         public final TextView mContentView;
-        public DummyItem mItem;
+        public EntrenamientoItem mItem;
 
         public ViewHolder(View view) {
             super(view);
