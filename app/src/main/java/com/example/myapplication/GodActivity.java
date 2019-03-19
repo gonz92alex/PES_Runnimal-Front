@@ -6,6 +6,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 
@@ -64,7 +65,7 @@ public class GodActivity extends AppCompatActivity implements EntrenamientoFragm
 
     @Override
     public void onListFragmentInteraction(EntrenamientoContent.EntrenamientoItem item) {
-
+        Log.d("clickTest", "onListFragmentInteraction: clicked! ");
     }
 
     /**
