@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,7 +14,6 @@ import android.view.ViewGroup;
 import com.example.myapplication.entrenamiento.EntrenamientoContent;
 import com.example.myapplication.entrenamiento.EntrenamientoContent.EntrenamientoItem;
 
-import java.util.List;
 
 /**
  * A fragment representing a list of Items.
@@ -28,6 +28,7 @@ public class EntrenamientoFragment extends Fragment {
     // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
+
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
