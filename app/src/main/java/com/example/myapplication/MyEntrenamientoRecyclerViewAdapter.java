@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.example.myapplication.EntrenamientoFragment.OnListFragmentInteractionListener;
 import com.example.myapplication.entrenamiento.EntrenamientoContent.EntrenamientoItem;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -39,7 +40,9 @@ public class MyEntrenamientoRecyclerViewAdapter extends RecyclerView.Adapter<MyE
         holder.mItem = mValues.get(position);
         holder.mIdView.setText(mValues.get(position).id);
         holder.mContentView.setText(mValues.get(position).content);
-        //ToDO holder.mImage
+        Picasso.get()
+                .load("https://t2.uc.ltmcdn.com/images/0/5/2/img_como_ensenar_a_un_perro_a_dar_la_pata_22250_600.jpg")
+                .into(holder.mImage);
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
