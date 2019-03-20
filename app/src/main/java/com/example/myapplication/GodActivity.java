@@ -3,6 +3,7 @@ package com.example.myapplication;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.NavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
@@ -41,6 +42,29 @@ public class GodActivity extends AppCompatActivity implements EntrenamientoFragm
         }
     };
 
+    private NavigationView.OnNavigationItemSelectedListener nOnNavigationItemSelectedListener
+            = new NavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            Fragment fragment = null;
+
+            switch (item.getItemId()) {
+                case R.id.NavAmigos:
+                    fragment = new AmigosFragment();
+                    break;
+
+                case R.id.NavRanking:
+                    fragment = new RankingFragment();
+                    break;
+
+                case R.id.NavAjustes:
+                    fragment = new AjustesFragment();
+                    break;
+            }
+            return loadFragment(fragment);
+        }
+    };
+
     private boolean loadFragment(Fragment fragment) {
         //switching fragment
         if (fragment != null) {
@@ -59,6 +83,9 @@ public class GodActivity extends AppCompatActivity implements EntrenamientoFragm
         setContentView(R.layout.activity_god);
 
         loadFragment(new MapFragment());
+
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(nOnNavigationItemSelectedListener);
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
