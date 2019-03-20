@@ -11,4 +11,9 @@
     <string name="title_profile">Perfil</string>
     <string name="title_home">Principal</string>
     <string name="title_activity_god">GodActivity</string>
+    <string name="Password">Contraseña</string>
+    <string name="Forgot_password">Contraseña olvidada</string>
+    <string name="Create_Account">Crea una cuenta</string>
+    <string name="sign_in_with">Entrar con</string>
+    <string name="or">o</string>
 </resources>

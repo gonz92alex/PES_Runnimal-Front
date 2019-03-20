@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">My Application</string>
     <string name="back">back</string>
-    <string name="Login" translatable="false">Login</string>
+    <string name="Login">Login</string>
     <string name="title_activity_god">GodActivity</string>
     <string name="title_home">Home</string>
     <string name="title_notifications">Notifications</string>
@@ -10,4 +10,9 @@
     <string name="title_mapa">Map</string>
     <string name="title_mascotas">Pets</string>
     <string name="title_retos">Challenges</string>
+    <string name="Password">Password</string>
+    <string name="Forgot_password">Forgot Password</string>
+    <string name="Create_Account">Create Account</string>
+    <string name="sign_in_with">Sign in with</string>
+    <string name="or">Or</string>
 </resources>

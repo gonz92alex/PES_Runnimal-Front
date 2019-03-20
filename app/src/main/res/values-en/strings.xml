@@ -11,4 +11,9 @@
     <string name="title_retos">Challenges</string>
     <string name="title_home">Home</string>
     <string name="title_activity_god">GodActivity</string>
+    <string name="Password">Password</string>
+    <string name="Forgot_password">Forgot password</string>
+    <string name="Create_Account">Create account</string>
+    <string name="sign_in_with">Sign in with</string>
+    <string name="or">or</string>
 </resources>
