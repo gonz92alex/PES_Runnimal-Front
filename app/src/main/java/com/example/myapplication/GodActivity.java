@@ -26,6 +26,8 @@ public class GodActivity extends AppCompatActivity {
                 case R.id.navigation_notifications:
                     mTextMessage.setText(R.string.title_profile);
                     return true;
+                case R.id.navigation_mascotas:
+                    mTextMessage.setText(R.string.title_home);
             }
             return false;
         }
