@@ -4,13 +4,14 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
-import android.widget.TextView;
 import android.support.v4.app.Fragment;
 
-public class GodActivity extends AppCompatActivity {
+import com.example.myapplication.entrenamiento.EntrenamientoContent;
 
-    private TextView mTextMessage;
+
+public class GodActivity extends AppCompatActivity implements EntrenamientoFragment.OnListFragmentInteractionListener {
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -25,7 +26,7 @@ public class GodActivity extends AppCompatActivity {
                     break;
 
                 case R.id.navigation_entrenamientos:
-                    fragment = new EjercicioFragment();
+                    fragment = EntrenamientoFragment.newInstance(1);
                     break;
 
                 case R.id.navigation_retos:
@@ -36,21 +37,9 @@ public class GodActivity extends AppCompatActivity {
                     fragment = new MascotasFragment();
                     break;
             }
-
             return loadFragment(fragment);
         }
     };
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_god);
-
-        loadFragment(new MapFragment());
-
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-    }
 
     private boolean loadFragment(Fragment fragment) {
         //switching fragment
@@ -64,4 +53,30 @@ public class GodActivity extends AppCompatActivity {
         return false;
     }
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_god);
+
+        loadFragment(new MapFragment());
+
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+    }
+
+
+    @Override
+    public void onListFragmentInteraction(EntrenamientoContent.EntrenamientoItem item) {
+        Log.d("clickTest", "onListFragmentInteraction: clicked! ");
+    }
+
+    /**
+     * Called when pointer capture is enabled or disabled for the current window.
+     *
+     * @param hasCapture True if the window has pointer capture.
+     */
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
+    }
 }
