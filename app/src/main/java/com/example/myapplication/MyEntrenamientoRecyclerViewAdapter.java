@@ -42,6 +42,8 @@ public class MyEntrenamientoRecyclerViewAdapter extends RecyclerView.Adapter<MyE
         holder.mContentView.setText(mValues.get(position).content);
         Picasso.get()
                 .load("https://t2.uc.ltmcdn.com/images/0/5/2/img_como_ensenar_a_un_perro_a_dar_la_pata_22250_600.jpg")
+                .resize(425,350)
+                .onlyScaleDown()
                 .into(holder.mImage);
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
