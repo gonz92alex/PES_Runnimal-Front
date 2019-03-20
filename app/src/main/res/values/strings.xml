@@ -4,7 +4,6 @@
     <string name="Login" translatable="false">Login</string>
     <string name="title_activity_god">GodActivity</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_entrenamientos">Trainings</string>
     <string name="title_profile">Profile</string>

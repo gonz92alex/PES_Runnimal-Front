@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">My Application</string>
-    <string name="back" translatable="false">back</string>
-    <string name="Login" translatable="false">login</string>
-    <string name="title_profile">Perfil</string>
-    <string name="title_trainings">Enrenamientos</string>
+    <string name="back" translatable="false">Back</string>
+    <string name="Login" translatable="false">Login</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_entrenamientos">Trainings</string>
+    <string name="title_mapa">Map</string>
+    <string name="title_mascotas">Pets</string>
+    <string name="title_retos">Challenges</string>
+    <string name="title_home">Home</string>
+    <string name="title_activity_god">GodActivity</string>
 </resources>
