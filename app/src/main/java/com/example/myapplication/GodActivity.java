@@ -6,6 +6,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.support.v4.app.Fragment;
 
 public class GodActivity extends AppCompatActivity {
 
@@ -16,20 +17,27 @@ public class GodActivity extends AppCompatActivity {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            Fragment fragment = null;
+
             switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
-                    return true;
-                case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_trainings);
-                    return true;
-                case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_profile);
-                    return true;
+                case R.id.navigation_mapa:
+                    fragment = new MapFragment();
+                    break;
+
+                case R.id.navigation_entrenamientos:
+                    fragment = new EjercicioFragment();
+                    break;
+
+                case R.id.navigation_retos:
+                    fragment = new RetosFragment();
+                    break;
+
                 case R.id.navigation_mascotas:
-                    mTextMessage.setText(R.string.title_home);
+                    fragment = new MascotasFragment();
+                    break;
             }
-            return false;
+
+            return loadFragment(fragment);
         }
     };
 
@@ -38,9 +46,22 @@ public class GodActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_god);
 
-        mTextMessage = (TextView) findViewById(R.id.message);
+        loadFragment(new MapFragment());
+
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+    }
+
+    private boolean loadFragment(Fragment fragment) {
+        //switching fragment
+        if (fragment != null) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, fragment)
+                    .commit();
+            return true;
+        }
+        return false;
     }
 
 }
