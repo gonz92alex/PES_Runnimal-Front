@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -17,20 +16,19 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class LogInActivity extends AppCompatActivity {
 
     private static final String URL_DATA = "http://nidoqueen.fib.upc.edu:3000/api/users";
-    private JSONObject user;
 
     //llamada API
-    private boolean getUser(String email){
+    private void getUser(String email, final String password){
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
         String url ="http://nidoqueen.fib.upc.edu:3000/api/user/" + email;
+        Log.d("apiuser", email + " " + password);
 
         //Loading Message
         final ProgressDialog progressDialog = new ProgressDialog(this);
@@ -44,8 +42,10 @@ public class LogInActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         progressDialog.dismiss();
                         try {
-                            JSONObject jo = new JSONObject(response);
-                            Log.d("apiInfo", "user info: " + jo.getString("password"));
+                            Log.d("apires", "onResponse: " + response);
+                            JSONObject user = new JSONObject(response);
+                            Log.d("apidata", "onResponse: " + user.getString("password"));
+                            if (password.equals(user.getString("password"))) LoginOk();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -59,7 +59,6 @@ public class LogInActivity extends AppCompatActivity {
 
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
-        return true;
     }
 
     @Override
@@ -85,12 +84,11 @@ public class LogInActivity extends AppCompatActivity {
         EditText editPassword = (EditText) findViewById(R.id.EditTextPassword);
         String password = editPassword.getText().toString();
 
-        getUser(email);
+        getUser(email, password);
+    }
 
-        /*Log.d("userPass", user.getString("password"));
-        if (password == user.getString("password")){
-            Intent LoginIntent = new Intent(this, GodActivity.class);
-            startActivity(LoginIntent);
-        }*/
+    public void LoginOk(){
+        Intent LoginIntent = new Intent(this, GodActivity.class);
+        startActivity(LoginIntent);
     }
 }
