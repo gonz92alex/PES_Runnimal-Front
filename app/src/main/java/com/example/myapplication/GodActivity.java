@@ -1,19 +1,24 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.support.v4.app.Fragment;
+import android.view.View;
 
 import com.example.myapplication.entrenamiento.EntrenamientoContent;
 
 
 public class GodActivity extends AppCompatActivity implements EntrenamientoFragment.OnListFragmentInteractionListener {
-
+    DrawerLayout drawerLayout;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -47,21 +52,26 @@ public class GodActivity extends AppCompatActivity implements EntrenamientoFragm
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             Fragment fragment = null;
-
             switch (item.getItemId()) {
                 case R.id.NavAmigos:
-                    fragment = new AmigosFragment();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                            new AmigosFragment()).commit();
                     break;
 
                 case R.id.NavRanking:
-                    fragment = new RankingFragment();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                            new RankingFragment()).commit();
                     break;
 
                 case R.id.NavAjustes:
-                    fragment = new AjustesFragment();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new AjustesFragment()).commit();
                     break;
             }
+            drawerLayout.closeDrawer(GravityCompat.START);
             return loadFragment(fragment);
+
+
         }
     };
 
@@ -81,6 +91,7 @@ public class GodActivity extends AppCompatActivity implements EntrenamientoFragm
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_god);
+        drawerLayout = findViewById(R.id.drawer_layout);
 
         loadFragment(new MapFragment());
 
@@ -104,6 +115,15 @@ public class GodActivity extends AppCompatActivity implements EntrenamientoFragm
      */
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
+
+    }
+
+    public void ProfileEv(View view) {
+        //estoy probando a ver si puedo hacer que funcione un botton en la imagen del navigation drawer
+        //tendremos que cambiar esto
+        loadFragment(new RetosFragment());
+
+        drawerLayout.closeDrawer(GravityCompat.START);
 
     }
 }
