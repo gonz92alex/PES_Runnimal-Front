@@ -24,38 +24,10 @@ import org.json.JSONObject;
 public class LogInActivity extends AppCompatActivity {
 
     private static final String URL_DATA = "http://nidoqueen.fib.upc.edu:3000/api/users";
+    private JSONObject user;
 
     //llamada API
-    private void loadUrlData(){
-        // Instantiate the RequestQueue.
-        RequestQueue queue = Volley.newRequestQueue(this);
-        String url ="http://192.168.1.50:80/api/palabras";
-
-        //Loading Message
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
-
-        // Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        // Display the first 500 characters of the response string.
-                        Log.d("apiRes", "onResponse: " + response.substring(0,500));
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d("apiError", "onErrorResponse: " + error.toString());
-            }
-        });
-
-        // Add the request to the RequestQueue.
-        queue.add(stringRequest);
-    }
-
-    private void getUser(String email){
+    private boolean getUser(String email){
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
         String url ="http://nidoqueen.fib.upc.edu:3000/api/user/" + email;
@@ -70,18 +42,24 @@ public class LogInActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        // Display the first 500 characters of the response string.
-                        Log.d("apiRes", "onResponse: " + response.substring(0,500));
+                        progressDialog.dismiss();
+                        try {
+                            JSONObject jo = new JSONObject(response);
+                            Log.d("apiInfo", "user info: " + jo.getString("password"));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("apiError", "onErrorResponse: " + error.toString());
+                Toast.makeText(LogInActivity.this,"Error: " + error.toString(), Toast.LENGTH_SHORT).show();
             }
         });
 
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
+        return true;
     }
 
     @Override
@@ -100,16 +78,19 @@ public class LogInActivity extends AppCompatActivity {
         startActivity(SignUpIntent);
     }
 
-    public void LoginEv(View view){
+    public void LoginEv(View view) throws JSONException {
         EditText editEmail = (EditText) findViewById(R.id.EditTextMail);
         String email = editEmail.getText().toString();
 
         EditText editPassword = (EditText) findViewById(R.id.EditTextPassword);
         String password = editPassword.getText().toString();
 
-        loadUrlData();
+        getUser(email);
 
-        //Intent LoginIntent = new Intent(this, GodActivity.class);
-        //startActivity(LoginIntent);
+        /*Log.d("userPass", user.getString("password"));
+        if (password == user.getString("password")){
+            Intent LoginIntent = new Intent(this, GodActivity.class);
+            startActivity(LoginIntent);
+        }*/
     }
 }
