@@ -45,7 +45,7 @@ public class LogInActivity extends AppCompatActivity {
                             Log.d("apires", "onResponse: " + response);
                             JSONObject user = new JSONObject(response);
                             Log.d("apidata", "onResponse: " + user.getString("password"));
-                            if (password.equals(user.getString("password"))) LoginOk(email);
+                            if (password.equals(user.getString("password"))) LoginOk(email, user.getString("alias"));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -87,10 +87,10 @@ public class LogInActivity extends AppCompatActivity {
         getUser(email, password);
     }
 
-    public void LoginOk(String email){
+    public void LoginOk(String email, String nombre){
         Intent LoginIntent = new Intent(this, GodActivity.class);
-        LoginIntent.putExtra("correo", "test@mail");
-        LoginIntent.putExtra("nombre", "Arthur");//esto es un ejemplo, mas adelante tenemos que hacer que pase la informacion que nos retorna el back
+        LoginIntent.putExtra("correo", email);
+        LoginIntent.putExtra("nombre", nombre);//esto es un ejemplo, mas adelante tenemos que hacer que pase la informacion que nos retorna el back
         startActivity(LoginIntent);
     }
 }
