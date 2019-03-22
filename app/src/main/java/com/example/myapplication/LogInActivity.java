@@ -93,4 +93,10 @@ public class LogInActivity extends AppCompatActivity {
         LoginIntent.putExtra("nombre", nombre);//esto es un ejemplo, mas adelante tenemos que hacer que pase la informacion que nos retorna el back
         startActivity(LoginIntent);
     }
+
+    public void directEv(View view) {
+        Intent GodIntent = new Intent(this, GodActivity.class);
+        startActivity(GodIntent);
+
+    }
 }
