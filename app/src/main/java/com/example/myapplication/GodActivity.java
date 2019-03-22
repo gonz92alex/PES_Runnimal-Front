@@ -121,7 +121,8 @@ public class GodActivity extends AppCompatActivity implements EntrenamientoFragm
     public void ProfileEv(View view) {
         //estoy probando a ver si puedo hacer que funcione un botton en la imagen del navigation drawer
         //tendremos que cambiar esto
-        loadFragment(new RetosFragment());
+        ProfileFragment profile = ProfileFragment.newInstance("Juan");
+        loadFragment(profile);
 
         drawerLayout.closeDrawer(GravityCompat.START);
 

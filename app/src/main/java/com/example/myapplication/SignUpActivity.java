@@ -47,4 +47,9 @@ public class SignUpActivity extends AppCompatActivity {
         Intent BackLoginIntent = new Intent(this, LogInActivity.class);
         startActivity(BackLoginIntent);
     }
+
+    public void preEnterEv(View view) {
+        Intent GodIntent = new Intent(this, GodActivity.class);
+        startActivity(GodIntent);
+    }
 }
