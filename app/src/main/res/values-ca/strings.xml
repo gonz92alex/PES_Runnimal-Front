@@ -24,4 +24,5 @@
     <string name="breed">Raça</string>
     <string name="weight">Pes</string>
     <string name="age">Edat</string>
+    <string name="sign_up">Registrar-se</string>
 </resources>

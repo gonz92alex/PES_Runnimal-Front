@@ -24,4 +24,5 @@
     <string name="breed">Raza</string>
     <string name="weight">Peso</string>
     <string name="age">Edad</string>
+    <string name="sign_up">Registrarse</string>
 </resources>
