@@ -16,4 +16,12 @@
     <string name="Create_Account">Crea un compte</string>
     <string name="sign_in_with">Entrar amb</string>
     <string name="or">o</string>
+    <string name="my_pets">Les meves mascotes</string>
+    <string name="Add">Afegir</string>
+    <string name="Name">Nom</string>
+    <string name="format_email">usuari@example.com</string>
+    <string name="alias">Álies</string>
+    <string name="breed">Raça</string>
+    <string name="weight">Pes</string>
+    <string name="age">Edat</string>
 </resources>
