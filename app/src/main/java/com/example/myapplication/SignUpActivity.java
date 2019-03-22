@@ -50,7 +50,8 @@ public class SignUpActivity extends AppCompatActivity {
 
     public void preEnterEv(View view) {
         Intent GodIntent = new Intent(this, GodActivity.class);
-        GodIntent.putExtra("correo", "test@mail");
+        GodIntent.putExtra("correo", "arthur@gmail");
+        GodIntent.putExtra("nombre", "Arthur" );
         startActivity(GodIntent);
     }
 

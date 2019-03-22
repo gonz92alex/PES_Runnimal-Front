@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -20,7 +21,10 @@ import com.example.myapplication.entrenamiento.EntrenamientoContent;
 
 public class GodActivity extends AppCompatActivity implements EntrenamientoFragment.OnListFragmentInteractionListener {
     DrawerLayout drawerLayout;
-    //TextView correo;
+    String correo;
+    String nombre;
+    Bitmap fotoPerfil;
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -103,10 +107,12 @@ public class GodActivity extends AppCompatActivity implements EntrenamientoFragm
 
         /* todo esto es para poder cambiar el drawer con la info del usuario que me esten pasando*/
         View header = (navigationView.getHeaderView(0));
-        TextView correo = (TextView) header.findViewById(R.id.MailInApp);
-        String correoAux = getIntent().getStringExtra("correo");
-        Log.d("correo", "correoAux: " + correo.getText());
-        correo.setText(correoAux);
+        TextView correoView = (TextView) header.findViewById(R.id.MailInApp);
+        TextView nombreView = (TextView) header.findViewById(R.id.NombreInApp);
+        correo = getIntent().getStringExtra("correo");
+        nombre = getIntent().getStringExtra("nombre");
+        correoView.setText(correo);
+        nombreView.setText(nombre);
         /* hasta aqui lo del drawer dinamico */
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -131,7 +137,8 @@ public class GodActivity extends AppCompatActivity implements EntrenamientoFragm
     public void ProfileEv(View view) {
         //estoy probando a ver si puedo hacer que funcione un botton en la imagen del navigation drawer
         //tendremos que cambiar esto
-        ProfileFragment profile = ProfileFragment.newInstance("Juan");
+        ProfileFragment profile = ProfileFragment.newInstance(nombre, correo, fotoPerfil);
+        //hay que ver como se passa la imagen de perfil
         loadFragment(profile);
 
         drawerLayout.closeDrawer(GravityCompat.START);

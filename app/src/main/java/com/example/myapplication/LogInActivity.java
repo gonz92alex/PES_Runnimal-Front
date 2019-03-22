@@ -90,6 +90,7 @@ public class LogInActivity extends AppCompatActivity {
     public void LoginOk(String email){
         Intent LoginIntent = new Intent(this, GodActivity.class);
         LoginIntent.putExtra("correo", "test@mail");
+        LoginIntent.putExtra("nombre", "Arthur");//esto es un ejemplo, mas adelante tenemos que hacer que pase la informacion que nos retorna el back
         startActivity(LoginIntent);
     }
 }
