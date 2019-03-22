@@ -1,12 +1,18 @@
 package com.example.myapplication;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 
 
 /**
@@ -18,6 +24,11 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class AnadirMascotaFragment extends Fragment {
+
+
+    private static final int CAMERA_REQUEST = 1888;
+    private ImageView ImageViewProfile;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -53,19 +64,38 @@ public class AnadirMascotaFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_anadir_mascota, container, false);
+        View AddPet = inflater.inflate(R.layout.fragment_anadir_mascota, container, false);
+        Button ButtonCamera = (Button) AddPet.findViewById(R.id.buttonCameraEdit);
+        ImageViewProfile = (ImageView) AddPet.findViewById(R.id.imageViewProfile);
+        ButtonCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(intent, CAMERA_REQUEST);
+            }
+        });
+        return AddPet;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == CAMERA_REQUEST){
+            Bitmap bitmapPhoto = (Bitmap)data.getExtras().get("data");
+            ImageViewProfile.setImageBitmap(bitmapPhoto);
         }
     }
 
