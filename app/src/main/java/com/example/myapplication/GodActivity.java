@@ -13,12 +13,14 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.support.v4.app.Fragment;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.myapplication.entrenamiento.EntrenamientoContent;
 
 
 public class GodActivity extends AppCompatActivity implements EntrenamientoFragment.OnListFragmentInteractionListener {
     DrawerLayout drawerLayout;
+    //TextView correo;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -98,6 +100,14 @@ public class GodActivity extends AppCompatActivity implements EntrenamientoFragm
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(nOnNavigationItemSelectedListener);
 
+
+        /* todo esto es para poder cambiar el drawer con la info del usuario que me esten pasando*/
+        View header = (navigationView.getHeaderView(0));
+        TextView correo = (TextView) header.findViewById(R.id.MailInApp);
+        String correoAux = getIntent().getStringExtra("correo");
+        Log.d("correo", "correoAux: " + correo.getText());
+        correo.setText(correoAux);
+        /* hasta aqui lo del drawer dinamico */
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
@@ -127,4 +137,5 @@ public class GodActivity extends AppCompatActivity implements EntrenamientoFragm
         drawerLayout.closeDrawer(GravityCompat.START);
 
     }
+
 }

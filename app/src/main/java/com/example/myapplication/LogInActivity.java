@@ -24,7 +24,7 @@ public class LogInActivity extends AppCompatActivity {
     private static final String URL_DATA = "http://nidoqueen.fib.upc.edu:3000/api/users";
 
     //llamada API
-    private void getUser(String email, final String password){
+    private void getUser(final String email, final String password){
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
         String url ="http://nidoqueen.fib.upc.edu:3000/api/user/" + email;
@@ -45,7 +45,7 @@ public class LogInActivity extends AppCompatActivity {
                             Log.d("apires", "onResponse: " + response);
                             JSONObject user = new JSONObject(response);
                             Log.d("apidata", "onResponse: " + user.getString("password"));
-                            if (password.equals(user.getString("password"))) LoginOk();
+                            if (password.equals(user.getString("password"))) LoginOk(email);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -87,8 +87,9 @@ public class LogInActivity extends AppCompatActivity {
         getUser(email, password);
     }
 
-    public void LoginOk(){
+    public void LoginOk(String email){
         Intent LoginIntent = new Intent(this, GodActivity.class);
+        LoginIntent.putExtra("correo", "test@mail");
         startActivity(LoginIntent);
     }
 }
