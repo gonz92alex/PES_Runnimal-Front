@@ -111,10 +111,8 @@ public class GodActivity extends FragmentActivity implements EntrenamientoFragme
         View header = (navigationView.getHeaderView(0));
         TextView correoView = (TextView) header.findViewById(R.id.MailInApp);
         TextView nombreView = (TextView) header.findViewById(R.id.NombreInApp);
-        correo = getIntent().getStringExtra("correo");
-        nombre = getIntent().getStringExtra("nombre");
-        correoView.setText(correo);
-        nombreView.setText(nombre);
+        correoView.setText(SingletonSession.Instance().getMail());
+        nombreView.setText(SingletonSession.Instance().getUsername());
         /* hasta aqui lo del drawer dinamico */
     }
 

@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -87,15 +88,17 @@ public class LogInActivity extends AppCompatActivity {
         getUser(email, password);
     }
 
-    public void LoginOk(String email, String nombre){
+    public void LoginOk(String email, String nombre /* falta añadir las fotos */){
         Intent LoginIntent = new Intent(this, GodActivity.class);
-        LoginIntent.putExtra("correo", email);
-        LoginIntent.putExtra("nombre", nombre);//esto es un ejemplo, mas adelante tenemos que hacer que pase la informacion que nos retorna el back
+        SingletonSession.Instance().setMail(email);
+        SingletonSession.Instance().setUsername(nombre);//esto es un ejemplo, mas adelante tenemos que hacer que pase la informacion que nos retorna el back
         startActivity(LoginIntent);
     }
 
     public void directEv(View view) {
         Intent GodIntent = new Intent(this, GodActivity.class);
+        SingletonSession.Instance().setMail("arthur@gmail.com");
+        SingletonSession.Instance().setUsername("arthur");
         startActivity(GodIntent);
 
     }

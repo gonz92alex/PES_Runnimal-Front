@@ -11,8 +11,8 @@ import android.widget.TextView;
 
 
 public class ProfileFragment extends Fragment {
-    String TextNombre;
-    String TextCorreo;
+
+
     TextView textViewNombre;
     TextView textViewCorreo;
     @Nullable
@@ -21,12 +21,10 @@ public class ProfileFragment extends Fragment {
         View profileView = inflater.inflate(R.layout.fragment_profile, container, false);
 
         textViewNombre = (TextView) profileView.findViewById(R.id.NombreText);
-        TextNombre = getArguments().getString("nombre");
-        textViewNombre.setText(TextNombre);
+        textViewNombre.setText(SingletonSession.Instance().getUsername());
 
         textViewCorreo = (TextView) profileView.findViewById(R.id.CorreoText);
-        TextCorreo = getArguments().getString("correo");
-        textViewCorreo.setText(TextCorreo);
+        textViewCorreo.setText(SingletonSession.Instance().getMail());
         return profileView;
     }
 
