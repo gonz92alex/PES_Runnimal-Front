@@ -10,9 +10,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.android.volley.*;
+import com.android.volley.toolbox.StringRequest;
 import com.example.myapplication.entrenamiento.EntrenamientoContent;
 import com.example.myapplication.entrenamiento.EntrenamientoContent.EntrenamientoItem;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 /**
@@ -72,7 +79,38 @@ public class EntrenamientoFragment extends Fragment {
             }
             recyclerView.setAdapter(new MyEntrenamientoRecyclerViewAdapter(EntrenamientoContent.ITEMS, mListener));
         }
+
+        loadUrlData();
+
         return view;
+    }
+
+    private void loadUrlData(){
+        String url ="http://nidorana.fib.upc.edu/api/trainings";
+        final ProgressDialog progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setMessage("Loading...");
+        progressDialog.show();
+        StringRequest stringRequest = new StringRequest(Request.Method.GET,
+                url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                progressDialog.dismiss();
+                try {
+                    JSONArray jsonArray = new JSONArray(response);
+                    for (int i = 0; i < jsonArray.length(); i++){
+                        JSONObject training = jsonArray.getJSONObject(i);
+                        EntrenamientoContent.añadirItem(training.getString("_id"),training.getString("name"),training.getString("description"));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getContext(), "Error " + error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 
