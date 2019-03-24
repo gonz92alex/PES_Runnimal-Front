@@ -15,10 +15,11 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imagenEntrenamiento"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="115dp"
+                android:layout_height="115dp"
+                android:layout_margin="8dp"
                 android:contentDescription="Imagen entrenamiento" />
 
             <TextView
