@@ -1,65 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF">
 
-
-    <ImageView
-        android:id="@+id/rectanguloImage"
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="303dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginBottom="428dp"
-        app:srcCompat="@drawable/rectangle" />
+        android:layout_height="240dp"
+        android:layout_centerHorizontal="true"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="27dp"
+        tools:layout_editor_absoluteY="0dp">
 
-    <ImageView
-        android:id="@+id/FotoPerfil"
-        android:layout_width="101.5dp"
-        android:layout_height="101.5dp"
-        android:layout_alignEnd="@+id/rectanguloImage"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="55dp"
-        android:layout_marginEnd="123dp"
-        android:layout_marginBottom="511dp"
-        app:srcCompat="@mipmap/ic_launcher_round" />
+        <ImageView
+            android:id="@+id/test_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/rectangle" />
 
-    <TextView
-        android:id="@+id/CorreoText"
-        android:layout_width="211dp"
-        android:layout_height="99dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="76dp"
-        android:layout_marginTop="317dp"
-        android:layout_marginEnd="124dp"
-        android:text="mail"
-        android:textSize="50dp" />
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:scaleType="centerCrop"
+            app:srcCompat="@mipmap/ic_launcher_round" />
 
-    <TextView
-        android:id="@+id/NombreText"
-        android:layout_width="220dp"
-        android:layout_height="127dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="125dp"
-        android:layout_marginTop="438dp"
-        android:layout_marginEnd="65dp"
-        android:layout_marginBottom="165dp"
-        android:text="Nombre"
-        android:textSize="50dp" />
+        <LinearLayout
 
-</RelativeLayout>
+            android:layout_width="151dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="130dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="130dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/NombreText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="nombre"
+                android:textColor="#164849"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/CorreoText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="mail"
+                android:textColor="#164849" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+
+
+</android.support.constraint.ConstraintLayout>

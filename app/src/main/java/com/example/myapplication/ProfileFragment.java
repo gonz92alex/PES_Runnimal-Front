@@ -18,6 +18,8 @@ public class ProfileFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        
         View profileView = inflater.inflate(R.layout.fragment_profile, container, false);
 
         textViewNombre = (TextView) profileView.findViewById(R.id.NombreText);
