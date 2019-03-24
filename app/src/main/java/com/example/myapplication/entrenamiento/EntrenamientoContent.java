@@ -54,8 +54,8 @@ public class EntrenamientoContent {
     public static class EntrenamientoItem {
         public final String id;
         public final String content;
-        public final String details;
-        public final String imagen_url;
+        final String details;
+        final String imagen_url;
 
         public EntrenamientoItem(String id, String content, String details) {
             this.id = id;
@@ -65,13 +65,16 @@ public class EntrenamientoContent {
 
         }
 
-        public String getImagen_url() {
-            return imagen_url;
+        public String getContent() {
+            return content;
         }
 
-        @Override
-        public String toString() {
-            return content;
+        public String getDetails() {
+            return details;
+        }
+
+        public String getImagen_url() {
+            return imagen_url;
         }
     }
 }

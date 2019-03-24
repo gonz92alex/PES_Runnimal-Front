@@ -25,4 +25,5 @@
     <string name="weight">Peso</string>
     <string name="age">Edad</string>
     <string name="sign_up">Registrarse</string>
+    <string name="steps">Pasos</string>
 </resources>

@@ -25,4 +25,5 @@
     <string name="weight">Pes</string>
     <string name="age">Edat</string>
     <string name="sign_up">Registrar-se</string>
+    <string name="steps">"Passos "</string>
 </resources>
