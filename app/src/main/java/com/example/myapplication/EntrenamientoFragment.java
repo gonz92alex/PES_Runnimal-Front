@@ -119,9 +119,7 @@ public class EntrenamientoFragment extends Fragment {
                             for (int i = 0; i < jsonArray.length(); i++){
                                 JSONObject training = jsonArray.getJSONObject(i);
                                 Log.d("apiObj", training.getString("_id"));
-                                //ToDO todos los trainings deben tener todos los atributos, si no peta.
-                                //EntrenamientoContent.añadirItem(training.getString("_id"),training.getString("name"),training.getString("description"));
-                                EntrenamientoContent.añadirItem(training.getString("_id"),"apiEx " + i,"apiEx " + i + "detail info");
+                                EntrenamientoContent.añadirItem(training.getString("_id"),training.getString("name"),training.getString("description"));
                             }
                             recyclerView.setAdapter(new MyEntrenamientoRecyclerViewAdapter(EntrenamientoContent.ITEMS, mListener));
                         } catch (JSONException e) {
