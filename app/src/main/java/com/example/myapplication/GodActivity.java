@@ -133,7 +133,7 @@ public class GodActivity extends FragmentActivity implements EntrenamientoFragme
     @Override
     public void onListFragmentInteraction(EntrenamientoContent.EntrenamientoItem item) {
         Log.d("clickTest", "onListFragmentInteraction: clicked! ");
-        loadFragment(EntrenamientoDetalladoFragment.newInstance(item.getContent(),item.getDetails()));
+        loadFragment(EntrenamientoDetalladoFragment.newInstance(item.getContent(),item.getDetails(), item.getId()));
     }
 
     /**

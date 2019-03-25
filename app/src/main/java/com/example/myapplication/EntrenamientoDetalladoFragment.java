@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.myapplication.entrenamiento.EntrenamientoContent;
+
 import java.util.ArrayList;
 
 
@@ -23,16 +25,18 @@ public class EntrenamientoDetalladoFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "content";
     private static final String ARG_PARAM2 = "detail";
+    private static final String ARG_PARAM3 = "id";
 
     // TODO: Rename and change types of parameters
     private String mContent;
     private String mDetail;
+    private String mId;
 
     private TextView mContentText;
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
-    private ArrayList<String> stepsList=new ArrayList();
+    private ArrayList<String> stepsList = new ArrayList();
 
     public EntrenamientoDetalladoFragment() {
         // Required empty public constructor
@@ -47,11 +51,12 @@ public class EntrenamientoDetalladoFragment extends Fragment {
      * @return A new instance of fragment EntrenamientoDetalladoFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static EntrenamientoDetalladoFragment newInstance(String content, String detail) {
+    public static EntrenamientoDetalladoFragment newInstance(String content, String detail, String id) {
         EntrenamientoDetalladoFragment fragment = new EntrenamientoDetalladoFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, content);
         args.putString(ARG_PARAM2, detail);
+        args.putString(ARG_PARAM3, id);
         fragment.setArguments(args);
         return fragment;
     }
@@ -62,6 +67,7 @@ public class EntrenamientoDetalladoFragment extends Fragment {
         if (getArguments() != null) {
             mContent = getArguments().getString(ARG_PARAM1);
             mDetail = getArguments().getString(ARG_PARAM2);
+            mId = getArguments().getString(ARG_PARAM3);
         }
     }
 
@@ -77,7 +83,7 @@ public class EntrenamientoDetalladoFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
 
-
+        stepsList = EntrenamientoContent.getSteps(mId);
         adapter = new StepsAdapter(stepsList,getActivity().getApplicationContext());
         recyclerView.setAdapter(adapter);
 
