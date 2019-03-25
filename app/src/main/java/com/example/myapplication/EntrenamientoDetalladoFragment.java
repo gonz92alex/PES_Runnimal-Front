@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -29,10 +30,11 @@ public class EntrenamientoDetalladoFragment extends Fragment {
 
     // TODO: Rename and change types of parameters
     private String mContent;
-    private String mDetail;
+    private String mDescription;
     private String mId;
 
     private TextView mContentText;
+    private TextView mDescriptionText;
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
@@ -47,15 +49,15 @@ public class EntrenamientoDetalladoFragment extends Fragment {
      * this fragment using the provided parameters.
      *
      * @param content Parameter 1.
-     * @param detail Parameter 2.
+     * @param description Parameter 2.
      * @return A new instance of fragment EntrenamientoDetalladoFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static EntrenamientoDetalladoFragment newInstance(String content, String detail, String id) {
+    public static EntrenamientoDetalladoFragment newInstance(String content, String description, String id) {
         EntrenamientoDetalladoFragment fragment = new EntrenamientoDetalladoFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, content);
-        args.putString(ARG_PARAM2, detail);
+        args.putString(ARG_PARAM2, description);
         args.putString(ARG_PARAM3, id);
         fragment.setArguments(args);
         return fragment;
@@ -66,25 +68,29 @@ public class EntrenamientoDetalladoFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mContent = getArguments().getString(ARG_PARAM1);
-            mDetail = getArguments().getString(ARG_PARAM2);
+            mDescription = getArguments().getString(ARG_PARAM2);
             mId = getArguments().getString(ARG_PARAM3);
         }
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_entrenamiento_detallado, container, false);
         mContentText = view.findViewById(R.id.content_tv);
+        mDescriptionText = view.findViewById(R.id.description_tv);
+
+
         mContentText.setText(mContent);
+        mDescriptionText.setText(mDescription);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.steps_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
 
         stepsList = EntrenamientoContent.getSteps(mId);
-        adapter = new StepsAdapter(stepsList,getActivity().getApplicationContext());
+        adapter = new StepsAdapter(stepsList, getActivity().getApplicationContext());
         recyclerView.setAdapter(adapter);
 
         return view;

@@ -59,7 +59,7 @@ public class EntrenamientoContent {
         public final String content;
         final String details;
         final String imagen_url;
-        ArrayList<String> steps;
+        ArrayList<String> steps = new ArrayList<>();
 
 
         public EntrenamientoItem(String id, String content, String details) {
