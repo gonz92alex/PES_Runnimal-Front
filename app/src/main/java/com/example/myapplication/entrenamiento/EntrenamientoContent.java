@@ -61,13 +61,17 @@ public class EntrenamientoContent {
         final String imagen_url;
         String[] steps;
 
+
         public EntrenamientoItem(String id, String content, String details) {
             this.id = id;
             this.content = content;
             this.details = details;
-
             this.imagen_url = "https://t2.uc.ltmcdn.com/images/0/5/2/img_como_ensenar_a_un_perro_a_dar_la_pata_22250_600.jpg";
 
+            String[] aux = new String[2];
+            aux[0] = "Primer paso de ejemplo";
+            aux[1] = "Segundo paso de ejemplo";
+            steps = aux;
         }
 
         public String getId() {
