@@ -16,18 +16,10 @@ public class EntrenamientoContent {
      */
     public static final Map<String, EntrenamientoItem> ITEM_MAP = new HashMap<String, EntrenamientoItem>();
 
-    private static final int COUNT = 25;
-
-    static {
-        // Add some sample items.
-        for (int i = 1; i <= COUNT; i++) {
-            addItem(createEntrenamientoItem(i));
-        }
-    }
 
     //Todo función para probar añadir desde fuera de la clase...
     public static void añadirItem(String id, String content, String details){
-        addItem(createEntrenamientoItem(Integer.parseInt(id)));
+        addItem(createEntrenamientoItem(id, content, details));
     }
 
     private static void addItem(EntrenamientoItem item) {
@@ -35,18 +27,10 @@ public class EntrenamientoContent {
         ITEM_MAP.put(item.id, item);
     }
 
-    private static EntrenamientoItem createEntrenamientoItem(int position) {
-        return new EntrenamientoItem(String.valueOf(position), "Ejercicio " + position, makeDetails(position));
+    private static EntrenamientoItem createEntrenamientoItem(String id, String content, String details) {
+        return new EntrenamientoItem(id, content, details);
     }
 
-    private static String makeDetails(int position) {
-        StringBuilder builder = new StringBuilder();
-        builder.append("Details about Item: ").append(position);
-        for (int i = 0; i < position; i++) {
-            builder.append("\nMore details information here.");
-        }
-        return builder.toString();
-    }
 
     /**
      * Entrenamiento item representing a piece of content.

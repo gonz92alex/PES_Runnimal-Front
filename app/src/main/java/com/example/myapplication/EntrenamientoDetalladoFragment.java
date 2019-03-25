@@ -10,10 +10,10 @@ import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link EntrenamientoDetallado#newInstance} factory method to
+ * Use the {@link EntrenamientoDetalladoFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class EntrenamientoDetallado extends Fragment {
+public class EntrenamientoDetalladoFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "content";
@@ -25,7 +25,7 @@ public class EntrenamientoDetallado extends Fragment {
 
     private TextView mContentText;
 
-    public EntrenamientoDetallado() {
+    public EntrenamientoDetalladoFragment() {
         // Required empty public constructor
     }
 
@@ -35,11 +35,11 @@ public class EntrenamientoDetallado extends Fragment {
      *
      * @param content Parameter 1.
      * @param detail Parameter 2.
-     * @return A new instance of fragment EntrenamientoDetallado.
+     * @return A new instance of fragment EntrenamientoDetalladoFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static EntrenamientoDetallado newInstance(String content, String detail) {
-        EntrenamientoDetallado fragment = new EntrenamientoDetallado();
+    public static EntrenamientoDetalladoFragment newInstance(String content, String detail) {
+        EntrenamientoDetalladoFragment fragment = new EntrenamientoDetalladoFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, content);
         args.putString(ARG_PARAM2, detail);

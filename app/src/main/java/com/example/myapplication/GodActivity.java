@@ -1,6 +1,5 @@
 package com.example.myapplication;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -118,7 +117,7 @@ public class GodActivity extends FragmentActivity implements EntrenamientoFragme
 
 
     public void ProfileEv(View view) {
-        //estoy probando a ver si puedo hacer que funcione un botton en la imagen del navigation drawer
+        //ToDO estoy probando a ver si puedo hacer que funcione un botton en la imagen del navigation drawer
         //tendremos que cambiar esto
         ProfileFragment profile = ProfileFragment.newInstance(nombre, correo, fotoPerfil);
         //hay que ver como se passa la imagen de perfil
@@ -134,7 +133,7 @@ public class GodActivity extends FragmentActivity implements EntrenamientoFragme
     @Override
     public void onListFragmentInteraction(EntrenamientoContent.EntrenamientoItem item) {
         Log.d("clickTest", "onListFragmentInteraction: clicked! ");
-        loadFragment(EntrenamientoDetallado.newInstance(item.getContent(),item.getDetails()));
+        loadFragment(EntrenamientoDetalladoFragment.newInstance(item.getContent(),item.getDetails()));
     }
 
     /**

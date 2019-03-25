@@ -29,7 +29,6 @@ public class LogInActivity extends AppCompatActivity {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
         String url ="http://nidoqueen.fib.upc.edu:3000/api/user/" + email;
-        Log.d("apiuser", email + " " + password);
 
         //Loading Message
         final ProgressDialog progressDialog = new ProgressDialog(this);
@@ -91,7 +90,7 @@ public class LogInActivity extends AppCompatActivity {
     public void LoginOk(String email, String nombre /* falta añadir las fotos */){
         Intent LoginIntent = new Intent(this, GodActivity.class);
         SingletonSession.Instance().setMail(email);
-        SingletonSession.Instance().setUsername(nombre);//esto es un ejemplo, mas adelante tenemos que hacer que pase la informacion que nos retorna el back
+        SingletonSession.Instance().setUsername(nombre);//ToDo esto es un ejemplo, mas adelante tenemos que hacer que pase la informacion que nos retorna el back
         startActivity(LoginIntent);
     }
 
