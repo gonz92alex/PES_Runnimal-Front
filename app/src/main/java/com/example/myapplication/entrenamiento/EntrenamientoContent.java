@@ -32,7 +32,7 @@ public class EntrenamientoContent {
     }
 
     //obtiene los pasos a realizar para el ejercicio indicado con el parametro id.
-    public static String[] getSteps(String id){
+    public static ArrayList<String> getSteps(String id){
         for (int i=0;i<ITEMS.size();i++){
             if (ITEMS.get(i).getId().equals(id)) return ITEMS.get(i).getSteps();
         }
@@ -40,7 +40,7 @@ public class EntrenamientoContent {
     }
 
     //guarda los pasos a realizar para el ejercicio indicado con el parametro id.(evitar llamar a la api si ya los tenemos)
-    public static boolean setSteps(String id, String[] steps){
+    public static boolean setSteps(String id, ArrayList<String> steps){
         for (int i=0;i<ITEMS.size();i++){
             if (ITEMS.get(i).getId().equals(id)){
                 ITEMS.get(i).setSteps(steps);
@@ -59,7 +59,7 @@ public class EntrenamientoContent {
         public final String content;
         final String details;
         final String imagen_url;
-        String[] steps;
+        ArrayList<String> steps;
 
 
         public EntrenamientoItem(String id, String content, String details) {
@@ -68,10 +68,8 @@ public class EntrenamientoContent {
             this.details = details;
             this.imagen_url = "https://t2.uc.ltmcdn.com/images/0/5/2/img_como_ensenar_a_un_perro_a_dar_la_pata_22250_600.jpg";
 
-            String[] aux = new String[2];
-            aux[0] = "Primer paso de ejemplo";
-            aux[1] = "Segundo paso de ejemplo";
-            steps = aux;
+            steps.add("paso1 de test");
+            steps.add("paso2 de test");
         }
 
         public String getId() {
@@ -90,11 +88,11 @@ public class EntrenamientoContent {
             return imagen_url;
         }
 
-        public void setSteps(String[] steps) {
+        public void setSteps(ArrayList<String> steps) {
             this.steps = steps;
         }
 
-        public String[] getSteps() {
+        public ArrayList<String> getSteps() {
             return steps;
         }
 

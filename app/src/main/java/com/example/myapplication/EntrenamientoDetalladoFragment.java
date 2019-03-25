@@ -76,6 +76,8 @@ public class EntrenamientoDetalladoFragment extends Fragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.steps_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
+
+
         adapter = new StepsAdapter(stepsList,getActivity().getApplicationContext());
         recyclerView.setAdapter(adapter);
 
