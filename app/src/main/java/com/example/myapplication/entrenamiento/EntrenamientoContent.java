@@ -31,6 +31,25 @@ public class EntrenamientoContent {
         return new EntrenamientoItem(id, content, details);
     }
 
+    //obtiene los pasos a realizar para el ejercicio indicado con el parametro id.
+    public static String[] getSteps(String id){
+        for (int i=0;i<ITEMS.size();i++){
+            if (ITEMS.get(i).getId().equals(id)) return ITEMS.get(i).getSteps();
+        }
+        return null;
+    }
+
+    //guarda los pasos a realizar para el ejercicio indicado con el parametro id.(evitar llamar a la api si ya los tenemos)
+    public static boolean setSteps(String id, String[] steps){
+        for (int i=0;i<ITEMS.size();i++){
+            if (ITEMS.get(i).getId().equals(id)){
+                ITEMS.get(i).setSteps(steps);
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     /**
      * Entrenamiento item representing a piece of content.
@@ -40,13 +59,19 @@ public class EntrenamientoContent {
         public final String content;
         final String details;
         final String imagen_url;
+        String[] steps;
 
         public EntrenamientoItem(String id, String content, String details) {
             this.id = id;
             this.content = content;
             this.details = details;
+
             this.imagen_url = "https://t2.uc.ltmcdn.com/images/0/5/2/img_como_ensenar_a_un_perro_a_dar_la_pata_22250_600.jpg";
 
+        }
+
+        public String getId() {
+            return id;
         }
 
         public String getContent() {
@@ -60,6 +85,15 @@ public class EntrenamientoContent {
         public String getImagen_url() {
             return imagen_url;
         }
+
+        public void setSteps(String[] steps) {
+            this.steps = steps;
+        }
+
+        public String[] getSteps() {
+            return steps;
+        }
+
     }
 }
 
