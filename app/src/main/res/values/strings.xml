@@ -29,6 +29,7 @@
     <string name="steps">Steps</string>
     <string name="UserProfile" translatable="false">User Profile</string>
     <string name="Modify" translatable="false">Modify</string>
+    <string name="Save" translatable="false">Save</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

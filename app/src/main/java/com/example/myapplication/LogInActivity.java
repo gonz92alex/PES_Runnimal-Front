@@ -28,7 +28,7 @@ public class LogInActivity extends AppCompatActivity {
     private void getUser(final String email, final String password){
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url ="http://nidoqueen.fib.upc.edu:3000/api/user/" + email;
+        String url ="http://nidorana.fib.upc.edu/api/user/" + email;
 
         //Loading Message
         final ProgressDialog progressDialog = new ProgressDialog(this);

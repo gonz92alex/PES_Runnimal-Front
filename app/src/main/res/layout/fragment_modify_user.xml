@@ -25,7 +25,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/EditTextDogName"
+            android:id="@+id/EditTextAlias"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -36,75 +36,26 @@
             android:inputType="textPersonName"
             android:paddingStart="40dp"
             android:paddingEnd="40dp"
+            android:background="@drawable/usrlog"
+            android:paddingLeft="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageViewProfile" />
 
-        <EditText
-            android:id="@+id/EditTextDogBreed"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="8dp"
-            android:ems="10"
-            android:hint="@string/breed"
-            android:inputType="textPersonName"
-            android:paddingStart="40dp"
-            android:paddingEnd="40dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.494"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/EditTextDogName" />
-
-        <EditText
-            android:id="@+id/EditTextDogWeight"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="8dp"
-            android:ems="10"
-            android:hint="@string/weight"
-            android:inputType="number"
-            android:paddingStart="40dp"
-            android:paddingEnd="40dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.494"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/EditTextDogBreed" />
-
-        <EditText
-            android:id="@+id/EditTextDogAge"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="8dp"
-            android:ems="10"
-            android:hint="@string/age"
-            android:inputType="number"
-            android:paddingStart="40dp"
-            android:paddingEnd="40dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.494"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/EditTextDogWeight" />
-
         <Button
-            android:id="@+id/buttonAddPet"
+            android:id="@+id/buttonSave"
             android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="48dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/btn_rounded"
-            android:text="@string/Add"
+            android:text="@string/Save"
             android:textColor="#C5EFF7"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/EditTextDogAge" />
+            app:layout_constraintTop_toBottomOf="@+id/EditTextPassword" />
 
         <Button
             android:id="@+id/buttonCameraEdit"
@@ -115,5 +66,37 @@
             android:background="@drawable/editar"
             app:layout_constraintStart_toEndOf="@+id/imageViewProfile"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/EditTextMail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:hint="xxx@yyyy.com"
+            android:background="@drawable/maillog"
+            android:paddingLeft="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/EditTextAlias" />
+
+        <EditText
+            android:id="@+id/EditTextPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:hint="@string/Password"
+            android:inputType="textPassword"
+            android:background="@drawable/paslog"
+            android:paddingLeft="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/EditTextMail" />
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

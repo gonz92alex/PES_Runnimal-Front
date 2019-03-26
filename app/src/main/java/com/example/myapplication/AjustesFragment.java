@@ -17,9 +17,6 @@ public class AjustesFragment extends Fragment {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*FragmentTransaction fr = getFragmentManager().beginTransaction();
-                fr.replace(R.id.fragment_container, AnadirMascotaFragment.newInstance("elpapito@mipito.es"))
-                        .commit();*/
                 AddEv();
             }
         });
@@ -28,7 +25,7 @@ public class AjustesFragment extends Fragment {
     }
     public void AddEv() {
         //ToDO pasamos el mail del usuario logueado como parametro?
-        ((GodActivity)getActivity()).loadFragment(ModifyUserFragment.newInstance("elpapito@mipito.es"));
+        ((GodActivity)getActivity()).loadFragment(ModifyUserFragment.newInstance("x"));
 
     }
 }
