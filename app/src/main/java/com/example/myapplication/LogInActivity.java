@@ -90,7 +90,7 @@ public class LogInActivity extends AppCompatActivity {
     public void LoginOk(String email, String nombre /* falta añadir las fotos */){
         Intent LoginIntent = new Intent(this, GodActivity.class);
         SingletonSession.Instance().setMail(email);
-        SingletonSession.Instance().setUsername(nombre);//ToDo esto es un ejemplo, mas adelante tenemos que hacer que pase la informacion que nos retorna el back
+        SingletonSession.Instance().setUsername(nombre);
         startActivity(LoginIntent);
     }
 

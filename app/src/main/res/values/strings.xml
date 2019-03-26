@@ -27,6 +27,8 @@
     <string name="age">Age</string>
     <string name="sign_up">Sign Up</string>
     <string name="steps">Steps</string>
+    <string name="UserProfile" translatable="false">User Profile</string>
+    <string name="Modify" translatable="false">Modify</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 </resources>
