@@ -30,4 +30,7 @@
     <string name="Modify">Modify</string>
     <string name="Save">Save</string>
     <string name="PetsProfile">Pets profile</string>
+    <string name="birthdate">Birth year</string>
+    <string name="description">Description</string>
+    <string name="size">Size</string>
 </resources>

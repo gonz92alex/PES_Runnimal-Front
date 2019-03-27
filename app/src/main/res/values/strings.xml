@@ -33,4 +33,7 @@
     <string name="PetsProfile">Pets profile</string>
 
     <!-- TODO: Remove or change this placeholder text -->
+    <string name="birthdate">Birth year</string>
+    <string name="description">Description</string>
+    <string name="size">Size</string>
 </resources>

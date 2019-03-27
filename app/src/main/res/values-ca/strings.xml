@@ -30,4 +30,7 @@
     <string name="Modify">Modificar</string>
     <string name="Save">Guardar</string>
     <string name="PetsProfile">Perfil de mascota</string>
+    <string name="birthdate">Any de neixament</string>
+    <string name="description">Descripció</string>
+    <string name="size">Tamany</string>
 </resources>
