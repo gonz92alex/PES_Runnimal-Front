@@ -25,4 +25,7 @@
     <string name="weight">Peso</string>
     <string name="age">Edad</string>
     <string name="sign_up">Registrarse</string>
+    <string name="birthdate">Año de nacimiento</string>
+    <string name="description">Desripción</string>
+    <string name="size">Tamaño</string>
 </resources>

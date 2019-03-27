@@ -25,4 +25,7 @@
     <string name="weight">Pes</string>
     <string name="age">Edat</string>
     <string name="sign_up">Registrar-se</string>
+    <string name="birthdate">Any de neixament</string>
+    <string name="description">Descripció</string>
+    <string name="size">Tamany</string>
 </resources>
