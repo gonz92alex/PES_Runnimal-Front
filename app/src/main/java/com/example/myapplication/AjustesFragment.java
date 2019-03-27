@@ -13,17 +13,30 @@ public class AjustesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_ajustes, container, false);
-        Button addButton = view.findViewById(R.id.btn_add);
-        addButton.setOnClickListener(new View.OnClickListener() {
+        Button modUserButton = view.findViewById(R.id.btn_mod_user);
+        modUserButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AddEv();
+                AddEvUser();
+            }
+        });
+        Button modPetButton = view.findViewById(R.id.btn_mod_pets);
+        modPetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AddEvPet();
             }
         });
 
+
         return view;
     }
-    public void AddEv() {
+
+    private void AddEvPet() {
+        ((GodActivity)getActivity()).loadFragment(ModifyPetFragment.newInstance("x"));
+    }
+
+    public void AddEvUser() {
         //ToDO pasamos el mail del usuario logueado como parametro?
         ((GodActivity)getActivity()).loadFragment(ModifyUserFragment.newInstance("x"));
 

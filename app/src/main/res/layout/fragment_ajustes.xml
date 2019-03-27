@@ -17,7 +17,7 @@
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
 
         <Button
-            android:id="@+id/btn_add"
+            android:id="@+id/btn_mod_user"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -27,6 +27,31 @@
 
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:text="@string/PetsProfile"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+
+        <Button
+            android:id="@+id/btn_mod_pets"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:baselineAligned="false"
+            android:text="@string/Modify"
+            android:contentDescription="img_añadir" />
+
+
+    </LinearLayout>
+
 
 
 </LinearLayout>

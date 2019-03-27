@@ -30,6 +30,7 @@
     <string name="UserProfile" translatable="false">User Profile</string>
     <string name="Modify" translatable="false">Modify</string>
     <string name="Save" translatable="false">Save</string>
+    <string name="PetsProfile" translatable="false">Pets profile</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 </resources>
