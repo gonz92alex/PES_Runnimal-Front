@@ -26,4 +26,8 @@
     <string name="age">Edad</string>
     <string name="sign_up">Registrarse</string>
     <string name="steps">Pasos</string>
+    <string name="UserProfile">Perfil de usuario</string>
+    <string name="Modify">Modificar</string>
+    <string name="Save">Guardar</string>
+    <string name="PetsProfile">Perfil de mascota</string>
 </resources>

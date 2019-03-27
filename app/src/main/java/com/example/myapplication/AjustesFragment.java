@@ -33,12 +33,12 @@ public class AjustesFragment extends Fragment {
     }
 
     private void AddEvPet() {
-        ((GodActivity)getActivity()).loadFragment(ModifyPetFragment.newInstance("x"));
+        ((GodActivity)getActivity()).loadFragment(ModifyPetFragment.newInstance());
     }
 
     public void AddEvUser() {
         //ToDO pasamos el mail del usuario logueado como parametro?
-        ((GodActivity)getActivity()).loadFragment(ModifyUserFragment.newInstance("x"));
+        ((GodActivity)getActivity()).loadFragment(ModifyUserFragment.newInstance());
 
     }
 }

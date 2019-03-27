@@ -14,7 +14,7 @@ public class ModifyUserFragment extends Fragment {
     TextView textViewPassword;
 
 
-    public static Fragment newInstance(String s) {
+    public static Fragment newInstance() {
         ModifyUserFragment fragment = new ModifyUserFragment();
         return fragment;
     }

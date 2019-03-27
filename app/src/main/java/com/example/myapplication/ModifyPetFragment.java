@@ -12,7 +12,7 @@ public class ModifyPetFragment extends Fragment {
 
 
 
-    public static Fragment newInstance(String s) {
+    public static Fragment newInstance() {
         ModifyPetFragment fragment = new ModifyPetFragment();
         return fragment;
     }
