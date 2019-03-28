@@ -12,7 +12,7 @@ public class AjustesFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_ajustes, container, false);
+        final View view = inflater.inflate(R.layout.fragment_ajustes, container, false);
         Button modUserButton = view.findViewById(R.id.btn_mod_user);
         modUserButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -24,7 +24,7 @@ public class AjustesFragment extends Fragment {
         modPetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AddEvPet();
+                AddEvPet(view);
             }
         });
 
@@ -32,7 +32,7 @@ public class AjustesFragment extends Fragment {
         return view;
     }
 
-    private void AddEvPet() {
+    private void AddEvPet(View view) {
         ((GodActivity)getActivity()).loadFragment(ModifyPetFragment.newInstance());
     }
 
