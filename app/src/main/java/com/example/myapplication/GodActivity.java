@@ -127,7 +127,12 @@ public class GodActivity extends FragmentActivity implements EntrenamientoFragme
 
     }
 
-
+    public void refreshDrawer(String nombre){
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        View header = (navigationView.getHeaderView(0));
+        TextView nombreView = (TextView) header.findViewById(R.id.NombreInApp);
+        nombreView.setText(SingletonSession.Instance().getUsername());
+    }
 
     //Metodos a implementar de EntrenamientoFragment
     @Override

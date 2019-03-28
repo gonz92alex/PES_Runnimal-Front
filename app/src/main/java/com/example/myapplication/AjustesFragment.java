@@ -37,8 +37,6 @@ public class AjustesFragment extends Fragment {
     }
 
     public void AddEvUser() {
-        //ToDO pasamos el mail del usuario logueado como parametro?
         ((GodActivity)getActivity()).loadFragment(ModifyUserFragment.newInstance());
-
     }
 }
