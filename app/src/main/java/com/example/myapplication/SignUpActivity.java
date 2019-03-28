@@ -1,6 +1,8 @@
 package com.example.myapplication;
 
 import android.app.ProgressDialog;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.provider.MediaStore;
@@ -66,11 +68,32 @@ public class SignUpActivity extends AppCompatActivity {
         EditText pass = (EditText) findViewById(R.id.EditTextPassword);
         EditText mail = (EditText) findViewById(R.id.EditTextMail);
 
-        signUp(nombre.getText().toString(), pass.getText().toString(), mail.getText().toString());
+        if(nombre.getText().toString().equals("") || pass.getText().toString().equals("") || mail.getText().toString().equals("")){
+            new AlertDialog.Builder(this)
+                    .setTitle("Missing parameters")
+                    .setMessage("You have to fill first all the text camps")
+
+                    // Specifying a listener allows you to take an action before dismissing the dialog.
+                    // The dialog is automatically dismissed when a dialog button is clicked.
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // Continue with delete operation
+                        }
+                    })
+
+                    // A null listener allows the button to dismiss the dialog and take no further action.
+                    .setNegativeButton(android.R.string.no, null)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+        }
+        else {
+
+            signUp(nombre.getText().toString(), pass.getText().toString(), mail.getText().toString());
+        }
 
     }
 
-    private void signUp(String nombre, String pass, String mail) throws JSONException {
+    private void signUp(final String nombre, String pass, final String mail) throws JSONException {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
         String url ="http://nidorana.fib.upc.edu/api/users/";
@@ -82,7 +105,6 @@ public class SignUpActivity extends AppCompatActivity {
 
         //Construir el cuerpo del request con la información a enviar
         JSONObject jsonBody = new JSONObject();
-        //ToDo - Vigilar con el nombre de los campos, que sean los que pide la API
         jsonBody.put("email", mail);
         jsonBody.put("password", pass);
         jsonBody.put("alias", nombre);
@@ -97,6 +119,8 @@ public class SignUpActivity extends AppCompatActivity {
                         progressDialog.dismiss();
                         Log.i("VOLLEY", response);
                         //ToDo -> si la respuesta es 'OK' redirigir a pantalla de login/loguear directamente con el user creado?
+                        SingUpOk(mail, nombre);
+
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -122,6 +146,15 @@ public class SignUpActivity extends AppCompatActivity {
 
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
+    }
+
+
+
+    public void SingUpOk(String email, String nombre /* falta añadir las fotos */){
+        Intent LoginIntent = new Intent(this, GodActivity.class);
+        SingletonSession.Instance().setMail(email);
+        SingletonSession.Instance().setUsername(nombre);
+        startActivity(LoginIntent);
     }
 
 }
