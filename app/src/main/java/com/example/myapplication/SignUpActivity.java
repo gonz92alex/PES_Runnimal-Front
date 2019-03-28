@@ -73,16 +73,9 @@ public class SignUpActivity extends AppCompatActivity {
                     .setTitle("Missing parameters")
                     .setMessage("You have to fill first all the text camps")
 
-                    // Specifying a listener allows you to take an action before dismissing the dialog.
-                    // The dialog is automatically dismissed when a dialog button is clicked.
-                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            // Continue with delete operation
-                        }
-                    })
-
                     // A null listener allows the button to dismiss the dialog and take no further action.
-                    .setNegativeButton(android.R.string.no, null)
+                    // The dialog is automatically dismissed when a dialog button is clicked.
+                    .setPositiveButton(android.R.string.ok, null)
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .show();
         }
@@ -119,7 +112,7 @@ public class SignUpActivity extends AppCompatActivity {
                         progressDialog.dismiss();
                         Log.i("VOLLEY", response);
                         //ToDo -> si la respuesta es 'OK' redirigir a pantalla de login/loguear directamente con el user creado?
-                        SingUpOk(mail, nombre);
+                        signUpOk(mail, nombre);
 
                     }
                 }, new Response.ErrorListener() {
@@ -150,7 +143,7 @@ public class SignUpActivity extends AppCompatActivity {
 
 
 
-    public void SingUpOk(String email, String nombre /* falta añadir las fotos */){
+    public void signUpOk(String email, String nombre /*ToDO falta añadir las fotos */){
         Intent LoginIntent = new Intent(this, GodActivity.class);
         SingletonSession.Instance().setMail(email);
         SingletonSession.Instance().setUsername(nombre);
