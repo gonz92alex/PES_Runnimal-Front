@@ -28,25 +28,14 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.util.Arrays;
 
 
-public class MapFragment extends Fragment implements OnMapReadyCallback, LocationListener {
-    private static final String[] INITIAL_PERMS = {
-            Manifest.permission.ACCESS_FINE_LOCATION
-    };
-    private static final int INITIAL_REQUEST = 1337;
-
+public class MapFragment extends Fragment implements OnMapReadyCallback {
     protected LocationManager locationManager;
     protected Double latitude, longitude;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_map, null);
-
-        if (!canAccessLocation()) {
-            requestPermissions(INITIAL_PERMS, INITIAL_REQUEST);
-        }
-
-        return rootView;
+        return inflater.inflate(R.layout.fragment_map, null);
     }
 
     @Override
@@ -69,35 +58,5 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, Locatio
         } catch (SecurityException e) {
             Toast.makeText(getActivity(), "Error", Toast.LENGTH_LONG).show();
         }
-    }
-
-    @Override
-    public void onLocationChanged(Location location) {
-        latitude = location.getLatitude();
-        longitude = location.getLongitude();
-        Toast.makeText(getActivity(), "Alert sent. Location: " + latitude + " " + longitude, Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
-        Toast.makeText(getActivity(), "Provider Status Changed: ", Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void onProviderEnabled(String provider) {
-        Toast.makeText(getActivity(), "GPS ON", Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void onProviderDisabled(String provider) {
-        Toast.makeText(getActivity(), "GPS OFF:", Toast.LENGTH_LONG).show();
-    }
-
-    private boolean canAccessLocation() {
-        return (hasPermission(Manifest.permission.ACCESS_FINE_LOCATION));
-    }
-
-    private boolean hasPermission(String perm) {
-        return (PackageManager.PERMISSION_GRANTED == getActivity().checkSelfPermission(perm));
     }
 }
