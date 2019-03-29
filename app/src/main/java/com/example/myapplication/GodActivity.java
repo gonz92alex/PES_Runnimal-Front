@@ -22,7 +22,6 @@ import android.view.MenuItem;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.myapplication.entrenamiento.EntrenamientoContent;
 
@@ -47,18 +46,7 @@ public class GodActivity extends FragmentActivity implements EntrenamientoFragme
 
             switch (item.getItemId()) {
                 case R.id.navigation_mapa:
-                    if (! isLocationEnabled()) {
-                        showAlert();
-                        fragment = new FragmentNoMap();
-                    }
-                    else {
-                        if (!canAccessLocation()) {
-                            requestPermissions(INITIAL_PERMS, PERMISSIONS_REQUEST);
-                            fragment = new FragmentNoMap();
-                        } else {
-                            fragment = new MapFragment();
-                        }
-                    }
+                    initMap();
                     break;
 
                 case R.id.navigation_entrenamientos:
@@ -123,19 +111,7 @@ public class GodActivity extends FragmentActivity implements EntrenamientoFragme
         setContentView(R.layout.activity_god);
         drawerLayout = findViewById(R.id.drawer_layout);
 
-        if (! isLocationEnabled()) {
-            showAlert();
-            loadFragment(new FragmentNoMap());
-        }
-        else {
-            if (!canAccessLocation()) {
-                requestPermissions(INITIAL_PERMS, PERMISSIONS_REQUEST);
-                loadFragment(new FragmentNoMap());
-            } else {
-                loadFragment(new MapFragment());
-            }
-        }
-
+        initMap();
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(nOnNavigationItemSelectedListener);
@@ -192,49 +168,10 @@ public class GodActivity extends FragmentActivity implements EntrenamientoFragme
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions,
                                            int[] grantResults) {
-        if (requestCode == PERMISSIONS_REQUEST) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                loadFragment(new MapFragment());
-            }
-            else {
-                showAlert();
-                loadFragment(new FragmentNoMap());
-            }
-        }
+        PermissionUtils.checkPermissionsResult(this, requestCode, permissions, grantResults, getResources().getString(R.string.gps_enable), getResources().getString(R.string.gps_enable_full));
     }
 
-    private void showAlert() {
-        final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-        dialog.setTitle("Enable Location")
-                .setMessage("Your Locations Settings is set to 'Off'.\nPlease Enable Location to " +
-                        "use this app")
-                .setPositiveButton("Location Settings", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface paramDialogInterface, int paramInt) {
-                        Intent myIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                        startActivity(myIntent);
-                    }
-                })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface paramDialogInterface, int paramInt) {
-
-                    }
-                });
-        dialog.show();
-    }
-
-    private boolean isLocationEnabled() {
-        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) ||
-                locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-    }
-
-    private boolean canAccessLocation() {
-        return (hasPermission(Manifest.permission.ACCESS_FINE_LOCATION));
-    }
-
-    private boolean hasPermission(String perm) {
-        return (PackageManager.PERMISSION_GRANTED == checkSelfPermission(perm));
+    private void initMap() {
+        PermissionUtils.checkLocation(this, getResources().getString(R.string.gps_enable), getResources().getString(R.string.gps_enable_full));
     }
 }

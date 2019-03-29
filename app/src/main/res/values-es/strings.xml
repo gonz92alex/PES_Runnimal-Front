@@ -33,7 +33,11 @@
     <string name="birthdate">Año de nacimiento</string>
     <string name="description">Desripción</string>
     <string name="size">Tamaño</string>
+
+    <string name="cancel">Cancelar</string>
+
     <string name="walks_start">Start walk</string>
-    <string name="gps_error">GPS no disponible</string>
-    <string name="gps_enable">Activar GPS</string>
+    <string name="gps_enable">Activar ubicación</string>
+    <string name="gps_enable_full">La configuración de ubicación está desactivada. \nPor favor, actívala para poder usar esta funcionalidad.</string>
+    <string name="gps_settings">Configurar ubicación</string>
 </resources>

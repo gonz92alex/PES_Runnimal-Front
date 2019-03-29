@@ -33,7 +33,11 @@
     <string name="birthdate">Any de neixament</string>
     <string name="description">Descripció</string>
     <string name="size">Tamany</string>
+
+    <string name="cancel">Cancelar</string>
+
     <string name="walks_start">Iniciar passeig</string>
-    <string name="gps_error">GPS no disponible</string>
-    <string name="gps_enable">Activar GPS</string>
+    <string name="gps_enable">Activar ubicació</string>
+    <string name="gps_enable_full">La configuració de la teva ubicació està desactivada. \nSi us plau, activa-la per poder fer servir aquesta funcionalitat.</string>
+    <string name="gps_settings">Configurar ubicación</string>
 </resources>

@@ -33,7 +33,11 @@
     <string name="birthdate">Birth year</string>
     <string name="description">Description</string>
     <string name="size">Size</string>
+
+    <string name="cancel">Cancel</string>
+
     <string name="walks_start">Start walk</string>
-    <string name="gps_error">GPS not available</string>
-    <string name="gps_enable">Enable GPS</string>
+    <string name="gps_enable">Enable location</string>
+    <string name="gps_enable_full">Your locations settings is set to \'Off\'. \nPlease enable location to use this feature</string>
+    <string name="gps_settings">Location settings</string>
 </resources>
