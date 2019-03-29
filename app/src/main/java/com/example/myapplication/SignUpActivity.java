@@ -110,9 +110,20 @@ public class SignUpActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         progressDialog.dismiss();
-                        Log.i("VOLLEY", response);
+                        Log.d("VOLLEY", response);
                         //ToDo -> si la respuesta es 'OK' redirigir a pantalla de login/loguear directamente con el user creado?
-                        signUpOk(mail, nombre);
+                        if(!response.equals("400")) signUpOk(mail, nombre);
+                        else if(response.equals("400")) {
+                            new AlertDialog.Builder(SignUpActivity.this)
+                                .setTitle("Wrong parameters")
+                                .setMessage("this email has already an account associated with it")
+
+                                // A null listener allows the button to dismiss the dialog and take no further action.
+                                // The dialog is automatically dismissed when a dialog button is clicked.
+                                .setPositiveButton(android.R.string.ok, null)
+                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                .show();
+                        }
 
                     }
                 }, new Response.ErrorListener() {

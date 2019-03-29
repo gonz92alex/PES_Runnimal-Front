@@ -73,7 +73,7 @@ public class ModifyUserFragment extends Fragment {
     private void modifier(final String nombre) throws JSONException {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue((GodActivity)getActivity());
-        String url ="http://nidorana.fib.upc.edu/api/users/";
+        String url ="http://nidorana.fib.upc.edu/api/user/"  + SingletonSession.Instance().getMail();
 
         //Loading Message
         final ProgressDialog progressDialog = new ProgressDialog((GodActivity)getActivity());
@@ -100,7 +100,7 @@ public class ModifyUserFragment extends Fragment {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText((GodActivity)getActivity().getApplicationContext(),"Error: " + error.toString(), Toast.LENGTH_LONG).show();
+                Toast.makeText((GodActivity)getActivity(),"Error: " + error.toString(), Toast.LENGTH_LONG).show();
             }
         }) {
             @Override
@@ -129,7 +129,7 @@ public class ModifyUserFragment extends Fragment {
     }
     private void modifyUserEv(View view) throws JSONException {
         EditText nombre = (EditText) view.findViewById(R.id.EditTextAlias);
-        /*
+
         if(nombre.getText().toString().equals("") ){
             new AlertDialog.Builder((GodActivity)getActivity())
                     .setTitle("Missing parameters")
@@ -143,9 +143,7 @@ public class ModifyUserFragment extends Fragment {
         }
         else {
             modifier(nombre.getText().toString());
-        }*/
-
-        modifier(nombre.getText().toString());
+        }
     }
 
 
