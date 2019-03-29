@@ -1,8 +1,16 @@
 package com.example.myapplication;
 
+import android.Manifest;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
@@ -19,6 +27,11 @@ import com.example.myapplication.entrenamiento.EntrenamientoContent;
 
 
 public class GodActivity extends FragmentActivity implements EntrenamientoFragment.OnListFragmentInteractionListener, AnadirMascotaFragment.OnFragmentInteractionListener {
+    private static final String[] INITIAL_PERMS = {
+            Manifest.permission.ACCESS_FINE_LOCATION
+    };
+    private static final int PERMISSIONS_REQUEST = 1337;
+
     DrawerLayout drawerLayout;
     String correo;
     String nombre;
@@ -33,7 +46,7 @@ public class GodActivity extends FragmentActivity implements EntrenamientoFragme
 
             switch (item.getItemId()) {
                 case R.id.navigation_mapa:
-                    fragment = new MapFragment();
+                    initMap();
                     break;
 
                 case R.id.navigation_entrenamientos:
@@ -98,7 +111,7 @@ public class GodActivity extends FragmentActivity implements EntrenamientoFragme
         setContentView(R.layout.activity_god);
         drawerLayout = findViewById(R.id.drawer_layout);
 
-        loadFragment(new MapFragment());
+        initMap();
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(nOnNavigationItemSelectedListener);
@@ -127,6 +140,7 @@ public class GodActivity extends FragmentActivity implements EntrenamientoFragme
 
     }
 
+
     public void refreshDrawer(String nombre){
         NavigationView navigationView = findViewById(R.id.nav_view);
         View header = (navigationView.getHeaderView(0));
@@ -138,7 +152,7 @@ public class GodActivity extends FragmentActivity implements EntrenamientoFragme
     @Override
     public void onListFragmentInteraction(EntrenamientoContent.EntrenamientoItem item) {
         Log.d("clickTest", "onListFragmentInteraction: clicked! ");
-        loadFragment(EntrenamientoDetalladoFragment.newInstance(item.getContent(),item.getDetails(), item.getId()));
+        loadFragment(EntrenamientoDetalladoFragment.newInstance(item.getContent(), item.getDetails(), item.getId()));
     }
 
     /**
@@ -156,5 +170,15 @@ public class GodActivity extends FragmentActivity implements EntrenamientoFragme
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                                           int[] grantResults) {
+        PermissionUtils.checkPermissionsResult(this, requestCode, permissions, grantResults, getResources().getString(R.string.location_error_title), getResources().getString(R.string.location_error_descr));
+    }
+
+    private void initMap() {
+        PermissionUtils.checkLocation(this, getResources().getString(R.string.location_error_title), getResources().getString(R.string.location_error_descr));
     }
 }
