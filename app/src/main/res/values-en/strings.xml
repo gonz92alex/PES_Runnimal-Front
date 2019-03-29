@@ -26,4 +26,18 @@
     <string name="age">Age</string>
     <string name="sign_up">Sign Up</string>
     <string name="steps">Steps</string>
+    <string name="UserProfile">User profile</string>
+    <string name="Modify">Modify</string>
+    <string name="Save">Save</string>
+    <string name="PetsProfile">Pets profile</string>
+    <string name="birthdate">Birth year</string>
+    <string name="description">Description</string>
+    <string name="size">Size</string>
+
+    <string name="cancel">Cancel</string>
+
+    <string name="walks_start">Start walk</string>
+    <string name="location_error_title">Enable location</string>
+    <string name="location_error_descr">Your locations settings is set to \'Off\'. \nPlease enable location to use this feature</string>
+    <string name="gps_settings">Location settings</string>
 </resources>

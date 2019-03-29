@@ -26,4 +26,18 @@
     <string name="age">Edad</string>
     <string name="sign_up">Registrarse</string>
     <string name="steps">Pasos</string>
+    <string name="UserProfile">Perfil de usuario</string>
+    <string name="Modify">Modificar</string>
+    <string name="Save">Guardar</string>
+    <string name="PetsProfile">Perfil de mascota</string>
+    <string name="birthdate">Año de nacimiento</string>
+    <string name="description">Desripción</string>
+    <string name="size">Tamaño</string>
+
+    <string name="cancel">Cancelar</string>
+
+    <string name="walks_start">Start walk</string>
+    <string name="location_error_title">Activar ubicación</string>
+    <string name="location_error_descr">La configuración de ubicación está desactivada. \nPor favor, actívala para poder usar esta funcionalidad.</string>
+    <string name="gps_settings">Configurar ubicación</string>
 </resources>

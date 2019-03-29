@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -28,7 +29,7 @@ public class LogInActivity extends AppCompatActivity {
     private void getUser(final String email, final String password){
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url ="http://nidoqueen.fib.upc.edu:3000/api/user/" + email;
+        String url ="http://nidorana.fib.upc.edu/api/user/" + email;
 
         //Loading Message
         final ProgressDialog progressDialog = new ProgressDialog(this);
@@ -84,13 +85,26 @@ public class LogInActivity extends AppCompatActivity {
         EditText editPassword = (EditText) findViewById(R.id.EditTextPassword);
         String password = editPassword.getText().toString();
 
-        getUser(email, password);
+        if(email.equals("") || password.equals("")){
+            new AlertDialog.Builder(this)
+                    .setTitle("Missing parameters")
+                    .setMessage("You have to fill first all the text camps")
+
+                    // A null listener allows the button to dismiss the dialog and take no further action.
+                    // The dialog is automatically dismissed when a dialog button is clicked.
+                    .setPositiveButton(android.R.string.ok, null)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+        }
+        else {
+            getUser(email, password);
+        }
     }
 
     public void LoginOk(String email, String nombre /* falta añadir las fotos */){
         Intent LoginIntent = new Intent(this, GodActivity.class);
         SingletonSession.Instance().setMail(email);
-        SingletonSession.Instance().setUsername(nombre);//ToDo esto es un ejemplo, mas adelante tenemos que hacer que pase la informacion que nos retorna el back
+        SingletonSession.Instance().setUsername(nombre);
         startActivity(LoginIntent);
     }
 

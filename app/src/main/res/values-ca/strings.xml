@@ -26,4 +26,18 @@
     <string name="age">Edat</string>
     <string name="sign_up">Registrar-se</string>
     <string name="steps">"Passos "</string>
+    <string name="UserProfile">Perfil d\'usuari</string>
+    <string name="Modify">Modificar</string>
+    <string name="Save">Guardar</string>
+    <string name="PetsProfile">Perfil de mascota</string>
+    <string name="birthdate">Any de neixament</string>
+    <string name="description">Descripció</string>
+    <string name="size">Tamany</string>
+
+    <string name="cancel">Cancelar</string>
+
+    <string name="walks_start">Iniciar passeig</string>
+    <string name="location_error_title">Activar ubicació</string>
+    <string name="location_error_descr">La configuració de la teva ubicació està desactivada. \nSi us plau, activa-la per poder fer servir aquesta funcionalitat.</string>
+    <string name="gps_settings">Configurar ubicación</string>
 </resources>
