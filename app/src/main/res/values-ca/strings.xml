@@ -37,7 +37,7 @@
     <string name="cancel">Cancelar</string>
 
     <string name="walks_start">Iniciar passeig</string>
-    <string name="gps_enable">Activar ubicació</string>
-    <string name="gps_enable_full">La configuració de la teva ubicació està desactivada. \nSi us plau, activa-la per poder fer servir aquesta funcionalitat.</string>
+    <string name="location_error_title">Activar ubicació</string>
+    <string name="location_error_descr">La configuració de la teva ubicació està desactivada. \nSi us plau, activa-la per poder fer servir aquesta funcionalitat.</string>
     <string name="gps_settings">Configurar ubicación</string>
 </resources>

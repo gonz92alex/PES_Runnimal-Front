@@ -37,7 +37,7 @@
     <string name="cancel">Cancelar</string>
 
     <string name="walks_start">Start walk</string>
-    <string name="gps_enable">Activar ubicación</string>
-    <string name="gps_enable_full">La configuración de ubicación está desactivada. \nPor favor, actívala para poder usar esta funcionalidad.</string>
+    <string name="location_error_title">Activar ubicación</string>
+    <string name="location_error_descr">La configuración de ubicación está desactivada. \nPor favor, actívala para poder usar esta funcionalidad.</string>
     <string name="gps_settings">Configurar ubicación</string>
 </resources>

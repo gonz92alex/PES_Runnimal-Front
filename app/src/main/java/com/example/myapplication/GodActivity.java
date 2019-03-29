@@ -168,10 +168,10 @@ public class GodActivity extends FragmentActivity implements EntrenamientoFragme
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions,
                                            int[] grantResults) {
-        PermissionUtils.checkPermissionsResult(this, requestCode, permissions, grantResults, getResources().getString(R.string.gps_enable), getResources().getString(R.string.gps_enable_full));
+        PermissionUtils.checkPermissionsResult(this, requestCode, permissions, grantResults, getResources().getString(R.string.location_error_title), getResources().getString(R.string.location_error_descr));
     }
 
     private void initMap() {
-        PermissionUtils.checkLocation(this, getResources().getString(R.string.gps_enable), getResources().getString(R.string.gps_enable_full));
+        PermissionUtils.checkLocation(this, getResources().getString(R.string.location_error_title), getResources().getString(R.string.location_error_descr));
     }
 }

@@ -9,7 +9,7 @@
         android:id="@+id/btn_walks_start"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:text="@string/gps_enable"
+        android:text="@string/location_error_title"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

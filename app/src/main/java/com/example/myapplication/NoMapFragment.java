@@ -20,7 +20,7 @@ public class NoMapFragment extends Fragment {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PermissionUtils.checkLocation(getActivity(), getResources().getString(R.string.gps_enable), getResources().getString(R.string.gps_enable_full));
+                PermissionUtils.checkLocation(getActivity(), getResources().getString(R.string.location_error_title), getResources().getString(R.string.location_error_descr));
             }
         });
         return view;
@@ -29,6 +29,6 @@ public class NoMapFragment extends Fragment {
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions,
                                            int[] grantResults) {
-        PermissionUtils.checkPermissionsResult(getActivity(), requestCode, permissions, grantResults, getResources().getString(R.string.gps_enable), getResources().getString(R.string.gps_enable_full));
+        PermissionUtils.checkPermissionsResult(getActivity(), requestCode, permissions, grantResults, getResources().getString(R.string.location_error_title), getResources().getString(R.string.location_error_descr));
     }
 }
