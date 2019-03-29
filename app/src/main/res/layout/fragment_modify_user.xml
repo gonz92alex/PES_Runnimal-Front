@@ -47,7 +47,7 @@
             android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="84dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/btn_rounded"
             android:text="@string/Save"
@@ -55,7 +55,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/EditTextPassword" />
+            app:layout_constraintTop_toBottomOf="@+id/EditTextAlias" />
 
         <Button
             android:id="@+id/buttonCameraEdit"
@@ -67,36 +67,5 @@
             app:layout_constraintStart_toEndOf="@+id/imageViewProfile"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/EditTextMail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="8dp"
-            android:ems="10"
-            android:inputType="textEmailAddress"
-            android:hint="xxx@yyyy.com"
-            android:background="@drawable/maillog"
-            android:paddingLeft="40dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/EditTextAlias" />
-
-        <EditText
-            android:id="@+id/EditTextPassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="8dp"
-            android:ems="10"
-            android:hint="@string/Password"
-            android:inputType="textPassword"
-            android:background="@drawable/paslog"
-            android:paddingLeft="30dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/EditTextMail" />
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -29,6 +30,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
+
+import okhttp3.internal.http2.Http2Stream;
 
 public class SignUpActivity extends AppCompatActivity {
     private static final int CAMERA_REQUEST = 1888;
@@ -110,25 +113,16 @@ public class SignUpActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         progressDialog.dismiss();
-                        Log.d("VOLLEY", response);
+                        Log.d("VOLLEY", response.statusCode);
                         //ToDo -> si la respuesta es 'OK' redirigir a pantalla de login/loguear directamente con el user creado?
-                        if(!response.equals("400")) signUpOk(mail, nombre);
-                        else if(response.equals("400")) {
-                            new AlertDialog.Builder(SignUpActivity.this)
-                                .setTitle("Wrong parameters")
-                                .setMessage("this email has already an account associated with it")
-
-                                // A null listener allows the button to dismiss the dialog and take no further action.
-                                // The dialog is automatically dismissed when a dialog button is clicked.
-                                .setPositiveButton(android.R.string.ok, null)
-                                .setIcon(android.R.drawable.ic_dialog_alert)
-                                .show();
-                        }
+                        signUpOk(mail, nombre)
 
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                NetworkResponse networkResponse = error.networkResponse;
+                if(networkResponse != null )Log.d("NETWORKRESPONSE", networkResponse );
                 Toast.makeText(SignUpActivity.this,"Error: " + error.toString(), Toast.LENGTH_LONG).show();
             }
         }) {

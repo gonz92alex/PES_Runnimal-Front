@@ -47,11 +47,6 @@ public class ModifyUserFragment extends Fragment {
         textViewNombre = (TextView) view.findViewById(R.id.EditTextAlias);
         textViewNombre.setText(SingletonSession.Instance().getUsername());
 
-        textViewCorreo = (TextView) view.findViewById(R.id.EditTextMail);
-        textViewCorreo.setText(SingletonSession.Instance().getMail());
-
-        textViewPassword = (TextView) view.findViewById(R.id.EditTextPassword);
-        textViewPassword.setText("jajajajajajajaja");
 
        Button saveUserButton = view.findViewById(R.id.buttonSave);
        saveUserButton.setOnClickListener(new View.OnClickListener() {
