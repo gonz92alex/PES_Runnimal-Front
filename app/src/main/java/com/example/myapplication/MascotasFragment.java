@@ -31,6 +31,6 @@ public class MascotasFragment extends Fragment {
 
     public void AddEv() {
         //ToDO pasamos el mail del usuario logueado como parametro?
-        ((GodActivity)getActivity()).loadFragment(AnadirMascotaFragment.newInstance("elpapito@mipito.es"));
+        ((GodActivity)getActivity()).loadFragment(AnadirMascotaFragment.newInstance());
     }
 }

@@ -113,16 +113,14 @@ public class SignUpActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         progressDialog.dismiss();
-                        Log.d("VOLLEY", response.statusCode);
+                        Log.d("VOLLEY", response);
                         //ToDo -> si la respuesta es 'OK' redirigir a pantalla de login/loguear directamente con el user creado?
-                        signUpOk(mail, nombre)
+                        signUpOk(mail, nombre);
 
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                NetworkResponse networkResponse = error.networkResponse;
-                if(networkResponse != null )Log.d("NETWORKRESPONSE", networkResponse );
                 Toast.makeText(SignUpActivity.this,"Error: " + error.toString(), Toast.LENGTH_LONG).show();
             }
         }) {
