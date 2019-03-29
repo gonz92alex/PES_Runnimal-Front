@@ -33,4 +33,7 @@
     <string name="birthdate">Birth year</string>
     <string name="description">Description</string>
     <string name="size">Size</string>
+    <string name="walks_start">Start walk</string>
+    <string name="gps_error">GPS not available</string>
+    <string name="gps_enable">Enable GPS</string>
 </resources>
