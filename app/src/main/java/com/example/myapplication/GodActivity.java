@@ -145,6 +145,7 @@ public class GodActivity extends FragmentActivity implements EntrenamientoFragme
         NavigationView navigationView = findViewById(R.id.nav_view);
         View header = (navigationView.getHeaderView(0));
         TextView nombreView = (TextView) header.findViewById(R.id.NombreInApp);
+        SingletonSession.Instance().setUsername(nombre);
         nombreView.setText(SingletonSession.Instance().getUsername());
     }
 
