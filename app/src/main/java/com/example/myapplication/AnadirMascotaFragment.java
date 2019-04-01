@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -150,14 +151,14 @@ public class AnadirMascotaFragment extends Fragment {
         EditText descripcion = (EditText) getView().findViewById(R.id.EditTextDogDescription);
         EditText raza = (EditText) getView().findViewById(R.id.EditTextDogBreed);
         EditText peso = (EditText) getView().findViewById(R.id.EditTextDogWeight);
-        EditText tamano = (EditText) getView().findViewById(R.id.EditTextDogSize);
+        Spinner tamano = (Spinner) getView().findViewById(R.id.EditTextDogSize);
         EditText anoNacimiento = (EditText) getView().findViewById(R.id.EditTextDogBirthdate);
 
         String name = nombre.getText().toString();
         String description = descripcion.getText().toString();
         String breed = raza.getText().toString();
         String weight = peso.getText().toString();
-        String size = tamano.getText().toString();
+        String size = String.valueOf(tamano.getSelectedItem());
         String year = anoNacimiento.getText().toString();
 
         if (name.equals("") || description.equals("") || breed.equals("") || weight.equals("") || size.equals("") || year.equals("")){

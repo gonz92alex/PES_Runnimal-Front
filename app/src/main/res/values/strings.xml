@@ -16,8 +16,6 @@
     <string name="sign_in_with">Sign in with</string>
     <string name="or">Or</string>
     <string name="my_pets">My pets</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="Add">Add</string>
     <string name="Name">Name</string>
     <string name="format_email">user@example.com</string>
@@ -31,16 +29,19 @@
     <string name="Modify">Modify</string>
     <string name="Save">Save</string>
     <string name="PetsProfile">Pets profile</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="birthdate">Birth year</string>
     <string name="description">Description</string>
     <string name="size">Size</string>
-
     <string name="cancel">Cancel</string>
-
     <string name="walks_start">Start walk</string>
     <string name="location_error_title">Enable location</string>
     <string name="location_error_descr">Your locations settings is set to \'Off\'. \nPlease enable location to use this feature</string>
     <string name="gps_settings">Location settings</string>
+
+    <string-array name="size_arrays">
+        <item>Small</item>
+        <item>Big</item>
+    </string-array>
+    <string name="country_prompt">Select a country</string>
+
 </resources>

@@ -40,4 +40,5 @@
     <string name="location_error_title">Enable location</string>
     <string name="location_error_descr">Your locations settings is set to \'Off\'. \nPlease enable location to use this feature</string>
     <string name="gps_settings">Location settings</string>
+    <string name="country_prompt">Select a country</string>
 </resources>

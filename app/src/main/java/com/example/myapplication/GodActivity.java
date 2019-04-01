@@ -119,7 +119,7 @@ public class GodActivity extends FragmentActivity implements EntrenamientoFragme
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        /* todo esto es para poder cambiar el drawer con la info del usuario que me esten pasando*/
+        /* esto es para poder cambiar el drawer con la info del usuario que me esten pasando*/
         View header = (navigationView.getHeaderView(0));
         TextView correoView = (TextView) header.findViewById(R.id.MailInApp);
         TextView nombreView = (TextView) header.findViewById(R.id.NombreInApp);
@@ -133,7 +133,7 @@ public class GodActivity extends FragmentActivity implements EntrenamientoFragme
         //ToDO estoy probando a ver si puedo hacer que funcione un botton en la imagen del navigation drawer
         //tendremos que cambiar esto
         ProfileFragment profile = ProfileFragment.newInstance(nombre, correo, fotoPerfil);
-        //hay que ver como se passa la imagen de perfil
+        //todo hay que ver como se passa la imagen de perfil
         loadFragment(profile);
 
         drawerLayout.closeDrawer(GravityCompat.START);
