@@ -41,6 +41,7 @@
     <string-array name="size_arrays">
         <item>Small</item>
         <item>Big</item>
+        <item>Medium</item>
     </string-array>
     <string name="size_prompt">Select a size</string>
 
