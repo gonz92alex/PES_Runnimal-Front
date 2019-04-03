@@ -40,5 +40,5 @@
     <string name="location_error_title">Activar ubicación</string>
     <string name="location_error_descr">La configuración de ubicación está desactivada. \nPor favor, actívala para poder usar esta funcionalidad.</string>
     <string name="gps_settings">Configurar ubicación</string>
-    <string name="country_prompt">Selecciona un país</string>
+    <string name="size_prompt">Selecciona un tamaño</string>
 </resources>

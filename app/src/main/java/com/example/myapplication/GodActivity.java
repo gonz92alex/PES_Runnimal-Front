@@ -111,7 +111,8 @@ public class GodActivity extends FragmentActivity implements EntrenamientoFragme
         setContentView(R.layout.activity_god);
         drawerLayout = findViewById(R.id.drawer_layout);
 
-        initMap();
+        //initMap();
+        loadFragment(new AnadirMascotaFragment());
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(nOnNavigationItemSelectedListener);

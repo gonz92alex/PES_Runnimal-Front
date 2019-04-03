@@ -39,6 +39,6 @@
     <string name="walks_start">Iniciar passeig</string>
     <string name="location_error_title">Activar ubicació</string>
     <string name="location_error_descr">La configuració de la teva ubicació està desactivada. \nSi us plau, activa-la per poder fer servir aquesta funcionalitat.</string>
-    <string name="gps_settings">Configurar ubicación</string>
-    <string name="country_prompt">Selecciona un pais</string>
+    <string name="gps_settings">Configurar ubicació</string>
+    <string name="size_prompt">Selecciona un tamany</string>
 </resources>
