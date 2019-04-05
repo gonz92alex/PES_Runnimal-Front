@@ -8,6 +8,7 @@ public class SingletonSession {
     private String username;
     private Bitmap photo;
     private String mail;
+    private String mascotas[];
 
     //no outer class can initialize this class's object
     private SingletonSession() {}
@@ -45,6 +46,14 @@ public class SingletonSession {
 
     public void setMail(String mail) {
         this.mail = mail;
+    }
+
+    public void setMascotas(String[] mascotas) {
+        this.mascotas = mascotas;
+    }
+
+    public String[] getMascotas() {
+        return mascotas;
     }
 }
 
