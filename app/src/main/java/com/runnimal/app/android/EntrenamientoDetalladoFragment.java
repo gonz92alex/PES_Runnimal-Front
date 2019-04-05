@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.runnimal.app.android;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.myapplication.entrenamiento.EntrenamientoContent;
+import com.runnimal.app.android.entrenamiento.EntrenamientoContent;
 
 import java.util.ArrayList;
 import java.util.Objects;

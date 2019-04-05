@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.runnimal.app.android;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

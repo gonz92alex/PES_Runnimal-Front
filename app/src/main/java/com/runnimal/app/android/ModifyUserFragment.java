@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.runnimal.app.android;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -28,44 +28,47 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 
-public class ModifyPetFragment extends Fragment {
-    View view;
+public class ModifyUserFragment extends Fragment {
+    TextView textViewNombre;
+    TextView textViewCorreo;
+    TextView textViewPassword;
+
 
 
     public static Fragment newInstance() {
-        ModifyPetFragment fragment = new ModifyPetFragment();
+        ModifyUserFragment fragment = new ModifyUserFragment();
         return fragment;
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_modify_pet, container, false);
+        final View view = inflater.inflate(R.layout.fragment_modify_user, container, false);
+        textViewNombre = (TextView) view.findViewById(R.id.EditTextAlias);
+        textViewNombre.setText(SingletonSession.Instance().getUsername());
 
-        Button saveUserButton = view.findViewById(R.id.buttonSavePet);
-        saveUserButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    modifyPetEv(view);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
 
+       Button saveUserButton = view.findViewById(R.id.buttonSave);
+       saveUserButton.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               try {
+                   modifyUserEv(view);
+               } catch (JSONException e) {
+                   e.printStackTrace();
+               }
+           }
+       });
         return view;
 
     }
 
-
-
     //llamada API
 
-    private void modifier(final String nombre, final String description, final String breed, final String size, final String weight, final String birth) throws JSONException {
+    private void modifier(final String nombre) throws JSONException {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue((GodActivity)getActivity());
-        String url ="http://nidorana.fib.upc.edu/api/pets/" /*+ SingletonSession.Instance().getMail()*/;
+        String url ="http://nidorana.fib.upc.edu/api/user/"  + SingletonSession.Instance().getMail();
 
         //Loading Message
         final ProgressDialog progressDialog = new ProgressDialog((GodActivity)getActivity());
@@ -75,12 +78,6 @@ public class ModifyPetFragment extends Fragment {
         //Construir el cuerpo del request con la información a enviar
         JSONObject jsonBody = new JSONObject();
         jsonBody.put("alias", nombre);
-        jsonBody.put("alias", description);
-        jsonBody.put("alias", breed);
-        jsonBody.put("alias", size);
-        jsonBody.put("alias", weight);
-        jsonBody.put("alias", birth);
-        //ToDo hay que poner en el json lo que toca que por ahora no se lo que es
         final String requestBody = jsonBody.toString();
 
 
@@ -92,7 +89,7 @@ public class ModifyPetFragment extends Fragment {
                         progressDialog.dismiss();
                         Log.i("VOLLEY", response);
                         //ToDo -> si la respuesta es 'OK' redirigir a pantalla de login/loguear directamente con el user creado?
-                        modPetOk(nombre);
+                        modUserOk(nombre);
 
                     }
                 }, new Response.ErrorListener() {
@@ -121,21 +118,14 @@ public class ModifyPetFragment extends Fragment {
         queue.add(stringRequest);
     }
 
-    private void modPetOk(String nombre) {
-        //GodActivity godActivity = (GodActivity)getActivity();
-        //godActivity.refreshDrawer(nombre);
-
-        //ToDO hay que hablar de donde esta guardada la info de las mascotas en nuestra session para actaulizarla properly
+    private void modUserOk(String nombre) {
+        GodActivity godActivity = (GodActivity)getActivity();
+        godActivity.refreshDrawer(nombre);
     }
-    private void modifyPetEv(View view) throws JSONException {
-        EditText nombre = (EditText) view.findViewById(R.id.EditTextDogName);
-        EditText description = (EditText) view.findViewById(R.id.EditTextDogDescription);
-        EditText breed = (EditText) view.findViewById(R.id.EditTextDogBreed);
-        EditText size = (EditText) view.findViewById(R.id.EditTextDogSize);
-        EditText birth = (EditText) view.findViewById(R.id.EditTextDogBirthdate);
-        EditText weight = (EditText) view.findViewById(R.id.EditTextDogWeight);
+    private void modifyUserEv(View view) throws JSONException {
+        EditText nombre = (EditText) view.findViewById(R.id.EditTextAlias);
 
-        if(nombre.getText().toString().equals("") || description.getText().toString().equals("") || breed.getText().toString().equals("") || size.getText().toString().equals("") || birth.getText().toString().equals("") || weight.getText().toString().equals("") ){
+        if(nombre.getText().toString().equals("") ){
             new AlertDialog.Builder((GodActivity)getActivity())
                     .setTitle("Missing parameters")
                     .setMessage("You have to fill first all the text camps")
@@ -147,9 +137,11 @@ public class ModifyPetFragment extends Fragment {
                     .show();
         }
         else {
-            modifier(nombre.getText().toString(), description.getText().toString(), breed.getText().toString(), size.getText().toString(), birth.getText().toString(), weight.getText().toString());
+            modifier(nombre.getText().toString());
         }
     }
 
 
+
 }
+

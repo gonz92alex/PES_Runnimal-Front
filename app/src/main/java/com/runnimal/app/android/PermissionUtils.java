@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.runnimal.app.android;
 
 import android.Manifest;
 import android.app.Activity;

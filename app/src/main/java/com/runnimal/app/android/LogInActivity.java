@@ -1,9 +1,8 @@
-package com.example.myapplication;
+package com.runnimal.app.android;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;

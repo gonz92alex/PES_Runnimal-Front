@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.runnimal.app.android;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

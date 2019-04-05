@@ -1,8 +1,7 @@
-package com.example.myapplication;
+package com.runnimal.app.android;
 
 import android.app.ProgressDialog;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.provider.MediaStore;
@@ -14,9 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -30,8 +27,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
-
-import okhttp3.internal.http2.Http2Stream;
 
 public class SignUpActivity extends AppCompatActivity {
     private static final int CAMERA_REQUEST = 1888;
