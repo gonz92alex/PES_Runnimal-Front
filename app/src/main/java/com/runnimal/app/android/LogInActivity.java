@@ -124,6 +124,7 @@ public class LogInActivity extends AppCompatActivity {
         Intent GodIntent = new Intent(this, GodActivity.class);
         SingletonSession.Instance().setMail("arthur@gmail.com");
         SingletonSession.Instance().setUsername("arthur");
+        getMascotas("arthur@gmail.com");
         startActivity(GodIntent);
 
     }

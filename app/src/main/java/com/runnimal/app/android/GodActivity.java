@@ -39,7 +39,7 @@ public class GodActivity extends FragmentActivity implements EntrenamientoFragme
 
             switch (item.getItemId()) {
                 case R.id.navigation_mapa:
-                    initMap();
+                    fragment = initMap();
                     break;
 
                 case R.id.navigation_entrenamientos:
@@ -173,7 +173,8 @@ public class GodActivity extends FragmentActivity implements EntrenamientoFragme
         PermissionUtils.checkPermissionsResult(this, requestCode, permissions, grantResults, getResources().getString(R.string.location_error_title), getResources().getString(R.string.location_error_descr));
     }
 
-    private void initMap() {
+    private Fragment initMap() {
         PermissionUtils.checkLocation(this, getResources().getString(R.string.location_error_title), getResources().getString(R.string.location_error_descr));
+        return new NoMapFragment();
     }
 }
