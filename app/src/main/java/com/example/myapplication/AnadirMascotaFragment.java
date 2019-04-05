@@ -123,9 +123,11 @@ public class AnadirMascotaFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == CAMERA_REQUEST){
-            Bitmap bitmapPhoto = (Bitmap)data.getExtras().get("data");
-            ImageViewProfile.setImageBitmap(bitmapPhoto);
+        if(data != null){
+            if(requestCode == CAMERA_REQUEST) {
+                Bitmap bitmapPhoto = (Bitmap) data.getExtras().get("data");
+                ImageViewProfile.setImageBitmap(bitmapPhoto);
+            }
         }
     }
 
