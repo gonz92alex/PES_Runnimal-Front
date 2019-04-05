@@ -21,6 +21,9 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class LogInActivity extends AppCompatActivity {
 
     private static final String URL_DATA = "http://nidoqueen.fib.upc.edu:3000/api/users";
@@ -43,10 +46,10 @@ public class LogInActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         progressDialog.dismiss();
                         try {
-                            Log.d("apires", "onResponse: " + response);
                             JSONObject user = new JSONObject(response);
-                            Log.d("apidata", "onResponse: " + user.getString("password"));
-                            if (password.equals(user.getString("password"))) LoginOk(email, user.getString("alias"));
+                            if (password.equals(user.getString("password"))){
+                                LoginOk(email, user.getString("alias"));
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -106,9 +109,15 @@ public class LogInActivity extends AppCompatActivity {
         SingletonSession.Instance().setMail(email);
         SingletonSession.Instance().setUsername(nombre);
         //ToDO llamada coger nombre mascotas
-        String mascotas[] = getMascotas(email);
-        SingletonSession.Instance().setMascotas(mascotas);
+        getMascotas(email);
         startActivity(LoginIntent);
+    }
+
+    void getMascotas(String email){
+        //ToDo hardcodeado, falta hacer llamada (solo funciona con ash@pokemon.com)
+        ArrayList<String> mascotas= new ArrayList<>();
+        mascotas.add("Pikachu");
+        SingletonSession.Instance().setMascotas(mascotas);
     }
 
 

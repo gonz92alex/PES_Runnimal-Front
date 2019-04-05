@@ -112,6 +112,7 @@ public class GodActivity extends FragmentActivity implements EntrenamientoFragme
         drawerLayout = findViewById(R.id.drawer_layout);
 
         initMap();
+        Log.d("pets", SingletonSession.Instance().getMascotas().get(0));
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(nOnNavigationItemSelectedListener);

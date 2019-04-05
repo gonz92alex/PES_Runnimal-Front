@@ -2,13 +2,15 @@ package com.example.myapplication;
 
 import android.graphics.Bitmap;
 
+import java.util.ArrayList;
+
 public class SingletonSession {
 
     private static SingletonSession instance;
     private String username;
     private Bitmap photo;
     private String mail;
-    private String mascotas[];
+    private ArrayList<String> mascotas = new ArrayList<>();
 
     //no outer class can initialize this class's object
     private SingletonSession() {}
@@ -48,11 +50,11 @@ public class SingletonSession {
         this.mail = mail;
     }
 
-    public void setMascotas(String[] mascotas) {
+    public void setMascotas(ArrayList<String> mascotas) {
         this.mascotas = mascotas;
     }
 
-    public String[] getMascotas() {
+    public ArrayList<String> getMascotas() {
         return mascotas;
     }
 }
