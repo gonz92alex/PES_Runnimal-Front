@@ -113,6 +113,7 @@ public class GodActivity extends FragmentActivity implements EntrenamientoFragme
 
         initMap();
 
+
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(nOnNavigationItemSelectedListener);
 
