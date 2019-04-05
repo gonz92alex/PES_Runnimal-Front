@@ -54,9 +54,11 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == CAMERA_REQUEST){
-            Bitmap bitmapPhoto = (Bitmap)data.getExtras().get("data");
-            ImageViewProfile.setImageBitmap(bitmapPhoto);
+        if(requestCode == CAMERA_REQUEST) {
+            Bitmap bitmapPhoto = (Bitmap) data.getExtras().get("data");
+            if (bitmapPhoto != null) {
+                ImageViewProfile.setImageBitmap(bitmapPhoto);
+            }
         }
     }
 
