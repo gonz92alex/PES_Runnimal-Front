@@ -121,9 +121,7 @@ public class SignUpActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                showError("Error al registrarse", "El mail introducido ya esta en uso");
-                //Toast.makeText(SignUpActivity.this,"Error: " + error.toString(), Toast.LENGTH_LONG).show();
-                progressDialog.dismiss();
+                Toast.makeText(SignUpActivity.this,"Error: " + error.toString(), Toast.LENGTH_LONG).show();
             }
         }) {
             @Override
@@ -132,20 +130,13 @@ public class SignUpActivity extends AppCompatActivity {
             }
 
             @Override
-            public byte[] getBody() {
+            public byte[] getBody() throws AuthFailureError {
                 try {
                     return requestBody == null ? null : requestBody.getBytes("utf-8");
                 } catch (UnsupportedEncodingException uee) {
                     VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
                     return null;
                 }
-            }
-
-            @Override
-            protected Response<String> parseNetworkResponse(NetworkResponse response){
-                int mStatusCode = response.statusCode;
-                Log.d("VOLLEY", "parseNetworkResponse:" + Integer.toString(mStatusCode));
-                return super.parseNetworkResponse(response);
             }
         };
 
@@ -160,17 +151,6 @@ public class SignUpActivity extends AppCompatActivity {
         SingletonSession.Instance().setMail(email);
         SingletonSession.Instance().setUsername(nombre);
         startActivity(LoginIntent);
-    }
-
-    private void showError(String error_title, String error_message){
-        new AlertDialog.Builder(this)
-                .setTitle(error_title)
-                .setMessage(error_message)
-                // A null listener allows the button to dismiss the dialog and take no further action.
-                // The dialog is automatically dismissed when a dialog button is clicked.
-                .setPositiveButton(android.R.string.ok, null)
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .show();
     }
 
 }

@@ -14,7 +14,6 @@ import android.widget.TextView;
 import com.example.myapplication.entrenamiento.EntrenamientoContent;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 
 /**
@@ -39,7 +38,7 @@ public class EntrenamientoDetalladoFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
-    private ArrayList stepsList = new ArrayList();
+    private ArrayList<String> stepsList = new ArrayList();
 
     public EntrenamientoDetalladoFragment() {
         // Required empty public constructor
@@ -91,7 +90,7 @@ public class EntrenamientoDetalladoFragment extends Fragment {
 
 
         stepsList = EntrenamientoContent.getSteps(mId);
-        adapter = new StepsAdapter(stepsList, Objects.requireNonNull(getActivity()).getApplicationContext());
+        adapter = new StepsAdapter(stepsList, getActivity().getApplicationContext());
         recyclerView.setAdapter(adapter);
 
         return view;

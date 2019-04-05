@@ -33,7 +33,9 @@ public class EntrenamientoContent {
 
     //obtiene los pasos a realizar para el ejercicio indicado con el parametro id.
     public static ArrayList<String> getSteps(String id){
-        if (ITEM_MAP.containsKey(id)) return ITEM_MAP.get(id).getSteps();
+        for (int i=0;i<ITEMS.size();i++){
+            if (ITEMS.get(i).getId().equals(id)) return ITEMS.get(i).getSteps();
+        }
         return null;
     }
 
