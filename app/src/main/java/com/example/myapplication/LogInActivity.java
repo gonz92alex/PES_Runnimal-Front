@@ -112,7 +112,6 @@ public class LogInActivity extends AppCompatActivity {
     }
 
 
-
     public void directEv(View view) {
         Intent GodIntent = new Intent(this, GodActivity.class);
         SingletonSession.Instance().setMail("arthur@gmail.com");
