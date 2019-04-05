@@ -105,8 +105,13 @@ public class LogInActivity extends AppCompatActivity {
         Intent LoginIntent = new Intent(this, GodActivity.class);
         SingletonSession.Instance().setMail(email);
         SingletonSession.Instance().setUsername(nombre);
+        //ToDO llamada coger nombre mascotas
+        String mascotas[] = getMascotas(email);
+        SingletonSession.Instance().setMascotas(mascotas);
         startActivity(LoginIntent);
     }
+
+
 
     public void directEv(View view) {
         Intent GodIntent = new Intent(this, GodActivity.class);
