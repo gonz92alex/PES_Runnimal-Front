@@ -182,5 +182,6 @@ public class GodActivity extends FragmentActivity implements EntrenamientoFragme
     @Override
     public void onListFragmentInteraction(MascotaContent.MascotaItem item) {
         Log.d("clickTest", "onListFragmentInteraction: clicked! ");
+        loadFragment(MascotaPerfilFragment.newInstance(item.getName(), item.getDetails(), item.getId()));
     }
 }
