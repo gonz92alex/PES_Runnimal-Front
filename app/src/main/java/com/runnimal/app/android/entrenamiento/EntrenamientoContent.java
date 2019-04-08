@@ -50,7 +50,7 @@ public class EntrenamientoContent {
 
 
     /**
-     * Entrenamiento item representing a piece of content.
+     * Entrenamiento item representing a piece of name.
      */
     public static class EntrenamientoItem {
         public final String id;

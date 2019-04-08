@@ -18,14 +18,14 @@
             android:orientation="horizontal">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/imagenEntrenamiento"
+                android:id="@+id/imagenMascota"
                 android:layout_width="115dp"
                 android:layout_height="115dp"
                 android:layout_margin="8dp"
-                android:contentDescription="Imagen entrenamiento" />
+                android:contentDescription="Imagen mascota" />
 
             <TextView
-                android:id="@+id/content"
+                android:id="@+id/contentMascota"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/text_margin"
