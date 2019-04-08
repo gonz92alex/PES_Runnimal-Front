@@ -17,9 +17,10 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.runnimal.app.android.entrenamiento.EntrenamientoContent;
+import com.runnimal.app.android.entrenamiento.MascotaContent;
 
 
-public class GodActivity extends FragmentActivity implements EntrenamientoFragment.OnListFragmentInteractionListener, AnadirMascotaFragment.OnFragmentInteractionListener {
+public class GodActivity extends FragmentActivity implements EntrenamientoFragment.OnListFragmentInteractionListener, AnadirMascotaFragment.OnFragmentInteractionListener, MascotasFragment.OnListFragmentInteractionListener {
     private static final String[] INITIAL_PERMS = {
             Manifest.permission.ACCESS_FINE_LOCATION
     };
@@ -176,5 +177,10 @@ public class GodActivity extends FragmentActivity implements EntrenamientoFragme
     private Fragment initMap() {
         PermissionUtils.checkLocation(this, getResources().getString(R.string.location_error_title), getResources().getString(R.string.location_error_descr));
         return new NoMapFragment();
+    }
+
+    @Override
+    public void onListFragmentInteraction(MascotaContent.MascotaItem item) {
+        Log.d("clickTest", "onListFragmentInteraction: clicked! ");
     }
 }

@@ -16,6 +16,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.runnimal.app.android.entrenamiento.MascotaContent;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -117,6 +118,9 @@ public class LogInActivity extends AppCompatActivity {
         ArrayList<String> mascotas= new ArrayList<>();
         mascotas.add("Pikachu");
         SingletonSession.Instance().setMascotas(mascotas);
+        MascotaContent.ITEMS.clear();
+        MascotaContent.ITEM_MAP.clear();
+        MascotaContent.añadirItem("5c95191b62d914013dd5af3c","Pikachu","Mi mascota de test");
     }
 
 

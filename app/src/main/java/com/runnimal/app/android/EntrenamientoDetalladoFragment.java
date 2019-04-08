@@ -25,7 +25,7 @@ import java.util.Objects;
 public class EntrenamientoDetalladoFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "content";
+    private static final String ARG_PARAM1 = "name";
     private static final String ARG_PARAM2 = "detail";
     private static final String ARG_PARAM3 = "id";
 
@@ -81,16 +81,14 @@ public class EntrenamientoDetalladoFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_entrenamiento_detallado, container, false);
         mContentText = view.findViewById(R.id.content_tv);
         mDescriptionText = view.findViewById(R.id.description_tv);
-
-
         mContentText.setText(mContent);
         mDescriptionText.setText(mDescription);
+
+        stepsList = EntrenamientoContent.getSteps(mId);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.steps_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
-
-        stepsList = EntrenamientoContent.getSteps(mId);
         adapter = new StepsAdapter(stepsList, Objects.requireNonNull(getActivity()).getApplicationContext());
         recyclerView.setAdapter(adapter);
 
