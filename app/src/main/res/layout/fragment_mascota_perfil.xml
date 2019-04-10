@@ -8,40 +8,71 @@
     tools:context=".EntrenamientoDetalladoFragment"
     tools:layout_editor_absoluteY="25dp">
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical">
+        android:layout_height="match_parent">
 
-        <de.hdodenhof.circleimageview.CircleImageView
+        <ImageView
+            android:id="@+id/header_cover_image"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:scaleType="centerCrop"
+
+            android:src="@drawable/nav_menu_header_bg"
+            app:srcCompat="@drawable/nav_menu_header_bg" />
+
+
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+
             android:id="@+id/imagenPerfilMascota"
-            android:layout_width="115dp"
-            android:layout_height="115dp"
-            android:layout_margin="8dp" />
+            android:layout_width="140dp"
+            android:layout_height="140dp"
 
-        <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_below="@+id/header_cover_image"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="-130dp"
+            android:clickable="true"
+            android:elevation="5dp"
+            android:padding="20dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher_round" />
+
+
+        <RelativeLayout
+            android:id="@+id/profile_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_below="@+id/header_cover_image"
+            android:background="@color/colorPrimary"
+            android:elevation="0dp"
+            android:paddingBottom="0dp">
+
 
             <TextView
                 android:id="@+id/petName_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:text="NombrePokemon"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="20sp" />
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="50dp"
+                android:text="NombreMascota"
+                android:textColor="#fff"
+                android:textSize="16sp"
+                android:paddingBottom="10dp"
+                tools:ignore="UnknownId" />
 
             <TextView
                 android:id="@+id/petDesc_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:text="Descripcion del Pokemon"
-                android:textSize="14sp"/>
-        </LinearLayout>
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:text="Name"
+                android:textColor="#fff"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
-    </LinearLayout>
+        </RelativeLayout>
+    </RelativeLayout>
 </ScrollView>
