@@ -179,6 +179,8 @@ public class GodActivity extends FragmentActivity implements EntrenamientoFragme
         return new NoMapFragment();
     }
 
+
+    //Metodo a implementar de MascotaPerfil
     @Override
     public void onListFragmentInteraction(MascotaContent.MascotaItem item) {
         Log.d("clickTest", "onListFragmentInteraction: clicked! ");

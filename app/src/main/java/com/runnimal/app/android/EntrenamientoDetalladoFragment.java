@@ -1,17 +1,30 @@
 package com.runnimal.app.android;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.runnimal.app.android.entrenamiento.EntrenamientoContent;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -39,7 +52,6 @@ public class EntrenamientoDetalladoFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
-    private ArrayList stepsList = new ArrayList();
 
     public EntrenamientoDetalladoFragment() {
         // Required empty public constructor
@@ -84,16 +96,67 @@ public class EntrenamientoDetalladoFragment extends Fragment {
         mContentText.setText(mContent);
         mDescriptionText.setText(mDescription);
 
-        stepsList = EntrenamientoContent.getSteps(mId);
-
         recyclerView = (RecyclerView) view.findViewById(R.id.steps_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
-        adapter = new StepsAdapter(stepsList, Objects.requireNonNull(getActivity()).getApplicationContext());
+        if (EntrenamientoContent.getSteps(mId).size() == 0){
+            loadSteps();
+        }
+
+
+        adapter = new StepsAdapter(EntrenamientoContent.getSteps(mId), Objects.requireNonNull(getActivity()).getApplicationContext());
         recyclerView.setAdapter(adapter);
 
         return view;
     }
+
+    private void loadSteps(){
+        // Instantiate the RequestQueue.
+        RequestQueue queue = Volley.newRequestQueue(getActivity());
+        String url ="http://nidorana.fib.upc.edu/api/trainnings/"+mId;
+
+        //Loading Message
+        final ProgressDialog progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setMessage("Loading...");
+        progressDialog.show();
+
+        Log.d("VOLLEY", "here we go!");
+
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET,url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("VOLLEY", "onResponse: respondido!");
+                        progressDialog.dismiss();
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            JSONArray steps = jsonObject.getJSONArray("steps");
+                            Log.d("VOLLEY", "tamaño steps: " + steps.length());
+                            ArrayList<String> stepLista = new ArrayList<>();
+                            for (int i = 0; i < steps.length(); i++){
+                                stepLista.add(steps.getString(i));
+                            }
+                            EntrenamientoContent.setSteps(mId,stepLista);
+                            adapter = new StepsAdapter(EntrenamientoContent.getSteps(mId), Objects.requireNonNull(getActivity()).getApplicationContext());
+                            recyclerView.setAdapter(adapter);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("apiError", error.toString());
+                Toast.makeText(getContext(), "Error " + error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
+    }
+
+
 
 
     //Clase Adaptador para mostrar los pasos en el recycler view

@@ -66,8 +66,6 @@ public class EntrenamientoContent {
             this.details = details;
             this.imagen_url = "https://t2.uc.ltmcdn.com/images/0/5/2/img_como_ensenar_a_un_perro_a_dar_la_pata_22250_600.jpg";
 
-            steps.add("paso1 de test");
-            steps.add("paso2 de test");
         }
 
         public String getId() {

@@ -84,55 +84,10 @@ public class EntrenamientoFragment extends Fragment {
             recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
         }
 
-
-        loadUrlData();
+        recyclerView.setAdapter(new MyEntrenamientoRecyclerViewAdapter(EntrenamientoContent.ITEMS, mListener));
+        //loadUrlData();
 
         return view;
-    }
-
-    private void loadUrlData(){
-        // Instantiate the RequestQueue.
-        RequestQueue queue = Volley.newRequestQueue(getActivity());
-        String url ="http://nidorana.fib.upc.edu/api/trainings";
-
-        //Loading Message
-        final ProgressDialog progressDialog = new ProgressDialog(getActivity());
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
-
-        Log.d("apiGo", "here we go!");
-
-        // Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.GET,url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Log.d("apiRes", "onResponse: respondido!");
-                        progressDialog.dismiss();
-                        try {
-                            JSONArray jsonArray = new JSONArray(response);
-                            Log.d("apiTaman", "tamaño res: " + jsonArray.length());
-                            EntrenamientoContent.ITEMS.clear();
-                            for (int i = 0; i < jsonArray.length(); i++){
-                                JSONObject training = jsonArray.getJSONObject(i);
-                                Log.d("apiObj", training.getString("_id"));
-                                EntrenamientoContent.añadirItem(training.getString("_id"),training.getString("name"),training.getString("description"));
-                            }
-                            recyclerView.setAdapter(new MyEntrenamientoRecyclerViewAdapter(EntrenamientoContent.ITEMS, mListener));
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d("apiError", error.toString());
-                Toast.makeText(getContext(), "Error " + error.toString(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        // Add the request to the RequestQueue.
-        queue.add(stringRequest);
     }
 
 

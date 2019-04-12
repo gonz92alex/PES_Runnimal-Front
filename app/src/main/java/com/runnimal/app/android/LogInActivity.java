@@ -16,8 +16,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.runnimal.app.android.entrenamiento.EntrenamientoContent;
 import com.runnimal.app.android.entrenamiento.MascotaContent;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -108,8 +110,10 @@ public class LogInActivity extends AppCompatActivity {
         Intent LoginIntent = new Intent(this, GodActivity.class);
         SingletonSession.Instance().setMail(email);
         SingletonSession.Instance().setUsername(nombre);
-        //ToDO llamada coger nombre mascotas
+        //llamamos a la API al hacer login y obtenemos los entrenamientos y mascotas del usuario que loguea.
+        // De esta manera hacemos una vez la petición al hacer login.
         getMascotas(email);
+        getEntrenamientos();
         startActivity(LoginIntent);
     }
 
@@ -123,12 +127,52 @@ public class LogInActivity extends AppCompatActivity {
         MascotaContent.añadirItem("5c95191b62d914013dd5af3c","Pikachu","Mi mascota de test");
     }
 
+    private void getEntrenamientos(){
+        // Instantiate the RequestQueue.
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url ="http://nidorana.fib.upc.edu/api/trainnings";
+
+        //Loading Message
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading...");
+        progressDialog.show();
+
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET,url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("apiRes", "onResponse: respondido!");
+                        progressDialog.dismiss();
+                        try {
+                            JSONArray jsonArray = new JSONArray(response);
+                            for (int i = 0; i < jsonArray.length(); i++){
+                                JSONObject training = jsonArray.getJSONObject(i);
+                                EntrenamientoContent.añadirItem(training.getString("_id"),training.getString("name"),training.getString("description"));
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("apiError", error.toString());
+                Toast.makeText(getBaseContext(), "Error " + error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
+    }
+
 
     public void directEv(View view) {
         Intent GodIntent = new Intent(this, GodActivity.class);
         SingletonSession.Instance().setMail("arthur@gmail.com");
         SingletonSession.Instance().setUsername("arthur");
         getMascotas("arthur@gmail.com");
+        getEntrenamientos();
         startActivity(GodIntent);
 
     }
