@@ -33,7 +33,6 @@
             android:layout_below="@+id/header_cover_image"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="-130dp"
-            android:clickable="true"
             android:elevation="5dp"
             android:padding="20dp"
             android:scaleType="centerCrop"
@@ -72,10 +71,125 @@
                 android:paddingBottom="10dp"
                 tools:ignore="UnknownId" />
         </RelativeLayout>
-        <TextView
-            android:layout_width="wrap_content"
+
+        <GridLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/profile_layout"
-            android:text="@string/owner"/>
+            android:layout_below="@+id/profile_layout"
+            android:columnCount="2"
+            android:rowCount="2">
+
+            <!--ROW-1-->
+            <!--COL-1-->
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_gravity="center"
+                android:gravity="center">
+                <TextView
+                    android:id="@+id/ownerLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="@string/owner"/>
+
+                <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/imagenPerfilDueño"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/ic_launcher_round" />
+            </LinearLayout>
+
+            <!--COL-2-->
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_gravity="center"
+                android:gravity="center">
+                <TextView
+                    android:id="@+id/DogBreed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="@string/breed"/>
+
+                <TextView
+                    android:id="@+id/DogBreed_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorPrimary"
+                    android:text="Pokemon"/>
+            </LinearLayout>
+
+            <!--ROW-2-->
+            <!--COL-1-->
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_marginBottom="20dp"
+                android:layout_gravity="center"
+                android:gravity="center">
+                <TextView
+                    android:id="@+id/DogWeight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="@string/weight"/>
+
+                <TextView
+                    android:id="@+id/DogWeight_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorPrimary"
+                    android:text="6 Kg"/>
+            </LinearLayout>
+
+            <!--ROW-2-->
+            <!--COL-2-->
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_marginBottom="20dp"
+                android:layout_gravity="center"
+                android:gravity="center">
+                <TextView
+                    android:id="@+id/DogAge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:text="@string/age"/>
+
+                <TextView
+                    android:id="@+id/DogAge_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorPrimary"
+                    android:text="4"/>
+            </LinearLayout>
+
+        </GridLayout>
+
+
+
     </RelativeLayout>
 </ScrollView>

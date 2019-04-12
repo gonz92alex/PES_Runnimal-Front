@@ -38,7 +38,12 @@ public class MascotaContent {
     public static class MascotaItem {
         public final String id;
         public final String name;
-        final String details;
+        String details;
+        String weight;
+        String age;
+        String size;
+        String breed;
+        String owner;
         final String imagen_url;
 
 
@@ -46,6 +51,7 @@ public class MascotaContent {
             this.id = id;
             this.name = content;
             this.details = details;
+
             this.imagen_url = "https://estaticos.muymascotas.es/media/cache/1140x_thumb/uploads/images/gallery/5ac493345cafe80cf43c986d/comida-perros-parrafo.jpg";
         }
 

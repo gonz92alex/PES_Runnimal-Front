@@ -29,6 +29,10 @@ public class MascotaPerfilFragment extends Fragment {
     private TextView mContentText;
     private TextView mDescriptionText;
     private ImageView mProfileImage;
+    private ImageView mProfileOwner;
+    private TextView mBreed;
+    private TextView mWeight;
+    private TextView mAge;
 
     public MascotaPerfilFragment (){
 
@@ -64,6 +68,10 @@ public class MascotaPerfilFragment extends Fragment {
         mContentText = view.findViewById(R.id.petName_tv);
         mDescriptionText = view.findViewById(R.id.petDesc_tv);
         mProfileImage = view.findViewById(R.id.imagenPerfilMascota);
+        mProfileOwner = view.findViewById(R.id.imagenPerfilDueño);
+        mBreed = view.findViewById(R.id.DogBreed_tv);
+        mAge = view.findViewById(R.id.DogAge_tv);
+        mWeight = view.findViewById(R.id.DogWeight_tv);
 
         mContentText.setText(mName);
         mDescriptionText.setText(mDescription);
