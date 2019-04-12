@@ -28,13 +28,11 @@ import java.util.ArrayList;
 
 public class LogInActivity extends AppCompatActivity {
 
-    private static final String URL_DATA = "http://nidoqueen.fib.upc.edu:3000/api/users";
-
     //llamada API
     private void getUser(final String email, final String password){
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url ="http://nidorana.fib.upc.edu/api/user/" + email;
+        String url ="http://nidorana.fib.upc.edu/api/users/" + email;
 
         //Loading Message
         final ProgressDialog progressDialog = new ProgressDialog(this);
@@ -145,6 +143,8 @@ public class LogInActivity extends AppCompatActivity {
                         Log.d("apiRes", "onResponse: respondido!");
                         progressDialog.dismiss();
                         try {
+                            EntrenamientoContent.ITEM_MAP.clear();
+                            EntrenamientoContent.ITEMS.clear();
                             JSONArray jsonArray = new JSONArray(response);
                             for (int i = 0; i < jsonArray.length(); i++){
                                 JSONObject training = jsonArray.getJSONObject(i);

@@ -11,7 +11,7 @@
     <RelativeLayout
         android:id="@+id/layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/header_cover_image"
@@ -50,7 +50,7 @@
             android:paddingBottom="0dp">
 
             <TextView
-                android:id="@+id/petDesc_tv"
+                android:id="@+id/petName_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -61,17 +61,21 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/petName_tv"
+                android:id="@+id/petDesc_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="50dp"
-                android:text="NombreMascota"
+                android:text="Descripción"
                 android:textColor="#fff"
                 android:textSize="16sp"
                 android:paddingBottom="10dp"
                 tools:ignore="UnknownId" />
-
         </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/profile_layout"
+            android:text="@string/owner"/>
     </RelativeLayout>
 </ScrollView>
