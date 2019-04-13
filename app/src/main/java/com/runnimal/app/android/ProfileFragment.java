@@ -15,6 +15,19 @@ public class ProfileFragment extends Fragment {
 
     TextView textViewNombre;
     TextView textViewCorreo;
+
+    String mNombre;
+    String mCorreo;
+    String mFoto;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            mNombre = getArguments().getString("nombre");
+            mCorreo = getArguments().getString("correo");
+        }
+    }
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -23,10 +36,10 @@ public class ProfileFragment extends Fragment {
         View profileView = inflater.inflate(R.layout.fragment_profile, container, false);
 
         textViewNombre = (TextView) profileView.findViewById(R.id.NombreText);
-        textViewNombre.setText(SingletonSession.Instance().getUsername());
+        textViewNombre.setText(mNombre);
 
         textViewCorreo = (TextView) profileView.findViewById(R.id.CorreoText);
-        textViewCorreo.setText(SingletonSession.Instance().getMail());
+        textViewCorreo.setText(mCorreo);
         return profileView;
     }
 
