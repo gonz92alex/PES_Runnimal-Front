@@ -115,14 +115,54 @@ public class LogInActivity extends AppCompatActivity {
         startActivity(LoginIntent);
     }
 
-    void getMascotas(String email){
+    void getMascotas(final String email){
         //ToDo hardcodeado, falta hacer llamada (solo funciona con ash@pokemon.com)
-        ArrayList<String> mascotas= new ArrayList<>();
-        mascotas.add("Pikachu");
-        SingletonSession.Instance().setMascotas(mascotas);
-        MascotaContent.ITEMS.clear();
-        MascotaContent.ITEM_MAP.clear();
-        MascotaContent.añadirItem("5c95191b62d914013dd5af3c","Pikachu","Mi mascota de test", "medium", "4", "7", "Pokemon", "5c9cb42899e42e72babc8d11");
+        //arraylist para guadrar mascotas en el singleton
+        final ArrayList<String> mascotas= new ArrayList<>();
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+        //toDo- no hay una llamada que devuelva las mascotas de un usuario.
+        String url ="http://nidorana.fib.upc.edu/api/pets";
+
+        //Loading Message
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading...");
+        progressDialog.show();
+
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET,url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("apiRes", "onResponse: respondido!");
+                        progressDialog.dismiss();
+                        try {
+                            MascotaContent.ITEM_MAP.clear();
+                            MascotaContent.ITEMS.clear();
+                            JSONArray jsonArray = new JSONArray(response);
+                            for (int i = 0; i < jsonArray.length(); i++){
+                                JSONObject pet = jsonArray.getJSONObject(i);
+                                //ToDO una vez que la API devuelva el email del owner cambiar por --->  .equals(email)
+                                if (pet.getString("owner").equals("5c9cb42899e42e72babc8d11")) {
+                                    mascotas.add(pet.getString("name"));
+                                    MascotaContent.añadirItem(pet.getString("_id"), pet.getString("name"), pet.getString("description"), pet.getString("size"), pet.getString("birth"), pet.getString("weight"), pet.getString("race"), pet.getString("owner"));
+                                }
+                            }
+                            SingletonSession.Instance().setMascotas(mascotas);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("apiError", error.toString());
+                Toast.makeText(getBaseContext(), "Error " + error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
     }
 
     private void getEntrenamientos(){
