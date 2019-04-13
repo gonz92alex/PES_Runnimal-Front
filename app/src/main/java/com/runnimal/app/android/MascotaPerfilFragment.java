@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.runnimal.app.android.entrenamiento.MascotaContent;
 import com.squareup.picasso.Picasso;
 
 import java.util.Objects;
@@ -73,8 +74,13 @@ public class MascotaPerfilFragment extends Fragment {
         mAge = view.findViewById(R.id.DogAge_tv);
         mWeight = view.findViewById(R.id.DogWeight_tv);
 
+        //Todo- falta añadir weight,breed,age,owner
         mContentText.setText(mName);
         mDescriptionText.setText(mDescription);
+        mBreed.setText(MascotaContent.ITEM_MAP.get(mId).getBreed());
+        mAge.setText(MascotaContent.ITEM_MAP.get(mId).getBirthdate());
+        mWeight.setText(MascotaContent.ITEM_MAP.get(mId).getWeight());
+
 
         //Todo añadir imagen
         Picasso.get()
@@ -82,6 +88,12 @@ public class MascotaPerfilFragment extends Fragment {
                 .resize(425,350)
                 .onlyScaleDown()
                 .into(mProfileImage);
+
+        Picasso.get()
+                .load("https://pbs.twimg.com/profile_images/482542323230732288/0a4a_buH.jpeg")
+                .resize(425,350)
+                .onlyScaleDown()
+                .into(mProfileOwner);
 
         return view;
     }

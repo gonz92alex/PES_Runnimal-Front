@@ -115,11 +115,14 @@ public class GodActivity extends FragmentActivity implements EntrenamientoFragme
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         /* esto es para poder cambiar el drawer con la info del usuario que me esten pasando*/
+        correo = SingletonSession.Instance().getMail();
+        nombre = SingletonSession.Instance().getUsername();
+
         View header = (navigationView.getHeaderView(0));
         TextView correoView = (TextView) header.findViewById(R.id.MailInApp);
         TextView nombreView = (TextView) header.findViewById(R.id.NombreInApp);
-        correoView.setText(SingletonSession.Instance().getMail());
-        nombreView.setText(SingletonSession.Instance().getUsername());
+        correoView.setText(nombre);
+        nombreView.setText(correo);
         /* hasta aqui lo del drawer dinamico */
     }
 

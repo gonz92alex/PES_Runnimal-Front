@@ -122,7 +122,7 @@ public class LogInActivity extends AppCompatActivity {
         SingletonSession.Instance().setMascotas(mascotas);
         MascotaContent.ITEMS.clear();
         MascotaContent.ITEM_MAP.clear();
-        MascotaContent.añadirItem("5c95191b62d914013dd5af3c","Pikachu","Mi mascota de test");
+        MascotaContent.añadirItem("5c95191b62d914013dd5af3c","Pikachu","Mi mascota de test", "medium", "4", "7", "Pokemon", "5c9cb42899e42e72babc8d11");
     }
 
     private void getEntrenamientos(){

@@ -18,8 +18,8 @@ public class MascotaContent {
 
 
     //Todo función para probar añadir desde fuera de la clase...
-    public static void añadirItem(String id, String name, String details){
-        addItem(createMascotaItem(id, name, details));
+    public static void añadirItem(String id, String name, String details, String size, String birthdate, String weight, String breed, String owner){
+        addItem(createMascotaItem(id, name, details,size,birthdate,weight,breed,owner));
     }
 
     private static void addItem(MascotaItem item) {
@@ -27,8 +27,8 @@ public class MascotaContent {
         ITEM_MAP.put(item.id, item);
     }
 
-    private static MascotaItem createMascotaItem(String id, String nombre, String details) {
-        return new MascotaItem(id, nombre, details);
+    private static MascotaItem createMascotaItem(String id, String nombre, String details, String size, String birthdate, String weight, String breed, String owner) {
+        return new MascotaItem(id, nombre, details, size, birthdate, weight, breed,owner);
     }
 
 
@@ -40,18 +40,23 @@ public class MascotaContent {
         public final String name;
         String details;
         String weight;
-        String age;
+        //ToDO actualmente guardamos la edad
+        String birthdate;
         String size;
         String breed;
         String owner;
         final String imagen_url;
 
 
-        public MascotaItem(String id, String content, String details) {
+        public MascotaItem(String id, String content, String details, String size, String birthdate, String weight, String breed, String owner) {
             this.id = id;
             this.name = content;
             this.details = details;
-
+            this.size = size;
+            this.birthdate = birthdate;
+            this.weight = weight;
+            this.breed = breed;
+            this.owner = owner;
             this.imagen_url = "https://estaticos.muymascotas.es/media/cache/1140x_thumb/uploads/images/gallery/5ac493345cafe80cf43c986d/comida-perros-parrafo.jpg";
         }
 
@@ -65,6 +70,26 @@ public class MascotaContent {
 
         public String getDetails() {
             return details;
+        }
+
+        public String getWeight() {
+            return weight;
+        }
+
+        public String getBirthdate() {
+            return birthdate;
+        }
+
+        public String getSize() {
+            return size;
+        }
+
+        public String getBreed() {
+            return breed;
+        }
+
+        public String getOwner() {
+            return owner;
         }
 
         public String getImagen_url() {
