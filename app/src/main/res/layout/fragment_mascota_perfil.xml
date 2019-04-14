@@ -97,13 +97,13 @@
                     android:textColor="@color/colorPrimaryDark"
                     android:text="@string/owner"/>
 
-                <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:id="@+id/imagenPerfilDueño"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="10dp"
-                    android:scaleType="centerCrop"
-                    android:src="@mipmap/ic_launcher_round" />
+                <TextView
+                    android:id="@+id/Dueño_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="16sp"
+                    android:layout_marginTop="10dp" />
             </LinearLayout>
 
             <!--COL-2-->

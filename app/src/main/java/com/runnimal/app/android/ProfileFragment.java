@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -40,6 +41,12 @@ public class ProfileFragment extends Fragment {
 
         textViewCorreo = (TextView) profileView.findViewById(R.id.CorreoText);
         textViewCorreo.setText(mCorreo);
+
+        if (mCorreo.equals(SingletonSession.Instance().getMail())){
+            ImageView ImgEdit = (ImageView) profileView.findViewById(R.id.imgEdit);
+            ImgEdit.setImageResource(R.drawable.editar);
+        }
+
         return profileView;
     }
 

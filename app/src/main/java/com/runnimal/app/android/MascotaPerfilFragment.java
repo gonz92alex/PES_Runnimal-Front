@@ -1,5 +1,6 @@
 package com.runnimal.app.android;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -30,10 +31,13 @@ public class MascotaPerfilFragment extends Fragment {
     private TextView mContentText;
     private TextView mDescriptionText;
     private ImageView mProfileImage;
-    private ImageView mProfileOwner;
+    private TextView mOwner;
     private TextView mBreed;
     private TextView mWeight;
     private TextView mAge;
+
+    Bitmap fotoPerfil;
+
 
     public MascotaPerfilFragment (){
 
@@ -69,17 +73,18 @@ public class MascotaPerfilFragment extends Fragment {
         mContentText = view.findViewById(R.id.petName_tv);
         mDescriptionText = view.findViewById(R.id.petDesc_tv);
         mProfileImage = view.findViewById(R.id.imagenPerfilMascota);
-        mProfileOwner = view.findViewById(R.id.imagenPerfilDueño);
+        mOwner = view.findViewById(R.id.Dueño_tv);
         mBreed = view.findViewById(R.id.DogBreed_tv);
         mAge = view.findViewById(R.id.DogAge_tv);
         mWeight = view.findViewById(R.id.DogWeight_tv);
 
-        //Todo- falta añadir weight,breed,age,owner
         mContentText.setText(mName);
         mDescriptionText.setText(mDescription);
         mBreed.setText(MascotaContent.ITEM_MAP.get(mId).getBreed());
         mAge.setText(MascotaContent.ITEM_MAP.get(mId).getBirthdate());
         mWeight.setText(MascotaContent.ITEM_MAP.get(mId).getWeight());
+        mOwner.setText(MascotaContent.ITEM_MAP.get(mId).getOwner());
+
 
 
         //Todo añadir imagen
@@ -89,11 +94,22 @@ public class MascotaPerfilFragment extends Fragment {
                 .onlyScaleDown()
                 .into(mProfileImage);
 
-        Picasso.get()
+        /*Picasso.get()
                 .load("https://pbs.twimg.com/profile_images/482542323230732288/0a4a_buH.jpeg")
                 .resize(425,350)
                 .onlyScaleDown()
-                .into(mProfileOwner);
+                .into(mProfileOwner);*/
+
+
+        mOwner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /*FragmentTransaction fr = getFragmentManager().beginTransaction();
+                fr.replace(R.id.fragment_container, AnadirMascotaFragment.newInstance("elpapito@mipito.es"))
+                        .commit();*/
+                ((GodActivity)getActivity()).loadFragment(ProfileFragment.newInstance("nameTest","emailTest@test.com", fotoPerfil));
+            }
+        });
 
         return view;
     }
