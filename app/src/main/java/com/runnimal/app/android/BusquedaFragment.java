@@ -37,12 +37,14 @@ public class BusquedaFragment extends Fragment {
 
 
 
-        if(arrayList.size() == 0) {
+        if(arrayList.size() > 0) {
+            arrayList = new ArrayList<ModelBusqueda>();
+        }
             for (int i = 0; i < title.length; ++i) {
                 ModelBusqueda model = new ModelBusqueda(title[i], icon[i], mail[i]);
                 arrayList.add(model);
             }
-        }
+
         //(GodActivity)getActivity())
         adapter = new BusquedaListViewAdapter((GodActivity)getActivity(), arrayList);
         listView.setAdapter(adapter);

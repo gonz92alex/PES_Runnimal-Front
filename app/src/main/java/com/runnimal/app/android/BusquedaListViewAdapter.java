@@ -98,13 +98,11 @@ public class BusquedaListViewAdapter extends BaseAdapter {
         else {
             for(ModelBusqueda model : arrayList){
                 if(model.getTitle().toLowerCase(Locale.getDefault())
+                        .contains(charText) || model.getMail().toLowerCase(Locale.getDefault())
                         .contains(charText)){
                     modelslist.add(model);
                 }
-                if(model.getMail().toLowerCase(Locale.getDefault())
-                        .contains(charText)){
-                    modelslist.add(model);
-                }
+
             }
         }
         notifyDataSetChanged();

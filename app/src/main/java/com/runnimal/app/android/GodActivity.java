@@ -92,7 +92,7 @@ public class GodActivity extends FragmentActivity implements EntrenamientoFragme
 
                 case R.id.NavBusqueda:
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                            busquedaFragment).commit();
+                            new BusquedaFragment()).commit();
                     break;
             }
             drawerLayout.closeDrawer(GravityCompat.START);
@@ -126,7 +126,6 @@ public class GodActivity extends FragmentActivity implements EntrenamientoFragme
         mascotaFragment = new MascotasFragment();
 
         amigosFragment = new AmigosFragment();
-        busquedaFragment = new BusquedaFragment();
         ajustesFragment = new AjustesFragment();
         rankingFragment = new RankingFragment();
 
