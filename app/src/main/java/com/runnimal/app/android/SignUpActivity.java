@@ -51,8 +51,8 @@ public class SignUpActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(data != null){
             if(requestCode == CAMERA_REQUEST) {
-                Bitmap bitmapPhoto = (Bitmap) data.getExtras().get("data");
-                ImageViewProfile.setImageBitmap(bitmapPhoto);
+                int Photo = (int) data.getExtras().get("data");
+                ImageViewProfile.setImageResource(Photo);
             }
         }
     }

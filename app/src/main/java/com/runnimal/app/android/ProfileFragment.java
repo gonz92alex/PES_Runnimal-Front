@@ -64,12 +64,12 @@ public class ProfileFragment extends Fragment {
         return profileView;
     }
 
-    public static final ProfileFragment newInstance(String Nombre, String Mail, Bitmap foto){
+    public static final ProfileFragment newInstance(String Nombre, String Mail, int foto){
         ProfileFragment profileFragment = new ProfileFragment();
         Bundle bundle = new Bundle(1);
         bundle.putString("nombre", Nombre);
         bundle.putString("correo", Mail);
-        bundle.putParcelable("foto", foto);
+        bundle.putInt("foto", foto);
         //falta saber passar la imagen de perfil
         profileFragment.setArguments(bundle);
         return profileFragment;

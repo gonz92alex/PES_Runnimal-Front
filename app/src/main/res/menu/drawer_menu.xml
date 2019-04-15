@@ -15,5 +15,9 @@
             android:id="@+id/NavAjustes"
             android:icon="@drawable/engranaje"
             android:title="Settings" />
+        <item
+            android:id="@+id/NavBusqueda"
+            android:icon="@android:drawable/ic_menu_search"
+            android:title="Search" />
     </group>
 </menu>

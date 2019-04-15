@@ -29,7 +29,17 @@ public class GodActivity extends FragmentActivity implements EntrenamientoFragme
     DrawerLayout drawerLayout;
     String correo;
     String nombre;
-    Bitmap fotoPerfil;
+    int fotoPerfil;
+
+    Fragment mapaFrag;
+    RetosFragment retoFrag;
+    EntrenamientoFragment entrenamientoFragment;
+    MascotasFragment mascotaFragment;
+
+    AmigosFragment amigosFragment;
+    BusquedaFragment busquedaFragment;
+    RankingFragment rankingFragment;
+    AjustesFragment ajustesFragment;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -40,19 +50,19 @@ public class GodActivity extends FragmentActivity implements EntrenamientoFragme
 
             switch (item.getItemId()) {
                 case R.id.navigation_mapa:
-                    fragment = initMap();
+                    fragment = mapaFrag;
                     break;
 
                 case R.id.navigation_entrenamientos:
-                    fragment = EntrenamientoFragment.newInstance(1);
+                    fragment = entrenamientoFragment;
                     break;
 
                 case R.id.navigation_retos:
-                    fragment = new RetosFragment();
+                    fragment = retoFrag;
                     break;
 
                 case R.id.navigation_mascotas:
-                    fragment = new MascotasFragment();
+                    fragment = mascotaFragment;
                     break;
             }
             return loadFragment(fragment);
@@ -67,17 +77,22 @@ public class GodActivity extends FragmentActivity implements EntrenamientoFragme
             switch (item.getItemId()) {
                 case R.id.NavAmigos:
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                            new AmigosFragment()).commit();
+                            amigosFragment).commit();
                     break;
 
                 case R.id.NavRanking:
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                            new RankingFragment()).commit();
+                            rankingFragment).commit();
                     break;
 
                 case R.id.NavAjustes:
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new AjustesFragment()).commit();
+                        ajustesFragment).commit();
+                    break;
+
+                case R.id.NavBusqueda:
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                            new BusquedaFragment()).commit();
                     break;
             }
             drawerLayout.closeDrawer(GravityCompat.START);
@@ -105,7 +120,16 @@ public class GodActivity extends FragmentActivity implements EntrenamientoFragme
         setContentView(R.layout.activity_god);
         drawerLayout = findViewById(R.id.drawer_layout);
 
-        initMap();
+        mapaFrag = initMap();
+        retoFrag = new RetosFragment();
+        entrenamientoFragment = EntrenamientoFragment.newInstance(1);
+        mascotaFragment = new MascotasFragment();
+
+        amigosFragment = new AmigosFragment();
+        ajustesFragment = new AjustesFragment();
+        rankingFragment = new RankingFragment();
+
+
         Log.d("pets", SingletonSession.Instance().getMascotas().get(0));
 
         NavigationView navigationView = findViewById(R.id.nav_view);
