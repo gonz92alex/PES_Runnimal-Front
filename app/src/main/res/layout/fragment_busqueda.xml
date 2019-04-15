@@ -7,18 +7,23 @@
     android:layout_height="match_parent"
     android:background="#C5EFF7">
 
-    <EditText
-        android:layout_width="342dp"
+    <SearchView
+        android:id="@+id/searchView"
+        android:layout_width="360dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:hint="@string/Search"
+        android:iconifiedByDefault="false"
+        android:queryHint="Search"
         app:layout_constraintBottom_toTopOf="@+id/listView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+        // android:searchIcon="@drawable/search_icon"
+        >
+    </SearchView>
 
     <ListView
         android:id="@+id/listView"
