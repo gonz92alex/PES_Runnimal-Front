@@ -42,9 +42,23 @@ public class ProfileFragment extends Fragment {
         textViewCorreo = (TextView) profileView.findViewById(R.id.CorreoText);
         textViewCorreo.setText(mCorreo);
 
+        //Si estas viendo tu perfil:
         if (mCorreo.equals(SingletonSession.Instance().getMail())){
             ImageView ImgEdit = (ImageView) profileView.findViewById(R.id.imgEdit);
             ImgEdit.setImageResource(R.drawable.editar);
+
+            ImgEdit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                /*FragmentTransaction fr = getFragmentManager().beginTransaction();
+                fr.replace(R.id.fragment_container, AnadirMascotaFragment.newInstance("elpapito@mipito.es"))
+                        .commit();*/
+                    ((GodActivity)getActivity()).loadFragment(ModifyUserFragment.newInstance());
+                }
+            });
+        }
+        else{   //Si estas viendo el perfil de otra persona:
+
         }
 
         return profileView;
