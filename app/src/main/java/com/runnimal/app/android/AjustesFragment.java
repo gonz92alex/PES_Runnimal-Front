@@ -28,6 +28,14 @@ public class AjustesFragment extends Fragment {
             }
         });
 
+        Button notificacionButton = view.findViewById(R.id.btn_notificaciones);
+        notificacionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               NotificacionEv();
+            }
+        });
+
 
         return view;
     }
@@ -38,5 +46,9 @@ public class AjustesFragment extends Fragment {
 
     public void AddEvUser() {
         ((GodActivity)getActivity()).loadFragment(ModifyUserFragment.newInstance());
+    }
+
+    public void NotificacionEv(){
+        ((GodActivity)getActivity()).loadFragment(new NotificacionesFragment());
     }
 }

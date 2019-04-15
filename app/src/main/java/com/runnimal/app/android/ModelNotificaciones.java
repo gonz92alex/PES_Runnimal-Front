@@ -1,11 +1,13 @@
 package com.runnimal.app.android;
 
-public class ModelBusqueda {
+import android.widget.Button;
+
+public class ModelNotificaciones {
     String title;
     String mail;
     int icon;
 
-    public ModelBusqueda(String title, int icon, String mail) {
+    public ModelNotificaciones(String title, int icon, String mail) {
         this.title = title;
         this.icon = icon;
         this.mail = mail;
@@ -20,6 +22,6 @@ public class ModelBusqueda {
     }
 
     public String getMail() {
-        return mail;
+        return this.mail;
     }
 }

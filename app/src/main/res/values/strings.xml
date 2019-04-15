@@ -46,5 +46,7 @@
     <string name="size_prompt">Select a size</string>
     <string name="owner">Owner</string>
     <string name="Search">Search</string>
+    <string name="Reject">Reject</string>
+    <string name="Accept">Accept</string>
 
 </resources>

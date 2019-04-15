@@ -36,7 +36,7 @@ public class MascotaPerfilFragment extends Fragment {
     private TextView mWeight;
     private TextView mAge;
 
-    Bitmap fotoPerfil;
+    int fotoPerfil;
 
 
     public MascotaPerfilFragment (){

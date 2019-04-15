@@ -130,7 +130,7 @@ public class GodActivity extends FragmentActivity implements EntrenamientoFragme
         rankingFragment = new RankingFragment();
 
 
-        Log.d("pets", SingletonSession.Instance().getMascotas().get(0));
+     //   Log.d("pets", SingletonSession.Instance().getMascotas().get(0));
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(nOnNavigationItemSelectedListener);
