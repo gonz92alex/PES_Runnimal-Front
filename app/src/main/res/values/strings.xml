@@ -45,5 +45,6 @@
     </string-array>
     <string name="size_prompt">Select a size</string>
     <string name="owner">Owner</string>
+    <string name="Search">Search</string>
 
 </resources>
