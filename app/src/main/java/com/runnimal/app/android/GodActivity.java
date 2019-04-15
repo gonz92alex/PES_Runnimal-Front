@@ -79,6 +79,11 @@ public class GodActivity extends FragmentActivity implements EntrenamientoFragme
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new AjustesFragment()).commit();
                     break;
+
+                case R.id.NavBusqueda:
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                            new BusquedaFragment()).commit();
+                    break;
             }
             drawerLayout.closeDrawer(GravityCompat.START);
             return loadFragment(fragment);
