@@ -53,39 +53,7 @@ public class BusquedaFragment extends Fragment {
         searchView = view.findViewById(R.id.searchView);
 
         UsersApi();
-        Log.i("LLAMADA",  textoAux);
 
-
-        if (arrayList.size() > 0) {
-            arrayList = new ArrayList<ModelBusqueda>();
-        }
-        for (int i = 0; i < title.length; ++i) {
-            ModelBusqueda model = new ModelBusqueda(title[i], icon[0], mail[i]);
-            arrayList.add(model);
-        }
-
-
-        //(GodActivity)getActivity())
-        adapter = new BusquedaListViewAdapter((GodActivity) getActivity(), arrayList);
-        listView.setAdapter(adapter);
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                if (TextUtils.isEmpty(newText)) {
-                    adapter.filter("");
-                    listView.clearTextFilter();
-                } else {
-                    adapter.filter(newText);
-                }
-                return true;
-            }
-        });
 
 
         return view;
@@ -113,14 +81,8 @@ public class BusquedaFragment extends Fragment {
                         Log.i("VOLLEY", response);
                         if(response != null){
                             Log.i("VOLLEY", "yo me lo guiso yo me lo como");
-                            try {
-                                JSONArray responseArray = new JSONArray(response);
-                                Log.i("ARRAY1", textoAux);
-                                textoAux = responseArray.getJSONObject(0).getString("alias");
-                                Log.i("ARRAY2", textoAux);
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
+                            cargaUsers(response);
+
                         }
                     }
                 }, new Response.ErrorListener() {
@@ -134,14 +96,49 @@ public class BusquedaFragment extends Fragment {
         queue.add(stringRequest);
     }
 
-    public void AllUsers(String response) {
+    private void cargaUsers (String response){
+
         try {
             JSONArray responseArray = new JSONArray(response);
-            //Log.i("ARRAY", responseArray.getJSONObject(0).getString("alias"));
             textoAux = responseArray.getJSONObject(0).getString("alias");
+
+            if (arrayList.size() > 0) {
+                arrayList = new ArrayList<ModelBusqueda>();
+            }
+            for (int i = 0; i < responseArray.length(); ++i) {
+                ModelBusqueda model = new ModelBusqueda(responseArray.getJSONObject(i).getString("alias"), icon[0], responseArray.getJSONObject(0).getString("email"));
+                arrayList.add(model);
+            }
+
+
+            //(GodActivity)getActivity())
+            adapter = new BusquedaListViewAdapter((GodActivity) getActivity(), arrayList);
+            listView.setAdapter(adapter);
+
+            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String query) {
+                    return false;
+                }
+
+                @Override
+                public boolean onQueryTextChange(String newText) {
+                    if (TextUtils.isEmpty(newText)) {
+                        adapter.filter("");
+                        listView.clearTextFilter();
+                    } else {
+                        adapter.filter(newText);
+                    }
+                    return true;
+                }
+            });
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+
+
     }
 }
 
