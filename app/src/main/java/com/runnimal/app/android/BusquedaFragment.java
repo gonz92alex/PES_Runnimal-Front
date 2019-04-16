@@ -106,7 +106,7 @@ public class BusquedaFragment extends Fragment {
                 arrayList = new ArrayList<ModelBusqueda>();
             }
             for (int i = 0; i < responseArray.length(); ++i) {
-                ModelBusqueda model = new ModelBusqueda(responseArray.getJSONObject(i).getString("alias"), icon[0], responseArray.getJSONObject(0).getString("email"));
+                ModelBusqueda model = new ModelBusqueda(responseArray.getJSONObject(i).getString("alias"), icon[0], responseArray.getJSONObject(i).getString("email"));
                 arrayList.add(model);
             }
 
