@@ -82,9 +82,7 @@ public class MascotasFragment extends Fragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.pet_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
-        //iniciar con la mascota de session(que de momento es fake)
-        getMyPets();
-
+        //toDo pasar solo pets con owner == usuario logueado (MascotaContent.getPets(owner) por.ej.)
         adapter = new MyMascotaRecyclerViewAdapter(MascotaContent.ITEMS, mListener);
         recyclerView.setAdapter(adapter);
 
@@ -114,9 +112,6 @@ public class MascotasFragment extends Fragment {
         ((GodActivity)getActivity()).loadFragment(AnadirMascotaFragment.newInstance());
     }
 
-    void getMyPets(){
-
-    }
 
     /**
      * This interface must be implemented by activities that contain this
