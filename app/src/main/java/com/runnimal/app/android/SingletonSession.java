@@ -10,6 +10,7 @@ public class SingletonSession {
     private String username;
     private Bitmap photo;
     private String mail;
+    private String id;
     private ArrayList<String> mascotas = new ArrayList<>();
 
     //no outer class can initialize this class's object
@@ -56,6 +57,14 @@ public class SingletonSession {
 
     public ArrayList<String> getMascotas() {
         return mascotas;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
     }
 }
 

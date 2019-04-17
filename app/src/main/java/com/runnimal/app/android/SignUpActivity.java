@@ -112,8 +112,12 @@ public class SignUpActivity extends AppCompatActivity {
                         progressDialog.dismiss();
                         Log.d("VOLLEY", response);
                         //ToDo -> si la respuesta es 'OK' redirigir a pantalla de login/loguear directamente con el user creado?
-                        signUpOk(mail, nombre);
-
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            signUpOk(mail, nombre, jsonObject.getString("_id"));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -152,10 +156,11 @@ public class SignUpActivity extends AppCompatActivity {
 
 
 
-    public void signUpOk(String email, String nombre /*ToDO falta añadir las fotos */){
+    public void signUpOk(String email, String nombre, String id /*ToDO falta añadir las fotos */){
         Intent LoginIntent = new Intent(this, GodActivity.class);
         SingletonSession.Instance().setMail(email);
         SingletonSession.Instance().setUsername(nombre);
+        SingletonSession.Instance().setId(id);
         startActivity(LoginIntent);
     }
 

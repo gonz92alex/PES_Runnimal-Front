@@ -48,7 +48,7 @@ public class LogInActivity extends AppCompatActivity {
                         try {
                             JSONObject user = new JSONObject(response);
                             if (password.equals(user.getString("password"))){
-                                LoginOk(email, user.getString("alias"));
+                                LoginOk(email, user.getString("alias"), user.getString("_id"));
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -104,10 +104,11 @@ public class LogInActivity extends AppCompatActivity {
         }
     }
 
-    public void LoginOk(String email, String nombre /* falta añadir las fotos */){
+    public void LoginOk(String email, String nombre, String id /* falta añadir las fotos */){
         Intent LoginIntent = new Intent(this, GodActivity.class);
         SingletonSession.Instance().setMail(email);
         SingletonSession.Instance().setUsername(nombre);
+        SingletonSession.Instance().setId(id);
         //llamamos a la API al hacer login y obtenemos los entrenamientos y mascotas del usuario que loguea.
         // De esta manera hacemos una vez la petición al hacer login.
         getMascotas(email);
