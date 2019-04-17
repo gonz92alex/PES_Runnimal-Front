@@ -24,9 +24,9 @@ public class MascotaPerfilFragment extends Fragment {
     private static final String ARG_PARAM3 = "id";
 
     // TODO: Rename and change types of parameters
+    private String mId;
     private String mName;
     private String mDescription;
-    private String mId;
 
     private TextView mContentText;
     private TextView mDescriptionText;
@@ -104,9 +104,6 @@ public class MascotaPerfilFragment extends Fragment {
         mOwner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*FragmentTransaction fr = getFragmentManager().beginTransaction();
-                fr.replace(R.id.fragment_container, AnadirMascotaFragment.newInstance("elpapito@mipito.es"))
-                        .commit();*/
                 ((GodActivity)getActivity()).loadFragment(ProfileFragment.newInstance("nameTest","emailTest@test.com", fotoPerfil));
             }
         });

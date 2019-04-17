@@ -154,7 +154,7 @@ public class GodActivity extends FragmentActivity implements EntrenamientoFragme
     public void ProfileEv(View view) {
         //ToDO estoy probando a ver si puedo hacer que funcione un botton en la imagen del navigation drawer
         //tendremos que cambiar esto
-        ProfileFragment profile = ProfileFragment.newInstance(nombre, correo, fotoPerfil);
+        ProfileFragment profile = ProfileFragment.newInstance(nombre, correo ,fotoPerfil);
         //todo hay que ver como se passa la imagen de perfil
         loadFragment(profile);
 

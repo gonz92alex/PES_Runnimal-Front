@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,15 +12,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
 
 
 public class ProfileFragment extends Fragment {
@@ -126,7 +131,8 @@ public class ProfileFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         //toDo
-                        //llamada API para enviar solicitud
+                        //enviar_peticion();
+                        imageRelation.setImageResource(R.drawable.ic_clock);
                     }
                 });
                 break;
@@ -146,5 +152,60 @@ public class ProfileFragment extends Fragment {
                 });
                 break;
         }
+    }
+
+    private void enviar_peticion() throws JSONException {
+        // Instantiate the RequestQueue.
+        RequestQueue queue = Volley.newRequestQueue(getContext());
+        String url ="http://nidorana.fib.upc.edu/api/friendRequests/new";
+
+        //Construir el cuerpo del request con la información a enviar
+        JSONObject jsonBody = new JSONObject();
+        jsonBody.put("requestinId", SingletonSession.Instance().getMail());
+        jsonBody.put("requestedId", mCorreo);
+        final String requestBody = jsonBody.toString();
+
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            //obtener relacion de la respuesta
+                            //mostrarBoton(relacion)
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getContext(),"Error: " + error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        }) {
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+
+            @Override
+            public byte[] getBody() {
+                try {
+                    return requestBody == null ? null : requestBody.getBytes("utf-8");
+                } catch (UnsupportedEncodingException uee) {
+                    VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
+                    return null;
+                }
+            }
+            @Override
+            protected Response<String> parseNetworkResponse(NetworkResponse response){
+                int mStatusCode = response.statusCode;
+                Log.d("VOLLEY", "parseNetworkResponse:" + Integer.toString(mStatusCode));
+                return super.parseNetworkResponse(response);
+            }
+        };
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
     }
 }
