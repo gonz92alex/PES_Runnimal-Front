@@ -87,11 +87,16 @@ public class NotificacionListViewAdapter extends BaseAdapter {
         holder.mTitleTv.setText(modelslist.get(position).getTitle());
         holder.mIconIv.setImageResource(modelslist.get(position).getIcon());
         holder.mMailTv.setText(modelslist.get(position).getMail());
+        holder.aceptBtn.setTag(position);
         holder.aceptBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
                     ApiAceptar(modelslist.get(position).getId());
+                    int posToRemove= (int) v.getTag();
+                    modelslist.remove(posToRemove);
+                    notifyDataSetChanged();
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -102,6 +107,9 @@ public class NotificacionListViewAdapter extends BaseAdapter {
             public void onClick(View v) {
                 try {
                     ApiRechazar(modelslist.get(position).getId());
+                    int posToRemove= (int) v.getTag();
+                    modelslist.remove(posToRemove);
+                    notifyDataSetChanged();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -147,12 +155,13 @@ public class NotificacionListViewAdapter extends BaseAdapter {
     }
     private void ApiRechazar(final String idReq) throws JSONException {
         RequestQueue queue = Volley.newRequestQueue(mContext);
-        String url ="http://nidorana.fib.upc.edu/api/friendRequests/refuse/" + idReq;
+        String url ="http://nidorana.fib.upc.edu/api/friendRequests/refuse/";
 
         //Loading Message
         final ProgressDialog progressDialog = new ProgressDialog(mContext);
         progressDialog.setMessage("Loading...");
         progressDialog.show();
+
         JSONObject jsonBody = new JSONObject();
         jsonBody.put("id",idReq );
         final String requestBody = jsonBody.toString();
