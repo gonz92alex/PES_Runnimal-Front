@@ -43,4 +43,8 @@
     <string name="size_prompt">Selecciona un tamany</string>
     <string name="owner">Amo</string>
     <string name="Search">Buscar</string>
+    <string name="Reject">Rebutjar</string>
+    <string name="Accept">Acceptar</string>
+    <string name="Friends">Amics</string>
+
 </resources>
