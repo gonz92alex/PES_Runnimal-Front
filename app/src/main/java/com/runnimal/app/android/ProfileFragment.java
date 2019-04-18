@@ -130,8 +130,11 @@ public class ProfileFragment extends Fragment {
                 imageRelation.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //toDo
-                        //enviar_peticion();
+                        try {
+                            enviar_peticion();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                         imageRelation.setImageResource(R.drawable.ic_clock);
                     }
                 });
@@ -158,25 +161,20 @@ public class ProfileFragment extends Fragment {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(getContext());
         String url ="http://nidorana.fib.upc.edu/api/friendRequests/new";
+        Log.d("API", "emails son : " + SingletonSession.Instance().getMail() + "& " + mCorreo);
 
         //Construir el cuerpo del request con la información a enviar
         JSONObject jsonBody = new JSONObject();
-        jsonBody.put("requestinId", SingletonSession.Instance().getMail());
-        jsonBody.put("requestedId", mCorreo);
+        jsonBody.put("requestingEmail", SingletonSession.Instance().getMail());
+        jsonBody.put("requestedEmail", mCorreo);
         final String requestBody = jsonBody.toString();
 
         // Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        try {
-                            JSONObject jsonObject = new JSONObject(response);
-                            //obtener relacion de la respuesta
-                            //mostrarBoton(relacion)
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                        Log.d("API", "peticion amistad enviada correctamente");
                     }
                 }, new Response.ErrorListener() {
             @Override
