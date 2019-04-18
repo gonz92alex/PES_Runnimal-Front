@@ -6,11 +6,13 @@ public class ModelNotificaciones {
     String title;
     String mail;
     int icon;
+    String id;
 
-    public ModelNotificaciones(String title, int icon, String mail) {
+    public ModelNotificaciones(String title, int icon, String mail, String id) {
         this.title = title;
         this.icon = icon;
         this.mail = mail;
+        this.id = id;
     }
 
     public String getTitle() {
@@ -24,4 +26,10 @@ public class ModelNotificaciones {
     public String getMail() {
         return this.mail;
     }
+
+
+    public String getId() {
+        return this.id;
+    }
+
 }
