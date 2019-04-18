@@ -90,17 +90,21 @@ public class NotificacionListViewAdapter extends BaseAdapter {
         holder.aceptBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //programar la llamada  a la api para aceptar amistad
-                // POST en  api/friendRequests/accept/id donde el id es el id de la request
-                ApiAceptar(modelslist.get(position).getId());
+                try {
+                    ApiAceptar(modelslist.get(position).getId());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
         holder.rechazarBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //programar la llamada a la api para rechazara la amistad
-                // POST en  api/friendRequests/refuse/id donde el id es el id de la request
-                ApiRechazar(modelslist.get(position).getId());
+                try {
+                    ApiRechazar(modelslist.get(position).getId());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -111,15 +115,19 @@ public class NotificacionListViewAdapter extends BaseAdapter {
 
         return convertView;
     }
-    private void ApiAceptar(final String idReq){
+    private void ApiAceptar(final String idReq) throws JSONException {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(mContext);
-        String url ="http://nidorana.fib.upc.edu/api/friendRequests/accept/" + idReq;
+        String url ="http://nidorana.fib.upc.edu/api/friendRequests/accept/";
 
         //Loading Message
         final ProgressDialog progressDialog = new ProgressDialog(mContext);
         progressDialog.setMessage("Loading...");
         progressDialog.show();
+
+        JSONObject jsonBody = new JSONObject();
+        jsonBody.put("id",idReq );
+        final String requestBody = jsonBody.toString();
 
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
@@ -137,7 +145,7 @@ public class NotificacionListViewAdapter extends BaseAdapter {
         });
 
     }
-    private void ApiRechazar(final String idReq){
+    private void ApiRechazar(final String idReq) throws JSONException {
         RequestQueue queue = Volley.newRequestQueue(mContext);
         String url ="http://nidorana.fib.upc.edu/api/friendRequests/refuse/" + idReq;
 
@@ -145,6 +153,9 @@ public class NotificacionListViewAdapter extends BaseAdapter {
         final ProgressDialog progressDialog = new ProgressDialog(mContext);
         progressDialog.setMessage("Loading...");
         progressDialog.show();
+        JSONObject jsonBody = new JSONObject();
+        jsonBody.put("id",idReq );
+        final String requestBody = jsonBody.toString();
 
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,

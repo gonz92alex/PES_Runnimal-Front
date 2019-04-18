@@ -95,7 +95,7 @@ public class NotificacionesFragment extends Fragment {
                 arrayList = new ArrayList<ModelNotificaciones>();
             }
             for (int i = 0; i < responseArray.length(); ++i) {
-                InfoRequestant(responseArray.getJSONObject(i).getString("RequestingEmail"), responseArray.getJSONObject(i).getString("id"),  i, responseArray.length());
+                InfoRequestant(responseArray.getJSONObject(i).getString("requestingId"), responseArray.getJSONObject(i).getString("id"),  i, responseArray.length());
             }
 
         } catch (JSONException e) {
@@ -109,10 +109,10 @@ public class NotificacionesFragment extends Fragment {
 
     //llamada API
 
-    private void InfoRequestant(final String mailReq, final String idReq, final int i, final int fin){
+    private void InfoRequestant(final String idUser, final String idReq, final int i, final int fin){
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue((GodActivity) getActivity());
-        String url ="http://nidorana.fib.upc.edu/api/users/" + mailReq;
+        String url ="http://nidorana.fib.upc.edu/api/users/id/" + idUser;
 
         //Loading Message
         final ProgressDialog progressDialog = new ProgressDialog((GodActivity) getActivity());
@@ -129,7 +129,7 @@ public class NotificacionesFragment extends Fragment {
                         if(response != null){
                             try {
                                 JSONObject user = new JSONObject(response);
-                                CargaArray(user.getString("alias"), mailReq, idReq, i,  fin);
+                                CargaArray(user.getString("alias"), user.getString("email"), idReq, i,  fin);
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -152,7 +152,7 @@ public class NotificacionesFragment extends Fragment {
         ModelNotificaciones model = new ModelNotificaciones(name, icon[0],mail, id);
         //necessito el nombre y la foto
         arrayList.add(model);
-        if(i == fin){
+        if(i == fin -1){
             adapter = new NotificacionListViewAdapter((GodActivity) getActivity(), arrayList);
             listView.setAdapter(adapter);
         }
