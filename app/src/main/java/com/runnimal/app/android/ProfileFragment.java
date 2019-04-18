@@ -21,6 +21,7 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -67,17 +68,14 @@ public class ProfileFragment extends Fragment {
             imageRelation.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                /*FragmentTransaction fr = getFragmentManager().beginTransaction();
-                fr.replace(R.id.fragment_container, AnadirMascotaFragment.newInstance("elpapito@mipito.es"))
-                        .commit();*/
                     ((GodActivity)getActivity()).loadFragment(ModifyUserFragment.newInstance());
                 }
             });
         }
         else{   //Si estas viendo el perfil de otra persona:
             //toDo
-            //getRelation()
-            mostrarBoton(0);
+            getRelation();
+            //mostrarBoton(0);
         }
 
         return profileView;
@@ -97,7 +95,7 @@ public class ProfileFragment extends Fragment {
     private void getRelation(){
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(getContext());
-        String url ="http://nidorana.fib.upc.edu/api/friendRequests/" /* + añadir parametros necesarios*/;
+        String url ="http://nidorana.fib.upc.edu/api/friendRequests/"+mCorreo;
 
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -105,9 +103,18 @@ public class ProfileFragment extends Fragment {
                     @Override
                     public void onResponse(String response) {
                         try {
-                            JSONObject jsonObject = new JSONObject(response);
+                            JSONArray jsonArray = new JSONArray(response);
                             //obtener relacion de la respuesta
-                            //mostrarBoton(relacion)
+                            int relacion = -1;
+                            for (int i=0; i<jsonArray.length(); i++){
+                                JSONObject peticion = jsonArray.getJSONObject(i);
+                                if ( peticion.getString("requestingId").equals(SingletonSession.Instance().getId()) || peticion.getString("requestedId").equals(SingletonSession.Instance().getId())) {
+                                    relacion = 1;
+                                    break;
+                                }
+                            }
+                            if (relacion!=-1) mostrarBoton(relacion, "-1");
+                            else getRelation2();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -123,7 +130,37 @@ public class ProfileFragment extends Fragment {
         queue.add(stringRequest);
     }
 
-    private void mostrarBoton(int relacion){
+    private void getRelation2(){
+        // Instantiate the RequestQueue.
+        RequestQueue queue = Volley.newRequestQueue(getContext());
+        String url ="http://nidorana.fib.upc.edu/api/friends/"+SingletonSession.Instance().getMail()+"/"+mCorreo;
+
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONArray jsonArray = new JSONArray(response);
+                            //obtener relacion de la respuesta
+                            if (jsonArray.length() > 0) mostrarBoton(2, jsonArray.getJSONObject(0).getString("_id"));
+                            else mostrarBoton(0, "-1");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getContext(),"Error: " + error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
+    }
+
+    private void mostrarBoton(int relacion, final String id_amistad){
         switch (relacion) {
             case 0://no amigos
                 imageRelation.setImageResource(R.mipmap.ic_add);
@@ -149,8 +186,7 @@ public class ProfileFragment extends Fragment {
                 imageRelation.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //toDo - eliminar amigo
-                        //llamada a la API para eliminar amistad
+                        eliminarAmistad(id_amistad);
                     }
                 });
                 break;
@@ -203,6 +239,29 @@ public class ProfileFragment extends Fragment {
                 return super.parseNetworkResponse(response);
             }
         };
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
+    }
+
+    private void eliminarAmistad(String id){
+        // Instantiate the RequestQueue.
+        RequestQueue queue = Volley.newRequestQueue(getContext());
+        String url ="http://nidorana.fib.upc.edu/api/friends/delete/" + id;
+
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("API", "onResponse: amistad borrada");
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getContext(),"Error: " + error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
     }
