@@ -68,7 +68,7 @@ public class ModifyUserFragment extends Fragment {
     private void modifier(final String nombre) throws JSONException {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue((GodActivity)getActivity());
-        String url ="http://nidorana.fib.upc.edu/api/user/"  + SingletonSession.Instance().getMail();
+        String url ="http://nidorana.fib.upc.edu/api/users/"  + SingletonSession.Instance().getMail();
 
         //Loading Message
         final ProgressDialog progressDialog = new ProgressDialog((GodActivity)getActivity());
