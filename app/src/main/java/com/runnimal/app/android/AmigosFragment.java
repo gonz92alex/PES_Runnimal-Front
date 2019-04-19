@@ -78,7 +78,7 @@ public class AmigosFragment extends Fragment {
                     @Override
                     public void onResponse(String response) {
                         progressDialog.dismiss();
-                        Log.i("VOLLEY", response);
+
                         if(response != null){
                             Log.i("VOLLEY", response);
                             cargaRequests(response);
@@ -107,11 +107,16 @@ public class AmigosFragment extends Fragment {
                 arrayList = new ArrayList<ModelBusqueda>();
             }
             for (int i = 0; i < responseArray.length(); ++i) {
-                if(SingletonSession.Instance().getId() == responseArray.getJSONObject(i).getString("relatedUserId")) {
-                    InfoFriend(responseArray.getJSONObject(i).getString("relatedUserId"), i, responseArray.length());
+                Log.i("VOLLEYmiid",SingletonSession.Instance().getId() );
+                Log.i("VOLLEYrelated", responseArray.getJSONObject(i).getString("relatedUserId"));
+                Log.i("VOLLEYrelating", responseArray.getJSONObject(i).getString("relatingUserId"));
+                if(SingletonSession.Instance().getId().equals(responseArray.getJSONObject(i).getString("relatedUserId"))) {
+                    Log.i("VOLLEYIF", "dentro del if");
+                    InfoFriend(responseArray.getJSONObject(i).getString("relatingUserId"), i, responseArray.length());
                 }
                 else{
-                    InfoFriend(responseArray.getJSONObject(i).getString("relatingUserId"), i, responseArray.length());
+                    Log.i("VOLLEYIF", "dentro del else");
+                    InfoFriend(responseArray.getJSONObject(i).getString("relatedUserId"), i, responseArray.length());
                 }
             }
 
