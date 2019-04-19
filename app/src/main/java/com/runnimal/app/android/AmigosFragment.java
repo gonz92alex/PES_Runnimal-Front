@@ -107,7 +107,12 @@ public class AmigosFragment extends Fragment {
                 arrayList = new ArrayList<ModelBusqueda>();
             }
             for (int i = 0; i < responseArray.length(); ++i) {
-                InfoFriend(responseArray.getJSONObject(i).getString("relatedUserId"),  i, responseArray.length());
+                if(SingletonSession.Instance().getId() == responseArray.getJSONObject(i).getString("relatedUserId")) {
+                    InfoFriend(responseArray.getJSONObject(i).getString("relatedUserId"), i, responseArray.length());
+                }
+                else{
+                    InfoFriend(responseArray.getJSONObject(i).getString("relatingUserId"), i, responseArray.length());
+                }
             }
 
         } catch (JSONException e) {
@@ -131,7 +136,7 @@ public class AmigosFragment extends Fragment {
                     @Override
                     public void onResponse(String response) {
                         progressDialog.dismiss();
-                        Log.i("VOLLEY", response);
+                        Log.i("VOLLEYidFriend", idFriend);
                         if(response != null){
                             try {
                                 JSONObject user = new JSONObject(response);
