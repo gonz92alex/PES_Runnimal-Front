@@ -131,7 +131,7 @@ public class NotificacionListViewAdapter extends BaseAdapter {
     private void ApiAceptar(final String idReq) throws JSONException {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(mContext);
-        String url ="http://nidorana.fib.upc.edu/api/friendRequests/accept/";
+        String url ="http://nidorana.fib.upc.edu/api/friendRequests/accept";
 
         //Loading Message
         final ProgressDialog progressDialog = new ProgressDialog(mContext);
@@ -139,9 +139,9 @@ public class NotificacionListViewAdapter extends BaseAdapter {
         progressDialog.show();
 
         JSONObject jsonBody = new JSONObject();
-        jsonBody.put("_id",idReq );
+        jsonBody.put("id",idReq );
         final String requestBody = jsonBody.toString();
-
+        Log.i("VOLLEYANTESACCEPT", idReq);
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -172,6 +172,7 @@ public class NotificacionListViewAdapter extends BaseAdapter {
                 }
             }
         };
+        queue.add(stringRequest);
 
     }
     private void ApiRechazar(final String idReq) throws JSONException {
@@ -186,7 +187,7 @@ public class NotificacionListViewAdapter extends BaseAdapter {
         Log.i("VOLLEY", idReq);
 
         JSONObject jsonBody = new JSONObject();
-        jsonBody.put("_id",idReq );
+        jsonBody.put("id",idReq );
         final String requestBody = jsonBody.toString();
 
         // Request a string response from the provided URL.
@@ -203,5 +204,6 @@ public class NotificacionListViewAdapter extends BaseAdapter {
                 Toast.makeText(mContext,"Error: " + error.toString(), Toast.LENGTH_SHORT).show();
             }
         });
+        queue.add(stringRequest);
     }
 }
