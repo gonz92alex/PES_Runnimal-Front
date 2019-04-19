@@ -249,11 +249,12 @@ public class ProfileFragment extends Fragment {
         String url ="http://nidorana.fib.upc.edu/api/friends/delete/" + id;
 
         // Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+        StringRequest stringRequest = new StringRequest(Request.Method.DELETE, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         Log.d("API", "onResponse: amistad borrada");
+                        mostrarBoton(0,"-1");
                     }
                 }, new Response.ErrorListener() {
             @Override
