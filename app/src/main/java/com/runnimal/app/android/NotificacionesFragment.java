@@ -95,7 +95,8 @@ public class NotificacionesFragment extends Fragment {
                 arrayList = new ArrayList<ModelNotificaciones>();
             }
             for (int i = 0; i < responseArray.length(); ++i) {
-                InfoRequestant(responseArray.getJSONObject(i).getString("requestingId"), responseArray.getJSONObject(i).getString("id"),  i, responseArray.length());
+                Log.i("VOLLEYcarga",responseArray.getJSONObject(i).getString("_id") );
+                InfoRequestant(responseArray.getJSONObject(i).getString("requestingId"), responseArray.getJSONObject(i).getString("_id"),  i, responseArray.length());
             }
 
         } catch (JSONException e) {
@@ -118,6 +119,7 @@ public class NotificacionesFragment extends Fragment {
         final ProgressDialog progressDialog = new ProgressDialog((GodActivity) getActivity());
         progressDialog.setMessage("Loading...");
         progressDialog.show();
+        Log.i("VOLLEYINFO", idUser);
 
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -147,9 +149,12 @@ public class NotificacionesFragment extends Fragment {
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
     }
+
+
     public void CargaArray(String name, String mail, String id, int i,  int fin){
 
         ModelNotificaciones model = new ModelNotificaciones(name, icon[0],mail, id);
+        Log.i("VOLLEYCARGA", mail);
         //necessito el nombre y la foto
         arrayList.add(model);
         if(i == fin -1){

@@ -12,16 +12,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -88,10 +91,12 @@ public class NotificacionListViewAdapter extends BaseAdapter {
         holder.mIconIv.setImageResource(modelslist.get(position).getIcon());
         holder.mMailTv.setText(modelslist.get(position).getMail());
         holder.aceptBtn.setTag(position);
+        holder.rechazarBtn.setTag(position);
         holder.aceptBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
+                    Log.i("VOLLEYACTION", modelslist.get(position).getId());
                     ApiAceptar(modelslist.get(position).getId());
                     int posToRemove= (int) v.getTag();
                     modelslist.remove(posToRemove);
@@ -134,7 +139,7 @@ public class NotificacionListViewAdapter extends BaseAdapter {
         progressDialog.show();
 
         JSONObject jsonBody = new JSONObject();
-        jsonBody.put("id",idReq );
+        jsonBody.put("_id",idReq );
         final String requestBody = jsonBody.toString();
 
         // Request a string response from the provided URL.
@@ -150,7 +155,23 @@ public class NotificacionListViewAdapter extends BaseAdapter {
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(mContext,"Error: " + error.toString(), Toast.LENGTH_SHORT).show();
             }
-        });
+        })
+        {
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+
+            @Override
+            public byte[] getBody() throws AuthFailureError {
+                try {
+                    return requestBody == null ? null : requestBody.getBytes("utf-8");
+                } catch (UnsupportedEncodingException uee) {
+                    VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
+                    return null;
+                }
+            }
+        };
 
     }
     private void ApiRechazar(final String idReq) throws JSONException {
@@ -162,8 +183,10 @@ public class NotificacionListViewAdapter extends BaseAdapter {
         progressDialog.setMessage("Loading...");
         progressDialog.show();
 
+        Log.i("VOLLEY", idReq);
+
         JSONObject jsonBody = new JSONObject();
-        jsonBody.put("id",idReq );
+        jsonBody.put("_id",idReq );
         final String requestBody = jsonBody.toString();
 
         // Request a string response from the provided URL.
