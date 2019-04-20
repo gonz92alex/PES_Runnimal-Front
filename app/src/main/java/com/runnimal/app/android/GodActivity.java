@@ -20,7 +20,7 @@ import com.runnimal.app.android.entrenamiento.EntrenamientoContent;
 import com.runnimal.app.android.entrenamiento.MascotaContent;
 
 
-public class GodActivity extends FragmentActivity implements EntrenamientoFragment.OnListFragmentInteractionListener, AnadirMascotaFragment.OnFragmentInteractionListener, MascotasFragment.OnListFragmentInteractionListener {
+public class GodActivity extends FragmentActivity implements EntrenamientoFragment.OnListFragmentInteractionListener, AnadirMascotaFragment.OnFragmentInteractionListener, MascotasFragment.OnListFragmentInteractionListener, ProfileFragment.OnListFragmentInteractionListener {
     private static final String[] INITIAL_PERMS = {
             Manifest.permission.ACCESS_FINE_LOCATION
     };
@@ -207,10 +207,18 @@ public class GodActivity extends FragmentActivity implements EntrenamientoFragme
     }
 
 
-    //Metodo a implementar de MascotaPerfil
+    //Metodo a implementar de MascotasFragment
     @Override
     public void onListFragmentInteraction(MascotaContent.MascotaItem item) {
         Log.d("clickTest", "onListFragmentInteraction: clicked! ");
         loadFragment(MascotaPerfilFragment.newInstance(item.getName(), item.getDetails(), item.getId()));
     }
+
+    //Metodo a implementar de ProfileFragment
+    @Override
+    public void HorizontalListFragmentInteractionListener(MascotaContent.MascotaItem item) {
+        Log.d("clickTest", "onListFragmentInteraction: clicked! ");
+        loadFragment(MascotaPerfilFragment.newInstance(item.getName(), item.getDetails(), item.getId()));
+    }
+
 }

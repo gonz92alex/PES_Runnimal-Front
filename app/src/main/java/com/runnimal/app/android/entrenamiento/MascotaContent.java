@@ -7,12 +7,12 @@ import java.util.Map;
 
 public class MascotaContent {
     /**
-     * An array of sample (Entrenamiento) items.
+     * An array of sample (Mascota) items.
      */
     public static final List<MascotaItem> ITEMS = new ArrayList<MascotaItem>();
 
     /**
-     * A map of sample (Entrenamiento) items, by ID.
+     * A map of sample (Mascota) items, by ID.
      */
     public static final Map<String, MascotaItem> ITEM_MAP = new HashMap<String, MascotaItem>();
 
