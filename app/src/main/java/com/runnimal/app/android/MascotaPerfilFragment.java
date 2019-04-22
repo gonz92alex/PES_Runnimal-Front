@@ -31,7 +31,7 @@ public class MascotaPerfilFragment extends Fragment {
     private TextView mContentText;
     private TextView mDescriptionText;
     private ImageView mProfileImage;
-    private TextView mOwner;
+    private ImageView mOwner;
     private TextView mBreed;
     private TextView mWeight;
     private TextView mAge;
@@ -83,28 +83,30 @@ public class MascotaPerfilFragment extends Fragment {
         mBreed.setText(MascotaContent.ITEM_MAP.get(mId).getBreed());
         mAge.setText(MascotaContent.ITEM_MAP.get(mId).getBirthdate());
         mWeight.setText(MascotaContent.ITEM_MAP.get(mId).getWeight());
-        mOwner.setText(MascotaContent.ITEM_MAP.get(mId).getOwner());
+        //mOwner.setText(MascotaContent.ITEM_MAP.get(mId).getOwner());
 
 
 
-        //Todo añadir imagen
+        //Todo añadir imagen de la api
         Picasso.get()
                 .load("https://cdn.shopify.com/s/files/1/0257/6087/products/Pikachu_Single_Front_dc998741-c845-43a8-91c9-c1c97bec17a4.png?v=1523938908")
                 .resize(425,350)
                 .onlyScaleDown()
                 .into(mProfileImage);
 
-        /*Picasso.get()
+
+        //toDo sacar imagen del dueño de la api
+        Picasso.get()
                 .load("https://pbs.twimg.com/profile_images/482542323230732288/0a4a_buH.jpeg")
                 .resize(425,350)
                 .onlyScaleDown()
-                .into(mProfileOwner);*/
+                .into(mOwner);
 
 
         mOwner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((GodActivity)getActivity()).loadFragment(ProfileFragment.newInstance("nameTest","emailTest@test.com", fotoPerfil));
+                ((GodActivity)getActivity()).loadFragment(ProfileFragment.newInstance("nameTest", MascotaContent.ITEM_MAP.get(mId).getOwner(), fotoPerfil));
             }
         });
 

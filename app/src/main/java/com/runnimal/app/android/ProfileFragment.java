@@ -75,7 +75,7 @@ public class ProfileFragment extends Fragment {
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         petList.setLayoutManager(layoutManager);
         //showPets();
-        petList.setAdapter(new MascotaHorizontalAdapter(MascotaContent.ITEMS, mListener));
+        petList.setAdapter(new MascotaHorizontalAdapter(MascotaContent.ITEMS, mListener));//quitar esta linea una vez este el showPets()
 
         //boton sistema de amisatdes
         imageRelation = (ImageView) profileView.findViewById(R.id.imgEdit);
