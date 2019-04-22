@@ -74,8 +74,8 @@ public class ProfileFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         petList.setLayoutManager(layoutManager);
-        //showPets();
-        petList.setAdapter(new MascotaHorizontalAdapter(MascotaContent.ITEMS, mListener));//quitar esta linea una vez este el showPets()
+        showPets();
+        //petList.setAdapter(new MascotaHorizontalAdapter(MascotaContent.ITEMS, mListener));//quitar esta linea una vez este el showPets()
 
         //boton sistema de amisatdes
         imageRelation = (ImageView) profileView.findViewById(R.id.imgEdit);
@@ -111,8 +111,7 @@ public class ProfileFragment extends Fragment {
     private void showPets() {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(getContext());
-        //toDO falta una ruta en lel back que dado un user muestre sus pets
-        String url ="http://nidorana.fib.upc.edu/api/pets/"+mCorreo;
+        String url ="http://nidorana.fib.upc.edu/api/pets/user/"+mCorreo;
 
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -122,10 +121,14 @@ public class ProfileFragment extends Fragment {
                         try {
                             List<MascotaContent.MascotaItem> mascotas = new ArrayList<MascotaItem>();
                             JSONArray jsonArray = new JSONArray(response);
+                            Log.d("API", "mascotas api = " + jsonArray.length());
                             for (int i=0;i<jsonArray.length();i++){
                                 JSONObject mascota = jsonArray.getJSONObject(i);
+                                Log.d("API", "mascotas inside = " + mascotas.size());
                                 mascotas.add(new MascotaItem(mascota.getString("_id"),mascota.getString("name"),mascota.getString("description"),mascota.getString("size"), mascota.getString("birth"),mascota.getString("weight"), mascota.getString("race"),mascota.getString("owner")));
+                                Log.d("API", "mascotas inside = " + mascotas.size());
                             }
+                            Log.d("API", "mascotas for = " + mascotas.size());
                             petList.setAdapter(new MascotaHorizontalAdapter(mascotas, mListener));
                         } catch (JSONException e) {
                             e.printStackTrace();

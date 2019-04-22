@@ -108,7 +108,6 @@ public class MascotasFragment extends Fragment {
     }
 
     public void AddEv() {
-        //ToDO pasamos el mail del usuario logueado como parametro?
         ((GodActivity)getActivity()).loadFragment(AnadirMascotaFragment.newInstance());
     }
 
@@ -124,7 +123,6 @@ public class MascotasFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onListFragmentInteraction(MascotaItem item);
     }
 }
