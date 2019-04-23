@@ -17,9 +17,9 @@ public class MascotaContent {
     public static final Map<String, MascotaItem> ITEM_MAP = new HashMap<String, MascotaItem>();
 
 
-    //Todo función para probar añadir desde fuera de la clase...
     public static void añadirItem(String id, String name, String details, String size, String birthdate, String weight, String breed, String owner){
-        addItem(createMascotaItem(id, name, details,size,birthdate,weight,breed,owner));
+        if (!ITEM_MAP.containsKey(id))
+            addItem(createMascotaItem(id, name, details,size,birthdate,weight,breed,owner));
     }
 
     private static void addItem(MascotaItem item) {
@@ -29,6 +29,13 @@ public class MascotaContent {
 
     private static MascotaItem createMascotaItem(String id, String nombre, String details, String size, String birthdate, String weight, String breed, String owner) {
         return new MascotaItem(id, nombre, details, size, birthdate, weight, breed,owner);
+    }
+
+    public static List<MascotaItem> belongsTo(String email) {
+        List<MascotaItem> r = new ArrayList<MascotaItem>();
+        for (int i = 0; i<ITEMS.size(); i++)
+            if (ITEMS.get(i).getOwner().equals(email)) r.add(ITEMS.get(i));
+        return r;
     }
 
 

@@ -119,17 +119,13 @@ public class ProfileFragment extends Fragment {
                     @Override
                     public void onResponse(String response) {
                         try {
-                            List<MascotaContent.MascotaItem> mascotas = new ArrayList<MascotaItem>();
                             JSONArray jsonArray = new JSONArray(response);
-                            Log.d("API", "mascotas api = " + jsonArray.length());
                             for (int i=0;i<jsonArray.length();i++){
                                 JSONObject mascota = jsonArray.getJSONObject(i);
-                                Log.d("API", "mascotas inside = " + mascotas.size());
-                                mascotas.add(new MascotaItem(mascota.getString("_id"),mascota.getString("name"),mascota.getString("description"),mascota.getString("size"), mascota.getString("birth"),mascota.getString("weight"), mascota.getString("race"),mascota.getString("owner")));
-                                Log.d("API", "mascotas inside = " + mascotas.size());
+                                MascotaContent.añadirItem(mascota.getString("_id"),mascota.getString("name"),mascota.getString("description"),mascota.getString("size"), mascota.getString("birth"),mascota.getString("weight"), mascota.getString("race"),mascota.getString("owner"));
                             }
-                            Log.d("API", "mascotas for = " + mascotas.size());
-                            petList.setAdapter(new MascotaHorizontalAdapter(mascotas, mListener));
+                            //ToDo ahora mismo no retorna nada porque el owner que retorna la API es el id, falta cambiarlo por el email.
+                            petList.setAdapter(new MascotaHorizontalAdapter(MascotaContent.belongsTo(mCorreo), mListener));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
