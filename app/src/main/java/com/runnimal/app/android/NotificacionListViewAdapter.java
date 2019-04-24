@@ -32,15 +32,15 @@ public class NotificacionListViewAdapter extends BaseAdapter {
 
     Context mContext;
     LayoutInflater inflater;
-    List<ModelNotificaciones> modelslist;
-    ArrayList<ModelNotificaciones> arrayList;
+    List<ModelSolicitud> modelslist;
+    ArrayList<ModelSolicitud> arrayList;
 
 
-    public NotificacionListViewAdapter(Context Context, List<ModelNotificaciones> modelslist) {
+    public NotificacionListViewAdapter(Context Context, List<ModelSolicitud> modelslist) {
         mContext = Context;
         this.modelslist = modelslist;
         inflater = LayoutInflater.from(mContext);
-        this.arrayList = new ArrayList<ModelNotificaciones>();
+        this.arrayList = new ArrayList<ModelSolicitud>();
         this.arrayList.addAll(modelslist);
     }
 

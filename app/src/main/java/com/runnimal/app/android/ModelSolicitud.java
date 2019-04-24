@@ -2,13 +2,13 @@ package com.runnimal.app.android;
 
 import android.widget.Button;
 
-public class ModelNotificaciones {
+public class ModelSolicitud {
     String title;
     String mail;
     int icon;
     String id;
 
-    public ModelNotificaciones(String title, int icon, String mail, String id) {
+    public ModelSolicitud(String title, int icon, String mail, String id) {
         this.title = title;
         this.icon = icon;
         this.mail = mail;

@@ -35,7 +35,7 @@ public class NotificacionesFragment extends Fragment {
     String[] mail =  new String[]{"user1@gmail.com", "jaja@gmail.com", "jaja@gmail.com", "user4@gmail.com"};
     int[] icon = new int[]{R.mipmap.ic_launcher_round};
 
-    ArrayList<ModelNotificaciones> arrayList = new ArrayList<ModelNotificaciones>();
+    ArrayList<ModelSolicitud> arrayList = new ArrayList<ModelSolicitud>();
 
 
     @Nullable
@@ -92,7 +92,7 @@ public class NotificacionesFragment extends Fragment {
 
 
             if (arrayList.size() > 0) {
-                arrayList = new ArrayList<ModelNotificaciones>();
+                arrayList = new ArrayList<ModelSolicitud>();
             }
             for (int i = 0; i < responseArray.length(); ++i) {
                 Log.i("VOLLEYcarga",responseArray.getJSONObject(i).getString("_id") );
@@ -153,7 +153,7 @@ public class NotificacionesFragment extends Fragment {
 
     public void CargaArray(String name, String mail, String id, int i,  int fin){
 
-        ModelNotificaciones model = new ModelNotificaciones(name, icon[0],mail, id);
+        ModelSolicitud model = new ModelSolicitud(name, icon[0],mail, id);
         Log.i("VOLLEYCARGA", mail);
         //necessito el nombre y la foto
         arrayList.add(model);
