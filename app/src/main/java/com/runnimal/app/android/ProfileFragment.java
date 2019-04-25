@@ -75,13 +75,12 @@ public class ProfileFragment extends Fragment {
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         petList.setLayoutManager(layoutManager);
         showPets();
-        //petList.setAdapter(new MascotaHorizontalAdapter(MascotaContent.ITEMS, mListener));//quitar esta linea una vez este el showPets()
 
         //boton sistema de amisatdes
         imageRelation = (ImageView) profileView.findViewById(R.id.imgEdit);
         //Si estas viendo tu perfil:
         if (mCorreo.equals(SingletonSession.Instance().getMail())){
-            imageRelation.setImageResource(R.drawable.editar);
+            imageRelation.setImageResource(R.drawable.ic_edit2);
             imageRelation.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -215,7 +214,7 @@ public class ProfileFragment extends Fragment {
     private void mostrarBoton(int relacion, final String id_amistad){
         switch (relacion) {
             case 0://no amigos
-                imageRelation.setImageResource(R.mipmap.ic_add);
+                imageRelation.setImageResource(R.drawable.ic_add_user);
                 imageRelation.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

@@ -36,6 +36,8 @@ public class MascotaPerfilFragment extends Fragment {
     private TextView mWeight;
     private TextView mAge;
 
+    ImageView imageEdit;
+
     int fotoPerfil;
 
 
@@ -85,6 +87,20 @@ public class MascotaPerfilFragment extends Fragment {
         mWeight.setText(MascotaContent.ITEM_MAP.get(mId).getWeight());
         //mOwner.setText(MascotaContent.ITEM_MAP.get(mId).getOwner());
 
+
+        //boton editar
+        imageEdit = (ImageView) view.findViewById(R.id.imgEditPet);
+        //Si estas viendo perfil de tu mascota:
+        if (SingletonSession.Instance().getMail().equals(mOwner)){
+            imageEdit.setImageResource(R.drawable.ic_edit2);
+            imageEdit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //toDo
+                    ((GodActivity)getActivity()).loadFragment(ModifyPetFragment.newInstance());
+                }
+            });
+        }
 
 
         //Todo añadir imagen de la api
