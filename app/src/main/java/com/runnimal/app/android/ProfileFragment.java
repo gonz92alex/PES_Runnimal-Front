@@ -121,9 +121,8 @@ public class ProfileFragment extends Fragment {
                             JSONArray jsonArray = new JSONArray(response);
                             for (int i=0;i<jsonArray.length();i++){
                                 JSONObject mascota = jsonArray.getJSONObject(i);
-                                MascotaContent.añadirItem(mascota.getString("_id"),mascota.getString("name"),mascota.getString("description"),mascota.getString("size"), mascota.getString("birth"),mascota.getString("weight"), mascota.getString("race"),mascota.getString("owner"));
+                                MascotaContent.añadirItem(mascota.getString("_id"),mascota.getString("name"),mascota.getString("description"),mascota.getString("size"), mascota.getString("birth"),mascota.getString("weight"), mascota.getString("race"),mascota.getJSONObject("owner").getString("email"), mascota.getJSONObject("owner").getString("alias"));
                             }
-                            //ToDo ahora mismo no retorna nada porque el owner que retorna la API es el id, falta cambiarlo por el email.
                             petList.setAdapter(new MascotaHorizontalAdapter(MascotaContent.belongsTo(mCorreo), mListener));
                         } catch (JSONException e) {
                             e.printStackTrace();

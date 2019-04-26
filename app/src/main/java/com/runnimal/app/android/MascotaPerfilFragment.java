@@ -91,7 +91,7 @@ public class MascotaPerfilFragment extends Fragment {
         //boton editar
         imageEdit = (ImageView) view.findViewById(R.id.imgEditPet);
         //Si estas viendo perfil de tu mascota:
-        if (SingletonSession.Instance().getMail().equals(mOwner)){
+        if (SingletonSession.Instance().getMail().equals(MascotaContent.ITEM_MAP.get(mId).getOwner())){
             imageEdit.setImageResource(R.drawable.ic_edit2);
             imageEdit.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -122,7 +122,7 @@ public class MascotaPerfilFragment extends Fragment {
         mOwner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((GodActivity)getActivity()).loadFragment(ProfileFragment.newInstance("nameTest", MascotaContent.ITEM_MAP.get(mId).getOwner(), fotoPerfil));
+                ((GodActivity)getActivity()).loadFragment(ProfileFragment.newInstance(MascotaContent.ITEM_MAP.get(mId).getOwnerAlias(), MascotaContent.ITEM_MAP.get(mId).getOwner(), fotoPerfil));
             }
         });
 

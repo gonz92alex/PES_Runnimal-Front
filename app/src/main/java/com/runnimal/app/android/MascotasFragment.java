@@ -82,8 +82,7 @@ public class MascotasFragment extends Fragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.pet_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
-        //toDo cambiar el id por email
-        adapter = new MyMascotaRecyclerViewAdapter(MascotaContent.belongsTo(SingletonSession.Instance().getId()), mListener);
+        adapter = new MyMascotaRecyclerViewAdapter(MascotaContent.belongsTo(SingletonSession.Instance().getMail()), mListener);
         recyclerView.setAdapter(adapter);
 
         return view;
