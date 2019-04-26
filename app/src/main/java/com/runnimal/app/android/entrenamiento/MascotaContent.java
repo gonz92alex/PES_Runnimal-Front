@@ -109,6 +109,25 @@ public class MascotaContent {
             return ownerAlias;
         }
 
+        public void setDetails(String details) {
+            this.details = details;
+        }
+
+        public void setWeight(String weight) {
+            this.weight = weight;
+        }
+
+        public void setBirthdate(String birthdate) {
+            this.birthdate = birthdate;
+        }
+
+        public void setSize(String size) {
+            this.size = size;
+        }
+
+        public void setBreed(String breed) {
+            this.breed = breed;
+        }
     }
 }
 

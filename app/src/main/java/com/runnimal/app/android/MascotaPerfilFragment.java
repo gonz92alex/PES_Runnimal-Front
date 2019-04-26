@@ -96,8 +96,19 @@ public class MascotaPerfilFragment extends Fragment {
             imageEdit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //toDo
-                    ((GodActivity)getActivity()).loadFragment(ModifyPetFragment.newInstance());
+                    int size = 0;
+                    switch (MascotaContent.ITEM_MAP.get(mId).getSize()){
+                        case "Big":
+                            size=1;
+                            break;
+                        case "Medium":
+                            size=2;
+                            break;
+                        case "Small":
+                            size=0;
+                            break;
+                    }
+                    ((GodActivity)getActivity()).loadFragment(ModifyPetFragment.newInstance(mName, mDescription, MascotaContent.ITEM_MAP.get(mId).getBreed(), size, MascotaContent.ITEM_MAP.get(mId).getWeight(), MascotaContent.ITEM_MAP.get(mId).getBirthdate()));
                 }
             });
         }

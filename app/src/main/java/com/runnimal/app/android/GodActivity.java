@@ -221,4 +221,7 @@ public class GodActivity extends FragmentActivity implements EntrenamientoFragme
         loadFragment(MascotaPerfilFragment.newInstance(item.getName(), item.getDetails(), item.getId()));
     }
 
+    public void refreshPet() {
+        mascotaFragment = new MascotasFragment();
+    }
 }

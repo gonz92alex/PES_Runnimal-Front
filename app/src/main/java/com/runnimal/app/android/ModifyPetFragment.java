@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -30,16 +31,17 @@ import java.io.UnsupportedEncodingException;
 
 public class ModifyPetFragment extends Fragment {
     private static String nombre;
+    private static String nombreViejo;
     private static String descripcion;
     private static String raza;
     private static String peso;
     private static int tamano;
     private static String nacimiento;
-    View view;
 
 
 
     public static Fragment newInstance(String name, String descr, String race, int size, String weight, String birth) {
+        nombreViejo = name;
         nombre = name;
         descripcion = descr;
         raza = race;
@@ -53,19 +55,22 @@ public class ModifyPetFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_modify_pet, container, false);
+        final View view = inflater.inflate(R.layout.fragment_modify_pet, container, false);
 
-        EditText nombreText = (EditText) getView().findViewById(R.id.EditTextDogName);
-        nombreText.setText(nombre);
-        EditText descripcionText = (EditText) getView().findViewById(R.id.EditTextDogDescription);
+
+        EditText descripcionText = (EditText) view.findViewById(R.id.EditTextDogDescription);
         descripcionText.setText(descripcion);
-        EditText razaText = (EditText) getView().findViewById(R.id.EditTextDogBreed);
+
+        EditText razaText = (EditText) view.findViewById(R.id.EditTextDogBreed);
         razaText.setText(raza);
-        EditText pesoText = (EditText) getView().findViewById(R.id.EditTextDogWeight);
+
+        EditText pesoText = (EditText) view.findViewById(R.id.EditTextDogWeight);
         pesoText.setText(peso);
-        Spinner tamanoText = (Spinner) getView().findViewById(R.id.EditTextDogSize);
+
+        Spinner tamanoText = (Spinner) view.findViewById(R.id.EditTextDogSize);
         tamanoText.setSelection(tamano);
-        EditText anoNacimientoText = (EditText) getView().findViewById(R.id.EditTextDogBirthdate);
+
+        EditText anoNacimientoText = (EditText) view.findViewById(R.id.EditTextDogBirthdate);
         anoNacimientoText.setText(nacimiento);
 
 
@@ -90,10 +95,10 @@ public class ModifyPetFragment extends Fragment {
 
     //llamada API
 
-    private void modifier(final String nombre, final String description, final String breed, final String size, final String weight, final String birth) throws JSONException {
+    private void modifier( final String description, final String breed, final String size, final String weight, final String birth) throws JSONException {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue((GodActivity)getActivity());
-        String url ="http://nidorana.fib.upc.edu/api/pets/" /*+ SingletonSession.Instance().getMail()*/;
+        String url ="http://nidorana.fib.upc.edu/api/pets/" + SingletonSession.Instance().getMail() +"/" + nombreViejo;
 
         //Loading Message
         final ProgressDialog progressDialog = new ProgressDialog((GodActivity)getActivity());
@@ -102,7 +107,6 @@ public class ModifyPetFragment extends Fragment {
 
         //Construir el cuerpo del request con la información a enviar
         JSONObject jsonBody = new JSONObject();
-        jsonBody.put("name", nombre);
         jsonBody.put("description", description);
         jsonBody.put("race", breed);
         jsonBody.put("weight", weight);
@@ -120,7 +124,7 @@ public class ModifyPetFragment extends Fragment {
                         progressDialog.dismiss();
                         Log.i("VOLLEY", response);
                         //ToDo -> si la respuesta es 'OK' redirigir a pantalla de login/loguear directamente con el user creado?
-                        modPetOk(nombre);
+                        modPetOk();
 
                     }
                 }, new Response.ErrorListener() {
@@ -149,21 +153,20 @@ public class ModifyPetFragment extends Fragment {
         queue.add(stringRequest);
     }
 
-    private void modPetOk(String nombre) {
-        //GodActivity godActivity = (GodActivity)getActivity();
+    private void modPetOk() {
+        GodActivity godActivity = (GodActivity)getActivity();
         //godActivity.refreshDrawer(nombre);
-
+        godActivity.refreshPet();
         //ToDO hay que hablar de donde esta guardada la info de las mascotas en nuestra session para actaulizarla properly
     }
     private void modifyPetEv(View view) throws JSONException {
-        EditText nombre = (EditText) view.findViewById(R.id.EditTextDogName);
         EditText description = (EditText) view.findViewById(R.id.EditTextDogDescription);
         EditText breed = (EditText) view.findViewById(R.id.EditTextDogBreed);
         Spinner size = (Spinner) view.findViewById(R.id.EditTextDogSize);
         EditText birth = (EditText) view.findViewById(R.id.EditTextDogBirthdate);
         EditText weight = (EditText) view.findViewById(R.id.EditTextDogWeight);
 
-        if(nombre.getText().toString().equals("") || description.getText().toString().equals("") || breed.getText().toString().equals("") || size.getSelectedItem().toString().equals("") || birth.getText().toString().equals("") || weight.getText().toString().equals("") ){
+        if( description.getText().toString().equals("") || breed.getText().toString().equals("") || size.getSelectedItem().toString().equals("") || birth.getText().toString().equals("") || weight.getText().toString().equals("") ){
             new AlertDialog.Builder((GodActivity)getActivity())
                     .setTitle("Missing parameters")
                     .setMessage("You have to fill first all the text camps")
@@ -175,7 +178,7 @@ public class ModifyPetFragment extends Fragment {
                     .show();
         }
         else {
-            modifier(nombre.getText().toString(), description.getText().toString(), breed.getText().toString(), size.getSelectedItem().toString(), birth.getText().toString(), weight.getText().toString());
+            modifier( description.getText().toString(), breed.getText().toString(), size.getSelectedItem().toString(), birth.getText().toString(), weight.getText().toString());
         }
     }
 
