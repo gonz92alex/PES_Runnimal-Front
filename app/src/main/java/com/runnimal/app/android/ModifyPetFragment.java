@@ -23,6 +23,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.runnimal.app.android.entrenamiento.MascotaContent;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -37,10 +38,12 @@ public class ModifyPetFragment extends Fragment {
     private static String peso;
     private static int tamano;
     private static String nacimiento;
+    private static String id;
 
 
 
-    public static Fragment newInstance(String name, String descr, String race, int size, String weight, String birth) {
+    public static Fragment newInstance(String ids, String name, String descr, String race, int size, String weight, String birth) {
+        id = ids;
         nombreViejo = name;
         nombre = name;
         descripcion = descr;
@@ -124,7 +127,7 @@ public class ModifyPetFragment extends Fragment {
                         progressDialog.dismiss();
                         Log.i("VOLLEY", response);
                         //ToDo -> si la respuesta es 'OK' redirigir a pantalla de login/loguear directamente con el user creado?
-                        modPetOk();
+                        modPetOk(id,description, breed, weight, size, birth);
 
                     }
                 }, new Response.ErrorListener() {
@@ -153,10 +156,11 @@ public class ModifyPetFragment extends Fragment {
         queue.add(stringRequest);
     }
 
-    private void modPetOk() {
-        GodActivity godActivity = (GodActivity)getActivity();
+    private void modPetOk(String id,String desc,String breed,String weight,String size,String bd) {
+        //GodActivity godActivity = (GodActivity)getActivity();
         //godActivity.refreshDrawer(nombre);
-        godActivity.refreshPet();
+        //godActivity.refreshPet();
+        MascotaContent.actualizarMascota(id,bd,desc,weight,breed);
         //ToDO hay que hablar de donde esta guardada la info de las mascotas en nuestra session para actaulizarla properly
     }
     private void modifyPetEv(View view) throws JSONException {

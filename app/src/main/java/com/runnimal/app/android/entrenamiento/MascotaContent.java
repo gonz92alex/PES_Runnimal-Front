@@ -22,6 +22,15 @@ public class MascotaContent {
             addItem(createMascotaItem(id, name, details,size,birthdate,weight,breed,owner, ownerAlias));
     }
 
+    public static void actualizarMascota(String id, String bd, String desc, String weight, String breed){
+        MascotaItem pet = ITEM_MAP.get(id);
+        pet.setBirthdate(bd);
+        pet.setBreed(breed);
+        pet.setWeight(weight);
+        pet.setDetails(desc);
+        //toDO actualizar ITEMS
+    }
+
     private static void addItem(MascotaItem item) {
         ITEMS.add(item);
         ITEM_MAP.put(item.id, item);

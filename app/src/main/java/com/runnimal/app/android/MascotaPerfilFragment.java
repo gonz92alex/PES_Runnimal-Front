@@ -108,7 +108,7 @@ public class MascotaPerfilFragment extends Fragment {
                             size=0;
                             break;
                     }
-                    ((GodActivity)getActivity()).loadFragment(ModifyPetFragment.newInstance(mName, mDescription, MascotaContent.ITEM_MAP.get(mId).getBreed(), size, MascotaContent.ITEM_MAP.get(mId).getWeight(), MascotaContent.ITEM_MAP.get(mId).getBirthdate()));
+                    ((GodActivity)getActivity()).loadFragment(ModifyPetFragment.newInstance(mId, mName, mDescription, MascotaContent.ITEM_MAP.get(mId).getBreed(), size, MascotaContent.ITEM_MAP.get(mId).getWeight(), MascotaContent.ITEM_MAP.get(mId).getBirthdate()));
                 }
             });
         }

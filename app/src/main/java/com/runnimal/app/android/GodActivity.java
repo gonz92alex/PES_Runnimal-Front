@@ -223,5 +223,6 @@ public class GodActivity extends FragmentActivity implements EntrenamientoFragme
 
     public void refreshPet() {
         mascotaFragment = new MascotasFragment();
+
     }
 }
