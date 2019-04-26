@@ -28,7 +28,7 @@ public class AjustesFragment extends Fragment {
     }
 
     private void AddEvPet(View view) {
-        ((GodActivity)getActivity()).loadFragment(ModifyPetFragment.newInstance());
+        //((GodActivity)getActivity()).loadFragment(ModifyPetFragment.newInstance());
     }
 
     public void AddEvUser() {

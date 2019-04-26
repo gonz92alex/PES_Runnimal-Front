@@ -38,7 +38,14 @@ public class ModifyPetFragment extends Fragment {
     View view;
 
 
-    public static Fragment newInstance() {
+
+    public static Fragment newInstance(String name, String descr, String race, int size, String weight, String birth) {
+        nombre = name;
+        descripcion = descr;
+        raza = race;
+        tamano = size;
+        peso = weight;
+        nacimiento = birth;
         ModifyPetFragment fragment = new ModifyPetFragment();
         return fragment;
     }
