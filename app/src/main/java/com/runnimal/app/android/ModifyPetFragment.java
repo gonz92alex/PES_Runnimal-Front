@@ -102,12 +102,12 @@ public class ModifyPetFragment extends Fragment {
 
         //Construir el cuerpo del request con la información a enviar
         JSONObject jsonBody = new JSONObject();
-        jsonBody.put("alias", nombre);
-        jsonBody.put("alias", description);
-        jsonBody.put("alias", breed);
-        jsonBody.put("alias", size);
-        jsonBody.put("alias", weight);
-        jsonBody.put("alias", birth);
+        jsonBody.put("name", nombre);
+        jsonBody.put("description", description);
+        jsonBody.put("race", breed);
+        jsonBody.put("weight", weight);
+        jsonBody.put("size", size);
+        jsonBody.put("birth", birth);
         //ToDo hay que poner en el json lo que toca que por ahora no se lo que es
         final String requestBody = jsonBody.toString();
 
