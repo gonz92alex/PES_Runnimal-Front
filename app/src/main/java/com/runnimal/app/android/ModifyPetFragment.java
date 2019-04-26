@@ -55,6 +55,21 @@ public class ModifyPetFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_modify_pet, container, false);
 
+        EditText nombreText = (EditText) getView().findViewById(R.id.EditTextDogName);
+        nombreText.setText(nombre);
+        EditText descripcionText = (EditText) getView().findViewById(R.id.EditTextDogDescription);
+        descripcionText.setText(descripcion);
+        EditText razaText = (EditText) getView().findViewById(R.id.EditTextDogBreed);
+        razaText.setText(raza);
+        EditText pesoText = (EditText) getView().findViewById(R.id.EditTextDogWeight);
+        pesoText.setText(peso);
+        Spinner tamanoText = (Spinner) getView().findViewById(R.id.EditTextDogSize);
+        tamanoText.setSelection(tamano);
+        EditText anoNacimientoText = (EditText) getView().findViewById(R.id.EditTextDogBirthdate);
+        anoNacimientoText.setText(nacimiento);
+
+
+
         Button saveUserButton = view.findViewById(R.id.buttonSavePet);
         saveUserButton.setOnClickListener(new View.OnClickListener() {
             @Override
