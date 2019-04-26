@@ -29,6 +29,12 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 
 public class ModifyPetFragment extends Fragment {
+    private static String nombre;
+    private static String descripcion;
+    private static String raza;
+    private static String peso;
+    private static int tamano;
+    private static String nacimiento;
     View view;
 
 
