@@ -36,6 +36,6 @@ public class AjustesFragment extends Fragment {
     }
 
     public void NotificacionEv(){
-        ((GodActivity)getActivity()).loadFragment(new NotificacionesFragment());
+        ((GodActivity)getActivity()).loadFragment(NotificacionesFragment.newInstance());
     }
 }

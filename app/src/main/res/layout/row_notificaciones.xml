@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/fotoUser"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:src="@drawable/ic_launcher_background" />
 
     <LinearLayout
@@ -48,12 +48,12 @@
         <Button
             android:id="@+id/aceptar"
             android:text="V"
-            android:layout_width="50dp"
+            android:layout_width="40dp"
             android:layout_height="wrap_content" />
         <Button
             android:id="@+id/rechazar"
             android:text="X"
-            android:layout_width="50dp"
+            android:layout_width="40dp"
             android:layout_height="wrap_content" />
     </LinearLayout>
 

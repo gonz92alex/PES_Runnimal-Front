@@ -37,6 +37,19 @@ public class NotificacionesFragment extends Fragment {
 
     ArrayList<ModelSolicitud> arrayList = new ArrayList<ModelSolicitud>();
 
+    public NotificacionesFragment(){
+
+    }
+
+    public static NotificacionesFragment newInstance() {
+        NotificacionesFragment fragment = new NotificacionesFragment();
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     @Nullable
     @Override
@@ -102,14 +115,10 @@ public class NotificacionesFragment extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-
-
     }
 
 
     //llamada API
-
     private void InfoRequestant(final String idUser, final String idReq, final int i, final int fin){
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue((GodActivity) getActivity());
