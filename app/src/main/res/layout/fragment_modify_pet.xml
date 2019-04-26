@@ -93,23 +93,6 @@
             app:layout_constraintTop_toBottomOf="@+id/EditTextDogBreed" />
 
         <EditText
-            android:id="@+id/EditTextDogSize"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="8dp"
-            android:ems="10"
-            android:hint="@string/size"
-            android:inputType="number"
-            android:paddingStart="40dp"
-            android:paddingEnd="40dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.502"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/EditTextDogWeight" />
-
-        <EditText
             android:id="@+id/EditTextDogBirthdate"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
@@ -122,9 +105,26 @@
             android:paddingStart="40dp"
             android:paddingEnd="40dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.503"
+            app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/EditTextDogSize" />
+            app:layout_constraintTop_toBottomOf="@+id/EditTextDogWeight" />
+
+        <Spinner
+            android:id="@+id/EditTextDogSize"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
+            android:entries="@array/size_arrays"
+            android:hint="@string/size"
+            android:paddingStart="40dp"
+            android:paddingEnd="40dp"
+            android:prompt="@string/size_prompt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/EditTextDogBirthdate" />
 
         <Button
             android:id="@+id/buttonSavePet"
@@ -138,7 +138,7 @@
             android:textColor="#C5EFF7"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/EditTextDogBirthdate" />
+            app:layout_constraintTop_toBottomOf="@+id/EditTextDogSize" />
 
         <Button
             android:id="@+id/buttonCameraEdit"

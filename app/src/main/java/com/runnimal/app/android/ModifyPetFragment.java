@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -130,11 +131,11 @@ public class ModifyPetFragment extends Fragment {
         EditText nombre = (EditText) view.findViewById(R.id.EditTextDogName);
         EditText description = (EditText) view.findViewById(R.id.EditTextDogDescription);
         EditText breed = (EditText) view.findViewById(R.id.EditTextDogBreed);
-        EditText size = (EditText) view.findViewById(R.id.EditTextDogSize);
+        Spinner size = (Spinner) view.findViewById(R.id.EditTextDogSize);
         EditText birth = (EditText) view.findViewById(R.id.EditTextDogBirthdate);
         EditText weight = (EditText) view.findViewById(R.id.EditTextDogWeight);
 
-        if(nombre.getText().toString().equals("") || description.getText().toString().equals("") || breed.getText().toString().equals("") || size.getText().toString().equals("") || birth.getText().toString().equals("") || weight.getText().toString().equals("") ){
+        if(nombre.getText().toString().equals("") || description.getText().toString().equals("") || breed.getText().toString().equals("") || size.getSelectedItem().toString().equals("") || birth.getText().toString().equals("") || weight.getText().toString().equals("") ){
             new AlertDialog.Builder((GodActivity)getActivity())
                     .setTitle("Missing parameters")
                     .setMessage("You have to fill first all the text camps")
@@ -146,7 +147,7 @@ public class ModifyPetFragment extends Fragment {
                     .show();
         }
         else {
-            modifier(nombre.getText().toString(), description.getText().toString(), breed.getText().toString(), size.getText().toString(), birth.getText().toString(), weight.getText().toString());
+            modifier(nombre.getText().toString(), description.getText().toString(), breed.getText().toString(), size.getSelectedItem().toString(), birth.getText().toString(), weight.getText().toString());
         }
     }
 
