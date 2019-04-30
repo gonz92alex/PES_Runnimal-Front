@@ -41,4 +41,10 @@
     <string name="location_error_descr">Your locations settings is set to \'Off\'. \nPlease enable location to use this feature</string>
     <string name="gps_settings">Location settings</string>
     <string name="size_prompt">Select a size</string>
+    <string name="owner">Owner</string>
+    <string name="Search">Search</string>
+    <string name="Reject">Reject</string>
+    <string name="Accept">Accept</string>
+    <string name="Friends">Friends</string>
+    <string name="Solicitudes">Requests</string>
 </resources>
