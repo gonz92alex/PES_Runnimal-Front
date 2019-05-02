@@ -6,7 +6,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.Spinner;
 
 public class AjustesFragment extends Fragment {
     @Nullable
@@ -22,6 +24,25 @@ public class AjustesFragment extends Fragment {
                NotificacionEv();
             }
         });
+
+        final Spinner spinnerIdioma = view.findViewById(R.id.ChooseLanguage);
+        spinnerIdioma.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //ToDO coger el texto y llamar a la funcion qeu cambia el texto de la aplicaicon
+                String LanguageCode = (String) spinnerIdioma.getSelectedItem();
+
+                GodActivity godActivity = (GodActivity)getActivity();
+                godActivity.setAppLocale(LanguageCode);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                return;
+            }
+        });
+
 
 
         return view;

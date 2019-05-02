@@ -1,6 +1,8 @@
 package com.runnimal.app.android;
 
 import android.Manifest;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -8,8 +10,10 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MenuItem;
 import android.support.v4.app.Fragment;
@@ -18,6 +22,8 @@ import android.widget.TextView;
 
 import com.runnimal.app.android.entrenamiento.EntrenamientoContent;
 import com.runnimal.app.android.entrenamiento.MascotaContent;
+
+import java.util.Locale;
 
 
 public class GodActivity extends FragmentActivity implements EntrenamientoFragment.OnListFragmentInteractionListener, AnadirMascotaFragment.OnFragmentInteractionListener, MascotasFragment.OnListFragmentInteractionListener, ProfileFragment.OnListFragmentInteractionListener {
@@ -224,5 +230,24 @@ public class GodActivity extends FragmentActivity implements EntrenamientoFragme
     public void refreshPet() {
         mascotaFragment = new MascotasFragment();
 
+    }
+
+    public void setAppLocale(String languageCode) {
+        Resources res = getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration conf = res.getConfiguration();
+        conf.setLocale(new Locale(languageCode.toLowerCase()));
+        res.updateConfiguration(conf,dm);
+    }
+
+    public void refreshAjustes() {
+       //ToDo arreglar este codigo 
+
+        Fragment frg = null;
+        frg = getSupportFragmentManager().findFragmentByTag("sjsjd");
+        final FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.detach(frg);
+        ft.attach(frg);
+        ft.commit();
     }
 }

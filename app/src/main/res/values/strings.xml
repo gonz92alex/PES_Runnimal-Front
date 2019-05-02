@@ -43,6 +43,12 @@
         <item>Big</item>
         <item>Medium</item>
     </string-array>
+
+    <string-array name="Language">
+        <item>Ca</item>
+        <item>Es</item>
+        <item>En</item>
+    </string-array>
     <string name="size_prompt">Select a size</string>
     <string name="owner">Owner</string>
     <string name="Search">Search</string>
@@ -50,5 +56,6 @@
     <string name="Accept">Accept</string>
     <string name="Friends">Friends</string>
     <string name="Solicitudes">Request</string>
+    <string name="idioma">Language</string>
 
 </resources>
