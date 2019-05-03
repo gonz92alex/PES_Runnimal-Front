@@ -17,9 +17,18 @@ public class MascotaContent {
     public static final Map<String, MascotaItem> ITEM_MAP = new HashMap<String, MascotaItem>();
 
 
-    public static void añadirItem(String id, String name, String details, String size, String birthdate, String weight, String breed, String owner){
+    public static void añadirItem(String id, String name, String details, String size, String birthdate, String weight, String breed, String owner, String ownerAlias){
         if (!ITEM_MAP.containsKey(id))
-            addItem(createMascotaItem(id, name, details,size,birthdate,weight,breed,owner));
+            addItem(createMascotaItem(id, name, details,size,birthdate,weight,breed,owner, ownerAlias));
+    }
+
+    public static void actualizarMascota(String id, String bd, String desc, String weight, String breed){
+        MascotaItem pet = ITEM_MAP.get(id);
+        pet.setBirthdate(bd);
+        pet.setBreed(breed);
+        pet.setWeight(weight);
+        pet.setDetails(desc);
+        //toDO actualizar ITEMS
     }
 
     private static void addItem(MascotaItem item) {
@@ -27,8 +36,8 @@ public class MascotaContent {
         ITEM_MAP.put(item.id, item);
     }
 
-    private static MascotaItem createMascotaItem(String id, String nombre, String details, String size, String birthdate, String weight, String breed, String owner) {
-        return new MascotaItem(id, nombre, details, size, birthdate, weight, breed,owner);
+    private static MascotaItem createMascotaItem(String id, String nombre, String details, String size, String birthdate, String weight, String breed, String owner, String ownerAlias) {
+        return new MascotaItem(id, nombre, details, size, birthdate, weight, breed,owner, ownerAlias);
     }
 
     public static List<MascotaItem> belongsTo(String email) {
@@ -51,11 +60,12 @@ public class MascotaContent {
         String birthdate;
         String size;
         String breed;
-        String owner;
+        final String owner;
+        final String ownerAlias;
         final String imagen_url;
 
 
-        public MascotaItem(String id, String content, String details, String size, String birthdate, String weight, String breed, String owner) {
+        public MascotaItem(String id, String content, String details, String size, String birthdate, String weight, String breed, String owner, String ownerAlias) {
             this.id = id;
             this.name = content;
             this.details = details;
@@ -64,6 +74,7 @@ public class MascotaContent {
             this.weight = weight;
             this.breed = breed;
             this.owner = owner;
+            this.ownerAlias = ownerAlias;
             this.imagen_url = "https://estaticos.muymascotas.es/media/cache/1140x_thumb/uploads/images/gallery/5ac493345cafe80cf43c986d/comida-perros-parrafo.jpg";
         }
 
@@ -103,6 +114,29 @@ public class MascotaContent {
             return imagen_url;
         }
 
+        public String getOwnerAlias() {
+            return ownerAlias;
+        }
+
+        public void setDetails(String details) {
+            this.details = details;
+        }
+
+        public void setWeight(String weight) {
+            this.weight = weight;
+        }
+
+        public void setBirthdate(String birthdate) {
+            this.birthdate = birthdate;
+        }
+
+        public void setSize(String size) {
+            this.size = size;
+        }
+
+        public void setBreed(String breed) {
+            this.breed = breed;
+        }
     }
 }
 

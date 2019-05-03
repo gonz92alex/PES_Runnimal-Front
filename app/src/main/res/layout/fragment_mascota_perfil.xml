@@ -70,6 +70,13 @@
                 android:textSize="16sp"
                 android:paddingBottom="10dp"
                 tools:ignore="UnknownId" />
+
+            <ImageView
+                android:id="@+id/imgEditPet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:visibility="visible" />
         </RelativeLayout>
 
         <GridLayout

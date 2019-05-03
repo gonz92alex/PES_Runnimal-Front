@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -21,6 +23,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.runnimal.app.android.entrenamiento.MascotaContent;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,10 +31,26 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 
 public class ModifyPetFragment extends Fragment {
-    View view;
+    private static String nombre;
+    private static String nombreViejo;
+    private static String descripcion;
+    private static String raza;
+    private static String peso;
+    private static int tamano;
+    private static String nacimiento;
+    private static String id;
 
 
-    public static Fragment newInstance() {
+
+    public static Fragment newInstance(String ids, String name, String descr, String race, int size, String weight, String birth) {
+        id = ids;
+        nombreViejo = name;
+        nombre = name;
+        descripcion = descr;
+        raza = race;
+        tamano = size;
+        peso = weight;
+        nacimiento = birth;
         ModifyPetFragment fragment = new ModifyPetFragment();
         return fragment;
     }
@@ -39,7 +58,25 @@ public class ModifyPetFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_modify_pet, container, false);
+        final View view = inflater.inflate(R.layout.fragment_modify_pet, container, false);
+
+
+        EditText descripcionText = (EditText) view.findViewById(R.id.EditTextDogDescription);
+        descripcionText.setText(descripcion);
+
+        EditText razaText = (EditText) view.findViewById(R.id.EditTextDogBreed);
+        razaText.setText(raza);
+
+        EditText pesoText = (EditText) view.findViewById(R.id.EditTextDogWeight);
+        pesoText.setText(peso);
+
+        Spinner tamanoText = (Spinner) view.findViewById(R.id.EditTextDogSize);
+        tamanoText.setSelection(tamano);
+
+        EditText anoNacimientoText = (EditText) view.findViewById(R.id.EditTextDogBirthdate);
+        anoNacimientoText.setText(nacimiento);
+
+
 
         Button saveUserButton = view.findViewById(R.id.buttonSavePet);
         saveUserButton.setOnClickListener(new View.OnClickListener() {
@@ -61,10 +98,10 @@ public class ModifyPetFragment extends Fragment {
 
     //llamada API
 
-    private void modifier(final String nombre, final String description, final String breed, final String size, final String weight, final String birth) throws JSONException {
+    private void modifier( final String description, final String breed, final String size, final String weight, final String birth) throws JSONException {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue((GodActivity)getActivity());
-        String url ="http://nidorana.fib.upc.edu/api/pets/" /*+ SingletonSession.Instance().getMail()*/;
+        String url ="http://nidorana.fib.upc.edu/api/pets/" + SingletonSession.Instance().getMail() +"/" + nombreViejo;
 
         //Loading Message
         final ProgressDialog progressDialog = new ProgressDialog((GodActivity)getActivity());
@@ -73,12 +110,11 @@ public class ModifyPetFragment extends Fragment {
 
         //Construir el cuerpo del request con la información a enviar
         JSONObject jsonBody = new JSONObject();
-        jsonBody.put("alias", nombre);
-        jsonBody.put("alias", description);
-        jsonBody.put("alias", breed);
-        jsonBody.put("alias", size);
-        jsonBody.put("alias", weight);
-        jsonBody.put("alias", birth);
+        jsonBody.put("description", description);
+        jsonBody.put("race", breed);
+        jsonBody.put("weight", weight);
+        jsonBody.put("size", size);
+        jsonBody.put("birth", birth);
         //ToDo hay que poner en el json lo que toca que por ahora no se lo que es
         final String requestBody = jsonBody.toString();
 
@@ -91,7 +127,7 @@ public class ModifyPetFragment extends Fragment {
                         progressDialog.dismiss();
                         Log.i("VOLLEY", response);
                         //ToDo -> si la respuesta es 'OK' redirigir a pantalla de login/loguear directamente con el user creado?
-                        modPetOk(nombre);
+                        modPetOk(id,description, breed, weight, size, birth);
 
                     }
                 }, new Response.ErrorListener() {
@@ -120,21 +156,21 @@ public class ModifyPetFragment extends Fragment {
         queue.add(stringRequest);
     }
 
-    private void modPetOk(String nombre) {
+    private void modPetOk(String id,String desc,String breed,String weight,String size,String bd) {
         //GodActivity godActivity = (GodActivity)getActivity();
         //godActivity.refreshDrawer(nombre);
-
+        //godActivity.refreshPet();
+        MascotaContent.actualizarMascota(id,bd,desc,weight,breed);
         //ToDO hay que hablar de donde esta guardada la info de las mascotas en nuestra session para actaulizarla properly
     }
     private void modifyPetEv(View view) throws JSONException {
-        EditText nombre = (EditText) view.findViewById(R.id.EditTextDogName);
         EditText description = (EditText) view.findViewById(R.id.EditTextDogDescription);
         EditText breed = (EditText) view.findViewById(R.id.EditTextDogBreed);
-        EditText size = (EditText) view.findViewById(R.id.EditTextDogSize);
+        Spinner size = (Spinner) view.findViewById(R.id.EditTextDogSize);
         EditText birth = (EditText) view.findViewById(R.id.EditTextDogBirthdate);
         EditText weight = (EditText) view.findViewById(R.id.EditTextDogWeight);
 
-        if(nombre.getText().toString().equals("") || description.getText().toString().equals("") || breed.getText().toString().equals("") || size.getText().toString().equals("") || birth.getText().toString().equals("") || weight.getText().toString().equals("") ){
+        if( description.getText().toString().equals("") || breed.getText().toString().equals("") || size.getSelectedItem().toString().equals("") || birth.getText().toString().equals("") || weight.getText().toString().equals("") ){
             new AlertDialog.Builder((GodActivity)getActivity())
                     .setTitle("Missing parameters")
                     .setMessage("You have to fill first all the text camps")
@@ -146,7 +182,7 @@ public class ModifyPetFragment extends Fragment {
                     .show();
         }
         else {
-            modifier(nombre.getText().toString(), description.getText().toString(), breed.getText().toString(), size.getText().toString(), birth.getText().toString(), weight.getText().toString());
+            modifier( description.getText().toString(), breed.getText().toString(), size.getSelectedItem().toString(), birth.getText().toString(), weight.getText().toString());
         }
     }
 

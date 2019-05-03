@@ -36,6 +36,8 @@ public class MascotaPerfilFragment extends Fragment {
     private TextView mWeight;
     private TextView mAge;
 
+    ImageView imageEdit;
+
     int fotoPerfil;
 
 
@@ -86,6 +88,31 @@ public class MascotaPerfilFragment extends Fragment {
         //mOwner.setText(MascotaContent.ITEM_MAP.get(mId).getOwner());
 
 
+        //boton editar
+        imageEdit = (ImageView) view.findViewById(R.id.imgEditPet);
+        //Si estas viendo perfil de tu mascota:
+        if (SingletonSession.Instance().getMail().equals(MascotaContent.ITEM_MAP.get(mId).getOwner())){
+            imageEdit.setImageResource(R.drawable.ic_edit2);
+            imageEdit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int size = 0;
+                    switch (MascotaContent.ITEM_MAP.get(mId).getSize()){
+                        case "Big":
+                            size=1;
+                            break;
+                        case "Medium":
+                            size=2;
+                            break;
+                        case "Small":
+                            size=0;
+                            break;
+                    }
+                    ((GodActivity)getActivity()).loadFragment(ModifyPetFragment.newInstance(mId, mName, mDescription, MascotaContent.ITEM_MAP.get(mId).getBreed(), size, MascotaContent.ITEM_MAP.get(mId).getWeight(), MascotaContent.ITEM_MAP.get(mId).getBirthdate()));
+                }
+            });
+        }
+
 
         //Todo añadir imagen de la api
         Picasso.get()
@@ -106,7 +133,7 @@ public class MascotaPerfilFragment extends Fragment {
         mOwner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((GodActivity)getActivity()).loadFragment(ProfileFragment.newInstance("nameTest", MascotaContent.ITEM_MAP.get(mId).getOwner(), fotoPerfil));
+                ((GodActivity)getActivity()).loadFragment(ProfileFragment.newInstance(MascotaContent.ITEM_MAP.get(mId).getOwnerAlias(), MascotaContent.ITEM_MAP.get(mId).getOwner(), fotoPerfil));
             }
         });
 

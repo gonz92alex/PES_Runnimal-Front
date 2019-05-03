@@ -4,29 +4,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:text="@string/UserProfile"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
-
-        <Button
-            android:id="@+id/btn_mod_user"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:baselineAligned="false"
-            android:contentDescription="img_añadir"
-            android:text="@string/Modify" />
-
-
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -37,31 +14,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:text="@string/PetsProfile"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
-
-        <Button
-            android:id="@+id/btn_mod_pets"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:baselineAligned="false"
-            android:contentDescription="img_añadir"
-            android:text="@string/Modify" />
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:text="Notifiaciones"
+            android:text="@string/Solicitudes"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
 
         <Button
@@ -70,8 +23,32 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:baselineAligned="false"
-            android:contentDescription="img_añadir"
-            android:text="notificaciones" />
+            android:text="@string/Solicitudes" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:text="@string/idioma"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+        <Spinner
+            android:id="@+id/ChooseLanguage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:entries="@array/Language"
+            android:baselineAligned="false">
+        </Spinner>
+
+
 
 
     </LinearLayout>

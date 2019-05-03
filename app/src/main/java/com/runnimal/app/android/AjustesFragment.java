@@ -6,27 +6,16 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.Spinner;
 
 public class AjustesFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_ajustes, container, false);
-        Button modUserButton = view.findViewById(R.id.btn_mod_user);
-        modUserButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AddEvUser();
-            }
-        });
-        Button modPetButton = view.findViewById(R.id.btn_mod_pets);
-        modPetButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AddEvPet(view);
-            }
-        });
+
 
         Button notificacionButton = view.findViewById(R.id.btn_notificaciones);
         notificacionButton.setOnClickListener(new View.OnClickListener() {
@@ -36,12 +25,31 @@ public class AjustesFragment extends Fragment {
             }
         });
 
+        final Spinner spinnerIdioma = view.findViewById(R.id.ChooseLanguage);
+        spinnerIdioma.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //ToDO coger el texto y llamar a la funcion qeu cambia el texto de la aplicaicon
+                String LanguageCode = (String) spinnerIdioma.getSelectedItem();
+
+                GodActivity godActivity = (GodActivity)getActivity();
+                godActivity.setAppLocale(LanguageCode);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                return;
+            }
+        });
+
+
 
         return view;
     }
 
     private void AddEvPet(View view) {
-        ((GodActivity)getActivity()).loadFragment(ModifyPetFragment.newInstance());
+        //((GodActivity)getActivity()).loadFragment(ModifyPetFragment.newInstance());
     }
 
     public void AddEvUser() {
@@ -49,6 +57,6 @@ public class AjustesFragment extends Fragment {
     }
 
     public void NotificacionEv(){
-        ((GodActivity)getActivity()).loadFragment(new NotificacionesFragment());
+        ((GodActivity)getActivity()).loadFragment(NotificacionesFragment.newInstance());
     }
 }

@@ -117,10 +117,6 @@ public class LogInActivity extends AppCompatActivity {
     }
 
     void getMascotas(final String email){
-        //ToDo hardcodeado, falta hacer llamada (solo funciona con ash@pokemon.com)
-        //arraylist para guadrar mascotas en el singleton
-        final ArrayList<String> mascotas= new ArrayList<>();
-
         RequestQueue queue = Volley.newRequestQueue(this);
         String url ="http://nidorana.fib.upc.edu/api/pets/user/"+email;
 
@@ -142,10 +138,8 @@ public class LogInActivity extends AppCompatActivity {
                             JSONArray jsonArray = new JSONArray(response);
                             for (int i = 0; i < jsonArray.length(); i++){
                                 JSONObject pet = jsonArray.getJSONObject(i);
-                                mascotas.add(pet.getString("name"));
-                                MascotaContent.añadirItem(pet.getString("_id"), pet.getString("name"), pet.getString("description"), pet.getString("size"), pet.getString("birth"), pet.getString("weight"), pet.getString("race"), pet.getString("owner"));
+                                MascotaContent.añadirItem(pet.getString("_id"), pet.getString("name"), pet.getString("description"), pet.getString("size"), pet.getString("birth"), pet.getString("weight"), pet.getString("race"), email, pet.getJSONObject("owner").getString("alias"));
                             }
-                            SingletonSession.Instance().setMascotas(mascotas);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
