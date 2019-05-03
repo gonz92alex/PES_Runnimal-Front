@@ -156,16 +156,7 @@ public class AnadirMascotaFragment extends Fragment {
                 Bitmap bitmapPhoto = (Bitmap) data.getExtras().get("data");
                 ImageViewProfile.setImageBitmap(bitmapPhoto);
 
-                Uri contentURI = data.getData();
-                try {
-                    Bitmap BitmapPhoto = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), contentURI);
-                    // imageView.setImageBitmap(bitmap);
-                    uploadImage(BitmapPhoto);
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    Toast.makeText(getActivity(), "Failed!", Toast.LENGTH_SHORT).show();
-                }
+                uploadImage(bitmapPhoto);
             }
         }
     }
