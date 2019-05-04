@@ -155,7 +155,7 @@ public class AnadirMascotaFragment extends Fragment {
             if(requestCode == CAMERA_REQUEST) {
                 Bitmap bitmapPhoto = (Bitmap) data.getExtras().get("data");
                 ImageViewProfile.setImageBitmap(bitmapPhoto);
-
+                //toDo hacer la llamada al clickar el boton de crear
                 uploadImage(bitmapPhoto);
             }
         }
@@ -295,33 +295,12 @@ public class AnadirMascotaFragment extends Fragment {
                     public void onResponse(NetworkResponse response) {
                         Log.d("ressssssoo",new String(response.data));
                         rQueue.getCache().clear();
-                        try {
-                            JSONObject jsonObject = new JSONObject(new String(response.data));
-                            Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
-
-                            jsonObject.toString().replace("\\\\","");
-
-                            if (jsonObject.getString("status").equals("true")) {
-
-                                arraylist = new ArrayList<HashMap<String, String>>();
-                                JSONArray dataArray = jsonObject.getJSONArray("data");
-
-                                String url = "";
-                                for (int i = 0; i < dataArray.length(); i++) {
-                                    JSONObject dataobj = dataArray.getJSONObject(i);
-                                    url = dataobj.optString("pathToFile");
-                                }
-                                Picasso.get().load(url).into(imageView);
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity().getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }) {
 
@@ -377,7 +356,7 @@ public class AnadirMascotaFragment extends Fragment {
                     public void onPermissionsChecked(MultiplePermissionsReport report) {
                         // check if all permissions are granted
                         if (report.areAllPermissionsGranted()) {
-                            Toast.makeText(getApplicationContext(), "All permissions are granted by user!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity().getApplicationContext(), "All permissions are granted by user!", Toast.LENGTH_SHORT).show();
                         }
 
                         // check for permanent denial of any permission
@@ -395,7 +374,7 @@ public class AnadirMascotaFragment extends Fragment {
                 withErrorListener(new PermissionRequestErrorListener() {
                     @Override
                     public void onError(DexterError error) {
-                        Toast.makeText(getApplicationContext(), "Some Error! ", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity().getApplicationContext(), "Some Error! ", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .onSameThread()
