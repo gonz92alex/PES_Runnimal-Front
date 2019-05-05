@@ -8,12 +8,12 @@
     android:padding="16dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/imageViewProfilePequeña"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:src="@mipmap/ic_launcher_round"
-        android:onClick="ProfileEv"/>
+        android:onClick="ProfileEv" />
 
     <TextView
         android:id="@+id/NombreInApp"

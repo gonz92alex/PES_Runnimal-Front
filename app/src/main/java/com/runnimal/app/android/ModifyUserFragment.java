@@ -53,9 +53,9 @@ public class ModifyUserFragment extends Fragment {
     TextView textViewPassword;
 
     //toDO vigiliar URL
-    private String upload_URL = "http://nidorana.fib.upc.edu/api/photo/users/";
+    private String upload_URL = "http://nidorana.fib.upc.edu/api/photo/users/" + SingletonSession.Instance().getMail();
     private RequestQueue rQueue;
-    private ArrayList<HashMap<String, String>> arraylist;
+    private Bitmap bitmapPhoto;
 
     private static final int CAMERA_REQUEST = 1888;
     private ImageView ImageViewProfile;
@@ -89,6 +89,7 @@ public class ModifyUserFragment extends Fragment {
            public void onClick(View v) {
                try {
                    modifyUserEv(view);
+                   uploadImage(bitmapPhoto);
                } catch (JSONException e) {
                    e.printStackTrace();
                }
@@ -103,10 +104,8 @@ public class ModifyUserFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         if(data != null){
             if(requestCode == CAMERA_REQUEST) {
-                Bitmap bitmapPhoto = (Bitmap) data.getExtras().get("data");
+                bitmapPhoto = (Bitmap) data.getExtras().get("data");
                 ImageViewProfile.setImageBitmap(bitmapPhoto);
-                //toDo hacer la llamada al clickar el boton de crear
-                uploadImage(bitmapPhoto);
             }
         }
     }
@@ -190,8 +189,6 @@ public class ModifyUserFragment extends Fragment {
     }
 
     private void uploadImage(final Bitmap bitmap){
-        upload_URL += SingletonSession.Instance().getMail();
-        Log.d("API", upload_URL);
 
         VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, upload_URL,
                 new Response.Listener<NetworkResponse>() {
@@ -228,7 +225,8 @@ public class ModifyUserFragment extends Fragment {
             protected Map<String, DataPart> getByteData() {
                 Map<String, DataPart> params = new HashMap<>();
                 long imagename = System.currentTimeMillis();
-                params.put("filename", new DataPart(imagename + ".png", getFileDataFromDrawable(bitmap)));
+                Log.d("API", Long.toString(imagename));
+                params.put("photo", new DataPart(imagename + ".png", getFileDataFromDrawable(bitmap)));
                 return params;
             }
         };
