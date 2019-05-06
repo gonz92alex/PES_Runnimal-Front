@@ -11,7 +11,9 @@ import com.runnimal.app.android.EntrenamientoFragment.OnListFragmentInteractionL
 import com.runnimal.app.android.entrenamiento.EntrenamientoContent.EntrenamientoItem;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link EntrenamientoItem} and makes a call to the
@@ -21,11 +23,14 @@ import java.util.List;
 public class MyEntrenamientoRecyclerViewAdapter extends RecyclerView.Adapter<MyEntrenamientoRecyclerViewAdapter.ViewHolder> {
 
     private final List<EntrenamientoItem> mValues;
+    private final ArrayList<EntrenamientoItem> arrayList;
     private final OnListFragmentInteractionListener mListener;
 
     public MyEntrenamientoRecyclerViewAdapter(List<EntrenamientoItem> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
+        this.arrayList = new ArrayList<EntrenamientoItem>();
+        this.arrayList.addAll(mValues);
     }
 
     @Override
@@ -80,4 +85,25 @@ public class MyEntrenamientoRecyclerViewAdapter extends RecyclerView.Adapter<MyE
             return super.toString() + " '" + mContentView.getText() + "'";
         }
     }
+
+    public void filter(String charText){
+        charText =  charText.toLowerCase(Locale.getDefault());
+        mValues.clear();
+
+        if(charText.length() == 0){
+            mValues.addAll(arrayList);
+        }
+
+        else {
+            for(EntrenamientoItem model : arrayList){
+                if(model.getContent().toLowerCase(Locale.getDefault())
+                        .contains(charText)){
+                    mValues.add(model);
+                }
+
+            }
+        }
+        notifyDataSetChanged();
+    }
+
 }

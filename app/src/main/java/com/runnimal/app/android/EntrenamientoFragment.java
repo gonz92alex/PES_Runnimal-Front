@@ -6,10 +6,12 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 
 import com.runnimal.app.android.entrenamiento.EntrenamientoContent;
 import com.runnimal.app.android.entrenamiento.EntrenamientoContent.EntrenamientoItem;
@@ -30,6 +32,8 @@ public class EntrenamientoFragment extends Fragment {
     private OnListFragmentInteractionListener mListener;
 
     private RecyclerView recyclerView;
+    private SearchView searchView;
+    private MyEntrenamientoRecyclerViewAdapter adapter;
 
 
     /**
@@ -64,6 +68,7 @@ public class EntrenamientoFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_entrenamiento_list, container, false);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.list);
+        searchView = (SearchView) view.findViewById(R.id.searchView);
 
         // Set the adapter
         Context context = view.getContext();
@@ -73,7 +78,25 @@ public class EntrenamientoFragment extends Fragment {
             recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
         }
 
-        recyclerView.setAdapter(new MyEntrenamientoRecyclerViewAdapter(EntrenamientoContent.ITEMS, mListener));
+        adapter = new MyEntrenamientoRecyclerViewAdapter(EntrenamientoContent.ITEMS, mListener);
+        recyclerView.setAdapter(adapter);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if (TextUtils.isEmpty(newText)) {
+                    adapter.filter("");
+                    //recyclerView.clearTextFilter();
+                } else {
+                    adapter.filter(newText);
+                }
+                return true;
+            }
+        });
 
         return view;
     }
