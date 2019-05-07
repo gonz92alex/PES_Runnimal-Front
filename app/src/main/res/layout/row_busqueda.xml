@@ -7,7 +7,7 @@
     android:gravity="center"
     android:padding= "10dp">
     
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/fotoUser"
         android:src= "@drawable/ic_launcher_background"
         android:layout_width="100dp"

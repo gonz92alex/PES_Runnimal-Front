@@ -10,6 +10,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -69,8 +71,12 @@ public class BusquedaListViewAdapter extends BaseAdapter {
         }
 
         holder.mTitleTv.setText(modelslist.get(position).getTitle());
-        holder.mIconIv.setImageResource(modelslist.get(position).getIcon());
         holder.mMailTv.setText(modelslist.get(position).getMail());
+        Picasso.get()
+                .load("http://nidorana.fib.upc.edu/api/photo/users/" + modelslist.get(position).getMail())
+                .resize(350,350)
+                .onlyScaleDown()
+                .into(holder.mIconIv);
 
 
         convertView.setOnClickListener(new View.OnClickListener() {
@@ -78,7 +84,7 @@ public class BusquedaListViewAdapter extends BaseAdapter {
             public void onClick(View view){
 
                 GodActivity activity = (GodActivity) view.getContext();
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,ProfileFragment.newInstance(modelslist.get(position).getTitle(),modelslist.get(position).getMail() ,modelslist.get(position).getIcon() )).addToBackStack(null).commit();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,ProfileFragment.newInstance(modelslist.get(position).getTitle(),modelslist.get(position).getMail() )).addToBackStack(null).commit();
 
 
             }

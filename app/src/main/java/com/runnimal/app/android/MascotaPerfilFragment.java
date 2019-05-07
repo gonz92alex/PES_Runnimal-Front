@@ -38,8 +38,6 @@ public class MascotaPerfilFragment extends Fragment {
 
     ImageView imageEdit;
 
-    int fotoPerfil;
-
 
     public MascotaPerfilFragment (){
 
@@ -85,7 +83,6 @@ public class MascotaPerfilFragment extends Fragment {
         mBreed.setText(MascotaContent.ITEM_MAP.get(mId).getBreed());
         mAge.setText(MascotaContent.ITEM_MAP.get(mId).getBirthdate());
         mWeight.setText(MascotaContent.ITEM_MAP.get(mId).getWeight());
-        //mOwner.setText(MascotaContent.ITEM_MAP.get(mId).getOwner());
 
 
         //boton editar
@@ -124,7 +121,7 @@ public class MascotaPerfilFragment extends Fragment {
 
         //toDo sacar imagen del dueño de la api
         Picasso.get()
-                .load("https://pbs.twimg.com/profile_images/482542323230732288/0a4a_buH.jpeg")
+                .load("http://nidorana.fib.upc.edu/api/photo/users/" + MascotaContent.ITEM_MAP.get(mId).getOwner())
                 .resize(425,350)
                 .onlyScaleDown()
                 .into(mOwner);
@@ -133,7 +130,7 @@ public class MascotaPerfilFragment extends Fragment {
         mOwner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((GodActivity)getActivity()).loadFragment(ProfileFragment.newInstance(MascotaContent.ITEM_MAP.get(mId).getOwnerAlias(), MascotaContent.ITEM_MAP.get(mId).getOwner(), fotoPerfil));
+                ((GodActivity)getActivity()).loadFragment(ProfileFragment.newInstance(MascotaContent.ITEM_MAP.get(mId).getOwnerAlias(), MascotaContent.ITEM_MAP.get(mId).getOwner()));
             }
         });
 
