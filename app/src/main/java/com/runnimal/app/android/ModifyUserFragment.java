@@ -36,6 +36,7 @@ import com.karumi.dexter.listener.DexterError;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.PermissionRequestErrorListener;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
+import com.runnimal.app.android._service.fileUploader;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -49,8 +50,6 @@ import java.util.Map;
 
 public class ModifyUserFragment extends Fragment {
     TextView textViewNombre;
-    TextView textViewCorreo;
-    TextView textViewPassword;
 
     //toDO vigiliar URL
     private String upload_URL = "http://nidorana.fib.upc.edu/api/photo/users/" + SingletonSession.Instance().getMail();
@@ -89,7 +88,8 @@ public class ModifyUserFragment extends Fragment {
            public void onClick(View v) {
                try {
                    modifyUserEv(view);
-                   uploadImage(bitmapPhoto);
+                   fileUploader uploader = new fileUploader(getActivity(),"/photo/users/" + SingletonSession.Instance().getMail());
+                   uploader.uploadImage(bitmapPhoto);
                } catch (JSONException e) {
                    e.printStackTrace();
                }
@@ -186,64 +186,6 @@ public class ModifyUserFragment extends Fragment {
         else {
             modifier(nombre.getText().toString());
         }
-    }
-
-    private void uploadImage(final Bitmap bitmap){
-
-        VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, upload_URL,
-                new Response.Listener<NetworkResponse>() {
-                    @Override
-                    public void onResponse(NetworkResponse response) {
-                        Log.d("ressssssoo",new String(response.data));
-                        rQueue.getCache().clear();
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getActivity().getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                }) {
-
-            /*
-             * If you want to add more parameters with the image
-             * you can do it here
-             * here we have only one parameter with the image
-             * which is tags
-             * */
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                // params.put("tags", "ccccc");  add string parameters
-                return params;
-            }
-
-            /*
-             *pass files using below method
-             * */
-            @Override
-            protected Map<String, DataPart> getByteData() {
-                Map<String, DataPart> params = new HashMap<>();
-                long imagename = System.currentTimeMillis();
-                Log.d("API", Long.toString(imagename));
-                params.put("photo", new DataPart(imagename + ".png", getFileDataFromDrawable(bitmap)));
-                return params;
-            }
-        };
-
-
-        volleyMultipartRequest.setRetryPolicy(new DefaultRetryPolicy(
-                0,
-                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        rQueue = Volley.newRequestQueue(getActivity());
-        rQueue.add(volleyMultipartRequest);
-    }
-
-    public byte[] getFileDataFromDrawable(Bitmap bitmap) {
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 80, byteArrayOutputStream);
-        return byteArrayOutputStream.toByteArray();
     }
 
 
