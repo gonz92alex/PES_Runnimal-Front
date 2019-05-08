@@ -44,11 +44,11 @@ public class MyEntrenamientoRecyclerViewAdapter extends RecyclerView.Adapter<MyE
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
         holder.mContentView.setText(mValues.get(position).content);
-        Picasso.get()
+       /* Picasso.get()
                 .load("https://t2.uc.ltmcdn.com/images/0/5/2/img_como_ensenar_a_un_perro_a_dar_la_pata_22250_600.jpg")
                 .resize(425,350)
                 .onlyScaleDown()
-                .into(holder.mImage);
+                .into(holder.mImage);*/
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,8 +76,8 @@ public class MyEntrenamientoRecyclerViewAdapter extends RecyclerView.Adapter<MyE
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mContentView = (TextView) view.findViewById(R.id.content);
-            mImage = (ImageView) view.findViewById(R.id.imagenEntrenamiento);
+            mContentView = (TextView) view.findViewById(R.id.text_training_name);
+            mImage = (ImageView) view.findViewById(R.id.image_training);
         }
 
         @Override

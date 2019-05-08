@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Runnimal</string>
     <string name="back">back</string>
     <string name="Login">Login</string>
     <string name="title_activity_god">GodActivity</string>
