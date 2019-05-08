@@ -71,7 +71,6 @@ public class ModifyUserFragment extends Fragment {
                 startActivityForResult(intent, CAMERA_REQUEST);
             }
         });
-        requestMultiplePermissions();
 
        Button saveUserButton = view.findViewById(R.id.buttonSave);
        saveUserButton.setOnClickListener(new View.OnClickListener() {
@@ -177,43 +176,6 @@ public class ModifyUserFragment extends Fragment {
         else {
             modifier(nombre.getText().toString());
         }
-    }
-
-
-    private void  requestMultiplePermissions(){
-        Dexter.withActivity(getActivity())
-                .withPermissions(
-
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                        Manifest.permission.READ_EXTERNAL_STORAGE)
-                .withListener(new MultiplePermissionsListener() {
-                    @Override
-                    public void onPermissionsChecked(MultiplePermissionsReport report) {
-                        // check if all permissions are granted
-                        if (report.areAllPermissionsGranted()) {
-                            Toast.makeText(getActivity().getApplicationContext(), "All permissions are granted by user!", Toast.LENGTH_SHORT).show();
-                        }
-
-                        // check for permanent denial of any permission
-                        if (report.isAnyPermissionPermanentlyDenied()) {
-                            // show alert dialog navigating to Settings
-
-                        }
-                    }
-
-                    @Override
-                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
-                        token.continuePermissionRequest();
-                    }
-                }).
-                withErrorListener(new PermissionRequestErrorListener() {
-                    @Override
-                    public void onError(DexterError error) {
-                        Toast.makeText(getActivity().getApplicationContext(), "Some Error! ", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .onSameThread()
-                .check();
     }
 
 }
