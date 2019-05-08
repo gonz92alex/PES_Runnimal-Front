@@ -79,13 +79,6 @@ public class TrainingsActivity extends BaseActivity implements TrainingsPresente
     }
 
     private void initializeRecyclerView() {
-        /*
-        if (mColumnCount <= 1) {
-            recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        } else {
-            recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
-        }
-         */
         trainingList.setLayoutManager(new LinearLayoutManager(this));
 
         trainingList.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));

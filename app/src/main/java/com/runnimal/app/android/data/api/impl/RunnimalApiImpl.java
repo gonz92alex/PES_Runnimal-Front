@@ -37,7 +37,7 @@ public class RunnimalApiImpl implements RunnimalApi {
                 url, //
                 (response) -> {
                     Log.d("apiRes", "onResponse: respondido!");
-                    callback.responseOK(jacksonFactory.toList(response.toString(), Training.class));
+                    callback.responseOK(jacksonFactory.toList(response, Training.class));
 
                 }, //
                 (error) -> {

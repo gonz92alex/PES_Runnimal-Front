@@ -22,7 +22,8 @@
                 android:layout_width="115dp"
                 android:layout_height="115dp"
                 android:layout_margin="8dp"
-                android:contentDescription="Imagen entrenamiento" />
+                android:contentDescription="Imagen entrenamiento"
+                android:src="@drawable/image_placeholder"/>
 
             <TextView
                 android:id="@+id/text_training_name"

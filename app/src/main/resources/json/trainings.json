@@ -1,27 +1,20 @@
 [
   {
-    "name": "Training name 1",
-    "description": "Training description 1",
+    "_id": "5caf8caaa996140c5c759f76",
+    "name": "entrenamiento fake 1",
     "imageUrl": "https://t2.uc.ltmcdn.com/images/0/5/2/img_como_ensenar_a_un_perro_a_dar_la_pata_22250_600.jpg"
   },
   {
-    "name": "Training name 2",
-    "description": "Training description 2",
-    "imageUrl": "https://t2.uc.ltmcdn.com/images/0/5/2/img_como_ensenar_a_un_perro_a_dar_la_pata_22250_600.jpg"
+    "_id": "5caf8d3da996140c5c759f77",
+    "name": "entrenamiento fake 2"
   },
   {
-    "name": "Training name 3",
-    "description": "Training description 3",
-    "imageUrl": "https://t2.uc.ltmcdn.com/images/0/5/2/img_como_ensenar_a_un_perro_a_dar_la_pata_22250_600.jpg"
+    "_id": "5caf8d45a996140c5c759f78",
+    "name": "entrenamiento fake 3"
   },
   {
-    "name": "Training name 4",
-    "description": "Training description 4",
-    "imageUrl": "https://t2.uc.ltmcdn.com/images/0/5/2/img_como_ensenar_a_un_perro_a_dar_la_pata_22250_600.jpg"
-  },
-  {
-    "name": "Training name 5",
-    "description": "Training description 5",
+    "_id": "5caf8d49a996140c5c759f79",
+    "name": "entrenamiento fake 4",
     "imageUrl": "https://t2.uc.ltmcdn.com/images/0/5/2/img_como_ensenar_a_un_perro_a_dar_la_pata_22250_600.jpg"
   }
 ]
