@@ -3,7 +3,6 @@ package com.runnimal.app.android;
 import android.Manifest;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -21,8 +20,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.runnimal.app.android.entrenamiento.EntrenamientoContent;
-import com.runnimal.app.android.entrenamiento.MascotaContent;
+import com.runnimal.app.android.models.EntrenamientoContent;
+import com.runnimal.app.android.models.MascotaContent;
 import com.squareup.picasso.Picasso;
 
 import java.util.Locale;

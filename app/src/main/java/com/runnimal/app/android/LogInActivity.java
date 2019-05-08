@@ -16,15 +16,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.runnimal.app.android.entrenamiento.EntrenamientoContent;
-import com.runnimal.app.android.entrenamiento.MascotaContent;
+import com.runnimal.app.android.models.EntrenamientoContent;
+import com.runnimal.app.android.models.MascotaContent;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 
 public class LogInActivity extends AppCompatActivity {
 

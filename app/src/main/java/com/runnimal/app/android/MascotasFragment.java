@@ -11,12 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.runnimal.app.android.entrenamiento.MascotaContent;
-import com.runnimal.app.android.entrenamiento.MascotaContent.MascotaItem;
+import com.runnimal.app.android.models.MascotaContent;
+import com.runnimal.app.android.models.MascotaContent.MascotaItem;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 
 public class MascotasFragment extends Fragment {

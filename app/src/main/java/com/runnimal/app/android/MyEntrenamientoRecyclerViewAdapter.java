@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.runnimal.app.android.EntrenamientoFragment.OnListFragmentInteractionListener;
-import com.runnimal.app.android.entrenamiento.EntrenamientoContent.EntrenamientoItem;
+import com.runnimal.app.android.models.EntrenamientoContent.EntrenamientoItem;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

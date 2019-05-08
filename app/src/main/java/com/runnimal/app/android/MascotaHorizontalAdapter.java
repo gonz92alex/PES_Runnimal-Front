@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.runnimal.app.android.ProfileFragment.OnListFragmentInteractionListener;
-import com.runnimal.app.android.entrenamiento.MascotaContent.MascotaItem;
+import com.runnimal.app.android.models.MascotaContent.MascotaItem;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

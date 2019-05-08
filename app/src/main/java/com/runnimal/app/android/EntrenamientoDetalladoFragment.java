@@ -20,7 +20,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.runnimal.app.android.entrenamiento.EntrenamientoContent;
+import com.runnimal.app.android.models.EntrenamientoContent;
 
 import org.json.JSONArray;
 import org.json.JSONException;

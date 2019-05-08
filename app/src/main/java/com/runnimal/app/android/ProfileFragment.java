@@ -1,7 +1,6 @@
 package com.runnimal.app.android;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -23,8 +22,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.runnimal.app.android.entrenamiento.MascotaContent;
-import com.runnimal.app.android.entrenamiento.MascotaContent.MascotaItem;
+import com.runnimal.app.android.models.MascotaContent;
+import com.runnimal.app.android.models.MascotaContent.MascotaItem;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -32,8 +31,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class ProfileFragment extends Fragment {
