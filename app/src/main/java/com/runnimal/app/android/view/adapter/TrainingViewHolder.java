@@ -48,7 +48,9 @@ public class TrainingViewHolder extends RecyclerView.ViewHolder {
     }
 
     private void getImage(URI photo, ImageView photoImageView) {
-        Picasso.get().load(photo.toString()).fit().centerCrop().into(photoImageView);
+        if (photo != null) {
+            Picasso.get().load(photo.toString()).fit().centerCrop().into(photoImageView);
+        }
     }
 
     private Context getContext() {

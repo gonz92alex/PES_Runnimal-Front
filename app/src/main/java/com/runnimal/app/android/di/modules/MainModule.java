@@ -5,6 +5,7 @@ import android.content.Context;
 import com.runnimal.app.android.RunnimalApplication;
 import com.runnimal.app.android.data.api.RunnimalApi;
 import com.runnimal.app.android.data.api.impl.LocalRunnimalApiImpl;
+import com.runnimal.app.android.data.api.impl.RunnimalApiImpl;
 import com.runnimal.app.android.data.repository.TrainingRepository;
 import com.runnimal.app.android.data.repository.impl.TrainingRepositoryImpl;
 import com.runnimal.app.android.util.JacksonFactory;
@@ -39,7 +40,7 @@ public class MainModule {
 
     @Provides
     @Singleton
-    RunnimalApi runnimalApi(LocalRunnimalApiImpl runnimalApi) {
+    RunnimalApi runnimalApi(RunnimalApiImpl runnimalApi) {
         return runnimalApi;
     }
 

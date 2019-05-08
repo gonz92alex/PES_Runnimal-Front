@@ -23,7 +23,13 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
         this.jacksonFactory = jacksonFactory;
     }
 
-    public List<Training> getTrainings() {
-        return jacksonFactory.toList(IOUtils.getResource(TRAININGS_FILE), Training.class);
+    @Override
+    public void getTrainings(RunnimalApiCallback<List<Training>> callback) {
+        try {
+            callback.responseOK(jacksonFactory.toList(IOUtils.getResource(TRAININGS_FILE), Training.class));
+        }
+        catch (Exception e) {
+            callback.responseError(e);
+        }
     }
 }

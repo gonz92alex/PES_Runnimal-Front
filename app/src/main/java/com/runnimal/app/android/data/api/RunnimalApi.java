@@ -6,5 +6,12 @@ import java.util.List;
 
 public interface RunnimalApi {
 
-    List<Training> getTrainings();
+    void getTrainings(RunnimalApiCallback<List<Training>> callback);
+
+    interface RunnimalApiCallback<T> {
+
+        void responseOK(T response);
+
+        void responseError(Exception e);
+    }
 }

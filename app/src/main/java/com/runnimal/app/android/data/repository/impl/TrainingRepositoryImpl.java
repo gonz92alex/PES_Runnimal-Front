@@ -23,14 +23,18 @@ public class TrainingRepositoryImpl implements TrainingRepository {
 
     public Observable<List<Training>> list() {
         return Observable.create(emitter -> {
-            List<Training> trainings = api.getTrainings();
-            if (trainings != null) {
-                emitter.onNext(trainings);
-                emitter.onComplete();
-            } else {
-                emitter.onError(
-                        new Throwable("Error getting team data list from the local json (euro_data.json)"));
-            }
+            api.getTrainings(new RunnimalApi.RunnimalApiCallback<List<Training>>() {
+                @Override
+                public void responseOK(List<Training> trainings) {
+                    emitter.onNext(trainings);
+                    emitter.onComplete();
+                }
+
+                @Override
+                public void responseError(Exception e) {
+                    emitter.onError(e);
+                }
+            });
         });
     }
 }
