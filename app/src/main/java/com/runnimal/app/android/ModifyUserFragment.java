@@ -1,6 +1,5 @@
 package com.runnimal.app.android;
 
-import android.Manifest;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -26,25 +25,15 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.karumi.dexter.Dexter;
-import com.karumi.dexter.MultiplePermissionsReport;
-import com.karumi.dexter.PermissionToken;
-import com.karumi.dexter.listener.DexterError;
-import com.karumi.dexter.listener.PermissionRequest;
-import com.karumi.dexter.listener.PermissionRequestErrorListener;
-import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.runnimal.app.android._service.fileUploader;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
-import java.util.List;
 
 public class ModifyUserFragment extends Fragment {
     TextView textViewNombre;
 
     //toDO vigiliar URL
-    private String upload_URL = "http://nidorana.fib.upc.edu/api/photo/users/" + SingletonSession.Instance().getMail();
-    private RequestQueue rQueue;
     private Bitmap bitmapPhoto;
 
     private static final int CAMERA_REQUEST = 1888;

@@ -33,6 +33,7 @@ import com.karumi.dexter.listener.DexterError;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.PermissionRequestErrorListener;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
+import com.runnimal.app.android._service.fileUploader;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -48,6 +49,7 @@ public class SignUpActivity extends AppCompatActivity {
     private static final int CAMERA_REQUEST = 1888;
     private ImageView ImageViewProfile;
     private EditText nombre;
+    Bitmap bitmapPhoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +72,7 @@ public class SignUpActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (data != null) {
             if (requestCode == CAMERA_REQUEST) {
-                Bitmap bitmapPhoto = (Bitmap) data.getExtras().get("data");
+                bitmapPhoto = (Bitmap) data.getExtras().get("data");
                 ImageViewProfile.setImageBitmap(bitmapPhoto);
             }
         }
@@ -128,7 +130,7 @@ public class SignUpActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         progressDialog.dismiss();
                         Log.d("VOLLEY", response);
-                        //ToDo -> si la respuesta es 'OK' redirigir a pantalla de login/loguear directamente con el user creado?
+                        //si la respuesta es 'OK' loguear directamente con el user creado
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             signUpOk(mail, nombre, jsonObject.getString("_id"));
@@ -172,7 +174,10 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
 
-    public void signUpOk(String email, String nombre, String id /*ToDO falta añadir las fotos */) {
+    public void signUpOk(String email, String nombre, String id) {
+        fileUploader fileUploader = new fileUploader(this, "/photo/users/" + email);
+        fileUploader.uploadImage(bitmapPhoto);
+
         Intent LoginIntent = new Intent(this, GodActivity.class);
         SingletonSession.Instance().setMail(email);
         SingletonSession.Instance().setUsername(nombre);
