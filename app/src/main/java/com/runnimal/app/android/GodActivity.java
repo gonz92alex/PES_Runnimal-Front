@@ -36,7 +36,6 @@ public class GodActivity extends FragmentActivity implements EntrenamientoFragme
     DrawerLayout drawerLayout;
     String correo;
     String nombre;
-    int fotoPerfil;
 
     Fragment mapaFrag;
     RetosFragment retoFrag;

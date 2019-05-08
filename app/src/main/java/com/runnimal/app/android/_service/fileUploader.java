@@ -48,19 +48,6 @@ public class fileUploader {
                 }) {
 
             /*
-             * If you want to add more parameters with the image
-             * you can do it here
-             * here we have only one parameter with the image
-             * which is tags
-             * */
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                // params.put("tags", "ccccc");  add string parameters
-                return params;
-            }
-
-            /*
              *pass files using below method
              * */
             @Override

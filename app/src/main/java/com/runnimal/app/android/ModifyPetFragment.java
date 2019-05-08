@@ -89,6 +89,20 @@ public class ModifyPetFragment extends Fragment {
             }
         });
 
+        Button deletePetButton = view.findViewById(R.id.buttonDeletePet);
+        saveUserButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //toDO
+                /*try {
+                    //llamada a borrar pet
+                    //modifyPetEv(view);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }*/
+            }
+        });
+
         return view;
 
     }
