@@ -37,12 +37,9 @@ public class AmigosFragment extends Fragment {
 
     ListView listView;
     BusquedaListViewAdapter adapter;
-    String[] title = new String[]{"user1", "user2", "user3", "user4"};
-    String[] mail = new String[]{"userloco2@gmail.com", "jaja@gmail.com", "jaja@gmail.com", "user4@gmail.com"};
     int[] icon = new int[]{R.mipmap.ic_launcher_round, R.mipmap.ic_launcher_round, R.mipmap.ic_launcher_round, R.mipmap.ic_launcher_round};
     SearchView searchView;
     ArrayList<ModelBusqueda> arrayList = new ArrayList<ModelBusqueda>();
-    String textoAux = "no lo que quiero";
 
     @Nullable
     @Override
@@ -111,11 +108,9 @@ public class AmigosFragment extends Fragment {
                 Log.i("VOLLEYrelated", responseArray.getJSONObject(i).getString("relatedUserId"));
                 Log.i("VOLLEYrelating", responseArray.getJSONObject(i).getString("relatingUserId"));
                 if(SingletonSession.Instance().getId().equals(responseArray.getJSONObject(i).getString("relatedUserId"))) {
-                    Log.i("VOLLEYIF", "dentro del if");
                     InfoFriend(responseArray.getJSONObject(i).getString("relatingUserId"), i, responseArray.length());
                 }
                 else{
-                    Log.i("VOLLEYIF", "dentro del else");
                     InfoFriend(responseArray.getJSONObject(i).getString("relatedUserId"), i, responseArray.length());
                 }
             }

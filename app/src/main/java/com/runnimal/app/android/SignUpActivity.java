@@ -1,5 +1,6 @@
 package com.runnimal.app.android;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -13,7 +14,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -22,19 +26,36 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.DexterError;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.PermissionRequestErrorListener;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
+import com.runnimal.app.android._service.fileUploader;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class SignUpActivity extends AppCompatActivity {
     private static final int CAMERA_REQUEST = 1888;
     private ImageView ImageViewProfile;
+    private EditText nombre;
+    Bitmap bitmapPhoto;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_act);
+        nombre = (EditText) findViewById(R.id.EditTextAlias);
         Button ButtonCamera = (Button) findViewById(R.id.buttonCameraEdit);
         ImageViewProfile = (ImageView) findViewById(R.id.imageViewProfile);
         ButtonCamera.setOnClickListener(new View.OnClickListener() {
@@ -49,10 +70,10 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(data != null){
-            if(requestCode == CAMERA_REQUEST) {
-                int Photo = (int) data.getExtras().get("data");
-                ImageViewProfile.setImageResource(Photo);
+        if (data != null) {
+            if (requestCode == CAMERA_REQUEST) {
+                bitmapPhoto = (Bitmap) data.getExtras().get("data");
+                ImageViewProfile.setImageBitmap(bitmapPhoto);
             }
         }
     }
@@ -64,11 +85,10 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     public void EnterEv(View view) throws JSONException {
-        EditText nombre = (EditText) findViewById(R.id.EditTextAlias);
         EditText pass = (EditText) findViewById(R.id.EditTextPassword);
         EditText mail = (EditText) findViewById(R.id.EditTextMail);
 
-        if(nombre.getText().toString().equals("") || pass.getText().toString().equals("") || mail.getText().toString().equals("")){
+        if (nombre.getText().toString().equals("") || pass.getText().toString().equals("") || mail.getText().toString().equals("")) {
             new AlertDialog.Builder(this)
                     .setTitle("Missing parameters")
                     .setMessage("You have to fill first all the text camps")
@@ -78,8 +98,7 @@ public class SignUpActivity extends AppCompatActivity {
                     .setPositiveButton(android.R.string.ok, null)
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .show();
-        }
-        else {
+        } else {
 
             signUp(nombre.getText().toString(), pass.getText().toString(), mail.getText().toString());
         }
@@ -89,7 +108,7 @@ public class SignUpActivity extends AppCompatActivity {
     private void signUp(final String nombre, String pass, final String mail) throws JSONException {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url ="http://nidorana.fib.upc.edu/api/users/";
+        String url = "http://nidorana.fib.upc.edu/api/users/";
 
         //Loading Message
         final ProgressDialog progressDialog = new ProgressDialog(this);
@@ -111,7 +130,7 @@ public class SignUpActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         progressDialog.dismiss();
                         Log.d("VOLLEY", response);
-                        //ToDo -> si la respuesta es 'OK' redirigir a pantalla de login/loguear directamente con el user creado?
+                        //si la respuesta es 'OK' loguear directamente con el user creado
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             signUpOk(mail, nombre, jsonObject.getString("_id"));
@@ -143,7 +162,7 @@ public class SignUpActivity extends AppCompatActivity {
             }
 
             @Override
-            protected Response<String> parseNetworkResponse(NetworkResponse response){
+            protected Response<String> parseNetworkResponse(NetworkResponse response) {
                 int mStatusCode = response.statusCode;
                 Log.d("VOLLEY", "parseNetworkResponse:" + Integer.toString(mStatusCode));
                 return super.parseNetworkResponse(response);
@@ -155,8 +174,10 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
 
+    public void signUpOk(String email, String nombre, String id) {
+        fileUploader fileUploader = new fileUploader(this, "/photo/users/" + email);
+        fileUploader.uploadImage(bitmapPhoto);
 
-    public void signUpOk(String email, String nombre, String id /*ToDO falta añadir las fotos */){
         Intent LoginIntent = new Intent(this, GodActivity.class);
         SingletonSession.Instance().setMail(email);
         SingletonSession.Instance().setUsername(nombre);
@@ -164,7 +185,7 @@ public class SignUpActivity extends AppCompatActivity {
         startActivity(LoginIntent);
     }
 
-    private void showError(String error_title, String error_message){
+    private void showError(String error_title, String error_message) {
         new AlertDialog.Builder(this)
                 .setTitle(error_title)
                 .setMessage(error_message)

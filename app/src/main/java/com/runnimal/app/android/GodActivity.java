@@ -3,7 +3,6 @@ package com.runnimal.app.android;
 import android.Manifest;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -18,10 +17,12 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.support.v4.app.Fragment;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.runnimal.app.android.entrenamiento.EntrenamientoContent;
-import com.runnimal.app.android.entrenamiento.MascotaContent;
+import com.runnimal.app.android.models.EntrenamientoContent;
+import com.runnimal.app.android.models.MascotaContent;
+import com.squareup.picasso.Picasso;
 
 import java.util.Locale;
 
@@ -114,6 +115,7 @@ public class GodActivity extends FragmentActivity implements EntrenamientoFragme
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.fragment_container, fragment)
+                    .addToBackStack(null)
                     .commit();
             return true;
         }
@@ -136,15 +138,13 @@ public class GodActivity extends FragmentActivity implements EntrenamientoFragme
         rankingFragment = new RankingFragment();
 
 
-     //   Log.d("pets", SingletonSession.Instance().getMascotas().get(0));
-
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(nOnNavigationItemSelectedListener);
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        /* esto es para poder cambiar el drawer con la info del usuario que me esten pasando*/
+        /* esto es para poder cambiar el drawer con la info del usuario */
         correo = SingletonSession.Instance().getMail();
         nombre = SingletonSession.Instance().getUsername();
 
@@ -153,6 +153,12 @@ public class GodActivity extends FragmentActivity implements EntrenamientoFragme
         TextView nombreView = (TextView) header.findViewById(R.id.NombreInApp);
         correoView.setText(correo);
         nombreView.setText(nombre);
+        ImageView perfilImage = (ImageView) header.findViewById(R.id.imageViewProfilePequeña);
+        Picasso.get()
+                .load("http://nidorana.fib.upc.edu/api/photo/users/" + SingletonSession.Instance().getMail())
+                .resize(350,350)
+                .onlyScaleDown()
+                .into(perfilImage);
         /* hasta aqui lo del drawer dinamico */
     }
 
@@ -160,7 +166,7 @@ public class GodActivity extends FragmentActivity implements EntrenamientoFragme
     public void ProfileEv(View view) {
         //ToDO estoy probando a ver si puedo hacer que funcione un botton en la imagen del navigation drawer
         //tendremos que cambiar esto
-        ProfileFragment profile = ProfileFragment.newInstance(nombre, correo ,fotoPerfil);
+        ProfileFragment profile = ProfileFragment.newInstance(nombre, correo);
         //todo hay que ver como se passa la imagen de perfil
         loadFragment(profile);
 

@@ -1,4 +1,4 @@
-package com.runnimal.app.android.entrenamiento;
+package com.runnimal.app.android.models;
 
 import java.util.ArrayList;
 import java.util.HashMap;

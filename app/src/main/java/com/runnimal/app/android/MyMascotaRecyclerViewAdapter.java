@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import java.util.List;
 import com.runnimal.app.android.MascotasFragment.OnListFragmentInteractionListener;
-import com.runnimal.app.android.entrenamiento.MascotaContent.MascotaItem;
+import com.runnimal.app.android.models.MascotaContent.MascotaItem;
 import com.squareup.picasso.Picasso;
 
 class MyMascotaRecyclerViewAdapter extends RecyclerView.Adapter<MyMascotaRecyclerViewAdapter.ViewHolder> {

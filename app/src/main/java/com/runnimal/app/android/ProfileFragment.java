@@ -1,7 +1,6 @@
 package com.runnimal.app.android;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -23,16 +22,15 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.runnimal.app.android.entrenamiento.MascotaContent;
-import com.runnimal.app.android.entrenamiento.MascotaContent.MascotaItem;
+import com.runnimal.app.android.models.MascotaContent;
+import com.runnimal.app.android.models.MascotaContent.MascotaItem;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class ProfileFragment extends Fragment {
@@ -40,6 +38,7 @@ public class ProfileFragment extends Fragment {
 
     TextView textViewNombre;
     TextView textViewCorreo;
+    ImageView imageProfile;
     ImageView imageRelation;
 
     RecyclerView petList;
@@ -47,7 +46,6 @@ public class ProfileFragment extends Fragment {
 
     String mNombre;
     String mCorreo;
-    String mFoto;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -68,6 +66,12 @@ public class ProfileFragment extends Fragment {
         textViewNombre.setText(mNombre);
         textViewCorreo = (TextView) profileView.findViewById(R.id.CorreoText);
         textViewCorreo.setText(mCorreo);
+        imageProfile = (ImageView) profileView.findViewById(R.id.profile);
+        Picasso.get()
+            .load("http://nidorana.fib.upc.edu/api/photo/users/" + mCorreo)
+            .resize(400,400)
+            .onlyScaleDown()
+            .into(imageProfile);
 
         //Scroll lateral con las mascotas
         petList = (RecyclerView) profileView.findViewById(R.id.profilePetList);
@@ -96,13 +100,11 @@ public class ProfileFragment extends Fragment {
     }
 
 
-    public static final ProfileFragment newInstance(String Nombre, String Mail, int foto){
+    public static final ProfileFragment newInstance(String Nombre, String Mail){
         ProfileFragment profileFragment = new ProfileFragment();
         Bundle bundle = new Bundle(1);
         bundle.putString("nombre", Nombre);
         bundle.putString("correo", Mail);
-        bundle.putInt("foto", foto);
-        //falta saber passar la imagen de perfil
         profileFragment.setArguments(bundle);
         return profileFragment;
     }

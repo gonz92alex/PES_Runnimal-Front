@@ -2,7 +2,10 @@ package com.runnimal.app.android;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -11,9 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -22,18 +25,19 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
+import com.runnimal.app.android._service.fileUploader;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.UnsupportedEncodingException;
 
 public class ModifyUserFragment extends Fragment {
     TextView textViewNombre;
-    TextView textViewCorreo;
-    TextView textViewPassword;
 
+    //toDO vigiliar URL
+    private Bitmap bitmapPhoto;
 
+    private static final int CAMERA_REQUEST = 1888;
+    private ImageView ImageViewProfile;
 
     public static Fragment newInstance() {
         ModifyUserFragment fragment = new ModifyUserFragment();
@@ -47,6 +51,15 @@ public class ModifyUserFragment extends Fragment {
         textViewNombre = (TextView) view.findViewById(R.id.EditTextAlias);
         textViewNombre.setText(SingletonSession.Instance().getUsername());
 
+        ImageViewProfile = (ImageView) view.findViewById(R.id.imageViewProfile);
+        Button ButtonCamera = (Button) view.findViewById(R.id.buttonCameraEdit);
+        ButtonCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(intent, CAMERA_REQUEST);
+            }
+        });
 
        Button saveUserButton = view.findViewById(R.id.buttonSave);
        saveUserButton.setOnClickListener(new View.OnClickListener() {
@@ -54,6 +67,8 @@ public class ModifyUserFragment extends Fragment {
            public void onClick(View v) {
                try {
                    modifyUserEv(view);
+                   fileUploader uploader = new fileUploader(getActivity(),"/photo/users/" + SingletonSession.Instance().getMail());
+                   uploader.uploadImage(bitmapPhoto);
                } catch (JSONException e) {
                    e.printStackTrace();
                }
@@ -63,8 +78,19 @@ public class ModifyUserFragment extends Fragment {
 
     }
 
-    //llamada API
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(data != null){
+            if(requestCode == CAMERA_REQUEST) {
+                bitmapPhoto = (Bitmap) data.getExtras().get("data");
+                ImageViewProfile.setImageBitmap(bitmapPhoto);
+            }
+        }
+    }
 
+
+    //llamada API
     private void modifier(final String nombre) throws JSONException {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue((GodActivity)getActivity());
@@ -140,8 +166,6 @@ public class ModifyUserFragment extends Fragment {
             modifier(nombre.getText().toString());
         }
     }
-
-
 
 }
 
