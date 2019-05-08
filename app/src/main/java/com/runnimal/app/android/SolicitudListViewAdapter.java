@@ -28,7 +28,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NotificacionListViewAdapter extends BaseAdapter {
+public class SolicitudListViewAdapter extends BaseAdapter {
 
     Context mContext;
     LayoutInflater inflater;
@@ -36,7 +36,7 @@ public class NotificacionListViewAdapter extends BaseAdapter {
     ArrayList<ModelSolicitud> arrayList;
 
 
-    public NotificacionListViewAdapter(Context Context, List<ModelSolicitud> modelslist) {
+    public SolicitudListViewAdapter(Context Context, List<ModelSolicitud> modelslist) {
         mContext = Context;
         this.modelslist = modelslist;
         inflater = LayoutInflater.from(mContext);
@@ -70,9 +70,9 @@ public class NotificacionListViewAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        NotificacionListViewAdapter.ViewHolder holder;
+        SolicitudListViewAdapter.ViewHolder holder;
         if (convertView == null){
-            holder = new NotificacionListViewAdapter.ViewHolder();
+            holder = new SolicitudListViewAdapter.ViewHolder();
             convertView = inflater.inflate(R.layout.row_notificaciones, null);
 
             holder.mTitleTv = convertView.findViewById(R.id.mainTitle);
@@ -84,7 +84,7 @@ public class NotificacionListViewAdapter extends BaseAdapter {
             convertView.setTag(holder);
         }
         else{
-            holder = (NotificacionListViewAdapter.ViewHolder)convertView.getTag();
+            holder = (SolicitudListViewAdapter.ViewHolder)convertView.getTag();
         }
 
         holder.mTitleTv.setText(modelslist.get(position).getTitle());

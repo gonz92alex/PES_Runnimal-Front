@@ -5,13 +5,11 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -27,22 +25,22 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class NotificacionesFragment extends Fragment {
+public class SolicitudesFragment extends Fragment {
 
     ListView listView;
-    NotificacionListViewAdapter adapter;
+    SolicitudListViewAdapter adapter;
     String[] title = new String[]{"user1", "user2", "user3", "user4"};
     String[] mail =  new String[]{"user1@gmail.com", "jaja@gmail.com", "jaja@gmail.com", "user4@gmail.com"};
     int[] icon = new int[]{R.mipmap.ic_launcher_round};
 
     ArrayList<ModelSolicitud> arrayList = new ArrayList<ModelSolicitud>();
 
-    public NotificacionesFragment(){
+    public SolicitudesFragment(){
 
     }
 
-    public static NotificacionesFragment newInstance() {
-        NotificacionesFragment fragment = new NotificacionesFragment();
+    public static SolicitudesFragment newInstance() {
+        SolicitudesFragment fragment = new SolicitudesFragment();
         return fragment;
     }
 
@@ -167,7 +165,7 @@ public class NotificacionesFragment extends Fragment {
         //necessito el nombre y la foto
         arrayList.add(model);
         if(i == fin -1){
-            adapter = new NotificacionListViewAdapter((GodActivity) getActivity(), arrayList);
+            adapter = new SolicitudListViewAdapter((GodActivity) getActivity(), arrayList);
             listView.setAdapter(adapter);
         }
 
