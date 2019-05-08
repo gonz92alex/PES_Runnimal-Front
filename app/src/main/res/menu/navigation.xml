@@ -2,22 +2,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_mapa"
-        android:icon="@drawable/map"
-        android:title="@string/title_mapa" />
+        android:id="@+id/navigation_map"
+        android:icon="@drawable/navigation_map"
+        android:title="@string/navigation_map_title" />
 
     <item
-        android:id="@+id/navigation_entrenamientos"
-        android:icon="@drawable/ejercicio"
-        android:title="@string/title_entrenamientos" />
+        android:id="@+id/navigation_trainings"
+        android:icon="@drawable/navigation_trainings"
+        android:title="@string/navigation_trainings_title" />
 
     <item
-        android:id="@+id/navigation_retos"
-        android:icon="@drawable/ranking"
-        android:title="@string/title_retos" />
+        android:id="@+id/navigation_challenges"
+        android:icon="@drawable/navigation_challenges"
+        android:title="@string/navigation_challenges_title" />
     <item
-        android:id="@+id/navigation_mascotas"
-        android:icon="@drawable/pata"
-        android:title="@string/title_mascotas" />
+        android:id="@+id/navigation_pets"
+        android:icon="@drawable/navigation_pets"
+        android:title="@string/navigation_pets_title" />
 
 </menu>

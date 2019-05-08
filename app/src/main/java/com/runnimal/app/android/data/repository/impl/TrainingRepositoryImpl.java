@@ -1,7 +1,6 @@
 package com.runnimal.app.android.data.repository.impl;
 
 import com.runnimal.app.android.data.api.RunnimalApi;
-import com.runnimal.app.android.data.api.impl.RunnimalApiImpl;
 import com.runnimal.app.android.data.repository.TrainingRepository;
 import com.runnimal.app.android.domain.Training;
 

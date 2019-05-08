@@ -18,26 +18,15 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 
-public class TrainingListActivity extends BaseActivity implements TrainingsPresenter.View {
+public class TrainingsActivity extends BaseActivity implements TrainingsPresenter.View {
 
     @Inject
     TrainingsPresenter presenter;
-    @BindView(R.id.list_training)
+    @BindView(R.id.list_trainings)
     RecyclerView trainingList;
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
     private TrainingAdapter adapter;
-
-    @Override
-    public void initView() {
-        super.initView();
-        initializeDagger();
-        initializePresenter();
-        disableTitleFromToolbar();
-        initializeAdapter();
-        initializeRecyclerView();
-        presenter.initialize();
-    }
 
     @Override
     public void showLoading() {
@@ -64,7 +53,16 @@ public class TrainingListActivity extends BaseActivity implements TrainingsPrese
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_training_list;
+        return R.layout.activity_trainings;
+    }
+
+    @Override
+    protected void initView() {
+        initializeDagger();
+        initializePresenter();
+        initializeAdapter();
+        initializeRecyclerView();
+        presenter.initialize();
     }
 
     private void initializeDagger() {
@@ -76,20 +74,23 @@ public class TrainingListActivity extends BaseActivity implements TrainingsPrese
         presenter.setView(this);
     }
 
-    private void disableTitleFromToolbar() {
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayShowTitleEnabled(false);
-        }
-    }
-
     private void initializeAdapter() {
         adapter = new TrainingAdapter(presenter);
     }
 
     private void initializeRecyclerView() {
+        /*
+        if (mColumnCount <= 1) {
+            recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        } else {
+            recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
+        }
+         */
         trainingList.setLayoutManager(new LinearLayoutManager(this));
+
         trainingList.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         trainingList.setHasFixedSize(true);
+
         trainingList.setAdapter(adapter);
     }
 }

@@ -42,7 +42,7 @@ public class TrainingViewHolder extends RecyclerView.ViewHolder {
     private void onItemClick(final TrainingViewModel training) {
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                trainingPresenter.onTeamClicked(training);
+                trainingPresenter.onTrainingClicked(training);
             }
         });
     }

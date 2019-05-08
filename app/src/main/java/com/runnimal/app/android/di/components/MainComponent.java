@@ -3,7 +3,7 @@ package com.runnimal.app.android.di.components;
 import android.content.Context;
 
 import com.runnimal.app.android.di.modules.MainModule;
-import com.runnimal.app.android.view.activity.TrainingListActivity;
+import com.runnimal.app.android.view.activity.TrainingsActivity;
 
 import javax.inject.Singleton;
 
@@ -13,7 +13,7 @@ import dagger.Component;
 @Component(modules = MainModule.class)
 public interface MainComponent {
 
-    void inject(TrainingListActivity activity);
+    void inject(TrainingsActivity activity);
 
     Context context();
 }

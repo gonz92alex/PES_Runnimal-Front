@@ -48,7 +48,7 @@ public class TrainingsPresenter extends Presenter<TrainingsPresenter.View> {
         });
     }
 
-    public void onTeamClicked(TrainingViewModel training) {
+    public void onTrainingClicked(TrainingViewModel training) {
         getView().openTrainingScreen(training);
     }
 

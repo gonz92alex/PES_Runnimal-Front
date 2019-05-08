@@ -2,11 +2,12 @@ package com.runnimal.app.android.di.modules;
 
 import android.content.Context;
 
-import com.runnimal.app.android.data.api.RunnimalApi;
-import com.runnimal.app.android.data.api.impl.RunnimalApiImpl;
-import com.runnimal.app.android.data.repository.TrainingRepository;
 import com.runnimal.app.android.RunnimalApplication;
+import com.runnimal.app.android.data.api.RunnimalApi;
+import com.runnimal.app.android.data.api.impl.LocalRunnimalApiImpl;
+import com.runnimal.app.android.data.repository.TrainingRepository;
 import com.runnimal.app.android.data.repository.impl.TrainingRepositoryImpl;
+import com.runnimal.app.android.util.JacksonFactory;
 
 import javax.inject.Named;
 import javax.inject.Singleton;
@@ -26,20 +27,27 @@ public class MainModule {
 
     @Provides
     @Singleton
-    Context provideApplicationContext() {
+    Context context() {
         return runnimalApplication;
     }
 
     @Provides
     @Singleton
-    TrainingRepository provideTrainingRepository(TrainingRepositoryImpl trainingRepository) {
+    TrainingRepository trainingRepository(TrainingRepositoryImpl trainingRepository) {
         return trainingRepository;
     }
 
     @Provides
     @Singleton
-    RunnimalApi provideRunnimalApi(RunnimalApiImpl runnimalApi) {
+    RunnimalApi runnimalApi(LocalRunnimalApiImpl runnimalApi) {
         return runnimalApi;
+    }
+
+    @Provides
+    @Singleton
+    JacksonFactory jacksonFactory() {
+        return new JacksonFactory() //
+                .registerJavaTime();
     }
 
     @Provides

@@ -21,7 +21,7 @@
         tools:ignore="HardcodedDebugMode">
 
         <activity
-            android:name=".view.activity.TrainingListActivity"
+            android:name=".view.activity.TrainingsActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -36,7 +36,7 @@
             android:label="@string/title_activity_god"
             android:screenOrientation="portrait"/>
         <activity
-            android:name="com.runnimal.app.android.TrainingListActivity"
+            android:name="com.runnimal.app.android.TrainingsActivity"
             android:screenOrientation="portrait"/>
         <activity
             android:name="com.runnimal.app.android.SignUpActivity"

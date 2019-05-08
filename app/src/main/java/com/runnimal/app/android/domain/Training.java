@@ -15,8 +15,9 @@ import lombok.experimental.Accessors;
 @Accessors(chain =  true)
 public class Training {
 
-    private final List<String> steps = new ArrayList<>();
+    private String id;
     private String name;
     private String description;
     private URI imageUrl;
+    private final List<String> steps = new ArrayList<>();
 }

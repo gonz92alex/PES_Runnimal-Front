@@ -13,17 +13,18 @@ import io.reactivex.Scheduler;
 
 public class TrainingService extends Service<List<Training>> {
 
-    private final TrainingRepository repository;
+    private final TrainingRepository trainingRepository;
 
     @Inject
-    public TrainingService(@Named("executor_thread") Scheduler executorThread,
-                           @Named("ui_thread") Scheduler uiThread, TrainingRepository repository) {
+    public TrainingService(@Named("executor_thread") Scheduler executorThread, //
+                           @Named("ui_thread") Scheduler uiThread, //
+                           TrainingRepository trainingRepository) {
         super(executorThread, uiThread);
-        this.repository = repository;
+        this.trainingRepository = trainingRepository;
     }
 
     @Override
     public Observable<List<Training>> createObservableUseCase() {
-        return this.repository.list();
+        return this.trainingRepository.list();
     }
 }

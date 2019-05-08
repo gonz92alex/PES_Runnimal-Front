@@ -17,27 +17,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
-        setupToolbar();
         bindViews();
         initView();
-    }
-
-    /**
-     * Use this method to initialize view components. This method is called after {@link
-     * BaseActivity#bindViews()}
-     */
-    public void initView() {
-    }
-
-    /**
-     * Its common use a toolbar within activity, if it exists in the
-     * layout this will be configured
-     */
-    public void setupToolbar() {
-        //mToolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar);
-        if (mToolbar != null) {
-            setSupportActionBar(mToolbar);
-        }
     }
 
     /**
@@ -56,4 +37,10 @@ public abstract class BaseActivity extends AppCompatActivity {
      * @return The layout id that's gonna be the activity view.
      */
     protected abstract int getLayoutId();
+
+    /**
+     * Use this method to initialize view components. This method is called after {@link
+     * BaseActivity#bindViews()}
+     */
+    protected abstract void initView();
 }
