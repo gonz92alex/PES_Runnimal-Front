@@ -1,4 +1,4 @@
-package com.runnimal.app.android.view.viewmodel.mapper;
+package com.runnimal.app.android.view.viewmodel.converter;
 
 import com.runnimal.app.android.domain.Training;
 import com.runnimal.app.android.view.viewmodel.TrainingViewModel;
@@ -9,11 +9,12 @@ import java.util.stream.Collectors;
 public class TrainingViewModelConverter {
 
     public static TrainingViewModel convert(Training training) {
-        TrainingViewModel trainingViewModel = new TrainingViewModel();
+        TrainingViewModel trainingViewModel = new TrainingViewModel() //
+                .setId(training.getId()) //
+                .setName(training.getName()) //
+                .setDescription(training.getDescription()) //
+                .setImageUrl(training.getImageUrl());
         trainingViewModel.getSteps().addAll(training.getSteps());
-        trainingViewModel.setName(training.getName());
-        trainingViewModel.setDescription(training.getDescription());
-        trainingViewModel.setImageUrl(training.getImageUrl());
 
         return trainingViewModel;
     }

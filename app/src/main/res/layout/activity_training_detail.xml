@@ -12,6 +12,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/text_detail_training_name"
             android:layout_width="wrap_content"
@@ -54,8 +63,8 @@
             android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_detail_training_steps_title" />
-
+            app:layout_constraintTop_toBottomOf="@+id/text_detail_training_steps_title"
+            tools:listitem="@layout/content_training_detail_step" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

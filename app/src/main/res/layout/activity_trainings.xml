@@ -17,6 +17,7 @@
             android:text="@string/navigation_trainings_title"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
             android:textSize="30sp" />
+
         <SearchView
             android:id="@+id/searchView"
             android:layout_width="360dp"
@@ -27,7 +28,6 @@
             android:layout_marginBottom="8dp"
             android:iconifiedByDefault="false"
             android:queryHint="Search">
-
         </SearchView>
 
         <android.support.v7.widget.RecyclerView

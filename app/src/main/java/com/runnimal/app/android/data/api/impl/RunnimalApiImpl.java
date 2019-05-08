@@ -27,7 +27,7 @@ public class RunnimalApiImpl implements RunnimalApi {
     }
 
     @Override
-    public void getTrainings(RunnimalApiCallback<List<Training>> callback) {
+    public void listTrainings(RunnimalApiCallback<List<Training>> callback) {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(context);
         String url = "http://nidorana.fib.upc.edu/api/trainnings";
@@ -38,6 +38,30 @@ public class RunnimalApiImpl implements RunnimalApi {
                 (response) -> {
                     Log.d("apiRes", "onResponse: respondido!");
                     callback.responseOK(jacksonFactory.toList(response, Training.class));
+
+                }, //
+                (error) -> {
+                    Log.d("apiError", error.toString());
+                    callback.responseError(error);
+                }
+        );
+
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
+    }
+
+    @Override
+    public void getTraining(String id, RunnimalApiCallback<Training> callback) {
+        // Instantiate the RequestQueue.
+        RequestQueue queue = Volley.newRequestQueue(context);
+        String url = "http://nidorana.fib.upc.edu/api/trainnings/" + id;
+
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, //
+                url, //
+                (response) -> {
+                    Log.d("apiRes", "onResponse: respondido!");
+                    callback.responseOK(jacksonFactory.toObject(response, Training.class));
 
                 }, //
                 (error) -> {

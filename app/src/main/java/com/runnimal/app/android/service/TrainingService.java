@@ -1,30 +1,16 @@
 package com.runnimal.app.android.service;
 
-import com.runnimal.app.android.data.repository.TrainingRepository;
 import com.runnimal.app.android.domain.Training;
 
 import java.util.List;
 
-import javax.inject.Inject;
-import javax.inject.Named;
+import io.reactivex.observers.DisposableObserver;
 
-import io.reactivex.Observable;
-import io.reactivex.Scheduler;
+public interface TrainingService {
 
-public class TrainingService extends Service<List<Training>> {
+    void dispose();
 
-    private final TrainingRepository trainingRepository;
+    void list(DisposableObserver<List<Training>> callback);
 
-    @Inject
-    public TrainingService(@Named("executor_thread") Scheduler executorThread, //
-                           @Named("ui_thread") Scheduler uiThread, //
-                           TrainingRepository trainingRepository) {
-        super(executorThread, uiThread);
-        this.trainingRepository = trainingRepository;
-    }
-
-    @Override
-    public Observable<List<Training>> createObservableUseCase() {
-        return this.trainingRepository.list();
-    }
+    void get(String id, DisposableObserver<Training> callback);
 }

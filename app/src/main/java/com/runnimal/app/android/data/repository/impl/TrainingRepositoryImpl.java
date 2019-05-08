@@ -23,7 +23,7 @@ public class TrainingRepositoryImpl implements TrainingRepository {
 
     public Observable<List<Training>> list() {
         return Observable.create(emitter -> {
-            api.getTrainings(new RunnimalApi.RunnimalApiCallback<List<Training>>() {
+            api.listTrainings(new RunnimalApi.RunnimalApiCallback<List<Training>>() {
                 @Override
                 public void responseOK(List<Training> trainings) {
                     emitter.onNext(trainings);
@@ -35,6 +35,24 @@ public class TrainingRepositoryImpl implements TrainingRepository {
                     emitter.onError(e);
                 }
             });
+        });
+    }
+
+    public Observable<Training> get(String id) {
+        return Observable.create(emitter -> {
+            api.getTraining(id, //
+                    new RunnimalApi.RunnimalApiCallback<Training>() {
+                        @Override
+                        public void responseOK(Training training) {
+                            emitter.onNext(training);
+                            emitter.onComplete();
+                        }
+
+                        @Override
+                        public void responseError(Exception e) {
+                            emitter.onError(e);
+                        }
+                    });
         });
     }
 }

@@ -1,11 +1,9 @@
 package com.runnimal.app.android.view.presenter;
 
-import android.support.annotation.NonNull;
-
 import com.runnimal.app.android.domain.Training;
-import com.runnimal.app.android.service.TrainingService;
+import com.runnimal.app.android.service.TrainingServiceImpl;
 import com.runnimal.app.android.view.viewmodel.TrainingViewModel;
-import com.runnimal.app.android.view.viewmodel.mapper.TrainingViewModelConverter;
+import com.runnimal.app.android.view.viewmodel.converter.TrainingViewModelConverter;
 
 import java.util.List;
 
@@ -15,19 +13,18 @@ import io.reactivex.observers.DisposableObserver;
 
 public class TrainingsPresenter extends Presenter<TrainingsPresenter.View> {
 
-    private TrainingService trainingService;
+    private TrainingServiceImpl trainingService;
 
     @Inject
-    public TrainingsPresenter(@NonNull TrainingService trainingService) {
+    public TrainingsPresenter(TrainingServiceImpl trainingService) {
         this.trainingService = trainingService;
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public void initialize() {
         super.initialize();
         getView().showLoading();
-        trainingService.execute(new DisposableObserver<List<Training>>() {
+        trainingService.list(new DisposableObserver<List<Training>>() {
 
             @Override
             public void onNext(List<Training> trainings) {

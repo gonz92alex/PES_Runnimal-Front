@@ -8,7 +8,7 @@ import android.widget.ProgressBar;
 
 import com.runnimal.app.android.R;
 import com.runnimal.app.android.RunnimalApplication;
-import com.runnimal.app.android.view.adapter.TrainingAdapter;
+import com.runnimal.app.android.view.adapter.TrainingListAdapter;
 import com.runnimal.app.android.view.presenter.TrainingsPresenter;
 import com.runnimal.app.android.view.viewmodel.TrainingViewModel;
 
@@ -22,11 +22,12 @@ public class TrainingsActivity extends BaseActivity implements TrainingsPresente
 
     @Inject
     TrainingsPresenter presenter;
+    TrainingListAdapter adapter;
+
     @BindView(R.id.list_trainings)
     RecyclerView trainingList;
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
-    private TrainingAdapter adapter;
 
     @Override
     public void showLoading() {
@@ -48,7 +49,7 @@ public class TrainingsActivity extends BaseActivity implements TrainingsPresente
 
     @Override
     public void openTrainingScreen(TrainingViewModel training) {
-        //TeamDetailsActivity.open(TeamsActivity.this, team.getFlag());
+        TrainingDetailActivity.open(TrainingsActivity.this, training.getId());
     }
 
     @Override
@@ -65,6 +66,12 @@ public class TrainingsActivity extends BaseActivity implements TrainingsPresente
         presenter.initialize();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.destroy();
+    }
+
     private void initializeDagger() {
         RunnimalApplication app = (RunnimalApplication) getApplication();
         app.getMainComponent().inject(this);
@@ -75,15 +82,13 @@ public class TrainingsActivity extends BaseActivity implements TrainingsPresente
     }
 
     private void initializeAdapter() {
-        adapter = new TrainingAdapter(presenter);
+        adapter = new TrainingListAdapter(presenter);
     }
 
     private void initializeRecyclerView() {
         trainingList.setLayoutManager(new LinearLayoutManager(this));
-
         trainingList.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         trainingList.setHasFixedSize(true);
-
         trainingList.setAdapter(adapter);
     }
 }

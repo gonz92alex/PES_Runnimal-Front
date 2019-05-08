@@ -19,5 +19,5 @@ public class Training {
     private String name;
     private String description;
     private URI imageUrl;
-    private final List<String> steps = new ArrayList<>();
+    private List<String> steps = new ArrayList<>();
 }

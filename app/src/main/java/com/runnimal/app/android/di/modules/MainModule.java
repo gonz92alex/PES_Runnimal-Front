@@ -8,6 +8,8 @@ import com.runnimal.app.android.data.api.impl.LocalRunnimalApiImpl;
 import com.runnimal.app.android.data.api.impl.RunnimalApiImpl;
 import com.runnimal.app.android.data.repository.TrainingRepository;
 import com.runnimal.app.android.data.repository.impl.TrainingRepositoryImpl;
+import com.runnimal.app.android.service.TrainingService;
+import com.runnimal.app.android.service.TrainingServiceImpl;
 import com.runnimal.app.android.util.JacksonFactory;
 
 import javax.inject.Named;
@@ -34,13 +36,19 @@ public class MainModule {
 
     @Provides
     @Singleton
+    TrainingService trainingService(TrainingServiceImpl trainingService) {
+        return trainingService;
+    }
+
+    @Provides
+    @Singleton
     TrainingRepository trainingRepository(TrainingRepositoryImpl trainingRepository) {
         return trainingRepository;
     }
 
     @Provides
     @Singleton
-    RunnimalApi runnimalApi(RunnimalApiImpl runnimalApi) {
+    RunnimalApi runnimalApi(LocalRunnimalApiImpl runnimalApi) {
         return runnimalApi;
     }
 

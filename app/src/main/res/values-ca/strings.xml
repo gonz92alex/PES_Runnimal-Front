@@ -25,7 +25,7 @@
     <string name="weight">Pes</string>
     <string name="age">Edat</string>
     <string name="sign_up">Registrar-se</string>
-    <string name="steps">"Passos "</string>
+    <string name="detail_training_steps">"Passos "</string>
     <string name="UserProfile">Perfil d\'usuari</string>
     <string name="Modify">Modificar</string>
     <string name="Save">Guardar</string>

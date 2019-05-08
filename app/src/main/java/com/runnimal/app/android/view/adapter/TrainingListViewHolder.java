@@ -1,7 +1,6 @@
 package com.runnimal.app.android.view.adapter;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -18,7 +17,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class TrainingViewHolder extends RecyclerView.ViewHolder {
+public class TrainingListViewHolder extends RecyclerView.ViewHolder {
 
     private final TrainingsPresenter trainingPresenter;
 
@@ -27,7 +26,7 @@ public class TrainingViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.text_training_name)
     TextView name;
 
-    public TrainingViewHolder(@NonNull View itemView, @NonNull TrainingsPresenter trainingPresenter) {
+    public TrainingListViewHolder(View itemView, TrainingsPresenter trainingPresenter) {
         super(itemView);
         this.trainingPresenter = trainingPresenter;
         ButterKnife.bind(this, itemView);
@@ -41,7 +40,8 @@ public class TrainingViewHolder extends RecyclerView.ViewHolder {
 
     private void onItemClick(final TrainingViewModel training) {
         itemView.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
+            @Override
+            public void onClick(View v) {
                 trainingPresenter.onTrainingClicked(training);
             }
         });
@@ -51,10 +51,6 @@ public class TrainingViewHolder extends RecyclerView.ViewHolder {
         if (photo != null) {
             Picasso.get().load(photo.toString()).fit().centerCrop().into(photoImageView);
         }
-    }
-
-    private Context getContext() {
-        return itemView.getContext();
     }
 
 }

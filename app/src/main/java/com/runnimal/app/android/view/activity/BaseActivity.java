@@ -4,10 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
-import com.runnimal.app.android.R;
-
 import butterknife.ButterKnife;
-import io.reactivex.annotations.Nullable;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
@@ -22,18 +19,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     /**
-     * Every object annotated its gonna injected trough butterknife
-     */
-    private void bindViews() {
-        ButterKnife.bind(this);
-    }
-
-    @Nullable
-    public Toolbar getToolbar() {
-        return mToolbar;
-    }
-
-    /**
      * @return The layout id that's gonna be the activity view.
      */
     protected abstract int getLayoutId();
@@ -43,4 +28,11 @@ public abstract class BaseActivity extends AppCompatActivity {
      * BaseActivity#bindViews()}
      */
     protected abstract void initView();
+
+    /**
+     * Every object annotated its gonna injected trough butterknife
+     */
+    private void bindViews() {
+        ButterKnife.bind(this);
+    }
 }
