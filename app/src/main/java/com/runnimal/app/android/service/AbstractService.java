@@ -17,12 +17,6 @@ public abstract class AbstractService {
         compositeDisposable = new CompositeDisposable();
     }
 
-    public void dispose() {
-        if (!compositeDisposable.isDisposed()) {
-            compositeDisposable.dispose();
-        }
-    }
-
     protected <T> void execute(Observable<T> useCase, DisposableObserver<T> callback) {
 
         if (callback == null) {

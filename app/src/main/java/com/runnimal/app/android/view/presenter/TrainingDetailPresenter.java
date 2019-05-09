@@ -48,7 +48,6 @@ public class TrainingDetailPresenter extends Presenter<TrainingDetailPresenter.V
     }
 
     public void destroy() {
-        this.trainingService.dispose();
         setView(null);
     }
 

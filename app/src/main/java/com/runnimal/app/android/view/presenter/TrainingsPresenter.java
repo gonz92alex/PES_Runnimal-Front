@@ -50,7 +50,6 @@ public class TrainingsPresenter extends Presenter<TrainingsPresenter.View> {
     }
 
     public void destroy() {
-        this.trainingService.dispose();
         setView(null);
     }
 
