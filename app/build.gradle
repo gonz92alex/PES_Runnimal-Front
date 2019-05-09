@@ -63,7 +63,7 @@ dependencies {
     implementation picasso
 
     implementation jacksonDependencies.core
-    //annotationProcessor jacksonDependencies.annotations
+    annotationProcessor jacksonDependencies.annotations
     implementation jacksonDependencies.databind
     implementation jacksonDependencies.datatypeJsr310
 
