@@ -1,7 +1,7 @@
 package com.runnimal.app.android.data.repository.impl;
 
 import com.runnimal.app.android.data.api.RunnimalApi;
-import com.runnimal.app.android.data.repository.TrainingRepository;
+import com.runnimal.app.android.data.repository.TrainingsRepository;
 import com.runnimal.app.android.domain.Training;
 
 import java.util.List;
@@ -12,12 +12,12 @@ import javax.inject.Singleton;
 import io.reactivex.Observable;
 
 @Singleton
-public class TrainingRepositoryImpl implements TrainingRepository {
+public class TrainingsRepositoryImpl implements TrainingsRepository {
 
     private final RunnimalApi api;
 
     @Inject
-    public TrainingRepositoryImpl(RunnimalApi api) {
+    public TrainingsRepositoryImpl(RunnimalApi api) {
         this.api = api;
     }
 

@@ -12,12 +12,12 @@ import javax.inject.Singleton;
 import io.reactivex.Observable;
 
 @Singleton
-public class PetRepositoryImpl implements PetsRepository {
+public class PetsRepositoryImpl implements PetsRepository {
 
     private final RunnimalApi api;
 
     @Inject
-    public PetRepositoryImpl(RunnimalApi api) {
+    public PetsRepositoryImpl(RunnimalApi api) {
         this.api = api;
     }
 
