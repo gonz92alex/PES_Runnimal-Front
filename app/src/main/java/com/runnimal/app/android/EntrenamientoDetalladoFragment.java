@@ -91,12 +91,12 @@ public class EntrenamientoDetalladoFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_entrenamiento_detallado, container, false);
-        mContentText = view.findViewById(R.id.content_tv);
-        mDescriptionText = view.findViewById(R.id.description_tv);
+        mContentText = view.findViewById(R.id.text_detail_training_name);
+        mDescriptionText = view.findViewById(R.id.text_detail_training_description);
         mContentText.setText(mContent);
         mDescriptionText.setText(mDescription);
 
-        recyclerView = (RecyclerView) view.findViewById(R.id.steps_list);
+        recyclerView = (RecyclerView) view.findViewById(R.id.list_training_steps);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
         if (EntrenamientoContent.getSteps(mId).size() == 0){
@@ -191,7 +191,7 @@ public class EntrenamientoDetalladoFragment extends Fragment {
 
             public StepsViewHolder(View itemView) {
                 super(itemView);
-                mText = (TextView) itemView.findViewById(R.id.step_tv);
+                mText = (TextView) itemView.findViewById(R.id.text_detail_training_steps_row);
             }
         }
     }

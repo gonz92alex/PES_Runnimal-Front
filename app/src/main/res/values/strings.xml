@@ -1,15 +1,15 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Runnimal</string>
     <string name="back">back</string>
     <string name="Login">Login</string>
     <string name="title_activity_god">GodActivity</string>
     <string name="title_home">Home</string>
     <string name="title_notifications">Notifications</string>
-    <string name="title_entrenamientos">Trainings</string>
+    <string name="navigation_trainings_title">Trainings</string>
     <string name="title_profile">Profile</string>
-    <string name="title_mapa">Map</string>
-    <string name="title_mascotas">Pets</string>
-    <string name="title_retos">Challenges</string>
+    <string name="navigation_map_title">Map</string>
+    <string name="navigation_pets_title">Pets</string>
+    <string name="navigation_challenges_title">Challenges</string>
     <string name="Password">Password</string>
     <string name="Forgot_password">Forgot Password</string>
     <string name="Create_Account">Create Account</string>
@@ -24,7 +24,7 @@
     <string name="weight">Weight</string>
     <string name="age">Age</string>
     <string name="sign_up">Sign Up</string>
-    <string name="steps">Steps</string>
+    <string name="detail_training_steps">Steps</string>
     <string name="UserProfile">User Profile</string>
     <string name="Modify">Modify</string>
     <string name="Save">Save</string>

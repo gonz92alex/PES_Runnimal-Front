@@ -12,7 +12,7 @@ public class EntrenamientoContent {
     public static final List<EntrenamientoItem> ITEMS = new ArrayList<EntrenamientoItem>();
 
     /**
-     * A map of sample (Entrenamiento) items, by ID.
+     * A navigation_map of sample (Entrenamiento) items, by ID.
      */
     public static final Map<String, EntrenamientoItem> ITEM_MAP = new HashMap<String, EntrenamientoItem>();
 
@@ -31,13 +31,13 @@ public class EntrenamientoContent {
         return new EntrenamientoItem(id, content, details);
     }
 
-    //obtiene los pasos a realizar para el ejercicio indicado con el parametro id.
+    //obtiene los pasos a realizar para el navigation_trainings indicado con el parametro id.
     public static ArrayList<String> getSteps(String id){
         if (ITEM_MAP.containsKey(id)) return ITEM_MAP.get(id).getSteps();
         return null;
     }
 
-    //guarda los pasos a realizar para el ejercicio indicado con el parametro id.(evitar llamar a la api si ya los tenemos)
+    //guarda los pasos a realizar para el navigation_trainings indicado con el parametro id.(evitar llamar a la api si ya los tenemos)
     public static boolean setSteps(String id, ArrayList<String> steps){
         for (int i=0;i<ITEMS.size();i++){
             if (ITEMS.get(i).getId().equals(id)){

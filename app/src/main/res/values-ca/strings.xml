@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Runnimal</string>
     <string name="back" translatable="false">Enrere</string>
     <string name="Login" translatable="false">inicar sessió</string>
     <string name="title_notifications">Notificacions</string>
-    <string name="title_entrenamientos">Entrenaments</string>
-    <string name="title_mapa">Mapa</string>
-    <string name="title_mascotas">Mascotes</string>
-    <string name="title_retos">Reptes</string>
+    <string name="navigation_trainings_title">Entrenaments</string>
+    <string name="navigation_map_title">Mapa</string>
+    <string name="navigation_pets_title">Mascotes</string>
+    <string name="navigation_challenges_title">Reptes</string>
     <string name="title_profile">Perfil</string>
     <string name="title_home">Principal</string>
     <string name="title_activity_god">GodActivity</string>
@@ -25,7 +25,7 @@
     <string name="weight">Pes</string>
     <string name="age">Edat</string>
     <string name="sign_up">Registrar-se</string>
-    <string name="steps">"Passos "</string>
+    <string name="detail_training_steps">"Passos "</string>
     <string name="UserProfile">Perfil d\'usuari</string>
     <string name="Modify">Modificar</string>
     <string name="Save">Guardar</string>

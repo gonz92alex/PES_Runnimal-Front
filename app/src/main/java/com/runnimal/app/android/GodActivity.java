@@ -55,19 +55,19 @@ public class GodActivity extends FragmentActivity implements EntrenamientoFragme
             Fragment fragment = null;
 
             switch (item.getItemId()) {
-                case R.id.navigation_mapa:
+                case R.id.navigation_map:
                     fragment = mapaFrag;
                     break;
 
-                case R.id.navigation_entrenamientos:
+                case R.id.navigation_trainings:
                     fragment = entrenamientoFragment;
                     break;
 
-                case R.id.navigation_retos:
+                case R.id.navigation_challenges:
                     fragment = retoFrag;
                     break;
 
-                case R.id.navigation_mascotas:
+                case R.id.navigation_pets:
                     fragment = mascotaFragment;
                     break;
             }

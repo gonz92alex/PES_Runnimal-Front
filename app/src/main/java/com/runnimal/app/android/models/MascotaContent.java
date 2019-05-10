@@ -12,7 +12,7 @@ public class MascotaContent {
     public static final List<MascotaItem> ITEMS = new ArrayList<MascotaItem>();
 
     /**
-     * A map of sample (Mascota) items, by ID.
+     * A navigation_map of sample (Mascota) items, by ID.
      */
     public static final Map<String, MascotaItem> ITEM_MAP = new HashMap<String, MascotaItem>();
 
