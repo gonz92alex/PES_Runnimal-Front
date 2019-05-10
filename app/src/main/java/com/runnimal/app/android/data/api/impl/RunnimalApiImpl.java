@@ -8,6 +8,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.runnimal.app.android.data.api.RunnimalApi;
+import com.runnimal.app.android.domain.Pet;
 import com.runnimal.app.android.domain.Ranking;
 import com.runnimal.app.android.domain.Training;
 import com.runnimal.app.android.util.JacksonFactory;
@@ -83,5 +84,53 @@ public class RunnimalApiImpl implements RunnimalApi {
     @Override
     public void getRanking(String id, RunnimalApiCallback<Ranking> rankingRunnimalApiCallback) {
 
+    }
+
+    @Override
+    public void listPets(String email, RunnimalApiCallback<List<Pet>> callback) {
+        // Instantiate the RequestQueue.
+        RequestQueue queue = Volley.newRequestQueue(context);
+        String url = "http://nidorana.fib.upc.edu/api/pets/user/" + email;
+
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, //
+                url, //
+                (response) -> {
+                    Log.d("apiRes", "onResponse: respondido!");
+                    callback.responseOK(jacksonFactory.toList(response, Pet.class));
+
+                }, //
+                (error) -> {
+                    Log.d("apiError", error.toString());
+                    callback.responseError(error);
+                }
+        );
+
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
+    }
+
+    @Override
+    public void getPet(String id, RunnimalApiCallback<Pet> callback) {
+        // Instantiate the RequestQueue.
+        RequestQueue queue = Volley.newRequestQueue(context);
+        String url = "http://nidorana.fib.upc.edu/api/trainnings/" + id;
+
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, //
+                url, //
+                (response) -> {
+                    Log.d("apiRes", "onResponse: respondido!");
+                    callback.responseOK(jacksonFactory.toObject(response, Pet.class));
+
+                }, //
+                (error) -> {
+                    Log.d("apiError", error.toString());
+                    callback.responseError(error);
+                }
+        );
+
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
     }
 }

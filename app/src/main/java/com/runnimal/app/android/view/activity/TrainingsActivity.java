@@ -9,7 +9,7 @@ import android.widget.SearchView;
 
 import com.runnimal.app.android.R;
 import com.runnimal.app.android.RunnimalApplication;
-import com.runnimal.app.android.view.adapter.TrainingListAdapter;
+import com.runnimal.app.android.view.adapter.TrainingsListAdapter;
 import com.runnimal.app.android.view.presenter.TrainingsPresenter;
 import com.runnimal.app.android.view.viewmodel.TrainingViewModel;
 
@@ -23,13 +23,13 @@ public class TrainingsActivity extends BaseActivity implements TrainingsPresente
 
     @Inject
     TrainingsPresenter presenter;
-    TrainingListAdapter adapter;
+    TrainingsListAdapter adapter;
 
     @BindView(R.id.search_trainings)
     SearchView searchView;
     @BindView(R.id.list_trainings)
     RecyclerView trainingList;
-    @BindView(R.id.progress_bar)
+    @BindView(R.id.trainings_progress_bar)
     ProgressBar progressBar;
 
     @Override
@@ -49,12 +49,6 @@ public class TrainingsActivity extends BaseActivity implements TrainingsPresente
         initializeAdapter();
         initializeRecyclerView();
         presenter.initialize();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        presenter.destroy();
     }
 
     @Override
@@ -103,7 +97,7 @@ public class TrainingsActivity extends BaseActivity implements TrainingsPresente
     }
 
     private void initializeAdapter() {
-        adapter = new TrainingListAdapter(presenter);
+        adapter = new TrainingsListAdapter(presenter);
     }
 
     private void initializeRecyclerView() {

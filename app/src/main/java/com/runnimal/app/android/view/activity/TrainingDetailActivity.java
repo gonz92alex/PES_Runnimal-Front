@@ -39,7 +39,7 @@ public class TrainingDetailActivity extends BaseActivity implements TrainingDeta
     ImageView image;
     @BindView(R.id.text_detail_training_description)
     TextView description;
-    @BindView(R.id.progress_bar)
+    @BindView(R.id.training_detail_progress_bar)
     ProgressBar progressBar;
     @BindView(R.id.button_add_points)
     Button buttonPoints;
@@ -69,12 +69,6 @@ public class TrainingDetailActivity extends BaseActivity implements TrainingDeta
         initializeAdapter();
         initializeRecyclerView();
         presenter.initialize();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        presenter.destroy();
     }
 
     @Override

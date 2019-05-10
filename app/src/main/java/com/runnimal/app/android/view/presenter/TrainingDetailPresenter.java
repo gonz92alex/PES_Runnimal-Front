@@ -47,10 +47,6 @@ public class TrainingDetailPresenter extends Presenter<TrainingDetailPresenter.V
                 });
     }
 
-    public void destroy() {
-        setView(null);
-    }
-
     public interface View extends Presenter.View {
 
         void showTraining(TrainingViewModel training);

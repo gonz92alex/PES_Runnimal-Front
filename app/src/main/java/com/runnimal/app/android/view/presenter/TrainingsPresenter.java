@@ -1,7 +1,8 @@
 package com.runnimal.app.android.view.presenter;
 
 import com.runnimal.app.android.domain.Training;
-import com.runnimal.app.android.service.TrainingServiceImpl;
+import com.runnimal.app.android.service.TrainingService;
+import com.runnimal.app.android.util.ConverterUtils;
 import com.runnimal.app.android.view.viewmodel.TrainingViewModel;
 import com.runnimal.app.android.view.viewmodel.converter.TrainingViewModelConverter;
 
@@ -13,10 +14,10 @@ import io.reactivex.observers.DisposableObserver;
 
 public class TrainingsPresenter extends Presenter<TrainingsPresenter.View> {
 
-    private TrainingServiceImpl trainingService;
+    private TrainingService trainingService;
 
     @Inject
-    public TrainingsPresenter(TrainingServiceImpl trainingService) {
+    public TrainingsPresenter(TrainingService trainingService) {
         this.trainingService = trainingService;
     }
 
@@ -28,7 +29,7 @@ public class TrainingsPresenter extends Presenter<TrainingsPresenter.View> {
 
             @Override
             public void onNext(List<Training> trainings) {
-                List<TrainingViewModel> trainingViewModels = TrainingViewModelConverter.convert(trainings);
+                List<TrainingViewModel> trainingViewModels = ConverterUtils.convert(trainings, TrainingViewModelConverter::convert);
                 getView().showTrainingList(trainingViewModels);
             }
 
@@ -47,10 +48,6 @@ public class TrainingsPresenter extends Presenter<TrainingsPresenter.View> {
 
     public void onTrainingClicked(TrainingViewModel training) {
         getView().openTrainingScreen(training);
-    }
-
-    public void destroy() {
-        setView(null);
     }
 
     public interface View extends Presenter.View {

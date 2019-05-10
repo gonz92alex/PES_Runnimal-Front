@@ -16,13 +16,13 @@ import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
-public class TrainingListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class TrainingsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private final TrainingsPresenter presenter;
     private final List<TrainingViewModel> trainingList;
     private final List<TrainingViewModel> filteredList;
 
-    public TrainingListAdapter(TrainingsPresenter presenter) {
+    public TrainingsListAdapter(TrainingsPresenter presenter) {
         this.presenter = presenter;
         this.trainingList = new ArrayList<>();
         this.filteredList = new ArrayList<>();
@@ -36,9 +36,9 @@ public class TrainingListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        TrainingListViewHolder trainingViewHolder = (TrainingListViewHolder) holder;
+        TrainingListViewHolder trainingListViewHolder = (TrainingListViewHolder) holder;
         TrainingViewModel training = filteredList.get(position);
-        trainingViewHolder.render(training);
+        trainingListViewHolder.render(training);
     }
 
     @Override

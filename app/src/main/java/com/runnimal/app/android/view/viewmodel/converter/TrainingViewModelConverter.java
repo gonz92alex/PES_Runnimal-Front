@@ -10,6 +10,10 @@ import java.util.stream.Collectors;
 public class TrainingViewModelConverter {
 
     public static TrainingViewModel convert(Training training) {
+        if (training == null) {
+            return null;
+        }
+
         TrainingViewModel trainingViewModel = new TrainingViewModel() //
                 .setId(training.getId()) //
                 .setName(training.getName()) //
@@ -19,11 +23,5 @@ public class TrainingViewModelConverter {
         trainingViewModel.setImageUrl(URI.create("http://nidorana.fib.upc.edu/api/photo/trainnings/" + training.getId()));
 
         return trainingViewModel;
-    }
-
-    public static List<TrainingViewModel> convert(List<Training> trainings) {
-        return trainings.stream() //
-                .map(TrainingViewModelConverter::convert) //
-                .collect(Collectors.toList());
     }
 }

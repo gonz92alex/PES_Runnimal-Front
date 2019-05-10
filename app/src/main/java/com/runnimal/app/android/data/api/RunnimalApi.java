@@ -1,5 +1,6 @@
 package com.runnimal.app.android.data.api;
 
+import com.runnimal.app.android.domain.Pet;
 import com.runnimal.app.android.domain.Ranking;
 import com.runnimal.app.android.domain.Training;
 
@@ -12,6 +13,10 @@ public interface RunnimalApi {
     void listRanking(RunnimalApiCallback<List<Ranking>> callback);
 
     void getTraining(String id, RunnimalApiCallback<Training> callback);
+
+    void listPets(String email, RunnimalApiCallback<List<Pet>> callback);
+
+    void getPet(String id, RunnimalApiCallback<Pet> callback);
 
     void getRanking(String id, RunnimalApiCallback<Ranking> rankingRunnimalApiCallback);
 

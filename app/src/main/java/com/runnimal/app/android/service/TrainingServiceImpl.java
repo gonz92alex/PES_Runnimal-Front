@@ -1,6 +1,6 @@
 package com.runnimal.app.android.service;
 
-import com.runnimal.app.android.data.repository.TrainingRepository;
+import com.runnimal.app.android.data.repository.TrainingsRepository;
 import com.runnimal.app.android.domain.Training;
 
 import java.util.List;
@@ -13,12 +13,12 @@ import io.reactivex.observers.DisposableObserver;
 
 public class TrainingServiceImpl extends AbstractService implements TrainingService {
 
-    private final TrainingRepository trainingRepository;
+    private final TrainingsRepository trainingRepository;
 
     @Inject
     public TrainingServiceImpl(@Named("executor_thread") Scheduler executorThread, //
                                @Named("ui_thread") Scheduler uiThread, //
-                               TrainingRepository trainingRepository) {
+                               TrainingsRepository trainingRepository) {
         super(executorThread, uiThread);
         this.trainingRepository = trainingRepository;
     }
