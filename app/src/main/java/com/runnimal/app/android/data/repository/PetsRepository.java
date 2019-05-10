@@ -8,7 +8,7 @@ import io.reactivex.Observable;
 
 public interface PetsRepository {
 
-    Observable<List<Pet>> list(String email);
+    Observable<List<Pet>> list();
 
     Observable<Pet> get(String id);
 }

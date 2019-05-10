@@ -6,14 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.runnimal.app.android.R;
-import com.runnimal.app.android.models.EntrenamientoContent;
 import com.runnimal.app.android.view.presenter.TrainingsPresenter;
 import com.runnimal.app.android.view.viewmodel.TrainingViewModel;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Locale;
 import java.util.stream.Collectors;
 
 public class TrainingsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -31,12 +29,12 @@ public class TrainingsListAdapter extends RecyclerView.Adapter<RecyclerView.View
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.content_trainings_row, parent, false);
-        return new TrainingListViewHolder(view, presenter);
+        return new TrainingsListViewHolder(view, presenter);
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        TrainingListViewHolder trainingListViewHolder = (TrainingListViewHolder) holder;
+        TrainingsListViewHolder trainingListViewHolder = (TrainingsListViewHolder) holder;
         TrainingViewModel training = filteredList.get(position);
         trainingListViewHolder.render(training);
     }

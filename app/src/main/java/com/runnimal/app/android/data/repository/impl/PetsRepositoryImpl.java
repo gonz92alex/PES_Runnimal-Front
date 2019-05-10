@@ -1,5 +1,6 @@
 package com.runnimal.app.android.data.repository.impl;
 
+import com.runnimal.app.android.SingletonSession;
 import com.runnimal.app.android.data.api.RunnimalApi;
 import com.runnimal.app.android.data.repository.PetsRepository;
 import com.runnimal.app.android.domain.Pet;
@@ -22,9 +23,9 @@ public class PetsRepositoryImpl implements PetsRepository {
     }
 
     @Override
-    public Observable<List<Pet>> list(String email) {
+    public Observable<List<Pet>> list() {
         return Observable.create(emitter -> {
-            api.listPets(email, new RunnimalApi.RunnimalApiCallback<List<Pet>>() {
+            api.listPets(new RunnimalApi.RunnimalApiCallback<List<Pet>>() {
                 @Override
                 public void responseOK(List<Pet> pets) {
                     emitter.onNext(pets);

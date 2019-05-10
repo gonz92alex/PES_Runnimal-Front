@@ -14,7 +14,7 @@ public interface RunnimalApi {
 
     void getTraining(String id, RunnimalApiCallback<Training> callback);
 
-    void listPets(String email, RunnimalApiCallback<List<Pet>> callback);
+    void listPets(RunnimalApiCallback<List<Pet>> callback);
 
     void getPet(String id, RunnimalApiCallback<Pet> callback);
 

@@ -20,7 +20,7 @@ public class PetViewModel {
     private URI imageUrl;
 
     private int weight;
-    private String race;
+    private String breed;
     private int birth;
     private Pet.PetSize size;
 

@@ -48,6 +48,7 @@ public class TrainingsActivity extends BaseActivity implements TrainingsPresente
         initializePresenter();
         initializeAdapter();
         initializeRecyclerView();
+        initializeSearch();
         presenter.initialize();
     }
 
@@ -67,24 +68,11 @@ public class TrainingsActivity extends BaseActivity implements TrainingsPresente
     public void showTrainingList(List<TrainingViewModel> trainingList) {
         adapter.addAll(trainingList);
         adapter.notifyDataSetChanged();
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                adapter.filter(newText);
-                return true;
-            }
-        });
     }
 
     @Override
     public void openTrainingScreen(TrainingViewModel training) {
-        TrainingDetailActivity.open(TrainingsActivity.this, training.getId());
+        TrainingDetailActivity.open(this, training.getId());
     }
 
     private void initializeDagger() {
@@ -105,5 +93,20 @@ public class TrainingsActivity extends BaseActivity implements TrainingsPresente
         trainingList.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         trainingList.setHasFixedSize(true);
         trainingList.setAdapter(adapter);
+    }
+
+    private void initializeSearch() {
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.filter(newText);
+                return true;
+            }
+        });
     }
 }

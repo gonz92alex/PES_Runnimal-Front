@@ -1,6 +1,5 @@
 package com.runnimal.app.android.service;
 
-import com.runnimal.app.android.SingletonSession;
 import com.runnimal.app.android.data.repository.PetsRepository;
 import com.runnimal.app.android.domain.Pet;
 
@@ -26,6 +25,11 @@ public class PetsServiceImpl extends AbstractService implements PetsService {
 
     @Override
     public void list(DisposableObserver<List<Pet>> callback) {
-        execute(petsRepository.list(SingletonSession.Instance().getMail()), callback);
+        execute(petsRepository.list(), callback);
+    }
+
+    @Override
+    public void get(String id, DisposableObserver<Pet> callback) {
+        execute(petsRepository.get(id), callback);
     }
 }

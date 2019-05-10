@@ -55,7 +55,7 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
     }
 
     @Override
-    public void listPets(String email, RunnimalApiCallback<List<Pet>> callback) {
+    public void listPets(RunnimalApiCallback<List<Pet>> callback) {
         try {
             callback.responseOK(jacksonFactory.toList(IOUtils.getResource(PETS_FILE), Pet.class));
         } catch (Exception e) {

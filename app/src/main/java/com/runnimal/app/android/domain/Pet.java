@@ -24,7 +24,8 @@ public class Pet {
     private String description;
 
     private int weight;
-    private String race;
+    @JsonAlias("race")
+    private String breed;
     private int birth;
     private PetSize size;
 

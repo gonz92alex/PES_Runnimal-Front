@@ -84,7 +84,7 @@ public class ProfileFragment extends Fragment {
         imageRelation = (ImageView) profileView.findViewById(R.id.imgEdit);
         //Si estas viendo tu perfil:
         if (mCorreo.equals(SingletonSession.Instance().getMail())){
-            imageRelation.setImageResource(R.drawable.ic_edit2);
+            imageRelation.setImageResource(R.drawable.icon_edit);
             imageRelation.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -123,7 +123,7 @@ public class ProfileFragment extends Fragment {
                             JSONArray jsonArray = new JSONArray(response);
                             for (int i=0;i<jsonArray.length();i++){
                                 JSONObject mascota = jsonArray.getJSONObject(i);
-                                MascotaContent.añadirItem(mascota.getString("_id"),mascota.getString("name"),mascota.getString("description"),mascota.getString("size"), mascota.getString("birth"),mascota.getString("weight"), mascota.getString("race"),mascota.getJSONObject("owner").getString("email"), mascota.getJSONObject("owner").getString("alias"));
+                                MascotaContent.añadirItem(mascota.getString("_id"),mascota.getString("name"),mascota.getString("description"),mascota.getString("size"), mascota.getString("birth"),mascota.getString("weight"), mascota.getString("breed"),mascota.getJSONObject("owner").getString("email"), mascota.getJSONObject("owner").getString("alias"));
                             }
                             petList.setAdapter(new MascotaHorizontalAdapter(MascotaContent.belongsTo(mCorreo), mListener));
                         } catch (JSONException e) {

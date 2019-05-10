@@ -7,6 +7,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.runnimal.app.android.SingletonSession;
 import com.runnimal.app.android.data.api.RunnimalApi;
 import com.runnimal.app.android.domain.Pet;
 import com.runnimal.app.android.domain.Ranking;
@@ -87,10 +88,10 @@ public class RunnimalApiImpl implements RunnimalApi {
     }
 
     @Override
-    public void listPets(String email, RunnimalApiCallback<List<Pet>> callback) {
+    public void listPets(RunnimalApiCallback<List<Pet>> callback) {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(context);
-        String url = "http://nidorana.fib.upc.edu/api/pets/user/" + email;
+        String url = "http://nidorana.fib.upc.edu/api/pets/user/" + SingletonSession.Instance().getMail();
 
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, //
@@ -114,7 +115,7 @@ public class RunnimalApiImpl implements RunnimalApi {
     public void getPet(String id, RunnimalApiCallback<Pet> callback) {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(context);
-        String url = "http://nidorana.fib.upc.edu/api/trainnings/" + id;
+        String url = "http://nidorana.fib.upc.edu/api/pets/" + SingletonSession.Instance().getMail() + "/" + id;
 
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, //

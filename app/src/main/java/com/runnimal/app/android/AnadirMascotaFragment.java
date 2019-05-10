@@ -223,7 +223,7 @@ public class AnadirMascotaFragment extends Fragment {
         JSONObject jsonBody = new JSONObject();
         jsonBody.put("name", name);
         jsonBody.put("description", description);
-        jsonBody.put("race", breed);
+        jsonBody.put("breed", breed);
         jsonBody.put("weight", weight);
         jsonBody.put("size", size);
         jsonBody.put("birth", year);

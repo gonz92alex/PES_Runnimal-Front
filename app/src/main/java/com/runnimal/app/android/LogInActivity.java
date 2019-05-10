@@ -136,7 +136,7 @@ public class LogInActivity extends AppCompatActivity {
                             JSONArray jsonArray = new JSONArray(response);
                             for (int i = 0; i < jsonArray.length(); i++){
                                 JSONObject pet = jsonArray.getJSONObject(i);
-                                MascotaContent.añadirItem(pet.getString("_id"), pet.getString("name"), pet.getString("description"), pet.getString("size"), pet.getString("birth"), pet.getString("weight"), pet.getString("race"), email, pet.getJSONObject("owner").getString("alias"));
+                                MascotaContent.añadirItem(pet.getString("_id"), pet.getString("name"), pet.getString("description"), pet.getString("size"), pet.getString("birth"), pet.getString("weight"), pet.getString("breed"), email, pet.getJSONObject("owner").getString("alias"));
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

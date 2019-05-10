@@ -17,7 +17,7 @@ public class PetViewModelConverter {
                 .setName(pet.getName()) //
                 .setDescription(pet.getDescription()) //
                 .setWeight(pet.getWeight()) //
-                .setRace(pet.getRace()) //
+                .setBreed(pet.getBreed()) //
                 .setBirth(pet.getBirth()) //
                 .setSize(pet.getSize());
 

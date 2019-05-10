@@ -1,9 +1,11 @@
 package com.runnimal.app.android.view.activity;
 
+import android.content.Intent;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 
 import com.runnimal.app.android.R;
@@ -24,6 +26,8 @@ public class PetsActivity extends BaseActivity implements PetsPresenter.View {
     PetsPresenter presenter;
     PetsListAdapter adapter;
 
+    @BindView(R.id.button_pets_add)
+    Button addButton;
     @BindView(R.id.list_pets)
     RecyclerView petsList;
     @BindView(R.id.pets_progress_bar)
@@ -45,6 +49,7 @@ public class PetsActivity extends BaseActivity implements PetsPresenter.View {
         initializePresenter();
         initializeAdapter();
         initializeRecyclerView();
+        initializeAddButton();
         presenter.initialize();
     }
 
@@ -67,8 +72,8 @@ public class PetsActivity extends BaseActivity implements PetsPresenter.View {
     }
 
     @Override
-    public void openPetScreen(PetViewModel training) {
-        //startActivity(new Intent(this, PetDetailActivity.class));
+    public void openPetScreen(PetViewModel pet) {
+        PetDetailActivity.open(this, pet.getName());
     }
 
     private void initializeDagger() {
@@ -89,5 +94,11 @@ public class PetsActivity extends BaseActivity implements PetsPresenter.View {
         petsList.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         petsList.setHasFixedSize(true);
         petsList.setAdapter(adapter);
+    }
+
+    private void initializeAddButton() {
+        addButton.setOnClickListener((view) -> {
+            startActivity(new Intent(this, PetAddActivity.class));
+        });
     }
 }

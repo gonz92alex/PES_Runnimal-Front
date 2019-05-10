@@ -39,12 +39,12 @@ public class TrainingDetailActivity extends BaseActivity implements TrainingDeta
     ImageView image;
     @BindView(R.id.text_detail_training_description)
     TextView description;
-    @BindView(R.id.training_detail_progress_bar)
-    ProgressBar progressBar;
     @BindView(R.id.button_add_points)
     Button buttonPoints;
     @BindView(R.id.list_training_steps)
     RecyclerView trainingStepsList;
+    @BindView(R.id.training_detail_progress_bar)
+    ProgressBar progressBar;
 
     public static void open(Context context, String trainingId) {
         Intent intent = new Intent(context, TrainingDetailActivity.class);

@@ -5,6 +5,7 @@ import android.content.Context;
 import com.runnimal.app.android.di.modules.MainModule;
 import com.runnimal.app.android.di.modules.RepositoryModule;
 import com.runnimal.app.android.di.modules.ServiceModule;
+import com.runnimal.app.android.view.activity.PetDetailActivity;
 import com.runnimal.app.android.view.activity.PetsActivity;
 import com.runnimal.app.android.domain.Ranking;
 import com.runnimal.app.android.view.activity.RankingActivity;
@@ -26,6 +27,8 @@ public interface MainComponent {
     void inject(TrainingDetailActivity activity);
 
     void inject(PetsActivity activity);
+
+    void inject(PetDetailActivity activity);
 
     Context context();
 }
