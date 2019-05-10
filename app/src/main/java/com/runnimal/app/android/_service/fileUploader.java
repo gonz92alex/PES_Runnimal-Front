@@ -36,7 +36,6 @@ public class fileUploader {
                 new Response.Listener<NetworkResponse>() {
                     @Override
                     public void onResponse(NetworkResponse response) {
-                        Log.d("ressssssoo",new String(response.data));
                         rQueue.getCache().clear();
                     }
                 },

@@ -6,6 +6,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.runnimal.app.android.R;
+import com.runnimal.app.android._service.fileUploader;
+import com.runnimal.app.android.view.activity.TrainingsActivity;
 import com.runnimal.app.android.view.presenter.TrainingsPresenter;
 import com.runnimal.app.android.view.viewmodel.TrainingViewModel;
 import com.squareup.picasso.Picasso;
@@ -33,7 +35,7 @@ public class TrainingListViewHolder extends RecyclerView.ViewHolder {
 
     public void render(TrainingViewModel training) {
         onItemClick(training);
-        getImage(training.getImageUrl(), image);
+        getImage(training.getId(), image);
         name.setText(training.getName());
     }
 
@@ -41,10 +43,19 @@ public class TrainingListViewHolder extends RecyclerView.ViewHolder {
         itemView.setOnClickListener(v -> trainingPresenter.onTrainingClicked(training));
     }
 
-    private void getImage(URI photo, ImageView photoImageView) {
+    /*private void getImage(URI photo, ImageView photoImageView) {
         if (photo != null) {
             Picasso.get().load(photo.toString()).fit().centerCrop().into(photoImageView);
         }
+    }*/
+
+    private void getImage(String id, ImageView photoImageView){
+        //toDO Esta feo que la url este aqui
+        String url = "http://nidorana.fib.upc.edu/api/photo/trainnings/" + id;
+        Picasso.get().load(url)
+                .fit()
+                .centerCrop()
+                .into(photoImageView);
     }
 
 }
