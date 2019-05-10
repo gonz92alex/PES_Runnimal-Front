@@ -16,28 +16,32 @@
         android:label="Runnimal"
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="HardcodedDebugMode">
 
+        <activity
+            android:name=".view.activity.MapActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".view.activity.TrainingsActivity" />
+
+        <activity android:name=".view.activity.TrainingDetailActivity" />
+
+        <activity android:name=".view.activity.ChallengesActivity" />
+
+        <activity android:name=".view.activity.PetsActivity" />
+
         <!--
-                <activity
-                    android:name=".view.activity.TrainingsActivity"
-                    android:label="@string/app_name"
-                    android:theme="@style/AppTheme.NoActionBar">
-                    <intent-filter>
-                        <action android:name="android.intent.action.MAIN"/>
-                        <action android:name="android.intent.action.VIEW"/>
-                        <category android:name="android.intent.category.LAUNCHER"/>
-                    </intent-filter>
-                </activity>
-
-                <activity
-                    android:name=".view.activity.TrainingDetailActivity"
-                    android:theme="@style/AppTheme.NoActionBar"/>
-        -->
-
         <activity
             android:name="com.runnimal.app.android.GodActivity"
             android:label="@string/title_activity_god"
@@ -58,7 +62,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        -->
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />

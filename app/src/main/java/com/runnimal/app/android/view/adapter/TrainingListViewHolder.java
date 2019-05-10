@@ -1,6 +1,5 @@
 package com.runnimal.app.android.view.adapter;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -39,12 +38,7 @@ public class TrainingListViewHolder extends RecyclerView.ViewHolder {
     }
 
     private void onItemClick(final TrainingViewModel training) {
-        itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                trainingPresenter.onTrainingClicked(training);
-            }
-        });
+        itemView.setOnClickListener(v -> trainingPresenter.onTrainingClicked(training));
     }
 
     private void getImage(URI photo, ImageView photoImageView) {

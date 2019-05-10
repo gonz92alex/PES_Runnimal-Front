@@ -46,6 +46,31 @@ public class TrainingDetailActivity extends BaseActivity implements TrainingDeta
     }
 
     @Override
+    protected int getLayoutId() {
+        return R.layout.activity_training_detail;
+    }
+
+    @Override
+    protected int getNavigationMenuItemId() {
+        return R.id.navigation_trainings;
+    }
+
+    @Override
+    public void initView() {
+        initializeDagger();
+        initializePresenter();
+        initializeAdapter();
+        initializeRecyclerView();
+        presenter.initialize();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.destroy();
+    }
+
+    @Override
     public void showLoading() {
         progressBar.setVisibility(View.VISIBLE);
         container.setVisibility(View.GONE);
@@ -63,26 +88,6 @@ public class TrainingDetailActivity extends BaseActivity implements TrainingDeta
         description.setText(training.getDescription());
         adapter.addAll(training.getSteps());
         adapter.notifyDataSetChanged();
-    }
-
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_training_detail;
-    }
-
-    @Override
-    public void initView() {
-        initializeDagger();
-        initializePresenter();
-        initializeAdapter();
-        initializeRecyclerView();
-        presenter.initialize();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        presenter.destroy();
     }
 
     private void initializeDagger() {
@@ -106,5 +111,5 @@ public class TrainingDetailActivity extends BaseActivity implements TrainingDeta
         trainingStepsList.setHasFixedSize(true);
         trainingStepsList.setAdapter(adapter);
     }
-    
+
 }

@@ -1,38 +1,78 @@
 package com.runnimal.app.android.view.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
+
+import com.runnimal.app.android.R;
 
 import butterknife.ButterKnife;
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
-    private Toolbar mToolbar;
+    protected BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
+        initNavigation();
         bindViews();
         initView();
     }
 
-    /**
-     * @return The layout id that's gonna be the activity view.
-     */
+    // Remove inter-activity transition to avoid screen tossing on tapping bottom navigation items
+    @Override
+    public void onPause() {
+        super.onPause();
+        overridePendingTransition(0, 0);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        updateNavigationBarState();
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        bottomNavigationView.postDelayed(() -> {
+            int itemId = item.getItemId();
+            if (itemId == R.id.navigation_map) {
+                startActivity(new Intent(this, MapActivity.class));
+            } else if (itemId == R.id.navigation_trainings) {
+                startActivity(new Intent(this, TrainingsActivity.class));
+            } else if (itemId == R.id.navigation_challenges) {
+                startActivity(new Intent(this, ChallengesActivity.class));
+            } else if (itemId == R.id.navigation_pets) {
+                startActivity(new Intent(this, PetsActivity.class));
+            }
+            finish();
+        }, 300);
+        return true;
+    }
+
     protected abstract int getLayoutId();
 
-    /**
-     * Use this method to initialize view components. This method is called after {@link
-     * BaseActivity#bindViews()}
-     */
+    protected abstract int getNavigationMenuItemId();
+
     protected abstract void initView();
 
-    /**
-     * Every object annotated its gonna injected trough butterknife
-     */
+    private void initNavigation() {
+        bottomNavigationView = findViewById(R.id.navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(this);
+    }
+
     private void bindViews() {
         ButterKnife.bind(this);
     }
+
+    private void updateNavigationBarState() {
+        int actionId = getNavigationMenuItemId();
+        MenuItem item = bottomNavigationView.getMenu().findItem(actionId);
+        item.setChecked(true);
+    }
+
 }

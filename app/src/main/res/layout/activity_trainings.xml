@@ -47,5 +47,12 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:visibility="visible" />
+
+        <include
+            layout="@layout/element_bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            />
     </LinearLayout>
 </ScrollView>

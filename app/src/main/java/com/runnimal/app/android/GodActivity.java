@@ -140,7 +140,7 @@ public class GodActivity extends FragmentActivity implements EntrenamientoFragme
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(nOnNavigationItemSelectedListener);
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation_old);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         /* esto es para poder cambiar el drawer con la info del usuario */
