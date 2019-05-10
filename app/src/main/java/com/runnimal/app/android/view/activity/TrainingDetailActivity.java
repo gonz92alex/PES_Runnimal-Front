@@ -6,6 +6,7 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -36,6 +37,8 @@ public class TrainingDetailActivity extends BaseActivity implements TrainingDeta
     TextView description;
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
+    @BindView(R.id.button_add_points)
+    Button buttonPoints;
     @BindView(R.id.list_training_steps)
     RecyclerView trainingStepsList;
 

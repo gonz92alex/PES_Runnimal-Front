@@ -58,5 +58,6 @@
     <string name="Solicitudes">Request</string>
     <string name="idioma">Language</string>
     <string name="Delete">Delete</string>
+    <string name="Completed">Completed</string>
 
 </resources>

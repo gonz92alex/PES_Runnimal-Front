@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activity.TrainingDetailActivity">
-
+    tools:context=".view.activity.PetsActivity"> <!-- aqui tendre que poner la activity de ranking -->
     <ScrollView
         android:id="@+id/detail_training_container"
         android:layout_width="match_parent"
@@ -27,7 +25,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/text_detail_training_name"
+                android:id="@+id/text_ranking_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -36,38 +34,27 @@
                 android:textSize="28sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
             <TextView
-                android:id="@+id/text_detail_training_description"
+                android:id="@+id/text_ranking_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:textSize="24sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_detail_training_name" />
-
-            <TextView
-                android:id="@+id/text_detail_training_steps_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:text="@string/detail_training_steps"
+                android:layout_marginTop="15dp"
                 android:textColor="@color/colorPrimaryDark"
-                android:textSize="22sp"
+                android:textSize="28sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_detail_training_description" />
+                app:layout_constraintTop_toBottomOf="@+id/text_ranking_title" />
+
             <Button
                 android:id="@+id/button_add_points"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/Completed"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_detail_training_steps_title" />
+                app:layout_constraintTop_toBottomOf="@+id/text_ranking_description" />
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/list_training_steps"
+                android:id="@+id/list_users_ranking"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -94,4 +81,7 @@
         app:itemIconTint="#ffffff"
         app:itemTextColor="#ffffff"
         app:menu="@menu/navigation" />
+
 </RelativeLayout>
+
+
