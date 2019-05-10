@@ -3,7 +3,6 @@ package com.runnimal.app.android.view.activity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
@@ -32,6 +31,31 @@ public class TrainingsActivity extends BaseActivity implements TrainingsPresente
     RecyclerView trainingList;
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_trainings;
+    }
+
+    @Override
+    protected int getNavigationMenuItemId() {
+        return R.id.navigation_trainings;
+    }
+
+    @Override
+    protected void initView() {
+        initializeDagger();
+        initializePresenter();
+        initializeAdapter();
+        initializeRecyclerView();
+        presenter.initialize();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.destroy();
+    }
 
     @Override
     public void showLoading() {
@@ -67,26 +91,6 @@ public class TrainingsActivity extends BaseActivity implements TrainingsPresente
     @Override
     public void openTrainingScreen(TrainingViewModel training) {
         TrainingDetailActivity.open(TrainingsActivity.this, training.getId());
-    }
-
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_trainings;
-    }
-
-    @Override
-    protected void initView() {
-        initializeDagger();
-        initializePresenter();
-        initializeAdapter();
-        initializeRecyclerView();
-        presenter.initialize();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        presenter.destroy();
     }
 
     private void initializeDagger() {

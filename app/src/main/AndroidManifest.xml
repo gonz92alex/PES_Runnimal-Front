@@ -16,48 +16,43 @@
         android:label="Runnimal"
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="HardcodedDebugMode">
 
-        <!--
-                <activity
-                    android:name=".view.activity.TrainingsActivity"
-                    android:label="@string/app_name"
-                    android:theme="@style/AppTheme.NoActionBar">
-                    <intent-filter>
-                        <action android:name="android.intent.action.MAIN"/>
-                        <action android:name="android.intent.action.VIEW"/>
-                        <category android:name="android.intent.category.LAUNCHER"/>
-                    </intent-filter>
-                </activity>
+        <activity
+            android:name="com.runnimal.app.android.MainActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
 
-                <activity
-                    android:name=".view.activity.TrainingDetailActivity"
-                    android:theme="@style/AppTheme.NoActionBar"/>
-        -->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name="com.runnimal.app.android.LogInActivity" />
+
+        <activity android:name="com.runnimal.app.android.SignUpActivity" />
 
         <activity
             android:name="com.runnimal.app.android.GodActivity"
             android:label="@string/title_activity_god"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name="com.runnimal.app.android.LogInActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.runnimal.app.android.SignUpActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.runnimal.app.android.MainActivity"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+
+        <!-- New activities -->
+        <activity android:name=".view.activity.MapActivity" />
+
+        <activity android:name=".view.activity.TrainingsActivity" />
+
+        <activity android:name=".view.activity.TrainingDetailActivity" />
+
+        <activity android:name=".view.activity.ChallengesActivity" />
+
+        <activity android:name=".view.activity.PetsActivity" />
 
         <uses-library
             android:name="org.apache.http.legacy"
