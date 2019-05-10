@@ -76,8 +76,8 @@ public class MyEntrenamientoRecyclerViewAdapter extends RecyclerView.Adapter<MyE
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mContentView = (TextView) view.findViewById(R.id.text_training_name);
-            mImage = (ImageView) view.findViewById(R.id.image_training);
+            mContentView = (TextView) view.findViewById(R.id.content);
+            mImage = (ImageView) view.findViewById(R.id.imagenEntrenamiento);
         }
 
         @Override
