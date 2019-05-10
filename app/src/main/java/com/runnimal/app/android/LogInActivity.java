@@ -103,7 +103,7 @@ public class LogInActivity extends AppCompatActivity {
     }
 
     public void LoginOk(String email, String nombre, String id /* falta añadir las fotos */){
-        Intent LoginIntent = new Intent(this, GodActivity.class);
+        Intent LoginIntent = new Intent(this, MapActivity.class);
         SingletonSession.Instance().setMail(email);
         SingletonSession.Instance().setUsername(nombre);
         SingletonSession.Instance().setId(id);

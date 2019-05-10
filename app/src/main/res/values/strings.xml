@@ -59,5 +59,8 @@
     <string name="idioma">Language</string>
     <string name="Delete">Delete</string>
     <string name="Completed">Completed</string>
+    <string name="World">World</string>
+    <string name="Local">Local</string>
+    <string name="Ranking">Ranking</string>
 
 </resources>

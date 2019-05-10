@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activity.PetsActivity"> <!-- aqui tendre que poner la activity de ranking -->
+    tools:context=".view.activity.RankingActivity"> <!-- aqui tendre que poner la activity de ranking -->
     <ScrollView
         android:id="@+id/detail_training_container"
         android:layout_width="match_parent"
@@ -32,6 +32,7 @@
                 android:layout_marginTop="15dp"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="28sp"
+                android:text="@string/Ranking"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
             <TextView
@@ -40,18 +41,26 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="15dp"
+                android:text="worlwide/local"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="28sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/text_ranking_title" />
 
             <Button
-                android:id="@+id/button_add_points"
+                android:id="@+id/button_worlwide"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/Completed"
+                android:text="@string/World"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/text_ranking_description" />
+            <Button
+                android:id="@+id/button_local"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Local"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/button_worlwide" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/list_users_ranking"
@@ -62,7 +71,7 @@
                 android:layout_marginEnd="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button_add_points"
+                app:layout_constraintTop_toBottomOf="@+id/button_local"
                 tools:listitem="@layout/content_training_detail_step" />
 
         </android.support.constraint.ConstraintLayout>
