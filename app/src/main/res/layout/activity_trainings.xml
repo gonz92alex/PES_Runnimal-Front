@@ -19,7 +19,7 @@
             android:textSize="30sp" />
 
         <SearchView
-            android:id="@+id/searchView"
+            android:id="@+id/search_trainings"
             android:layout_width="360dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"

@@ -3,8 +3,10 @@ package com.runnimal.app.android.view.activity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.SearchView;
 
 import com.runnimal.app.android.R;
 import com.runnimal.app.android.RunnimalApplication;
@@ -24,6 +26,8 @@ public class TrainingsActivity extends BaseActivity implements TrainingsPresente
     TrainingsPresenter presenter;
     TrainingListAdapter adapter;
 
+    @BindView(R.id.search_trainings)
+    SearchView searchView;
     @BindView(R.id.list_trainings)
     RecyclerView trainingList;
     @BindView(R.id.progress_bar)
@@ -45,6 +49,19 @@ public class TrainingsActivity extends BaseActivity implements TrainingsPresente
     public void showTrainingList(List<TrainingViewModel> trainingList) {
         adapter.addAll(trainingList);
         adapter.notifyDataSetChanged();
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.filter(newText);
+                return true;
+            }
+        });
     }
 
     @Override

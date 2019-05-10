@@ -6,21 +6,26 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.runnimal.app.android.R;
+import com.runnimal.app.android.models.EntrenamientoContent;
 import com.runnimal.app.android.view.presenter.TrainingsPresenter;
 import com.runnimal.app.android.view.viewmodel.TrainingViewModel;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Locale;
+import java.util.stream.Collectors;
 
 public class TrainingListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private final TrainingsPresenter presenter;
     private final List<TrainingViewModel> trainingList;
+    private final List<TrainingViewModel> filteredList;
 
     public TrainingListAdapter(TrainingsPresenter presenter) {
         this.presenter = presenter;
         this.trainingList = new ArrayList<>();
+        this.filteredList = new ArrayList<>();
     }
 
     @Override
@@ -32,16 +37,28 @@ public class TrainingListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         TrainingListViewHolder trainingViewHolder = (TrainingListViewHolder) holder;
-        TrainingViewModel training = trainingList.get(position);
+        TrainingViewModel training = filteredList.get(position);
         trainingViewHolder.render(training);
     }
 
     @Override
     public int getItemCount() {
-        return trainingList.size();
+        return filteredList.size();
     }
 
     public void addAll(Collection<TrainingViewModel> collection) {
         trainingList.addAll(collection);
+        filteredList.addAll(collection);
+    }
+
+    public void filter(String text) {
+        filteredList.clear();
+
+        final String textLowerCase = text.toLowerCase();
+        trainingList.stream() //
+                .filter(t -> t.getName().toLowerCase().contains(textLowerCase)) //
+                .collect(Collectors.toCollection(() -> filteredList));
+
+        notifyDataSetChanged();
     }
 }
