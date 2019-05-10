@@ -18,6 +18,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.runnimal.app.android.models.EntrenamientoContent;
 import com.runnimal.app.android.models.MascotaContent;
+import com.runnimal.app.android.view.activity.MapActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -196,7 +197,7 @@ public class LogInActivity extends AppCompatActivity {
 
 
     public void directEv(View view) {
-        Intent GodIntent = new Intent(this, GodActivity.class);
+        Intent GodIntent = new Intent(this, MapActivity.class);
         SingletonSession.Instance().setMail("arthur@gmail.com");
         SingletonSession.Instance().setUsername("arthur");
         getMascotas("arthur@gmail.com");
