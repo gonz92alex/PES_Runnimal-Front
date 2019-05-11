@@ -24,18 +24,19 @@ public class PetRepositoryImpl implements PetRepository {
     @Override
     public Observable<List<Pet>> list(String ownerEmail) {
         return Observable.create(emitter -> {
-            api.listPets(new RunnimalApi.RunnimalApiCallback<List<Pet>>() {
-                @Override
-                public void responseOK(List<Pet> pets) {
-                    emitter.onNext(pets);
-                    emitter.onComplete();
-                }
+            api.listPets(ownerEmail, //
+                    new RunnimalApi.RunnimalApiCallback<List<Pet>>() {
+                        @Override
+                        public void responseOK(List<Pet> pets) {
+                            emitter.onNext(pets);
+                            emitter.onComplete();
+                        }
 
-                @Override
-                public void responseError(Exception e) {
-                    emitter.onError(e);
-                }
-            });
+                        @Override
+                        public void responseError(Exception e) {
+                            emitter.onError(e);
+                        }
+                    });
         });
     }
 
@@ -78,13 +79,13 @@ public class PetRepositoryImpl implements PetRepository {
     }
 
     @Override
-    public Observable<Pet> create(Pet pet) {
+    public Observable<String> create(Pet pet) {
         return Observable.create(emitter -> {
             api.createPet(pet, //
-                    new RunnimalApi.RunnimalApiCallback<Pet>() {
+                    new RunnimalApi.RunnimalApiCallback<String>() {
                         @Override
-                        public void responseOK(Pet pet) {
-                            emitter.onNext(pet);
+                        public void responseOK(String newId) {
+                            emitter.onNext(newId);
                             emitter.onComplete();
                         }
 

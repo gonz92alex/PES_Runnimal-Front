@@ -14,9 +14,11 @@ public interface RunnimalApi {
 
     void listTrainings(RunnimalApiCallback<List<Training>> callback);
 
-    void listRanking(RunnimalApiCallback<List<Ranking>> callback);
-
     void getTraining(String id, RunnimalApiCallback<Training> callback);
+
+    void listRankings(RunnimalApiCallback<List<Ranking>> callback);
+
+    void getRanking(String id, RunnimalApiCallback<Ranking> rankingRunnimalApiCallback);
 
     void listPets(String ownerEmail, RunnimalApiCallback<List<Pet>> callback);
 
@@ -24,7 +26,7 @@ public interface RunnimalApi {
 
     void modifyPet(Pet pet, RunnimalApiCallback<String> callback);
 
-    void createPet(Pet pet, RunnimalApiCallback<Pet> callback);
+    void createPet(Pet pet, RunnimalApiCallback<String> callback);
 
     void getOwner(String id, RunnimalApiCallback<Owner> callback);
 
@@ -37,8 +39,6 @@ public interface RunnimalApi {
     void deleteFriend(String requestedEmail, RunnimalApiCallback<String> callback);
 
     void uploadImage(final Bitmap image, RunnimalApiCallback<String> callback);
-
-    void getRanking(String id, RunnimalApiCallback<Ranking> rankingRunnimalApiCallback);
 
     interface RunnimalApiCallback<T> {
 

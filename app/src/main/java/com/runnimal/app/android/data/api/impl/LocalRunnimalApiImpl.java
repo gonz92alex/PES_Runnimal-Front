@@ -44,7 +44,16 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
     }
 
     @Override
-    public void listRanking(RunnimalApiCallback<List<Ranking>> callback) {
+    public void getTraining(String id, RunnimalApiCallback<Training> callback) {
+        try {
+            callback.responseOK(jacksonFactory.toObject(IOUtils.getResource(TRAINING_DETAIL_FILE), Training.class));
+        } catch (Exception e) {
+            callback.responseError(e);
+        }
+    }
+
+    @Override
+    public void listRankings(RunnimalApiCallback<List<Ranking>> callback) {
         try {
             callback.responseOK(jacksonFactory.toList(IOUtils.getResource(RANKINGS_FILE), Ranking.class));
         }
@@ -54,12 +63,8 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
     }
 
     @Override
-    public void getTraining(String id, RunnimalApiCallback<Training> callback) {
-        try {
-            callback.responseOK(jacksonFactory.toObject(IOUtils.getResource(TRAINING_DETAIL_FILE), Training.class));
-        } catch (Exception e) {
-            callback.responseError(e);
-        }
+    public void getRanking(String id, RunnimalApiCallback<Ranking> rankingRunnimalApiCallback) {
+
     }
 
     @Override
@@ -70,13 +75,6 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
             callback.responseError(e);
         }
     }
-
-    @Override
-    public void getRanking(String id, RunnimalApiCallback<Ranking> rankingRunnimalApiCallback) {
-
-    }
-
-
 
     @Override
     public void getPet(String id, RunnimalApiCallback<Pet> callback) {
@@ -93,8 +91,8 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
     }
 
     @Override
-    public void createPet(Pet pet, RunnimalApiCallback<Pet> callback) {
-        callback.responseOK(new Pet());
+    public void createPet(Pet pet, RunnimalApiCallback<String> callback) {
+        callback.responseOK("12345");
     }
 
     @Override
@@ -105,7 +103,6 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
             callback.responseError(e);
         }
     }
-
 
     @Override
     public void getFriendRequests(String ownerEmail, RunnimalApiCallback<List<FriendRequest>> callback) {

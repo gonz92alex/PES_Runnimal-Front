@@ -2,9 +2,7 @@ package com.runnimal.app.android.data.repository.impl;
 
 import com.runnimal.app.android.data.api.RunnimalApi;
 import com.runnimal.app.android.data.repository.RankingRepository;
-import com.runnimal.app.android.data.repository.TrainingRepository;
 import com.runnimal.app.android.domain.Ranking;
-import com.runnimal.app.android.domain.Training;
 
 import java.util.List;
 
@@ -25,7 +23,7 @@ public class RankingRepositoryImpl implements RankingRepository {
 
     public Observable<List<Ranking>> list() {
         return Observable.create(emitter -> {
-            api.listRanking(new RunnimalApi.RunnimalApiCallback<List<Ranking>>() {
+            api.listRankings(new RunnimalApi.RunnimalApiCallback<List<Ranking>>() {
                 @Override
                 public void responseOK(List<Ranking> rankings) {
                     emitter.onNext(rankings);

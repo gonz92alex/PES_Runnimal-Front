@@ -1,19 +1,10 @@
 package com.runnimal.app.android.data.api.impl;
 
-import android.content.Context;
 import android.graphics.Bitmap;
-import android.util.Log;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.NetworkResponse;
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.toolbox.StringRequest;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.runnimal.app.android.SingletonSession;
 import com.runnimal.app.android.data.api.RunnimalApi;
-import com.runnimal.app.android.data.util.VolleyMultipartRequest;
 import com.runnimal.app.android.domain.FriendRequest;
 import com.runnimal.app.android.domain.Owner;
 import com.runnimal.app.android.domain.Pet;
@@ -23,65 +14,45 @@ import com.runnimal.app.android.util.JacksonFactory;
 
 import org.json.JSONObject;
 
-import java.io.ByteArrayOutputStream;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 
 import lombok.SneakyThrows;
 
-public class RunnimalApiImpl implements RunnimalApi {
+public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
 
-    private final Context context;
     private final JacksonFactory jacksonFactory;
-    private final RequestQueue requestQueue;
 
     @Inject
-    public RunnimalApiImpl(Context context, JacksonFactory jacksonFactory, RequestQueue requestQueue) {
-        this.context = context;
+    public RunnimalApiImpl(RequestQueue requestQueue, JacksonFactory jacksonFactory) {
+        super(requestQueue);
         this.jacksonFactory = jacksonFactory;
-        this.requestQueue = requestQueue;
     }
 
     @Override
     public void listTrainings(RunnimalApiCallback<List<Training>> callback) {
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, //
-                "http://nidorana.fib.upc.edu/api/trainnings", //
-                (response) -> {
-                    callback.responseOK(jacksonFactory.toList(response, Training.class));
+        get("http://nidorana.fib.upc.edu/api/trainnings", //
+                response -> {
+                    return jacksonFactory.toList(response, Training.class);
 
                 }, //
-                (error) -> {
-                    Log.d("apiError", error.toString());
-                    callback.responseError(error);
-                }
-        );
-
-        requestQueue.add(stringRequest);
-    }
-
-    @Override
-    public void listRanking(RunnimalApiCallback<List<Ranking>> callback) {
-
+                callback);
     }
 
     @Override
     public void getTraining(String id, RunnimalApiCallback<Training> callback) {
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, //
-                "http://nidorana.fib.upc.edu/api/trainnings/" + id, //
-                (response) -> {
-                    callback.responseOK(jacksonFactory.toObject(response, Training.class));
+        get("http://nidorana.fib.upc.edu/api/trainnings/" + id, //
+                response -> {
+                    return jacksonFactory.toObject(response, Training.class);
 
                 }, //
-                (error) -> {
-                    Log.d("apiError", error.toString());
-                    callback.responseError(error);
-                }
-        );
+                callback);
+    }
 
-        requestQueue.add(stringRequest);
+    @Override
+    public void listRankings(RunnimalApiCallback<List<Ranking>> callback) {
+
     }
 
     @Override
@@ -92,253 +63,91 @@ public class RunnimalApiImpl implements RunnimalApi {
     @Override
     public void listPets(String ownerEmail, RunnimalApiCallback<List<Pet>> callback) {
         String email = ownerEmail != null ? ownerEmail : SingletonSession.Instance().getMail();
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, //
-                "http://nidorana.fib.upc.edu/api/pets/user/" + email, //
-                (response) -> {
-                    callback.responseOK(jacksonFactory.toList(response, Pet.class));
+        get("http://nidorana.fib.upc.edu/api/pets/user/" + email, //
+                response -> {
+                    return jacksonFactory.toList(response, Pet.class);
 
                 }, //
-                (error) -> {
-                    Log.d("apiError", error.toString());
-                    callback.responseError(error);
-                }
-        );
-
-        requestQueue.add(stringRequest);
+                callback);
     }
 
     @Override
     public void getPet(String id, RunnimalApiCallback<Pet> callback) {
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, //
-                "http://nidorana.fib.upc.edu/api/pets/" + SingletonSession.Instance().getMail() + "/" + id, //
-                (response) -> {
-                    callback.responseOK(jacksonFactory.toObject(response, Pet.class));
+        get("http://nidorana.fib.upc.edu/api/pets/" + SingletonSession.Instance().getMail() + "/" + id, //
+                response -> {
+                    return jacksonFactory.toObject(response, Pet.class);
 
                 }, //
-                (error) -> {
-                    Log.d("apiError", error.toString());
-                    callback.responseError(error);
-                }
-        );
-
-        requestQueue.add(stringRequest);
+                callback);
     }
 
     @Override
+    @SneakyThrows
     public void modifyPet(Pet pet, RunnimalApiCallback<String> callback) {
         String url = "http://nidorana.fib.upc.edu/api/pets/" + SingletonSession.Instance().getMail() + "/" + pet.getId();
+
         pet.setId(null);
+        JSONObject jsonBody = new JSONObject(jacksonFactory.toJsonNode(pet).toString());
 
-        StringRequest stringRequest = new StringRequest( //
-                Request.Method.PUT, //
-                url, //
-                reponse -> {
-                    //TODO: que mensaje poner como respuesta?
-                    callback.responseOK("");
-                },
-                error -> {
-                    Log.d("apiError", error.toString());
-                    callback.responseError(error);
-                } //
-        ) {
-            @Override
-            public String getBodyContentType() {
-                return "application/json; charset=utf-8";
-            }
-
-            @Override
-            @SneakyThrows
-            public byte[] getBody() {
-                return jacksonFactory.toJsonNode(pet).toString().getBytes("utf-8");
-            }
-        };
-
-        requestQueue.add(stringRequest);
+        put(url, jsonBody, callback);
     }
 
     @Override
-    public void createPet(Pet pet, RunnimalApiCallback<Pet> callback) {
-        StringRequest stringRequest = new StringRequest( //
-                Request.Method.POST, //
-                "http://nidorana.fib.upc.edu/api/pets/", //
-                response -> {
-                    //TODO: Añadir id a "pet" creado??
-                    callback.responseOK(pet);
-                }
-                , //
-                error -> {
-                    Log.d("apiError", error.toString());
-                    callback.responseError(error);
-                } //
-        ) {
-            @Override
-            public String getBodyContentType() {
-                return "application/json; charset=utf-8";
-            }
-
-            @Override
-            @SneakyThrows
-            public byte[] getBody() {
-                JsonNode node = jacksonFactory.toJsonNode(pet);
-                JSONObject message = new JSONObject(node.toString()) //
-                        .put("owner", SingletonSession.Instance().getMail());
-                return message.toString().getBytes("utf-8");
-            }
-        };
-
-        requestQueue.add(stringRequest);
+    @SneakyThrows
+    public void createPet(Pet pet, RunnimalApiCallback<String> callback) {
+        JSONObject jsonBody = new JSONObject(jacksonFactory.toJsonNode(pet).toString()) //
+                .put("owner", SingletonSession.Instance().getMail());
+        post("http://nidorana.fib.upc.edu/api/pets/", jsonBody, callback);
     }
 
     @Override
     public void getOwner(String id, RunnimalApiCallback<Owner> callback) {
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, //
-                "http://nidorana.fib.upc.edu/api/pets/" + SingletonSession.Instance().getMail() + "/" + id, //
-                (response) -> {
-                    callback.responseOK(jacksonFactory.toObject(response, Owner.class));
-                }, //
-                (error) -> {
-                    Log.d("apiError", error.toString());
-                    callback.responseError(error);
-                }
-        );
+        get("http://nidorana.fib.upc.edu/api/users/" + SingletonSession.Instance().getMail() + "/" + id, //
+                response -> {
+                    return jacksonFactory.toObject(response, Owner.class);
 
-        requestQueue.add(stringRequest);
+                }, //
+                callback);
     }
 
     @Override
     public void getFriendRequests(String ownerEmail, RunnimalApiCallback<List<FriendRequest>> callback) {
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, //
-                "http://nidorana.fib.upc.edu/api/friendRequests/" + ownerEmail,
-                (response) -> {
-                    callback.responseOK(jacksonFactory.toList(response, FriendRequest.class));
-                }, //
-                (error) -> {
-                    Log.d("apiError", error.toString());
-                    callback.responseError(error);
-                }
-        );
+        get("http://nidorana.fib.upc.edu/api/friendRequests/" + ownerEmail, //
+                response -> {
+                    return jacksonFactory.toList(response, FriendRequest.class);
 
-        requestQueue.add(stringRequest);
+                }, //
+                callback);
     }
 
     @Override
     public void isFriend(String friendEmail, RunnimalApiCallback<Boolean> callback) {
-        // Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, //
-                "http://nidorana.fib.upc.edu/api/friends/" + SingletonSession.Instance().getMail() + "/" + friendEmail,
-                (response) -> {
+        get("http://nidorana.fib.upc.edu/api/friends/" + SingletonSession.Instance().getMail() + "/" + friendEmail, //
+                response -> {
                     // TODO
-                    callback.responseOK(true);
-                }, //
-                (error) -> {
-                    Log.d("apiError", error.toString());
-                    callback.responseError(error);
-                }
-        );
+                    return true;
 
-        requestQueue.add(stringRequest);
+                }, //
+                callback);
     }
 
     @Override
     @SneakyThrows
     public void createFriendRequest(String requestedEmail, RunnimalApiCallback<String> callback) {
-        String url = "http://nidorana.fib.upc.edu/api/friendRequests/new";
-
         JSONObject jsonBody = new JSONObject() //
                 .put("requestingEmail", SingletonSession.Instance().getMail()) //
                 .put("requestedEmail", requestedEmail);
-
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                (response) -> {
-                    // TODO
-                    callback.responseOK("");
-                }, //
-                (error) -> {
-                    Log.d("apiError", error.toString());
-                    callback.responseError(error);
-                }
-        ) {
-            @Override
-            public String getBodyContentType() {
-                return "application/json; charset=utf-8";
-            }
-
-            @Override
-            @SneakyThrows
-            public byte[] getBody() {
-                return jsonBody.toString().getBytes("utf-8");
-            }
-
-            @Override
-            protected Response<String> parseNetworkResponse(NetworkResponse response) {
-                int mStatusCode = response.statusCode;
-                return super.parseNetworkResponse(response);
-            }
-        };
-
-        requestQueue.add(stringRequest);
+        post("http://nidorana.fib.upc.edu/api/friendRequests/new", jsonBody, callback);
     }
 
     @Override
     public void deleteFriend(String ownerId, RunnimalApiCallback<String> callback) {
-        StringRequest stringRequest = new StringRequest(Request.Method.DELETE, //
-                "http://nidorana.fib.upc.edu/api/friends/delete/" + ownerId,
-                (response) -> {
-                    // TODO
-                    callback.responseOK("");
-                }, //
-                (error) -> {
-                    Log.d("apiError", error.toString());
-                    callback.responseError(error);
-                }
-        );
-
-        requestQueue.add(stringRequest);
+        delete("http://nidorana.fib.upc.edu/api/friends/delete/" + ownerId, callback);
     }
 
     @Override
     public void uploadImage(final Bitmap image, RunnimalApiCallback<String> callback) {
-        VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, //
-                "http://nidorana.fib.upc.edu/api/photo/pet/emailDueño/nombrePet", //
-                response -> {
-                    //TODO: que mensaje poner como respuesta?
-                    callback.responseOK("");
-                }, //
-                error -> {
-                    Log.d("apiError", error.toString());
-                    callback.responseError(error);
-                }//
-        ) {
-            /*
-             * If you want to add more parameters with the image
-             * you can do it here
-             * here we have only one parameter with the image
-             * which is tags
-             * */
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                // params.put("tags", "ccccc");  add string parameters
-                return params;
-            }
-
-            /*
-             *pass files using below method
-             * */
-            @Override
-            protected Map<String, DataPart> getByteData() {
-                Map<String, DataPart> params = new HashMap<>();
-                long imagename = System.currentTimeMillis();
-                params.put("filename", new DataPart(imagename + ".png", getFileDataFromDrawable(image)));
-                return params;
-            }
-        };
-        requestQueue.add(volleyMultipartRequest);
+        uploadImage(image, "http://nidorana.fib.upc.edu/api/photo/pet/emailDueño/nombrePet", callback);
     }
 
-    private byte[] getFileDataFromDrawable(Bitmap bitmap) {
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 80, byteArrayOutputStream);
-        return byteArrayOutputStream.toByteArray();
-    }
 }
