@@ -1,20 +1,33 @@
 package com.runnimal.app.android.view.activity;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.provider.MediaStore;
+import android.support.annotation.Nullable;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.DexterError;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.PermissionRequestErrorListener;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.runnimal.app.android.R;
 import com.runnimal.app.android.RunnimalApplication;
 import com.runnimal.app.android.domain.Pet;
 import com.runnimal.app.android.view.presenter.PetAddPresenter;
 import com.runnimal.app.android.view.viewmodel.PetViewModel;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -23,6 +36,7 @@ import butterknife.BindView;
 public class PetAddActivity extends BaseActivity implements PetAddPresenter.View {
 
     private final static String PET_ID_KEY = "pet_id_key";
+    private static final int CAMERA_REQUEST = 1888;
 
     @Inject
     PetAddPresenter presenter;
@@ -67,6 +81,7 @@ public class PetAddActivity extends BaseActivity implements PetAddPresenter.View
     protected void initView() {
         initializeDagger();
         initializeAddButton();
+        requestMultiplePermissions();
         initializeCameraButton();
     }
 
@@ -83,16 +98,22 @@ public class PetAddActivity extends BaseActivity implements PetAddPresenter.View
         finish();
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (data != null) {
+            if (requestCode == CAMERA_REQUEST) {
+                Bitmap bitmapPhoto = (Bitmap) data.getExtras().get("data");
+                image.setImageBitmap(bitmapPhoto);
+                //TODO: hacer la llamada al clickar el boton de crear
+                presenter.uploadImage(bitmapPhoto);
+            }
+        }
+    }
+
     private void initializeDagger() {
         RunnimalApplication app = (RunnimalApplication) getApplication();
         app.getMainComponent().inject(this);
-    }
-
-    private void initializeCameraButton() {
-        cameraButton.setOnClickListener(view -> {
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            //startActivityForResult(intent, CAMERA_REQUEST);
-        });
     }
 
     private void initializeAddButton() {
@@ -119,8 +140,47 @@ public class PetAddActivity extends BaseActivity implements PetAddPresenter.View
                         .setWeight(Integer.valueOf(weight.getText().toString())) //
                         .setSize(Pet.PetSize.valueOf(size.getSelectedItem().toString())) //
                         .setBirth(Integer.valueOf(birthYear.getText().toString()));
-                //presenter.modifyPet(pet);
+                presenter.addPet(pet);
             }
+        });
+    }
+
+    private void requestMultiplePermissions() {
+        Dexter.withActivity(this)
+                .withPermissions(
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.READ_EXTERNAL_STORAGE)
+                .withListener(new MultiplePermissionsListener() {
+                    @Override
+                    public void onPermissionsChecked(MultiplePermissionsReport report) {
+                        // check if all permissions are granted
+                        if (report.areAllPermissionsGranted()) {
+                        }
+                        // check for permanent denial of any permission
+                        if (report.isAnyPermissionPermanentlyDenied()) {
+                            // show alert dialog navigating to Settings
+                        }
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
+                        token.continuePermissionRequest();
+                    }
+                }).
+                withErrorListener(new PermissionRequestErrorListener() {
+                    @Override
+                    public void onError(DexterError error) {
+                        //TODO
+                    }
+                })
+                .onSameThread()
+                .check();
+    }
+
+    private void initializeCameraButton() {
+        cameraButton.setOnClickListener(view -> {
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivityForResult(intent, CAMERA_REQUEST);
         });
     }
 }

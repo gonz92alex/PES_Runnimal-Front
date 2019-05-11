@@ -1,5 +1,7 @@
 package com.runnimal.app.android.data.api.impl;
 
+import android.graphics.Bitmap;
+
 import com.runnimal.app.android.data.api.RunnimalApi;
 import com.runnimal.app.android.domain.Pet;
 import com.runnimal.app.android.domain.Ranking;
@@ -81,9 +83,16 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
 
     @Override
     public void modifyPet(Pet pet, RunnimalApiCallback<String> callback) {
+        callback.responseOK("OK");
     }
 
     @Override
     public void createPet(Pet pet, RunnimalApiCallback<Pet> callback) {
+        callback.responseOK(new Pet());
+    }
+
+    @Override
+    public void uploadImage(final Bitmap image, RunnimalApiCallback<String> callback) {
+        callback.responseOK("OK");
     }
 }

@@ -1,5 +1,7 @@
 package com.runnimal.app.android.data.api;
 
+import android.graphics.Bitmap;
+
 import com.runnimal.app.android.domain.Pet;
 import com.runnimal.app.android.domain.Ranking;
 import com.runnimal.app.android.domain.Training;
@@ -21,6 +23,8 @@ public interface RunnimalApi {
     void modifyPet(Pet pet, RunnimalApiCallback<String> callback);
 
     void createPet(Pet pet, RunnimalApiCallback<Pet> callback);
+
+    void uploadImage(final Bitmap image, RunnimalApiCallback<String> callback);
 
     void getRanking(String id, RunnimalApiCallback<Ranking> rankingRunnimalApiCallback);
 

@@ -1,14 +1,16 @@
 package com.runnimal.app.android.data.api.impl;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.util.Log;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.runnimal.app.android.SingletonSession;
+import com.runnimal.app.android.VolleyMultipartRequest;
 import com.runnimal.app.android.data.api.RunnimalApi;
 import com.runnimal.app.android.domain.Pet;
 import com.runnimal.app.android.domain.Ranking;
@@ -17,7 +19,10 @@ import com.runnimal.app.android.util.JacksonFactory;
 
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -27,22 +32,20 @@ public class RunnimalApiImpl implements RunnimalApi {
 
     private final Context context;
     private final JacksonFactory jacksonFactory;
+    private final RequestQueue requestQueue;
 
     @Inject
-    public RunnimalApiImpl(Context context, JacksonFactory jacksonFactory) {
+    public RunnimalApiImpl(Context context, JacksonFactory jacksonFactory, RequestQueue requestQueue) {
         this.context = context;
         this.jacksonFactory = jacksonFactory;
+        this.requestQueue = requestQueue;
     }
 
     @Override
     public void listTrainings(RunnimalApiCallback<List<Training>> callback) {
-        RequestQueue queue = Volley.newRequestQueue(context);
-        String url = "http://nidorana.fib.upc.edu/api/trainnings";
-
         StringRequest stringRequest = new StringRequest(Request.Method.GET, //
-                url, //
+                "http://nidorana.fib.upc.edu/api/trainnings", //
                 (response) -> {
-                    Log.d("apiRes", "onResponse: respondido!");
                     callback.responseOK(jacksonFactory.toList(response, Training.class));
 
                 }, //
@@ -52,7 +55,7 @@ public class RunnimalApiImpl implements RunnimalApi {
                 }
         );
 
-        queue.add(stringRequest);
+        requestQueue.add(stringRequest);
     }
 
     @Override
@@ -62,13 +65,9 @@ public class RunnimalApiImpl implements RunnimalApi {
 
     @Override
     public void getTraining(String id, RunnimalApiCallback<Training> callback) {
-        RequestQueue queue = Volley.newRequestQueue(context);
-        String url = "http://nidorana.fib.upc.edu/api/trainnings/" + id;
-
         StringRequest stringRequest = new StringRequest(Request.Method.GET, //
-                url, //
+                "http://nidorana.fib.upc.edu/api/trainnings/" + id, //
                 (response) -> {
-                    Log.d("apiRes", "onResponse: respondido!");
                     callback.responseOK(jacksonFactory.toObject(response, Training.class));
 
                 }, //
@@ -78,7 +77,7 @@ public class RunnimalApiImpl implements RunnimalApi {
                 }
         );
 
-        queue.add(stringRequest);
+        requestQueue.add(stringRequest);
     }
 
     @Override
@@ -88,13 +87,9 @@ public class RunnimalApiImpl implements RunnimalApi {
 
     @Override
     public void listPets(RunnimalApiCallback<List<Pet>> callback) {
-        RequestQueue queue = Volley.newRequestQueue(context);
-        String url = "http://nidorana.fib.upc.edu/api/pets/user/" + SingletonSession.Instance().getMail();
-
         StringRequest stringRequest = new StringRequest(Request.Method.GET, //
-                url, //
+                "http://nidorana.fib.upc.edu/api/pets/user/" + SingletonSession.Instance().getMail(), //
                 (response) -> {
-                    Log.d("apiRes", "onResponse: respondido!");
                     callback.responseOK(jacksonFactory.toList(response, Pet.class));
 
                 }, //
@@ -104,18 +99,14 @@ public class RunnimalApiImpl implements RunnimalApi {
                 }
         );
 
-        queue.add(stringRequest);
+        requestQueue.add(stringRequest);
     }
 
     @Override
     public void getPet(String id, RunnimalApiCallback<Pet> callback) {
-        RequestQueue queue = Volley.newRequestQueue(context);
-        String url = "http://nidorana.fib.upc.edu/api/pets/" + SingletonSession.Instance().getMail() + "/" + id;
-
         StringRequest stringRequest = new StringRequest(Request.Method.GET, //
-                url, //
+                "http://nidorana.fib.upc.edu/api/pets/" + SingletonSession.Instance().getMail() + "/" + id, //
                 (response) -> {
-                    Log.d("apiRes", "onResponse: respondido!");
                     callback.responseOK(jacksonFactory.toObject(response, Pet.class));
 
                 }, //
@@ -125,22 +116,19 @@ public class RunnimalApiImpl implements RunnimalApi {
                 }
         );
 
-        queue.add(stringRequest);
+        requestQueue.add(stringRequest);
     }
 
     @Override
     public void modifyPet(Pet pet, RunnimalApiCallback<String> callback) {
-        RequestQueue queue = Volley.newRequestQueue(context);
         String url = "http://nidorana.fib.upc.edu/api/pets/" + SingletonSession.Instance().getMail() + "/" + pet.getId();
-
         pet.setId(null);
 
         StringRequest stringRequest = new StringRequest( //
                 Request.Method.PUT, //
                 url, //
                 reponse -> {
-                    Log.d("apiRes", "onResponse: respondido!");
-                    //TODO
+                    //TODO: que mensaje poner como respuesta?
                     callback.responseOK("");
                 },
                 error -> {
@@ -160,22 +148,16 @@ public class RunnimalApiImpl implements RunnimalApi {
             }
         };
 
-        queue.add(stringRequest);
+        requestQueue.add(stringRequest);
     }
 
     @Override
     public void createPet(Pet pet, RunnimalApiCallback<Pet> callback) {
-        RequestQueue queue = Volley.newRequestQueue(context);
-        String url = "http://nidorana.fib.upc.edu/api/pets/";
-
-
-        // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest( //
                 Request.Method.POST, //
-                url, //
+                "http://nidorana.fib.upc.edu/api/pets/", //
                 response -> {
-                    Log.d("apiRes", "onResponse: respondido!");
-                    //TODO: Añadir id a "pet"
+                    //TODO: Añadir id a "pet" creado??
                     callback.responseOK(pet);
                 }
                 , //
@@ -199,7 +181,52 @@ public class RunnimalApiImpl implements RunnimalApi {
             }
         };
 
-        // Add the request to the RequestQueue.
-        queue.add(stringRequest);
+        requestQueue.add(stringRequest);
+    }
+
+    @Override
+    public void uploadImage(final Bitmap image, RunnimalApiCallback<String> callback) {
+        VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, //
+                "http://nidorana.fib.upc.edu/api/photo/pet/emailDueño/nombrePet", //
+                response -> {
+                    //TODO: que mensaje poner como respuesta?
+                    callback.responseOK("");
+                }, //
+                error -> {
+                    Log.d("apiError", error.toString());
+                    callback.responseError(error);
+                }//
+        ) {
+            /*
+             * If you want to add more parameters with the image
+             * you can do it here
+             * here we have only one parameter with the image
+             * which is tags
+             * */
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                // params.put("tags", "ccccc");  add string parameters
+                return params;
+            }
+
+            /*
+             *pass files using below method
+             * */
+            @Override
+            protected Map<String, DataPart> getByteData() {
+                Map<String, DataPart> params = new HashMap<>();
+                long imagename = System.currentTimeMillis();
+                params.put("filename", new DataPart(imagename + ".png", getFileDataFromDrawable(image)));
+                return params;
+            }
+        };
+        requestQueue.add(volleyMultipartRequest);
+    }
+
+    private byte[] getFileDataFromDrawable(Bitmap bitmap) {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 80, byteArrayOutputStream);
+        return byteArrayOutputStream.toByteArray();
     }
 }

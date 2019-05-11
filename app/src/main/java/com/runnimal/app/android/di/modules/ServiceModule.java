@@ -1,9 +1,9 @@
 package com.runnimal.app.android.di.modules;
 
 import com.runnimal.app.android.service.PetsService;
-import com.runnimal.app.android.service.PetsServiceImpl;
+import com.runnimal.app.android.service.impl.PetsServiceImpl;
 import com.runnimal.app.android.service.TrainingService;
-import com.runnimal.app.android.service.TrainingServiceImpl;
+import com.runnimal.app.android.service.impl.TrainingServiceImpl;
 
 import javax.inject.Singleton;
 
