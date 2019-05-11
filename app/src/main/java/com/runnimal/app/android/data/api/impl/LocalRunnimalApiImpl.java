@@ -2,6 +2,7 @@ package com.runnimal.app.android.data.api.impl;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.runnimal.app.android.data.api.RunnimalApi;
+import com.runnimal.app.android.domain.Ranking;
 import com.runnimal.app.android.domain.Training;
 import com.runnimal.app.android.util.IOUtils;
 import com.runnimal.app.android.util.JacksonFactory;
@@ -15,6 +16,7 @@ import javax.inject.Inject;
 public class LocalRunnimalApiImpl implements RunnimalApi {
 
     private static final String TRAININGS_FILE = "json/trainings.json";
+    private static final String RANKINGS_FILE = "json/rankings.json";
     private static final String TRAINING_DETAIL_FILE = "json/training-detail.json";
 
     private final JacksonFactory jacksonFactory;
@@ -35,6 +37,16 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
     }
 
     @Override
+    public void listRanking(RunnimalApiCallback<List<Ranking>> callback) {
+        try {
+            callback.responseOK(jacksonFactory.toList(IOUtils.getResource(RANKINGS_FILE), Ranking.class));
+        }
+        catch (Exception e) {
+            callback.responseError(e);
+        }
+    }
+
+    @Override
     public void getTraining(String id, RunnimalApiCallback<Training> callback) {
         try {
             callback.responseOK(jacksonFactory.toObject(IOUtils.getResource(TRAINING_DETAIL_FILE), Training.class));
@@ -43,4 +55,11 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
             callback.responseError(e);
         }
     }
+
+    @Override
+    public void getRanking(String id, RunnimalApiCallback<Ranking> rankingRunnimalApiCallback) {
+
+    }
+
+
 }
