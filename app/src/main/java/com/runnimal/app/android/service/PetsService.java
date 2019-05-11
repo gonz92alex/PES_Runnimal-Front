@@ -13,4 +13,6 @@ public interface PetsService {
     void get(String id, DisposableObserver<Pet> callback);
 
     void modify(Pet pet, DisposableObserver<String> callback);
+
+    void create(Pet pet, DisposableObserver<Pet> callback);
 }

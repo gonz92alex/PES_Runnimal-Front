@@ -4,6 +4,8 @@ import com.runnimal.app.android.R;
 
 public class MapActivity extends BaseActivity {
 
+    //TODO
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_map;

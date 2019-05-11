@@ -98,7 +98,7 @@ public class PetsActivity extends BaseActivity implements PetsPresenter.View {
 
     private void initializeAddButton() {
         addButton.setOnClickListener((view) -> {
-            startActivity(new Intent(this, PetAddActivity.class));
+            PetAddActivity.open(this);
         });
     }
 }

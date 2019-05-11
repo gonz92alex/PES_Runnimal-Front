@@ -20,6 +20,8 @@ public interface RunnimalApi {
 
     void modifyPet(Pet pet, RunnimalApiCallback<String> callback);
 
+    void createPet(Pet pet, RunnimalApiCallback<Pet> callback);
+
     void getRanking(String id, RunnimalApiCallback<Ranking> rankingRunnimalApiCallback);
 
     interface RunnimalApiCallback<T> {

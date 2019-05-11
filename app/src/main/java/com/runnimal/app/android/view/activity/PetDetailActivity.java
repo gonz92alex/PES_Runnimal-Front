@@ -8,7 +8,6 @@ import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.runnimal.app.android.ModifyPetFragment;
 import com.runnimal.app.android.R;
 import com.runnimal.app.android.RunnimalApplication;
 import com.runnimal.app.android.SingletonSession;
@@ -100,7 +99,7 @@ public class PetDetailActivity extends BaseActivity implements PetDetailPresente
         //Check if owner is the current user
         if (SingletonSession.Instance().getMail().equals(pet.getOwner().getEmail())) {
             editImage.setImageResource(R.drawable.icon_edit);
-            initializeEditImageButton();
+            initializeEditImageButton(pet);
         }
     }
 
@@ -121,9 +120,9 @@ public class PetDetailActivity extends BaseActivity implements PetDetailPresente
         });
     }
 
-    private void initializeEditImageButton() {
+    private void initializeEditImageButton(PetViewModel pet) {
         editImage.setOnClickListener(view -> {
-            startActivity(new Intent(this, ModifyPetFragment.class));
+            PetModifyActivity.open(this, pet.getId());
         });
     }
 

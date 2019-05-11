@@ -76,4 +76,23 @@ public class PetsRepositoryImpl implements PetsRepository {
                     });
         });
     }
+
+    @Override
+    public Observable<Pet> create(Pet pet) {
+        return Observable.create(emitter -> {
+            api.createPet(pet, //
+                    new RunnimalApi.RunnimalApiCallback<Pet>() {
+                        @Override
+                        public void responseOK(Pet pet) {
+                            emitter.onNext(pet);
+                            emitter.onComplete();
+                        }
+
+                        @Override
+                        public void responseError(Exception e) {
+                            emitter.onError(e);
+                        }
+                    });
+        });
+    }
 }

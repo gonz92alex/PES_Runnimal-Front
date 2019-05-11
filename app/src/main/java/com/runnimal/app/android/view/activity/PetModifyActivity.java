@@ -34,7 +34,8 @@ public class PetModifyActivity extends BaseActivity implements PetModifyPresente
 
     @Inject
     PetModifyPresenter presenter;
-    @BindView(R.id.detail_pet_modify_container)
+
+    @BindView(R.id.detail_pet_add_container)
     ScrollView container;
     @BindView(R.id.image_modify_pet)
     ImageView image;
@@ -46,7 +47,7 @@ public class PetModifyActivity extends BaseActivity implements PetModifyPresente
     TextView weight;
     @BindView(R.id.text_modify_pet_birth_year)
     TextView birthYear;
-    @BindView(R.id.text_modify_pet_birth_size)
+    @BindView(R.id.spinner_modify_pet_size)
     Spinner size;
     @BindView(R.id.button_modify_pet_save)
     Button saveButton;
@@ -58,6 +59,12 @@ public class PetModifyActivity extends BaseActivity implements PetModifyPresente
     @BindView(R.id.pet_detail_modify_progress_bar)
     ProgressBar progressBar;
 
+    public static void open(Context context, String petId) {
+        Intent intent = new Intent(context, PetModifyActivity.class);
+        intent.putExtra(PET_ID_KEY, petId);
+        context.startActivity(intent);
+    }
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_pet_detail;
@@ -66,12 +73,6 @@ public class PetModifyActivity extends BaseActivity implements PetModifyPresente
     @Override
     protected int getNavigationMenuItemId() {
         return R.id.navigation_pets;
-    }
-
-    public static void open(Context context, String petId) {
-        Intent intent = new Intent(context, PetModifyActivity.class);
-        intent.putExtra(PET_ID_KEY, petId);
-        context.startActivity(intent);
     }
 
     @Override

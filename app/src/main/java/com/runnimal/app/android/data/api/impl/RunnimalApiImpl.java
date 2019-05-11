@@ -7,12 +7,15 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.runnimal.app.android.SingletonSession;
 import com.runnimal.app.android.data.api.RunnimalApi;
 import com.runnimal.app.android.domain.Pet;
 import com.runnimal.app.android.domain.Ranking;
 import com.runnimal.app.android.domain.Training;
 import com.runnimal.app.android.util.JacksonFactory;
+
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -137,6 +140,7 @@ public class RunnimalApiImpl implements RunnimalApi {
                 url, //
                 reponse -> {
                     Log.d("apiRes", "onResponse: respondido!");
+                    //TODO
                     callback.responseOK("");
                 },
                 error -> {
@@ -156,6 +160,46 @@ public class RunnimalApiImpl implements RunnimalApi {
             }
         };
 
+        queue.add(stringRequest);
+    }
+
+    @Override
+    public void createPet(Pet pet, RunnimalApiCallback<Pet> callback) {
+        RequestQueue queue = Volley.newRequestQueue(context);
+        String url = "http://nidorana.fib.upc.edu/api/pets/";
+
+
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest( //
+                Request.Method.POST, //
+                url, //
+                response -> {
+                    Log.d("apiRes", "onResponse: respondido!");
+                    //TODO: Añadir id a "pet"
+                    callback.responseOK(pet);
+                }
+                , //
+                error -> {
+                    Log.d("apiError", error.toString());
+                    callback.responseError(error);
+                } //
+        ) {
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+
+            @Override
+            @SneakyThrows
+            public byte[] getBody() {
+                JsonNode node = jacksonFactory.toJsonNode(pet);
+                JSONObject message = new JSONObject(node.toString()) //
+                        .put("owner", SingletonSession.Instance().getMail());
+                return message.toString().getBytes("utf-8");
+            }
+        };
+
+        // Add the request to the RequestQueue.
         queue.add(stringRequest);
     }
 }

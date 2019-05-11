@@ -82,4 +82,8 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
     @Override
     public void modifyPet(Pet pet, RunnimalApiCallback<String> callback) {
     }
+
+    @Override
+    public void createPet(Pet pet, RunnimalApiCallback<Pet> callback) {
+    }
 }

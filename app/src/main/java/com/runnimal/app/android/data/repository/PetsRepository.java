@@ -13,4 +13,6 @@ public interface PetsRepository {
     Observable<Pet> get(String id);
 
     Observable<String> modify(Pet pet);
+
+    Observable<Pet> create(Pet pet);
 }
