@@ -22,6 +22,5 @@ public class Training {
     private String id;
     private String name;
     private String description;
-    private URI imageUrl;
     private List<String> steps = new ArrayList<>();
 }

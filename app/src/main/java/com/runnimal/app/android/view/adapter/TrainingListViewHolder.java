@@ -35,7 +35,7 @@ public class TrainingListViewHolder extends RecyclerView.ViewHolder {
 
     public void render(TrainingViewModel training) {
         onItemClick(training);
-        getImage(training.getId(), image);
+        getImage(training.getImageUrl(), image);
         name.setText(training.getName());
     }
 
@@ -49,10 +49,9 @@ public class TrainingListViewHolder extends RecyclerView.ViewHolder {
         }
     }*/
 
-    private void getImage(String id, ImageView photoImageView){
-        //toDO Esta feo que la url este aqui
-        String url = "http://nidorana.fib.upc.edu/api/photo/trainnings/" + id;
-        Picasso.get().load(url)
+    private void getImage(URI photo, ImageView photoImageView){
+        //toDO Cambiar esta funcion por la llamada a utils de ImageUtil
+        Picasso.get().load(photo.toString())
                 .fit()
                 .centerCrop()
                 .into(photoImageView);

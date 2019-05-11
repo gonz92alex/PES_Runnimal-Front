@@ -93,8 +93,8 @@ public class TrainingDetailActivity extends BaseActivity implements TrainingDeta
     public void showTraining(TrainingViewModel training) {
         name.setText(training.getName());
         description.setText(training.getDescription());
-        //toDo url aqui?
-        Picasso.get().load("http://nidorana.fib.upc.edu/api/photo/trainnings/" + training.getId())
+        //toDo cambiar el picasso por la llamada a utils de ImageUtil
+        Picasso.get().load(training.getImageUrl().toString())
                 .fit()
                 .centerCrop()
                 .into(image);
