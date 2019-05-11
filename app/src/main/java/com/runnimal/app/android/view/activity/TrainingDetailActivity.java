@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -16,6 +17,7 @@ import com.runnimal.app.android.RunnimalApplication;
 import com.runnimal.app.android.view.adapter.TrainingStepsAdapter;
 import com.runnimal.app.android.view.presenter.TrainingDetailPresenter;
 import com.runnimal.app.android.view.viewmodel.TrainingViewModel;
+import com.squareup.picasso.Picasso;
 
 import javax.inject.Inject;
 
@@ -33,6 +35,8 @@ public class TrainingDetailActivity extends BaseActivity implements TrainingDeta
     ScrollView container;
     @BindView(R.id.text_detail_training_name)
     TextView name;
+    @BindView(R.id.imagenTraining)
+    ImageView image;
     @BindView(R.id.text_detail_training_description)
     TextView description;
     @BindView(R.id.progress_bar)
@@ -89,6 +93,11 @@ public class TrainingDetailActivity extends BaseActivity implements TrainingDeta
     public void showTraining(TrainingViewModel training) {
         name.setText(training.getName());
         description.setText(training.getDescription());
+        //toDo url aqui?
+        Picasso.get().load("http://nidorana.fib.upc.edu/api/photo/trainnings/" + training.getId())
+                .fit()
+                .centerCrop()
+                .into(image);
         adapter.addAll(training.getSteps());
         adapter.notifyDataSetChanged();
     }

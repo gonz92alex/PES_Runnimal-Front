@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activity.TrainingDetailActivity">
+    tools:context=".view.activity.TrainingDetailActivity"
+    android:background="@color/colorLightBlue">
 
     <ScrollView
         android:id="@+id/detail_training_container"
@@ -26,37 +27,50 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/imagenTraining"
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/text_detail_training_name"
-                app:layout_constraintTop_toTopOf="parent"
-                android:src="@drawable/addfoto"/>
-
             <TextView
+                android:gravity="center_vertical"
                 android:id="@+id/text_detail_training_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="28sp"
+                android:layout_width="fill_parent"
+                android:layout_height="60dp"
+                android:background="@color/colorPrimary"
+                android:textColor="#ffff"
+                android:textSize="25sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imagenTraining" />
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/text_detail_training_description"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:textSize="24sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_detail_training_name" />
+            <LinearLayout
+                android:id="@+id/layout_cabecera"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="1dp"
+                android:background="@color/colorPrimary"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/text_detail_training_name"
+                app:layout_constraintTop_toBottomOf="@+id/text_detail_training_name">
+
+                <ImageView
+                    android:id="@+id/imagenTraining"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/addfoto" />
+
+                <TextView
+                    android:id="@+id/text_detail_training_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:textSize="24sp" />
+
+            </LinearLayout>
+
+
 
             <TextView
                 android:id="@+id/text_detail_training_steps_title"
@@ -68,7 +82,7 @@
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="22sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_detail_training_description" />
+                app:layout_constraintTop_toBottomOf="@+id/layout_cabecera" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/list_training_steps"
@@ -84,8 +98,9 @@
                 tools:listitem="@layout/content_training_detail_step" />
 
             <Button
+                app:layout_constraintTop_toBottomOf="@+id/list_training_steps"
                 android:id="@+id/button_add_points"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="32dp"
@@ -93,7 +108,7 @@
                 android:text="@string/Completed"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/list_training_steps" />
+                android:background="@drawable/btn_green_rounded"/>
 
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
