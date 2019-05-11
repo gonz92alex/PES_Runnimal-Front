@@ -129,7 +129,7 @@
                 android:textColor="#C5EFF7"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinner_modify_pet_birth_size" />
+                app:layout_constraintTop_toBottomOf="@+id/spinner_modify_pet_size" />
 
             <Button
                 android:id="@+id/button_modify_pet_delete"

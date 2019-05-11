@@ -8,10 +8,12 @@ import com.runnimal.app.android.service.MediaService;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.inject.Singleton;
 
 import io.reactivex.Scheduler;
 import io.reactivex.observers.DisposableObserver;
 
+@Singleton
 public class MediaServiceImpl extends AbstractService implements MediaService {
 
     private final MediaRepository mediaRepository;

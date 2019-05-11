@@ -4,7 +4,7 @@ import android.graphics.Bitmap;
 
 import com.runnimal.app.android.domain.Pet;
 import com.runnimal.app.android.service.MediaService;
-import com.runnimal.app.android.service.PetsService;
+import com.runnimal.app.android.service.PetService;
 import com.runnimal.app.android.view.viewmodel.PetViewModel;
 import com.runnimal.app.android.view.viewmodel.converter.PetViewModelConverter;
 
@@ -15,13 +15,13 @@ import lombok.Setter;
 
 public class PetAddPresenter extends Presenter<PetAddPresenter.View> {
 
-    private PetsService petsService;
+    private PetService petsService;
     private MediaService mediaService;
     @Setter
     private String petId;
 
     @Inject
-    public PetAddPresenter(PetsService petsService, MediaService mediaService) {
+    public PetAddPresenter(PetService petsService, MediaService mediaService) {
         this.mediaService = mediaService;
         this.petsService = petsService;
     }

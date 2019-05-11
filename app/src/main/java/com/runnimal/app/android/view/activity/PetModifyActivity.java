@@ -3,17 +3,14 @@ package com.runnimal.app.android.view.activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Size;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.runnimal.app.android.GodActivity;
 import com.runnimal.app.android.R;
 import com.runnimal.app.android.RunnimalApplication;
 import com.runnimal.app.android.domain.Pet;
@@ -22,7 +19,6 @@ import com.runnimal.app.android.view.util.ImageUtils;
 import com.runnimal.app.android.view.viewmodel.PetViewModel;
 
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 import javax.inject.Inject;
 
@@ -67,7 +63,7 @@ public class PetModifyActivity extends BaseActivity implements PetModifyPresente
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_pet_detail;
+        return R.layout.activity_pet_modify;
     }
 
     @Override
@@ -159,7 +155,7 @@ public class PetModifyActivity extends BaseActivity implements PetModifyPresente
 
     private void initializeEditImageButton() {
         imageEditButton.setOnClickListener(view -> {
-
+            //TODO
         });
     }
 

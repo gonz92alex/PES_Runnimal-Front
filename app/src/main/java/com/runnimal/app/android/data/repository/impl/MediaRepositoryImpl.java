@@ -6,9 +6,11 @@ import com.runnimal.app.android.data.api.RunnimalApi;
 import com.runnimal.app.android.data.repository.MediaRepository;
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
 import io.reactivex.Observable;
 
+@Singleton
 public class MediaRepositoryImpl implements MediaRepository {
 
     private final RunnimalApi api;

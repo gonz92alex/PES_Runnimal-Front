@@ -94,7 +94,7 @@ public class PetDetailActivity extends BaseActivity implements PetDetailPresente
         age.setText(LocalDate.now().getYear() - pet.getBirth());
 
         ImageUtils.setImage(pet.getOwner().getImageUrl(), ownerImage);
-        initializeOwnerImageButton();
+        initializeOwnerImageButton(pet);
 
         //Check if owner is the current user
         if (SingletonSession.Instance().getMail().equals(pet.getOwner().getEmail())) {
@@ -114,9 +114,9 @@ public class PetDetailActivity extends BaseActivity implements PetDetailPresente
         presenter.setPetId(petId);
     }
 
-    private void initializeOwnerImageButton() {
+    private void initializeOwnerImageButton(PetViewModel pet) {
         ownerImage.setOnClickListener(view -> {
-            startActivity(new Intent(this, ProfileActivity.class));
+            OwnerDetailActivity.open(this, pet.getOwner().getId());
         });
     }
 

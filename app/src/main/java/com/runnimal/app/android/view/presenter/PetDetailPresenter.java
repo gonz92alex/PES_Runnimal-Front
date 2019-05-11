@@ -1,13 +1,9 @@
 package com.runnimal.app.android.view.presenter;
 
 import com.runnimal.app.android.domain.Pet;
-import com.runnimal.app.android.domain.Training;
-import com.runnimal.app.android.service.PetsService;
-import com.runnimal.app.android.service.TrainingService;
+import com.runnimal.app.android.service.PetService;
 import com.runnimal.app.android.view.viewmodel.PetViewModel;
-import com.runnimal.app.android.view.viewmodel.TrainingViewModel;
 import com.runnimal.app.android.view.viewmodel.converter.PetViewModelConverter;
-import com.runnimal.app.android.view.viewmodel.converter.TrainingViewModelConverter;
 
 import javax.inject.Inject;
 
@@ -16,12 +12,12 @@ import lombok.Setter;
 
 public class PetDetailPresenter extends Presenter<PetDetailPresenter.View> {
 
-    private PetsService petsService;
+    private PetService petsService;
     @Setter
     private String petId;
 
     @Inject
-    public PetDetailPresenter(PetsService petsService) {
+    public PetDetailPresenter(PetService petsService) {
         this.petsService = petsService;
     }
 

@@ -6,9 +6,9 @@ import java.util.List;
 
 import io.reactivex.observers.DisposableObserver;
 
-public interface PetsService {
+public interface PetService {
 
-    void list(DisposableObserver<List<Pet>> callback);
+    void list(String ownerEmail, DisposableObserver<List<Pet>> callback);
 
     void get(String id, DisposableObserver<Pet> callback);
 

@@ -1,9 +1,7 @@
 package com.runnimal.app.android.view.presenter;
 
-import android.widget.Toast;
-
 import com.runnimal.app.android.domain.Pet;
-import com.runnimal.app.android.service.PetsService;
+import com.runnimal.app.android.service.PetService;
 import com.runnimal.app.android.view.viewmodel.PetViewModel;
 import com.runnimal.app.android.view.viewmodel.converter.PetViewModelConverter;
 
@@ -14,12 +12,12 @@ import lombok.Setter;
 
 public class PetModifyPresenter extends Presenter<PetModifyPresenter.View> {
 
-    private PetsService petsService;
+    private PetService petsService;
     @Setter
     private String petId;
 
     @Inject
-    public PetModifyPresenter(PetsService petsService) {
+    public PetModifyPresenter(PetService petsService) {
         this.petsService = petsService;
     }
 

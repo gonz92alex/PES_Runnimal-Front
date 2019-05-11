@@ -3,6 +3,7 @@ package com.runnimal.app.android.data.api.impl;
 import android.graphics.Bitmap;
 
 import com.runnimal.app.android.data.api.RunnimalApi;
+import com.runnimal.app.android.domain.Owner;
 import com.runnimal.app.android.domain.Pet;
 import com.runnimal.app.android.domain.Ranking;
 import com.runnimal.app.android.domain.Training;
@@ -20,6 +21,7 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
     private static final String TRAINING_DETAIL_FILE = "json/training-detail.json";
     private static final String PETS_FILE = "json/pets.json";
     private static final String PET_DETAIL_FILE = "json/pet-detail.json";
+    private static final String OWNER_DETAIL_FILE = "json/owner-detail.json";
 
     private final JacksonFactory jacksonFactory;
 
@@ -57,7 +59,7 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
     }
 
     @Override
-    public void listPets(RunnimalApiCallback<List<Pet>> callback) {
+    public void listPets(String ownerEmail, RunnimalApiCallback<List<Pet>> callback) {
         try {
             callback.responseOK(jacksonFactory.toList(IOUtils.getResource(PETS_FILE), Pet.class));
         } catch (Exception e) {
@@ -89,6 +91,15 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
     @Override
     public void createPet(Pet pet, RunnimalApiCallback<Pet> callback) {
         callback.responseOK(new Pet());
+    }
+
+    @Override
+    public void getOwner(String id, RunnimalApiCallback<Owner> callback) {
+        try {
+            callback.responseOK(jacksonFactory.toObject(IOUtils.getResource(OWNER_DETAIL_FILE), Owner.class));
+        } catch (Exception e) {
+            callback.responseError(e);
+        }
     }
 
     @Override

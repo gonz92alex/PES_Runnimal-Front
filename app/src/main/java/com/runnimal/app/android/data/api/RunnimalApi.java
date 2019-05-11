@@ -2,6 +2,7 @@ package com.runnimal.app.android.data.api;
 
 import android.graphics.Bitmap;
 
+import com.runnimal.app.android.domain.Owner;
 import com.runnimal.app.android.domain.Pet;
 import com.runnimal.app.android.domain.Ranking;
 import com.runnimal.app.android.domain.Training;
@@ -16,13 +17,15 @@ public interface RunnimalApi {
 
     void getTraining(String id, RunnimalApiCallback<Training> callback);
 
-    void listPets(RunnimalApiCallback<List<Pet>> callback);
+    void listPets(String ownerEmail, RunnimalApiCallback<List<Pet>> callback);
 
     void getPet(String id, RunnimalApiCallback<Pet> callback);
 
     void modifyPet(Pet pet, RunnimalApiCallback<String> callback);
 
     void createPet(Pet pet, RunnimalApiCallback<Pet> callback);
+
+    void getOwner(String id, RunnimalApiCallback<Owner> callback);
 
     void uploadImage(final Bitmap image, RunnimalApiCallback<String> callback);
 

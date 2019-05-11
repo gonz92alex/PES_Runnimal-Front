@@ -7,11 +7,11 @@ import com.android.volley.toolbox.Volley;
 import com.runnimal.app.android.data.api.RunnimalApi;
 import com.runnimal.app.android.data.api.impl.RunnimalApiImpl;
 import com.runnimal.app.android.data.repository.MediaRepository;
-import com.runnimal.app.android.data.repository.PetsRepository;
-import com.runnimal.app.android.data.repository.TrainingsRepository;
+import com.runnimal.app.android.data.repository.PetRepository;
+import com.runnimal.app.android.data.repository.TrainingRepository;
 import com.runnimal.app.android.data.repository.impl.MediaRepositoryImpl;
-import com.runnimal.app.android.data.repository.impl.PetsRepositoryImpl;
-import com.runnimal.app.android.data.repository.impl.TrainingsRepositoryImpl;
+import com.runnimal.app.android.data.repository.impl.PetRepositoryImpl;
+import com.runnimal.app.android.data.repository.impl.TrainingRepositoryImpl;
 
 import javax.inject.Singleton;
 
@@ -31,13 +31,13 @@ public class DataModule {
 
     @Provides
     @Singleton
-    TrainingsRepository trainingRepository(TrainingsRepositoryImpl trainingsRepository) {
+    TrainingRepository trainingRepository(TrainingRepositoryImpl trainingsRepository) {
         return trainingsRepository;
     }
 
     @Provides
     @Singleton
-    PetsRepository petsRepository(PetsRepositoryImpl petsRepository) {
+    PetRepository petsRepository(PetRepositoryImpl petsRepository) {
         return petsRepository;
     }
 

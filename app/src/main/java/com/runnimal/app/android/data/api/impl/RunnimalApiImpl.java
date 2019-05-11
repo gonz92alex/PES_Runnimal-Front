@@ -10,8 +10,9 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.runnimal.app.android.SingletonSession;
-import com.runnimal.app.android.data.util.VolleyMultipartRequest;
 import com.runnimal.app.android.data.api.RunnimalApi;
+import com.runnimal.app.android.data.util.VolleyMultipartRequest;
+import com.runnimal.app.android.domain.Owner;
 import com.runnimal.app.android.domain.Pet;
 import com.runnimal.app.android.domain.Ranking;
 import com.runnimal.app.android.domain.Training;
@@ -86,9 +87,10 @@ public class RunnimalApiImpl implements RunnimalApi {
     }
 
     @Override
-    public void listPets(RunnimalApiCallback<List<Pet>> callback) {
+    public void listPets(String ownerEmail, RunnimalApiCallback<List<Pet>> callback) {
+        String email = ownerEmail != null ? ownerEmail : SingletonSession.Instance().getMail();
         StringRequest stringRequest = new StringRequest(Request.Method.GET, //
-                "http://nidorana.fib.upc.edu/api/pets/user/" + SingletonSession.Instance().getMail(), //
+                "http://nidorana.fib.upc.edu/api/pets/user/" + email, //
                 (response) -> {
                     callback.responseOK(jacksonFactory.toList(response, Pet.class));
 
@@ -180,6 +182,23 @@ public class RunnimalApiImpl implements RunnimalApi {
                 return message.toString().getBytes("utf-8");
             }
         };
+
+        requestQueue.add(stringRequest);
+    }
+
+    @Override
+    public void getOwner(String id, RunnimalApiCallback<Owner> callback) {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, //
+                "http://nidorana.fib.upc.edu/api/pets/" + SingletonSession.Instance().getMail() + "/" + id, //
+                (response) -> {
+                    callback.responseOK(jacksonFactory.toObject(response, Owner.class));
+
+                }, //
+                (error) -> {
+                    Log.d("apiError", error.toString());
+                    callback.responseError(error);
+                }
+        );
 
         requestQueue.add(stringRequest);
     }

@@ -1,7 +1,7 @@
 package com.runnimal.app.android.di.modules;
 
-import com.runnimal.app.android.service.PetsService;
-import com.runnimal.app.android.service.impl.PetsServiceImpl;
+import com.runnimal.app.android.service.PetService;
+import com.runnimal.app.android.service.impl.PetServiceImpl;
 import com.runnimal.app.android.service.TrainingService;
 import com.runnimal.app.android.service.impl.TrainingServiceImpl;
 
@@ -23,7 +23,7 @@ public class ServiceModule {
 
     @Provides
     @Singleton
-    PetsService petsService(PetsServiceImpl petsService) {
+    PetService petsService(PetServiceImpl petsService) {
         return petsService;
     }
 

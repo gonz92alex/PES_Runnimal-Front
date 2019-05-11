@@ -5,6 +5,7 @@ import android.content.Context;
 import com.runnimal.app.android.di.modules.MainModule;
 import com.runnimal.app.android.di.modules.DataModule;
 import com.runnimal.app.android.di.modules.ServiceModule;
+import com.runnimal.app.android.view.activity.OwnerDetailActivity;
 import com.runnimal.app.android.view.activity.PetAddActivity;
 import com.runnimal.app.android.view.activity.PetDetailActivity;
 import com.runnimal.app.android.view.activity.PetModifyActivity;
@@ -35,6 +36,8 @@ public interface MainComponent {
     void inject(PetModifyActivity activity);
 
     void inject(PetAddActivity activity);
+
+    void inject(OwnerDetailActivity activity);
 
     Context context();
 }
