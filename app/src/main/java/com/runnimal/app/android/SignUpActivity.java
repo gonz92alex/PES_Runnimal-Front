@@ -1,6 +1,5 @@
 package com.runnimal.app.android;
 
-import android.Manifest;
 import android.app.ProgressDialog;
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -14,10 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -26,24 +22,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.karumi.dexter.Dexter;
-import com.karumi.dexter.MultiplePermissionsReport;
-import com.karumi.dexter.PermissionToken;
-import com.karumi.dexter.listener.DexterError;
-import com.karumi.dexter.listener.PermissionRequest;
-import com.karumi.dexter.listener.PermissionRequestErrorListener;
-import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.runnimal.app.android._service.fileUploader;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.ByteArrayOutputStream;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class SignUpActivity extends AppCompatActivity {
     private static final int CAMERA_REQUEST = 1888;
@@ -54,7 +38,7 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signup_act);
+        setContentView(R.layout.activity_sign_up);
         nombre = (EditText) findViewById(R.id.EditTextAlias);
         Button ButtonCamera = (Button) findViewById(R.id.buttonCameraEdit);
         ImageViewProfile = (ImageView) findViewById(R.id.imageViewProfile);

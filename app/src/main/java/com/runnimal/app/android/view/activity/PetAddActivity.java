@@ -62,7 +62,7 @@ public class PetAddActivity extends BaseActivity implements PetAddPresenter.View
     Button cameraButton;
 
     public static void open(Context context) {
-        Intent intent = new Intent(context, PetModifyActivity.class);
+        Intent intent = new Intent(context, PetAddActivity.class);
         context.startActivity(intent);
     }
 

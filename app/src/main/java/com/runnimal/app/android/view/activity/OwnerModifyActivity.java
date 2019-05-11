@@ -46,7 +46,7 @@ public class OwnerModifyActivity extends BaseActivity implements OwnerModifyPres
     ProgressBar progressBar;
 
     public static void open(Context context) {
-        Intent intent = new Intent(context, PetDetailActivity.class);
+        Intent intent = new Intent(context, OwnerModifyActivity.class);
         context.startActivity(intent);
     }
 

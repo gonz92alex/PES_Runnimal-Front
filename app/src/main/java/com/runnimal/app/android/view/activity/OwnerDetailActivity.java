@@ -56,7 +56,7 @@ public class OwnerDetailActivity extends BaseActivity implements OwnerDetailPres
     ProgressBar progressBar;
 
     public static void open(Context context, String ownerId, String ownerEmail) {
-        Intent intent = new Intent(context, PetDetailActivity.class);
+        Intent intent = new Intent(context, OwnerDetailActivity.class);
         intent.putExtra(OWNER_ID_KEY, ownerId);
         intent.putExtra(OWNER_EMAIL_KEY, ownerEmail);
         context.startActivity(intent);
