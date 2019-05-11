@@ -1,7 +1,9 @@
-package com.runnimal.app.android.service;
+package com.runnimal.app.android.service.impl;
 
 import com.runnimal.app.android.data.repository.PetsRepository;
 import com.runnimal.app.android.domain.Pet;
+import com.runnimal.app.android.service.AbstractService;
+import com.runnimal.app.android.service.PetsService;
 
 import java.util.List;
 

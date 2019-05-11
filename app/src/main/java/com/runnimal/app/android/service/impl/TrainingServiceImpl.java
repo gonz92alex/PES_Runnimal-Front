@@ -1,7 +1,9 @@
-package com.runnimal.app.android.service;
+package com.runnimal.app.android.service.impl;
 
 import com.runnimal.app.android.data.repository.TrainingsRepository;
 import com.runnimal.app.android.domain.Training;
+import com.runnimal.app.android.service.AbstractService;
+import com.runnimal.app.android.service.TrainingService;
 
 import java.util.List;
 

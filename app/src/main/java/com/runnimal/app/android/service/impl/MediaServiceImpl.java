@@ -1,4 +1,30 @@
 package com.runnimal.app.android.service.impl;
 
-public class MediaServiceImpl {
+import android.graphics.Bitmap;
+
+import com.runnimal.app.android.data.repository.MediaRepository;
+import com.runnimal.app.android.service.AbstractService;
+import com.runnimal.app.android.service.MediaService;
+
+import javax.inject.Inject;
+import javax.inject.Named;
+
+import io.reactivex.Scheduler;
+import io.reactivex.observers.DisposableObserver;
+
+public class MediaServiceImpl extends AbstractService implements MediaService {
+
+    private final MediaRepository mediaRepository;
+
+    @Inject
+    public MediaServiceImpl(@Named("executor_thread") Scheduler executorThread, //
+                            @Named("ui_thread") Scheduler uiThread, //
+                            MediaRepository mediaRepository) {
+        super(executorThread, uiThread);
+        this.mediaRepository = mediaRepository;
+    }
+
+    public void uploadImage(final Bitmap image, DisposableObserver<String> callback) {
+        execute(mediaRepository.uploadImage(image), callback);
+    }
 }
