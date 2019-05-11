@@ -6,7 +6,7 @@ import java.util.List;
 
 import io.reactivex.Observable;
 
-public interface TrainingsRepository {
+public interface TrainingRepository {
 
     Observable<List<Training>> list();
 

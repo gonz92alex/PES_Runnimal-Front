@@ -5,6 +5,7 @@ import android.content.Context;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.runnimal.app.android.data.api.RunnimalApi;
+import com.runnimal.app.android.data.api.impl.LocalRunnimalApiImpl;
 import com.runnimal.app.android.data.api.impl.RunnimalApiImpl;
 import com.runnimal.app.android.data.repository.MediaRepository;
 import com.runnimal.app.android.data.repository.PetRepository;
@@ -25,7 +26,7 @@ public class DataModule {
 
     @Provides
     @Singleton
-    RunnimalApi runnimalApi(RunnimalApiImpl runnimalApi) {
+    RunnimalApi runnimalApi(LocalRunnimalApiImpl runnimalApi) {
         return runnimalApi;
     }
 

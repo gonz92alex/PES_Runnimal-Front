@@ -5,13 +5,16 @@ import android.graphics.Bitmap;
 import android.util.Log;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.runnimal.app.android.SingletonSession;
 import com.runnimal.app.android.data.api.RunnimalApi;
 import com.runnimal.app.android.data.util.VolleyMultipartRequest;
+import com.runnimal.app.android.domain.FriendRequest;
 import com.runnimal.app.android.domain.Owner;
 import com.runnimal.app.android.domain.Pet;
 import com.runnimal.app.android.domain.Ranking;
@@ -192,7 +195,97 @@ public class RunnimalApiImpl implements RunnimalApi {
                 "http://nidorana.fib.upc.edu/api/pets/" + SingletonSession.Instance().getMail() + "/" + id, //
                 (response) -> {
                     callback.responseOK(jacksonFactory.toObject(response, Owner.class));
+                }, //
+                (error) -> {
+                    Log.d("apiError", error.toString());
+                    callback.responseError(error);
+                }
+        );
 
+        requestQueue.add(stringRequest);
+    }
+
+    @Override
+    public void getFriendRequests(String ownerEmail, RunnimalApiCallback<List<FriendRequest>> callback) {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, //
+                "http://nidorana.fib.upc.edu/api/friendRequests/" + ownerEmail,
+                (response) -> {
+                    callback.responseOK(jacksonFactory.toList(response, FriendRequest.class));
+                }, //
+                (error) -> {
+                    Log.d("apiError", error.toString());
+                    callback.responseError(error);
+                }
+        );
+
+        requestQueue.add(stringRequest);
+    }
+
+    @Override
+    public void isFriend(String friendEmail, RunnimalApiCallback<Boolean> callback) {
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, //
+                "http://nidorana.fib.upc.edu/api/friends/" + SingletonSession.Instance().getMail() + "/" + friendEmail,
+                (response) -> {
+                    // TODO
+                    callback.responseOK(true);
+                }, //
+                (error) -> {
+                    Log.d("apiError", error.toString());
+                    callback.responseError(error);
+                }
+        );
+
+        requestQueue.add(stringRequest);
+    }
+
+    @Override
+    @SneakyThrows
+    public void createFriendRequest(String requestedEmail, RunnimalApiCallback<String> callback) {
+        String url = "http://nidorana.fib.upc.edu/api/friendRequests/new";
+
+        JSONObject jsonBody = new JSONObject() //
+                .put("requestingEmail", SingletonSession.Instance().getMail()) //
+                .put("requestedEmail", requestedEmail);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                (response) -> {
+                    // TODO
+                    callback.responseOK("");
+                }, //
+                (error) -> {
+                    Log.d("apiError", error.toString());
+                    callback.responseError(error);
+                }
+        ) {
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+
+            @Override
+            @SneakyThrows
+            public byte[] getBody() {
+                return jsonBody.toString().getBytes("utf-8");
+            }
+
+            @Override
+            protected Response<String> parseNetworkResponse(NetworkResponse response) {
+                int mStatusCode = response.statusCode;
+                return super.parseNetworkResponse(response);
+            }
+        };
+
+        requestQueue.add(stringRequest);
+    }
+
+    @Override
+    public void deleteFriend(String ownerId, RunnimalApiCallback<String> callback) {
+        StringRequest stringRequest = new StringRequest(Request.Method.DELETE, //
+                "http://nidorana.fib.upc.edu/api/friends/delete/" + ownerId,
+                (response) -> {
+                    // TODO
+                    callback.responseOK("");
                 }, //
                 (error) -> {
                     Log.d("apiError", error.toString());

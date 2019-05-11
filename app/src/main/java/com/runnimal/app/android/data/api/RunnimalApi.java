@@ -2,6 +2,7 @@ package com.runnimal.app.android.data.api;
 
 import android.graphics.Bitmap;
 
+import com.runnimal.app.android.domain.FriendRequest;
 import com.runnimal.app.android.domain.Owner;
 import com.runnimal.app.android.domain.Pet;
 import com.runnimal.app.android.domain.Ranking;
@@ -26,6 +27,14 @@ public interface RunnimalApi {
     void createPet(Pet pet, RunnimalApiCallback<Pet> callback);
 
     void getOwner(String id, RunnimalApiCallback<Owner> callback);
+
+    void getFriendRequests(String ownerEmail, RunnimalApiCallback<List<FriendRequest>> callback);
+
+    void isFriend(String friendEmail, RunnimalApiCallback<Boolean> callback);
+
+    void createFriendRequest(String requestedEmail, RunnimalApiCallback<String> callback);
+
+    void deleteFriend(String requestedEmail, RunnimalApiCallback<String> callback);
 
     void uploadImage(final Bitmap image, RunnimalApiCallback<String> callback);
 

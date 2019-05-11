@@ -1,33 +1,35 @@
 package com.runnimal.app.android.service.impl;
 
-import com.runnimal.app.android.data.repository.PetsRepository;
+import com.runnimal.app.android.data.repository.PetRepository;
 import com.runnimal.app.android.domain.Pet;
 import com.runnimal.app.android.service.AbstractService;
-import com.runnimal.app.android.service.PetsService;
+import com.runnimal.app.android.service.PetService;
 
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.inject.Singleton;
 
 import io.reactivex.Scheduler;
 import io.reactivex.observers.DisposableObserver;
 
-public class PetsServiceImpl extends AbstractService implements PetsService {
+@Singleton
+public class PetServiceImpl extends AbstractService implements PetService {
 
-    private final PetsRepository petsRepository;
+    private final PetRepository petsRepository;
 
     @Inject
-    public PetsServiceImpl(@Named("executor_thread") Scheduler executorThread, //
-                           @Named("ui_thread") Scheduler uiThread, //
-                           PetsRepository petsRepository) {
+    public PetServiceImpl(@Named("executor_thread") Scheduler executorThread, //
+                          @Named("ui_thread") Scheduler uiThread, //
+                          PetRepository petsRepository) {
         super(executorThread, uiThread);
         this.petsRepository = petsRepository;
     }
 
     @Override
-    public void list(DisposableObserver<List<Pet>> callback) {
-        execute(petsRepository.list(), callback);
+    public void list(String ownerEmail, DisposableObserver<List<Pet>> callback) {
+        execute(petsRepository.list(ownerEmail), callback);
     }
 
     @Override

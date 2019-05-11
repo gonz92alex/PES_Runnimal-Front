@@ -3,6 +3,7 @@ package com.runnimal.app.android.data.api.impl;
 import android.graphics.Bitmap;
 
 import com.runnimal.app.android.data.api.RunnimalApi;
+import com.runnimal.app.android.domain.FriendRequest;
 import com.runnimal.app.android.domain.Owner;
 import com.runnimal.app.android.domain.Pet;
 import com.runnimal.app.android.domain.Ranking;
@@ -14,6 +15,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import lombok.SneakyThrows;
+
 public class LocalRunnimalApiImpl implements RunnimalApi {
 
     private static final String TRAININGS_FILE = "json/trainings.json";
@@ -22,6 +25,7 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
     private static final String PETS_FILE = "json/pets.json";
     private static final String PET_DETAIL_FILE = "json/pet-detail.json";
     private static final String OWNER_DETAIL_FILE = "json/owner-detail.json";
+    private static final String FRIEND_REQUESTS_FILE = "json/friend-requests.json";
 
     private final JacksonFactory jacksonFactory;
 
@@ -100,6 +104,28 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
         } catch (Exception e) {
             callback.responseError(e);
         }
+    }
+
+
+    @Override
+    public void getFriendRequests(String ownerEmail, RunnimalApiCallback<List<FriendRequest>> callback) {
+        callback.responseOK(jacksonFactory.toList(IOUtils.getResource(FRIEND_REQUESTS_FILE), FriendRequest.class));
+    }
+
+    @Override
+    public void isFriend(String friendEmail, RunnimalApiCallback<Boolean> callback) {
+        callback.responseOK(true);
+    }
+
+    @Override
+    @SneakyThrows
+    public void createFriendRequest(String requestedEmail, RunnimalApiCallback<String> callback) {
+        callback.responseOK("OK");
+    }
+
+    @Override
+    public void deleteFriend(String requestedEmail, RunnimalApiCallback<String> callback) {
+        callback.responseOK("OK");
     }
 
     @Override

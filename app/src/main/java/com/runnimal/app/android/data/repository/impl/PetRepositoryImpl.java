@@ -1,7 +1,7 @@
 package com.runnimal.app.android.data.repository.impl;
 
 import com.runnimal.app.android.data.api.RunnimalApi;
-import com.runnimal.app.android.data.repository.PetsRepository;
+import com.runnimal.app.android.data.repository.PetRepository;
 import com.runnimal.app.android.domain.Pet;
 
 import java.util.List;
@@ -12,17 +12,17 @@ import javax.inject.Singleton;
 import io.reactivex.Observable;
 
 @Singleton
-public class PetsRepositoryImpl implements PetsRepository {
+public class PetRepositoryImpl implements PetRepository {
 
     private final RunnimalApi api;
 
     @Inject
-    public PetsRepositoryImpl(RunnimalApi api) {
+    public PetRepositoryImpl(RunnimalApi api) {
         this.api = api;
     }
 
     @Override
-    public Observable<List<Pet>> list() {
+    public Observable<List<Pet>> list(String ownerEmail) {
         return Observable.create(emitter -> {
             api.listPets(new RunnimalApi.RunnimalApiCallback<List<Pet>>() {
                 @Override

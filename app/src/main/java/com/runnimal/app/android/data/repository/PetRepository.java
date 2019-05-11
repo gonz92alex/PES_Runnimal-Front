@@ -6,9 +6,9 @@ import java.util.List;
 
 import io.reactivex.Observable;
 
-public interface PetsRepository {
+public interface PetRepository {
 
-    Observable<List<Pet>> list();
+    Observable<List<Pet>> list(String ownerEmail);
 
     Observable<Pet> get(String id);
 

@@ -7,10 +7,11 @@ import lombok.experimental.Accessors;
 
 @Data
 @Accessors(chain = true)
-public class Owner {
+public class FriendRequest {
 
     @JsonAlias("_id")
     private String id;
-    private String alias;
-    private String email;
+    private String requestingId;
+    private String requestedId;
+    private FriendRequest state; //TODO: añadir en la API
 }
