@@ -63,11 +63,10 @@
                 <ImageView
                     android:id="@+id/imagenTraining"
                     android:layout_width="match_parent"
-                    android:layout_height="120dp"
+                    android:layout_height="150dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:src="@drawable/addfoto" />
+                    android:layout_marginEnd="8dp" />
 
                 <TextView
                     android:id="@+id/text_detail_training_description"
@@ -117,7 +116,7 @@
                 android:text="@string/Completed"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:background="@drawable/btn_light_rounded"/>
+                android:background="@drawable/btn_green_rounded"/>
 
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
