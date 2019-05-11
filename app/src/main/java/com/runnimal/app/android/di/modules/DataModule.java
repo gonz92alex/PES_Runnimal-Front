@@ -21,7 +21,7 @@ import lombok.RequiredArgsConstructor;
 
 @Module
 @RequiredArgsConstructor
-public class RepositoryModule {
+public class DataModule {
 
     @Provides
     @Singleton

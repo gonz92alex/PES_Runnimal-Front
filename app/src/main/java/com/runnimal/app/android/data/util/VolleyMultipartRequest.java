@@ -1,4 +1,4 @@
-package com.runnimal.app.android;
+package com.runnimal.app.android.data.util;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;

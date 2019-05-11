@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
@@ -13,7 +12,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
-import com.runnimal.app.android.VolleyMultipartRequest;
+import com.runnimal.app.android.data.util.VolleyMultipartRequest;
 
 import java.io.ByteArrayOutputStream;
 import java.util.HashMap;

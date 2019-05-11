@@ -3,7 +3,7 @@ package com.runnimal.app.android.di.components;
 import android.content.Context;
 
 import com.runnimal.app.android.di.modules.MainModule;
-import com.runnimal.app.android.di.modules.RepositoryModule;
+import com.runnimal.app.android.di.modules.DataModule;
 import com.runnimal.app.android.di.modules.ServiceModule;
 import com.runnimal.app.android.view.activity.PetAddActivity;
 import com.runnimal.app.android.view.activity.PetDetailActivity;
@@ -19,7 +19,7 @@ import javax.inject.Singleton;
 import dagger.Component;
 
 @Singleton
-@Component(modules = {MainModule.class, ServiceModule.class, RepositoryModule.class})
+@Component(modules = {MainModule.class, ServiceModule.class, DataModule.class})
 public interface MainComponent {
 
     void inject(TrainingsActivity activity);

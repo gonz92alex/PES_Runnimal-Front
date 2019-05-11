@@ -10,7 +10,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.runnimal.app.android.SingletonSession;
-import com.runnimal.app.android.VolleyMultipartRequest;
+import com.runnimal.app.android.data.util.VolleyMultipartRequest;
 import com.runnimal.app.android.data.api.RunnimalApi;
 import com.runnimal.app.android.domain.Pet;
 import com.runnimal.app.android.domain.Ranking;
