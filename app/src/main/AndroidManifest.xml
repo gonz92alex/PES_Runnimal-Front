@@ -23,7 +23,7 @@
         tools:ignore="HardcodedDebugMode">
 
         <activity
-            android:name="com.runnimal.app.android.MainActivity"
+            android:name=".view.activity.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,12 +36,6 @@
         <activity android:name="com.runnimal.app.android.LogInActivity" />
 
         <activity android:name="com.runnimal.app.android.SignUpActivity" />
-
-        <activity
-            android:name="com.runnimal.app.android.GodActivity"
-            android:label="@string/title_activity_god"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
 
         <!-- New activities -->
         <activity android:name=".view.activity.MapActivity" />
