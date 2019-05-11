@@ -111,6 +111,18 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
     }
 
     @Override
+    @SneakyThrows
+    public void modifyOwner(Owner owner, RunnimalApiCallback<String> callback) {
+        String url = "http://nidorana.fib.upc.edu/api/users/"  + SingletonSession.Instance().getMail();
+
+        owner.setId(null);
+        owner.setEmail(null);
+        JSONObject jsonBody = new JSONObject(jacksonFactory.toJsonNode(owner).toString());
+
+        put(url, jsonBody, callback);
+    }
+
+    @Override
     public void getFriendRequests(String ownerEmail, RunnimalApiCallback<List<FriendRequest>> callback) {
         get("http://nidorana.fib.upc.edu/api/friendRequests/" + ownerEmail, //
                 response -> {
@@ -143,11 +155,6 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
     @Override
     public void deleteFriend(String ownerId, RunnimalApiCallback<String> callback) {
         delete("http://nidorana.fib.upc.edu/api/friends/delete/" + ownerId, callback);
-    }
-
-    @Override
-    public void uploadImage(final Bitmap image, RunnimalApiCallback<String> callback) {
-        uploadImage(image, "http://nidorana.fib.upc.edu/api/photo/pet/emailDueño/nombrePet", callback);
     }
 
 }

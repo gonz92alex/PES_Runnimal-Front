@@ -1,7 +1,5 @@
 package com.runnimal.app.android.view.presenter;
 
-import android.graphics.Bitmap;
-
 import com.runnimal.app.android.domain.Pet;
 import com.runnimal.app.android.service.MediaService;
 import com.runnimal.app.android.service.PetService;
@@ -21,8 +19,8 @@ public class PetAddPresenter extends Presenter<PetAddPresenter.View> {
     private String petId;
 
     @Inject
-    public PetAddPresenter(PetService petsService, MediaService mediaService) {
-        this.mediaService = mediaService;
+    public PetAddPresenter(MediaService mediaService, PetService petsService) {
+        super(mediaService);
         this.petsService = petsService;
     }
 
@@ -44,27 +42,6 @@ public class PetAddPresenter extends Presenter<PetAddPresenter.View> {
                     @Override
                     public void onComplete() {
                         getView().hideLoading();
-                    }
-                });
-    }
-
-    public void uploadImage(final Bitmap image) {
-        mediaService.uploadImage(image, //
-                new DisposableObserver<String>() {
-
-                    @Override
-                    public void onNext(String message) {
-                        //TODO
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        getView().hideLoading();
-                        e.printStackTrace();
-                    }
-
-                    @Override
-                    public void onComplete() {
                     }
                 });
     }

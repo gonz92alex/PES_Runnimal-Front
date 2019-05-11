@@ -56,8 +56,7 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
     public void listRankings(RunnimalApiCallback<List<Ranking>> callback) {
         try {
             callback.responseOK(jacksonFactory.toList(IOUtils.getResource(RANKINGS_FILE), Ranking.class));
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             callback.responseError(e);
         }
     }
@@ -92,7 +91,7 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
 
     @Override
     public void createPet(Pet pet, RunnimalApiCallback<String> callback) {
-        callback.responseOK("12345");
+        callback.responseOK("5c9518c262d914013dd5af3b");
     }
 
     @Override
@@ -102,6 +101,11 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
         } catch (Exception e) {
             callback.responseError(e);
         }
+    }
+
+    @Override
+    public void modifyOwner(Owner owner, RunnimalApiCallback<String> callback) {
+        callback.responseOK("OK");
     }
 
     @Override
@@ -126,7 +130,7 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
     }
 
     @Override
-    public void uploadImage(final Bitmap image, RunnimalApiCallback<String> callback) {
+    public void uploadImage(Bitmap image, String url, RunnimalApiCallback<String> callback) {
         callback.responseOK("OK");
     }
 }

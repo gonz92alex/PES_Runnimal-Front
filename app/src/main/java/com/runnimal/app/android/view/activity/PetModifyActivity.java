@@ -149,13 +149,13 @@ public class PetModifyActivity extends BaseActivity implements PetModifyPresente
 
     private void initializeDeleteButton() {
         deleteButton.setOnClickListener(view -> {
-            //TODO
+            //TODO: implementar
         });
     }
 
     private void initializeEditImageButton() {
         imageEditButton.setOnClickListener(view -> {
-            //TODO
+            //TODO: implementar
         });
     }
 

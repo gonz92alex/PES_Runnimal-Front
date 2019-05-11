@@ -34,6 +34,11 @@ public class OwnerServiceImpl extends AbstractService implements OwnerService {
     }
 
     @Override
+    public void modify(Owner owner, DisposableObserver<String> callback) {
+        execute(ownerRepository.modify(owner), callback);
+    }
+
+    @Override
     public void getFriendRequests(String ownerEmail, DisposableObserver<List<FriendRequest>> callback) {
         execute(ownerRepository.getFriendRequests(ownerEmail), callback);
     }

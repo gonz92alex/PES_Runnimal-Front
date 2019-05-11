@@ -116,7 +116,7 @@ public class PetDetailActivity extends BaseActivity implements PetDetailPresente
 
     private void initializeOwnerImageButton(PetViewModel pet) {
         ownerImage.setOnClickListener(view -> {
-            OwnerDetailActivity.open(this, pet.getOwner().getId());
+            OwnerDetailActivity.open(this, pet.getOwner().getId(), pet.getOwner().getEmail());
         });
     }
 

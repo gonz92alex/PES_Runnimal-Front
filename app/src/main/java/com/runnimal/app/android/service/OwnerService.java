@@ -11,6 +11,8 @@ public interface OwnerService {
 
     void get(String id, DisposableObserver<Owner> callback);
 
+    void modify(Owner owner, DisposableObserver<String> callback);
+
     void getFriendRequests(String ownerEmail, DisposableObserver<List<FriendRequest>> callback);
 
     void isFriend(String friendEmail, DisposableObserver<Boolean> callback);

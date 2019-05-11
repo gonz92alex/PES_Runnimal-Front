@@ -39,19 +39,20 @@ public class OwnerDetailActivity extends BaseActivity implements OwnerDetailPres
     PetsPresenter petsPresenter;
     PetsListAdapter petsListAdapter;
 
-    @BindView(R.id.owner_profile_container)
+    @BindView(R.id.container_owner_detail)
     ScrollView container;
-    @BindView(R.id.image_owner_profile)
+    @BindView(R.id.image_owner_detail)
     ImageView image;
-    @BindView(R.id.text_owner_profile_email)
+    @BindView(R.id.text_owner_detail_email)
     TextView email;
-    @BindView(R.id.text_owner_profile_alias)
+    @BindView(R.id.text_owner_detail_alias)
     TextView alias;
-    @BindView(R.id.list_owner_pets)
+    @BindView(R.id.list_owner_detail_pets)
     RecyclerView petList;
-    @BindView(R.id.image_owner_profile_edit_or_friend)
+    @BindView(R.id.image_owner_detail_edit_or_friend)
     ImageView editOrFriendImage;
-    @BindView(R.id.owner_profile_progress_bar)
+
+    @BindView(R.id.owner_detail_progress_bar)
     ProgressBar progressBar;
 
     public static void open(Context context, String ownerId, String ownerEmail) {
@@ -63,12 +64,12 @@ public class OwnerDetailActivity extends BaseActivity implements OwnerDetailPres
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_owner_profile;
+        return R.layout.activity_owner_detail;
     }
 
     @Override
     protected int getNavigationMenuItemId() {
-        return R.id.navigation_pets;
+        return -1;
     }
 
     @Override
@@ -177,8 +178,7 @@ public class OwnerDetailActivity extends BaseActivity implements OwnerDetailPres
 
     private void initializeEditImageButton(OwnerViewModel owner) {
         editOrFriendImage.setOnClickListener(view -> {
-            //TODO
-            //OwnerModifyActivity.open(this, owner.getId());
+            OwnerModifyActivity.open(this);
         });
     }
 

@@ -30,6 +30,8 @@ public interface RunnimalApi {
 
     void getOwner(String id, RunnimalApiCallback<Owner> callback);
 
+    void modifyOwner(Owner owner, RunnimalApiCallback<String> callback);
+
     void getFriendRequests(String ownerEmail, RunnimalApiCallback<List<FriendRequest>> callback);
 
     void isFriend(String friendEmail, RunnimalApiCallback<Boolean> callback);
@@ -38,7 +40,7 @@ public interface RunnimalApi {
 
     void deleteFriend(String requestedEmail, RunnimalApiCallback<String> callback);
 
-    void uploadImage(final Bitmap image, RunnimalApiCallback<String> callback);
+    void uploadImage(Bitmap image, String path, RunnimalApiCallback<String> callback);
 
     interface RunnimalApiCallback<T> {
 

@@ -6,5 +6,5 @@ import io.reactivex.Observable;
 
 public interface MediaRepository {
 
-    Observable<String> uploadImage(final Bitmap image);
+    Observable<String> uploadImage(Bitmap image, String path);
 }

@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
@@ -68,6 +67,19 @@ public class PetAddActivity extends BaseActivity implements PetAddPresenter.View
     }
 
     @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (data != null) {
+            if (requestCode == CAMERA_REQUEST) {
+                Bitmap bitmapPhoto = (Bitmap) data.getExtras().get("data");
+                image.setImageBitmap(bitmapPhoto);
+                //TODO: hacer la llamada al clickar el boton de crear
+                presenter.uploadImage(bitmapPhoto, "/pet/emailDueño/nombrePet");
+            }
+        }
+    }
+
+    @Override
     protected int getLayoutId() {
         return R.layout.activity_pet_add;
     }
@@ -96,19 +108,6 @@ public class PetAddActivity extends BaseActivity implements PetAddPresenter.View
     @Override
     public void successfullyCreated(PetViewModel pet) {
         finish();
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (data != null) {
-            if (requestCode == CAMERA_REQUEST) {
-                Bitmap bitmapPhoto = (Bitmap) data.getExtras().get("data");
-                image.setImageBitmap(bitmapPhoto);
-                //TODO: hacer la llamada al clickar el boton de crear
-                presenter.uploadImage(bitmapPhoto);
-            }
-        }
     }
 
     private void initializeDagger() {

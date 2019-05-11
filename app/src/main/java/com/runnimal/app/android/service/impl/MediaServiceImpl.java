@@ -26,7 +26,7 @@ public class MediaServiceImpl extends AbstractService implements MediaService {
         this.mediaRepository = mediaRepository;
     }
 
-    public void uploadImage(final Bitmap image, DisposableObserver<String> callback) {
-        execute(mediaRepository.uploadImage(image), callback);
+    public void uploadImage(Bitmap image, String path, DisposableObserver<String> callback) {
+        execute(mediaRepository.uploadImage(image, path), callback);
     }
 }

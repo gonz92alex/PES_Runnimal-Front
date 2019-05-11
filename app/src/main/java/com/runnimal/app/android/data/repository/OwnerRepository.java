@@ -1,6 +1,5 @@
 package com.runnimal.app.android.data.repository;
 
-import com.runnimal.app.android.data.api.RunnimalApi;
 import com.runnimal.app.android.domain.FriendRequest;
 import com.runnimal.app.android.domain.Owner;
 
@@ -11,6 +10,8 @@ import io.reactivex.Observable;
 public interface OwnerRepository {
 
     Observable<Owner> get(String id);
+
+    Observable<String> modify(Owner owner);
 
     Observable<List<FriendRequest>> getFriendRequests(String ownerEmail);
 

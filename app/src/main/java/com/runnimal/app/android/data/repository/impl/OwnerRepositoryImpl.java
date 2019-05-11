@@ -41,6 +41,25 @@ public class OwnerRepositoryImpl implements OwnerRepository {
         });
     }
 
+    @Override
+    public Observable<String> modify(Owner owner) {
+        return Observable.create(emitter -> {
+            api.modifyOwner(owner, //
+                    new RunnimalApi.RunnimalApiCallback<String>() {
+                        @Override
+                        public void responseOK(String message) {
+                            emitter.onNext(message);
+                            emitter.onComplete();
+                        }
+
+                        @Override
+                        public void responseError(Exception e) {
+                            emitter.onError(e);
+                        }
+                    });
+        });
+    }
+
     public Observable<List<FriendRequest>> getFriendRequests(String ownerEmail) {
         return Observable.create(emitter -> {
             api.getFriendRequests(ownerEmail, //

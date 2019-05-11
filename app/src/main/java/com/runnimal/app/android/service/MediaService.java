@@ -6,5 +6,5 @@ import io.reactivex.observers.DisposableObserver;
 
 public interface MediaService {
 
-    void uploadImage(final Bitmap image, DisposableObserver<String> callback);
+    void uploadImage(Bitmap image, String path, DisposableObserver<String> callback);
 }
