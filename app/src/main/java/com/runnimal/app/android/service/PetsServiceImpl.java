@@ -32,4 +32,11 @@ public class PetsServiceImpl extends AbstractService implements PetsService {
     public void get(String id, DisposableObserver<Pet> callback) {
         execute(petsRepository.get(id), callback);
     }
+
+    @Override
+    public void modify(Pet pet, DisposableObserver<String> callback) {
+        execute(petsRepository.modify(pet), callback);
+    }
+
+
 }

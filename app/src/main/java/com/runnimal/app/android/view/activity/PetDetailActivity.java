@@ -51,7 +51,7 @@ public class PetDetailActivity extends BaseActivity implements PetDetailPresente
     ProgressBar progressBar;
 
     public static void open(Context context, String petId) {
-        Intent intent = new Intent(context, TrainingDetailActivity.class);
+        Intent intent = new Intent(context, PetDetailActivity.class);
         intent.putExtra(PET_ID_KEY, petId);
         context.startActivity(intent);
     }
@@ -104,15 +104,15 @@ public class PetDetailActivity extends BaseActivity implements PetDetailPresente
         }
     }
 
+    private void initializeDagger() {
+        RunnimalApplication app = (RunnimalApplication) getApplication();
+        app.getMainComponent().inject(this);
+    }
+
     private void initializePresenter() {
         presenter.setView(this);
         String petId = getIntent().getExtras().getString(PET_ID_KEY);
         presenter.setPetId(petId);
-    }
-
-    private void initializeDagger() {
-        RunnimalApplication app = (RunnimalApplication) getApplication();
-        app.getMainComponent().inject(this);
     }
 
     private void initializeOwnerImageButton() {

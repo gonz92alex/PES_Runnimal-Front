@@ -38,7 +38,7 @@
     <string name="location_error_descr">Your locations settings is set to \'Off\'. \nPlease enable location to use this feature</string>
     <string name="gps_settings">Location settings</string>
 
-    <string-array name="size_arrays">
+    <string-array name="size_array">
         <item>Small</item>
         <item>Big</item>
         <item>Medium</item>

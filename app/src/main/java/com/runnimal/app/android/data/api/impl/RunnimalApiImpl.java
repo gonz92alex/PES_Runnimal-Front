@@ -18,6 +18,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import lombok.SneakyThrows;
+
 public class RunnimalApiImpl implements RunnimalApi {
 
     private final Context context;
@@ -31,11 +33,9 @@ public class RunnimalApiImpl implements RunnimalApi {
 
     @Override
     public void listTrainings(RunnimalApiCallback<List<Training>> callback) {
-        // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(context);
         String url = "http://nidorana.fib.upc.edu/api/trainnings";
 
-        // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, //
                 url, //
                 (response) -> {
@@ -49,7 +49,6 @@ public class RunnimalApiImpl implements RunnimalApi {
                 }
         );
 
-        // Add the request to the RequestQueue.
         queue.add(stringRequest);
     }
 
@@ -60,11 +59,9 @@ public class RunnimalApiImpl implements RunnimalApi {
 
     @Override
     public void getTraining(String id, RunnimalApiCallback<Training> callback) {
-        // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(context);
         String url = "http://nidorana.fib.upc.edu/api/trainnings/" + id;
 
-        // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, //
                 url, //
                 (response) -> {
@@ -78,7 +75,6 @@ public class RunnimalApiImpl implements RunnimalApi {
                 }
         );
 
-        // Add the request to the RequestQueue.
         queue.add(stringRequest);
     }
 
@@ -89,11 +85,9 @@ public class RunnimalApiImpl implements RunnimalApi {
 
     @Override
     public void listPets(RunnimalApiCallback<List<Pet>> callback) {
-        // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(context);
         String url = "http://nidorana.fib.upc.edu/api/pets/user/" + SingletonSession.Instance().getMail();
 
-        // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, //
                 url, //
                 (response) -> {
@@ -107,17 +101,14 @@ public class RunnimalApiImpl implements RunnimalApi {
                 }
         );
 
-        // Add the request to the RequestQueue.
         queue.add(stringRequest);
     }
 
     @Override
     public void getPet(String id, RunnimalApiCallback<Pet> callback) {
-        // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(context);
         String url = "http://nidorana.fib.upc.edu/api/pets/" + SingletonSession.Instance().getMail() + "/" + id;
 
-        // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, //
                 url, //
                 (response) -> {
@@ -131,7 +122,40 @@ public class RunnimalApiImpl implements RunnimalApi {
                 }
         );
 
-        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
+    }
+
+    @Override
+    public void modifyPet(Pet pet, RunnimalApiCallback<String> callback) {
+        RequestQueue queue = Volley.newRequestQueue(context);
+        String url = "http://nidorana.fib.upc.edu/api/pets/" + SingletonSession.Instance().getMail() + "/" + pet.getId();
+
+        pet.setId(null);
+
+        StringRequest stringRequest = new StringRequest( //
+                Request.Method.PUT, //
+                url, //
+                reponse -> {
+                    Log.d("apiRes", "onResponse: respondido!");
+                    callback.responseOK("");
+                },
+                error -> {
+                    Log.d("apiError", error.toString());
+                    callback.responseError(error);
+                } //
+        ) {
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+
+            @Override
+            @SneakyThrows
+            public byte[] getBody() {
+                return jacksonFactory.toJsonNode(pet).toString().getBytes("utf-8");
+            }
+        };
+
         queue.add(stringRequest);
     }
 }

@@ -11,4 +11,6 @@ public interface PetsRepository {
     Observable<List<Pet>> list();
 
     Observable<Pet> get(String id);
+
+    Observable<String> modify(Pet pet);
 }

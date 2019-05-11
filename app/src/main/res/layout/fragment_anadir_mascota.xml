@@ -117,7 +117,7 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="8dp"
             android:ems="10"
-            android:entries="@array/size_arrays"
+            android:entries="@array/size_array"
             android:hint="@string/size"
             android:paddingStart="40dp"
             android:paddingEnd="40dp"

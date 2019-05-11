@@ -1,6 +1,5 @@
 package com.runnimal.app.android.data.repository.impl;
 
-import com.runnimal.app.android.SingletonSession;
 import com.runnimal.app.android.data.api.RunnimalApi;
 import com.runnimal.app.android.data.repository.PetsRepository;
 import com.runnimal.app.android.domain.Pet;
@@ -48,6 +47,25 @@ public class PetsRepositoryImpl implements PetsRepository {
                         @Override
                         public void responseOK(Pet pet) {
                             emitter.onNext(pet);
+                            emitter.onComplete();
+                        }
+
+                        @Override
+                        public void responseError(Exception e) {
+                            emitter.onError(e);
+                        }
+                    });
+        });
+    }
+
+    @Override
+    public Observable<String> modify(Pet pet) {
+        return Observable.create(emitter -> {
+            api.modifyPet(pet, //
+                    new RunnimalApi.RunnimalApiCallback<String>() {
+                        @Override
+                        public void responseOK(String message) {
+                            emitter.onNext(message);
                             emitter.onComplete();
                         }
 

@@ -78,4 +78,8 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
             callback.responseError(e);
         }
     }
+
+    @Override
+    public void modifyPet(Pet pet, RunnimalApiCallback<String> callback) {
+    }
 }

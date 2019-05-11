@@ -11,4 +11,6 @@ public interface PetsService {
     void list(DisposableObserver<List<Pet>> callback);
 
     void get(String id, DisposableObserver<Pet> callback);
+
+    void modify(Pet pet, DisposableObserver<String> callback);
 }
