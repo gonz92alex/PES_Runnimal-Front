@@ -6,7 +6,7 @@ public class ChallengesActivity extends BaseActivity {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_ranking;
+        return R.layout.activity_challenges;
     }
 
     @Override
