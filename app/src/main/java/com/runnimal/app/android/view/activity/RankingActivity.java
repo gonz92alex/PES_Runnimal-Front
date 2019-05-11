@@ -12,7 +12,7 @@ import com.runnimal.app.android.RunnimalApplication;
 import com.runnimal.app.android.view.adapter.RankingListAdapter;
 import com.runnimal.app.android.view.presenter.RankingPresenter;
 import com.runnimal.app.android.view.viewmodel.RankingViewModel;
-import com.runnimal.app.android.view.viewmodel.TrainingViewModel;
+
 
 
 import java.util.List;

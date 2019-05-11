@@ -2,13 +2,11 @@ package com.runnimal.app.android.view.presenter;
 
 import com.runnimal.app.android.domain.Ranking;
 
+import com.runnimal.app.android.service.RankingService;
 import com.runnimal.app.android.service.RankingServiceImpl;
-import com.runnimal.app.android.service.TrainingServiceImpl;
-import com.runnimal.app.android.view.presenter.Presenter;
 import com.runnimal.app.android.view.viewmodel.RankingViewModel;
-import com.runnimal.app.android.view.viewmodel.TrainingViewModel;
 import com.runnimal.app.android.view.viewmodel.converter.RankingViewModelConverter;
-import com.runnimal.app.android.view.viewmodel.converter.TrainingViewModelConverter;
+
 
 import java.util.List;
 
@@ -18,10 +16,10 @@ import io.reactivex.observers.DisposableObserver;
 
 public class RankingPresenter extends Presenter<RankingPresenter.View>{
 
-    private RankingServiceImpl rankingService;
+    private RankingService rankingService;
 
     @Inject
-    public RankingPresenter(RankingServiceImpl rankingService) {
+    public RankingPresenter(RankingService rankingService) {
         this.rankingService = rankingService;
     }
 

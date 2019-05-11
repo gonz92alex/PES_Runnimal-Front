@@ -16,6 +16,7 @@ import javax.inject.Inject;
 public class LocalRunnimalApiImpl implements RunnimalApi {
 
     private static final String TRAININGS_FILE = "json/trainings.json";
+    private static final String RANKINGS_FILE = "json/rankings.json";
     private static final String TRAINING_DETAIL_FILE = "json/training-detail.json";
 
     private final JacksonFactory jacksonFactory;
@@ -37,7 +38,12 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
 
     @Override
     public void listRanking(RunnimalApiCallback<List<Ranking>> callback) {
-
+        try {
+            callback.responseOK(jacksonFactory.toList(IOUtils.getResource(RANKINGS_FILE), Ranking.class));
+        }
+        catch (Exception e) {
+            callback.responseError(e);
+        }
     }
 
     @Override
