@@ -54,6 +54,8 @@
 
         <activity android:name=".view.activity.PetsActivity" />
 
+        <activity android:name=".view.activity.RankingActivity" />
+
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />

@@ -45,7 +45,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
             } else if (itemId == R.id.navigation_trainings) {
                 startActivity(new Intent(this, TrainingsActivity.class));
             } else if (itemId == R.id.navigation_challenges) {
-                startActivity(new Intent(this, ChallengesActivity.class));
+                startActivity(new Intent(this, RankingActivity.class));
             } else if (itemId == R.id.navigation_pets) {
                 startActivity(new Intent(this, PetsActivity.class));
             }

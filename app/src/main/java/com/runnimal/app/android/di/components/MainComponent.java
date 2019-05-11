@@ -3,6 +3,8 @@ package com.runnimal.app.android.di.components;
 import android.content.Context;
 
 import com.runnimal.app.android.di.modules.MainModule;
+import com.runnimal.app.android.domain.Ranking;
+import com.runnimal.app.android.view.activity.RankingActivity;
 import com.runnimal.app.android.view.activity.TrainingDetailActivity;
 import com.runnimal.app.android.view.activity.TrainingsActivity;
 
@@ -15,6 +17,8 @@ import dagger.Component;
 public interface MainComponent {
 
     void inject(TrainingsActivity activity);
+
+    void inject(RankingActivity activity);
 
     void inject(TrainingDetailActivity activity);
 
