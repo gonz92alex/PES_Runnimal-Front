@@ -8,6 +8,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.runnimal.app.android.data.api.RunnimalApi;
+import com.runnimal.app.android.domain.Ranking;
 import com.runnimal.app.android.domain.Training;
 import com.runnimal.app.android.util.JacksonFactory;
 
@@ -51,6 +52,11 @@ public class RunnimalApiImpl implements RunnimalApi {
     }
 
     @Override
+    public void listRanking(RunnimalApiCallback<List<Ranking>> callback) {
+
+    }
+
+    @Override
     public void getTraining(String id, RunnimalApiCallback<Training> callback) {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(context);
@@ -72,5 +78,10 @@ public class RunnimalApiImpl implements RunnimalApi {
 
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
+    }
+
+    @Override
+    public void getRanking(String id, RunnimalApiCallback<Ranking> rankingRunnimalApiCallback) {
+
     }
 }
