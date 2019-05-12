@@ -6,14 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.runnimal.app.android.R;
-import com.runnimal.app.android.view.presenter.FriendsPresenter;
-import com.runnimal.app.android.view.presenter.RankingPresenter;
 import com.runnimal.app.android.view.presenter.SearchPresenter;
-import com.runnimal.app.android.view.presenter.TrainingsPresenter;
-import com.runnimal.app.android.view.viewmodel.FriendsViewModel;
-import com.runnimal.app.android.view.viewmodel.RankingViewModel;
 import com.runnimal.app.android.view.viewmodel.SearchViewModel;
-import com.runnimal.app.android.view.viewmodel.TrainingViewModel;
+
 
 import java.util.ArrayList;
 import java.util.Collection;

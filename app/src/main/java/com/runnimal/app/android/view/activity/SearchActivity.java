@@ -9,11 +9,8 @@ import android.widget.SearchView;
 
 import com.runnimal.app.android.R;
 import com.runnimal.app.android.RunnimalApplication;
-import com.runnimal.app.android.view.adapter.FriendsListAdapter;
 import com.runnimal.app.android.view.adapter.SearchListAdapter;
-import com.runnimal.app.android.view.presenter.FriendsPresenter;
 import com.runnimal.app.android.view.presenter.SearchPresenter;
-import com.runnimal.app.android.view.viewmodel.FriendsViewModel;
 import com.runnimal.app.android.view.viewmodel.SearchViewModel;
 
 

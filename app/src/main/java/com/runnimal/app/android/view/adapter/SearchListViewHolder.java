@@ -5,13 +5,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.runnimal.app.android.R;
-import com.runnimal.app.android.view.presenter.FriendsPresenter;
 import com.runnimal.app.android.view.presenter.SearchPresenter;
-import com.runnimal.app.android.view.presenter.TrainingsPresenter;
 import com.runnimal.app.android.view.util.ImageUtils;
-import com.runnimal.app.android.view.viewmodel.FriendsViewModel;
 import com.runnimal.app.android.view.viewmodel.SearchViewModel;
-import com.runnimal.app.android.view.viewmodel.TrainingViewModel;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
