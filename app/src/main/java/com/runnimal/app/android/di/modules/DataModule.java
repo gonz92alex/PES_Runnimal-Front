@@ -12,12 +12,14 @@ import com.runnimal.app.android.data.repository.MediaRepository;
 import com.runnimal.app.android.data.repository.OwnerRepository;
 import com.runnimal.app.android.data.repository.PetRepository;
 import com.runnimal.app.android.data.repository.RankingRepository;
+import com.runnimal.app.android.data.repository.SearchRepository;
 import com.runnimal.app.android.data.repository.TrainingRepository;
 import com.runnimal.app.android.data.repository.impl.FriendsRepositoryImpl;
 import com.runnimal.app.android.data.repository.impl.MediaRepositoryImpl;
 import com.runnimal.app.android.data.repository.impl.OwnerRepositoryImpl;
 import com.runnimal.app.android.data.repository.impl.PetRepositoryImpl;
 import com.runnimal.app.android.data.repository.impl.RankingRepositoryImpl;
+import com.runnimal.app.android.data.repository.impl.SearchRepositoryImpl;
 import com.runnimal.app.android.data.repository.impl.TrainingRepositoryImpl;
 
 import javax.inject.Singleton;
@@ -70,6 +72,12 @@ public class DataModule {
     @Singleton
     TrainingRepository trainingRepository(TrainingRepositoryImpl trainingsRepository) {
         return trainingsRepository;
+    }
+
+    @Provides
+    @Singleton
+    SearchRepository searchRepository(SearchRepositoryImpl searchRepository) {
+        return searchRepository;
     }
 
 

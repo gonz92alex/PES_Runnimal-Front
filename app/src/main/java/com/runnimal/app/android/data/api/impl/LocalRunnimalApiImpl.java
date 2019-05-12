@@ -9,6 +9,7 @@ import com.runnimal.app.android.domain.Owner;
 import com.runnimal.app.android.domain.Pet;
 import com.runnimal.app.android.domain.Ranking;
 import com.runnimal.app.android.domain.Training;
+import com.runnimal.app.android.domain.User;
 import com.runnimal.app.android.util.IOUtils;
 import com.runnimal.app.android.util.JacksonFactory;
 
@@ -164,6 +165,20 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
 
     @Override
     public void getFriend(String id, RunnimalApiCallback<Friend> friendRunnimalApiCallback) {
+
+    }
+
+    @Override
+    public void listUsers(RunnimalApiCallback<List<User>> listRunnimalApiCallback) {
+        try {
+            listRunnimalApiCallback.responseOK(jacksonFactory.toList(IOUtils.getResource(RANKINGS_FILE), User.class));
+        } catch (Exception e) {
+            listRunnimalApiCallback.responseError(e);
+        }
+    }
+
+    @Override
+    public void getUser(String id, RunnimalApiCallback<User> userRunnimalApiCallback) {
 
     }
 }

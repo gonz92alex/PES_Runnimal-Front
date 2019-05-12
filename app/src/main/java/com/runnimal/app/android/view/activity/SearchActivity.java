@@ -10,8 +10,11 @@ import android.widget.SearchView;
 import com.runnimal.app.android.R;
 import com.runnimal.app.android.RunnimalApplication;
 import com.runnimal.app.android.view.adapter.FriendsListAdapter;
+import com.runnimal.app.android.view.adapter.SearchListAdapter;
 import com.runnimal.app.android.view.presenter.FriendsPresenter;
+import com.runnimal.app.android.view.presenter.SearchPresenter;
 import com.runnimal.app.android.view.viewmodel.FriendsViewModel;
+import com.runnimal.app.android.view.viewmodel.SearchViewModel;
 
 
 import java.util.List;
@@ -26,11 +29,11 @@ public class SearchActivity extends BaseActivity implements SearchPresenter.View
     SearchPresenter presenter;
     SearchListAdapter adapter;
 
-    @BindView(R.id.search_friends)
+    @BindView(R.id.search_users)
     SearchView searchView;
-    @BindView(R.id.list_friends)
-    RecyclerView friendsList;
-    @BindView(R.id.friends_progress_bar)
+    @BindView(R.id.list_users)
+    RecyclerView usersList;
+    @BindView(R.id.users_progress_bar)
     ProgressBar progressBar;
 
     @Override
@@ -56,23 +59,24 @@ public class SearchActivity extends BaseActivity implements SearchPresenter.View
     @Override
     public void showLoading() {
         progressBar.setVisibility(View.VISIBLE);
-        friendsList.setVisibility(View.GONE);
+        usersList.setVisibility(View.GONE);
     }
 
     @Override
     public void hideLoading() {
         progressBar.setVisibility(View.GONE);
-        friendsList.setVisibility(View.VISIBLE);
+        usersList.setVisibility(View.VISIBLE);
     }
+
     @Override
-    public void showFriendsList(List<FriendsViewModel> friendsList) {
-        adapter.addAll(friendsList);
+    public void showUsersList(List<SearchViewModel> usersList) {
+        adapter.addAll(usersList);
         adapter.notifyDataSetChanged();
     }
 
     //esta funcion deberia abrir la pantalla de un user
     @Override
-    public void openUserScreen(FriendsViewModel friend) {
+    public void openUserScreen(SearchViewModel user) {
         // UserDetailActivity.open(this, friend.getId());
     }
 
@@ -86,14 +90,14 @@ public class SearchActivity extends BaseActivity implements SearchPresenter.View
     }
 
     private void initializeAdapter() {
-        adapter = new FriendsListAdapter(presenter);
+        adapter = new SearchListAdapter(presenter);
     }
 
     private void initializeRecyclerView() {
-        friendsList.setLayoutManager(new LinearLayoutManager(this));
-        friendsList.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-        friendsList.setHasFixedSize(true);
-        friendsList.setAdapter(adapter);
+        usersList.setLayoutManager(new LinearLayoutManager(this));
+        usersList.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        usersList.setHasFixedSize(true);
+        usersList.setAdapter(adapter);
     }
 
     private void initializeSearch() {

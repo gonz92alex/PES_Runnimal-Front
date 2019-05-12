@@ -61,6 +61,8 @@
 
         <activity android:name=".view.activity.FriendsActivity" />
 
+        <activity android:name=".view.activity.SearchActivity" />
+
         <!--
                 <activity android:name=".view.activity.FriendRequestsActivity" />
 

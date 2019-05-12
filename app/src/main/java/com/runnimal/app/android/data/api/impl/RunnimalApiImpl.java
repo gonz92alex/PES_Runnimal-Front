@@ -2,6 +2,7 @@ package com.runnimal.app.android.data.api.impl;
 
 import com.android.volley.RequestQueue;
 import com.runnimal.app.android.domain.Friend;
+import com.runnimal.app.android.domain.User;
 import com.runnimal.app.android.util.SingletonSession;
 import com.runnimal.app.android.data.api.RunnimalApi;
 import com.runnimal.app.android.domain.FriendRequest;
@@ -178,6 +179,16 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
 
     @Override
     public void getFriend(String id, RunnimalApiCallback<Friend> friendRunnimalApiCallback) {
+
+    }
+
+    @Override
+    public void listUsers(RunnimalApiCallback<List<User>> listRunnimalApiCallback) {
+
+    }
+
+    @Override
+    public void getUser(String id, RunnimalApiCallback<User> userRunnimalApiCallback) {
 
     }
 

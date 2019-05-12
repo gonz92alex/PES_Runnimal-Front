@@ -5,12 +5,14 @@ import com.runnimal.app.android.service.MediaService;
 import com.runnimal.app.android.service.OwnerService;
 import com.runnimal.app.android.service.PetService;
 import com.runnimal.app.android.service.RankingService;
+import com.runnimal.app.android.service.SearchService;
 import com.runnimal.app.android.service.impl.FriendsServiceImpl;
 import com.runnimal.app.android.service.impl.MediaServiceImpl;
 import com.runnimal.app.android.service.impl.OwnerServiceImpl;
 import com.runnimal.app.android.service.impl.PetServiceImpl;
 import com.runnimal.app.android.service.TrainingService;
 import com.runnimal.app.android.service.impl.RankingServiceImpl;
+import com.runnimal.app.android.service.impl.SearchServiceImpl;
 import com.runnimal.app.android.service.impl.TrainingServiceImpl;
 
 import javax.inject.Singleton;
@@ -57,6 +59,12 @@ public class ServiceModule {
     @Singleton
     FriendsService friendsService(FriendsServiceImpl friendsService) {
         return friendsService;
+    }
+
+    @Provides
+    @Singleton
+    SearchService searchService(SearchServiceImpl searchService) {
+        return searchService;
     }
 
 }
