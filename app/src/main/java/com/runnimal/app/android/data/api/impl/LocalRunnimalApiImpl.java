@@ -3,6 +3,7 @@ package com.runnimal.app.android.data.api.impl;
 import android.graphics.Bitmap;
 
 import com.runnimal.app.android.data.api.RunnimalApi;
+import com.runnimal.app.android.domain.Friend;
 import com.runnimal.app.android.domain.FriendRequest;
 import com.runnimal.app.android.domain.Owner;
 import com.runnimal.app.android.domain.Pet;
@@ -150,5 +151,19 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
     @Override
     public void uploadImage(Bitmap image, String url, RunnimalApiCallback<String> callback) {
         callback.responseOK("OK");
+    }
+
+    @Override
+    public void listFriends(RunnimalApiCallback<List<Friend>> listRunnimalApiCallback) {
+        try {
+            listRunnimalApiCallback.responseOK(jacksonFactory.toList(IOUtils.getResource(RANKINGS_FILE), Friend.class));
+        } catch (Exception e) {
+            listRunnimalApiCallback.responseError(e);
+        }
+    }
+
+    @Override
+    public void getFriend(String id, RunnimalApiCallback<Friend> friendRunnimalApiCallback) {
+
     }
 }

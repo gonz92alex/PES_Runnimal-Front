@@ -5,6 +5,7 @@ import android.content.Context;
 import com.runnimal.app.android.di.modules.DataModule;
 import com.runnimal.app.android.di.modules.MainModule;
 import com.runnimal.app.android.di.modules.ServiceModule;
+import com.runnimal.app.android.view.activity.FriendsActivity;
 import com.runnimal.app.android.view.activity.LoginActivity;
 import com.runnimal.app.android.view.activity.OwnerDetailActivity;
 import com.runnimal.app.android.view.activity.OwnerModifyActivity;
@@ -46,6 +47,8 @@ public interface MainComponent {
     void inject(OwnerDetailActivity activity);
 
     void inject(OwnerModifyActivity activity);
+
+    void inject(FriendsActivity activity);
 
     Context context();
 }

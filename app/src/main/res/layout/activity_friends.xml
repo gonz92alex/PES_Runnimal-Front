@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activity.TrainingsActivity"
+    tools:context=".view.activity.FriendsActivity"
     android:background="@color/colorLightBlue">
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -21,12 +21,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
-                android:text="@string/navigation_trainings_title"
+                android:text="@string/Friends"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                 android:textSize="30sp" />
 
             <SearchView
-                android:id="@+id/search_trainings"
+                android:id="@+id/search_friends"
                 android:layout_width="360dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -37,17 +37,18 @@
                 android:queryHint="Search"></SearchView>
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/list_trainings"
+                android:id="@+id/list_friends"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layoutManager="LinearLayoutManager"
-                tools:context=".view.activity.TrainingsActivity"
-                tools:listitem="@layout/content_trainings_row" />
+                tools:context=".view.activity.FriendsActivity"
+                tools:listitem="@layout/content_user_row">
+            </android.support.v7.widget.RecyclerView>
         </LinearLayout>
     </ScrollView>
 
     <ProgressBar
-        android:id="@+id/trainings_progress_bar"
+        android:id="@+id/friends_progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -67,7 +68,5 @@
         app:itemTextColor="#ffffff"
         app:menu="@menu/navigation" />
 </RelativeLayout>
-
-
 
 

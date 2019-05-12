@@ -2,6 +2,7 @@ package com.runnimal.app.android.data.api;
 
 import android.graphics.Bitmap;
 
+import com.runnimal.app.android.domain.Friend;
 import com.runnimal.app.android.domain.FriendRequest;
 import com.runnimal.app.android.domain.Owner;
 import com.runnimal.app.android.domain.Pet;
@@ -45,6 +46,10 @@ public interface RunnimalApi {
     void deleteFriend(String requestedEmail, RunnimalApiCallback<String> callback);
 
     void uploadImage(Bitmap image, String path, RunnimalApiCallback<String> callback);
+
+    void listFriends(RunnimalApiCallback<List<Friend>> listRunnimalApiCallback);
+
+    void getFriend(String id, RunnimalApiCallback<Friend> friendRunnimalApiCallback);
 
     interface RunnimalApiCallback<T> {
 

@@ -1,9 +1,11 @@
 package com.runnimal.app.android.di.modules;
 
+import com.runnimal.app.android.service.FriendsService;
 import com.runnimal.app.android.service.MediaService;
 import com.runnimal.app.android.service.OwnerService;
 import com.runnimal.app.android.service.PetService;
 import com.runnimal.app.android.service.RankingService;
+import com.runnimal.app.android.service.impl.FriendsServiceImpl;
 import com.runnimal.app.android.service.impl.MediaServiceImpl;
 import com.runnimal.app.android.service.impl.OwnerServiceImpl;
 import com.runnimal.app.android.service.impl.PetServiceImpl;
@@ -49,6 +51,12 @@ public class ServiceModule {
     @Singleton
     TrainingService trainingService(TrainingServiceImpl trainingService) {
         return trainingService;
+    }
+
+    @Provides
+    @Singleton
+    FriendsService friendsService(FriendsServiceImpl friendsService) {
+        return friendsService;
     }
 
 }

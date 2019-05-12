@@ -59,6 +59,8 @@
 
         <activity android:name=".view.activity.OwnerModifyActivity" />
 
+        <activity android:name=".view.activity.FriendsActivity" />
+
         <!--
                 <activity android:name=".view.activity.FriendRequestsActivity" />
 

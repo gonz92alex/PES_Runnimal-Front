@@ -1,7 +1,7 @@
 package com.runnimal.app.android.view.activity;
 
 public class BasuraFriends {
-    ListView listView;
+   /* ListView listView;
     BusquedaListViewAdapter adapter;
     int[] icon = new int[]{R.mipmap.ic_launcher_round, R.mipmap.ic_launcher_round, R.mipmap.ic_launcher_round, R.mipmap.ic_launcher_round};
     SearchView searchView;
@@ -155,5 +155,5 @@ public class BasuraFriends {
                 }
             });
         }
-    }
+    }*/
 }
