@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ScrollView;
@@ -40,7 +41,7 @@ public class PetAddActivity extends BaseActivity implements PetAddPresenter.View
     @Inject
     PetAddPresenter presenter;
 
-    @BindView(R.id.detail_pet_modify_container)
+    @BindView(R.id.detail_pet_add_container)
     ScrollView container;
     @BindView(R.id.image_add_pet)
     ImageView image;
@@ -74,7 +75,7 @@ public class PetAddActivity extends BaseActivity implements PetAddPresenter.View
                 Bitmap bitmapPhoto = (Bitmap) data.getExtras().get("data");
                 image.setImageBitmap(bitmapPhoto);
                 //TODO: hacer la llamada al clickar el boton de crear
-                presenter.uploadImage(bitmapPhoto, "/pet/emailDueño/nombrePet");
+                //presenter.uploadImage(bitmapPhoto, "/pet/emailDueño/nombrePet");
             }
         }
     }
@@ -134,6 +135,7 @@ public class PetAddActivity extends BaseActivity implements PetAddPresenter.View
                         .show();
             } else {
                 Pet pet = new Pet() //
+                        .setName(name.getText().toString())
                         .setDescription(description.getText().toString()) //
                         .setBreed(breed.getText().toString()) //
                         .setWeight(Integer.valueOf(weight.getText().toString())) //
@@ -144,6 +146,7 @@ public class PetAddActivity extends BaseActivity implements PetAddPresenter.View
         });
     }
 
+    //toDO creo que esto no es necesario (not sure)
     private void requestMultiplePermissions() {
         Dexter.withActivity(this)
                 .withPermissions(

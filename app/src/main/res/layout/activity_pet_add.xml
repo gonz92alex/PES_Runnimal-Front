@@ -11,6 +11,7 @@
         android:id="@+id/detail_pet_add_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@id/navigation"
         android:background="#C5EFF7"
         tools:context=".view.activity.PetAddActivity">
 

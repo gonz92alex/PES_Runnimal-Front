@@ -1,5 +1,7 @@
 package com.runnimal.app.android.data.api.impl;
 
+import android.util.Log;
+
 import com.android.volley.RequestQueue;
 import com.runnimal.app.android.domain.Friend;
 import com.runnimal.app.android.domain.User;
@@ -104,8 +106,21 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
     @Override
     @SneakyThrows
     public void createPet(Pet pet, RunnimalApiCallback<String> callback) {
-        JSONObject jsonBody = new JSONObject(jacksonFactory.toJsonNode(pet).toString()) //
-                .put("owner", SingletonSession.Instance().getMail());
+        //ToDO el atributo breed se debe enviar a la api como 'race'...una vez solucionado esto se podra utilizar este metodo
+      /*  JSONObject jsonBody = new JSONObject(jacksonFactory.toJsonNode(pet).toString()) //
+                .put("owner", SingletonSession.Instance().getMail());*/
+
+        //quitar una vez utilizemos el metodo de arriba para pasar el body
+        JSONObject jsonBody = new JSONObject();
+        jsonBody.put("name", pet.getName());
+        jsonBody.put("description", pet.getDescription());
+        jsonBody.put("race", pet.getBreed());
+        jsonBody.put("weight", pet.getWeight());
+        jsonBody.put("size", pet.getSize());
+        jsonBody.put("birth", pet.getBirth());
+        jsonBody.put("owner", SingletonSession.Instance().getMail());
+
+        Log.d("refactor", "EEEEOOOOO-->" + jsonBody.toString());
         post("http://nidorana.fib.upc.edu/api/pets/", jsonBody, callback);
     }
 

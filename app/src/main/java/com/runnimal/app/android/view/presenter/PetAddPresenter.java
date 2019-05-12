@@ -1,5 +1,7 @@
 package com.runnimal.app.android.view.presenter;
 
+import android.util.Log;
+
 import com.runnimal.app.android.domain.Pet;
 import com.runnimal.app.android.service.MediaService;
 import com.runnimal.app.android.service.PetService;
@@ -21,7 +23,7 @@ public class PetAddPresenter extends Presenter<PetAddPresenter.View> {
     }
 
     public void addPet(Pet pet) {
-        petsService.modify(pet, //
+        petsService.create(pet, //
                 new DisposableObserver<String>() {
 
                     @Override

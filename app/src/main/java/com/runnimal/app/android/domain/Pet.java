@@ -20,8 +20,11 @@ public class Pet {
     private String description;
 
     private int weight;
+
+    //toDo al enviar a la api lo esta enviando como breed por lo que peta
     @JsonAlias("race")
     private String breed;
+
     private int birth;
     private PetSize size;
 
