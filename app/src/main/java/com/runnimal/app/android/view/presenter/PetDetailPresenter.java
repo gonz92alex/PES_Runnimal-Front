@@ -28,7 +28,6 @@ public class PetDetailPresenter extends Presenter<PetDetailPresenter.View> {
     @Override
     public void initialize() {
         super.initialize();
-        Log.d("refactor", "vamos a ver -->" + getView().toString());
         getView().showLoading();
         petsService.get(petId,
                 new DisposableObserver<Pet>() {

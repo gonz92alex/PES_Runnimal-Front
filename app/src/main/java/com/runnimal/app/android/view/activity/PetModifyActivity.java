@@ -3,6 +3,7 @@ package com.runnimal.app.android.view.activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -31,7 +32,7 @@ public class PetModifyActivity extends BaseActivity implements PetModifyPresente
     @Inject
     PetModifyPresenter presenter;
 
-    @BindView(R.id.detail_pet_add_container)
+    @BindView(R.id.detail_pet_modify_container)
     ScrollView container;
     @BindView(R.id.image_modify_pet)
     ImageView image;
@@ -82,12 +83,14 @@ public class PetModifyActivity extends BaseActivity implements PetModifyPresente
     public void showLoading() {
         progressBar.setVisibility(View.VISIBLE);
         container.setVisibility(View.GONE);
+        Log.d("refactor", "showLoad");
     }
 
     @Override
     public void hideLoading() {
         progressBar.setVisibility(View.GONE);
         container.setVisibility(View.VISIBLE);
+        Log.d("refactor", "hideLoad");
     }
 
     @Override
@@ -95,8 +98,9 @@ public class PetModifyActivity extends BaseActivity implements PetModifyPresente
         ImageUtils.setImage(pet.getImageUrl(), image);
         description.setText(pet.getDescription());
         breed.setText(pet.getBreed());
-        weight.setText(pet.getWeight() + " kg");
-        birthYear.setText(pet.getBirth());
+
+        weight.setText(String.valueOf(pet.getWeight()));
+        birthYear.setText(String.valueOf(pet.getBirth()));
 
         //Set Size
         String[] sizesArray = getResources().getStringArray(R.array.size_array);
@@ -114,12 +118,16 @@ public class PetModifyActivity extends BaseActivity implements PetModifyPresente
     private void initializeDagger() {
         RunnimalApplication app = (RunnimalApplication) getApplication();
         app.getMainComponent().inject(this);
+        Log.d("refactor", "DONE DAGGER");
+
     }
 
     private void initializePresenter() {
         presenter.setView(this);
         String petId = getIntent().getExtras().getString(PET_ID_KEY);
         presenter.setPetId(petId);
+        Log.d("refactor", "DONE PRESENTER");
+
     }
 
     private void initializeSaveButton() {
@@ -145,18 +153,21 @@ public class PetModifyActivity extends BaseActivity implements PetModifyPresente
                 presenter.modifyPet(pet);
             }
         });
+        Log.d("refactor", "DONE save");
     }
 
     private void initializeDeleteButton() {
         deleteButton.setOnClickListener(view -> {
             //TODO: implementar
         });
+        Log.d("refactor", "DONE Delete");
     }
 
     private void initializeEditImageButton() {
         imageEditButton.setOnClickListener(view -> {
             //TODO: implementar
         });
+        Log.d("refactor", "DONE editImage");
     }
 
 }
