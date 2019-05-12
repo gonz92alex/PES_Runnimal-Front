@@ -1,112 +1,115 @@
 package com.runnimal.app.android.view.activity;
 
-public class SearchActivity {
-    //TODO: Implementar
-    /*
-ListView listView;
-    BusquedaListViewAdapter adapter;
-    String[] title = new String[]{"user1", "user2", "user3", "user4"};
-    String[] mail = new String[]{"userloco2@gmail.com", "jaja@gmail.com", "jaja@gmail.com", "user4@gmail.com"};
-    int[] icon = new int[]{R.mipmap.ic_launcher_round, R.mipmap.ic_launcher_round, R.mipmap.ic_launcher_round, R.mipmap.ic_launcher_round};
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.SearchView;
+
+import com.runnimal.app.android.R;
+import com.runnimal.app.android.RunnimalApplication;
+import com.runnimal.app.android.view.adapter.FriendsListAdapter;
+import com.runnimal.app.android.view.presenter.FriendsPresenter;
+import com.runnimal.app.android.view.viewmodel.FriendsViewModel;
+
+
+import java.util.List;
+
+import javax.inject.Inject;
+
+import butterknife.BindView;
+
+public class SearchActivity extends BaseActivity implements SearchPresenter.View {
+
+    @Inject
+    SearchPresenter presenter;
+    SearchListAdapter adapter;
+
+    @BindView(R.id.search_friends)
     SearchView searchView;
-    ArrayList<ModelBusqueda> arrayList = new ArrayList<ModelBusqueda>();
-    String textoAux = "no lo que quiero";
+    @BindView(R.id.list_friends)
+    RecyclerView friendsList;
+    @BindView(R.id.friends_progress_bar)
+    ProgressBar progressBar;
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.fragment_busqueda, container, false);
-
-        listView = view.findViewById(R.id.listView);
-        searchView = view.findViewById(R.id.searchView);
-
-        UsersApi();
-
-
-
-        return view;
+    protected int getLayoutId() {
+        return R.layout.activity_search;
     }
 
+    @Override
+    protected int getNavigationMenuItemId() {
+        return R.id.navigation_challenges;
+    }
 
-    //llamada API
+    @Override
+    protected void initView() {
+        initializeDagger();
+        initializePresenter();
+        initializeAdapter();
+        initializeRecyclerView();
+        initializeSearch();
+        presenter.initialize();
+    }
 
-    private void UsersApi(){
-        // Instantiate the RequestQueue.
-        RequestQueue queue = Volley.newRequestQueue((GodActivity) getActivity());
-        String url ="http://nidorana.fib.upc.edu/api/users/" ;
+    @Override
+    public void showLoading() {
+        progressBar.setVisibility(View.VISIBLE);
+        friendsList.setVisibility(View.GONE);
+    }
 
-        //Loading Message
-        final ProgressDialog progressDialog = new ProgressDialog((GodActivity) getActivity());
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
+    @Override
+    public void hideLoading() {
+        progressBar.setVisibility(View.GONE);
+        friendsList.setVisibility(View.VISIBLE);
+    }
+    @Override
+    public void showFriendsList(List<FriendsViewModel> friendsList) {
+        adapter.addAll(friendsList);
+        adapter.notifyDataSetChanged();
+    }
 
-        // Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        progressDialog.dismiss();
-                        Log.i("VOLLEY", response);
-                        if(response != null){
-                            Log.i("VOLLEY", "yo me lo guiso yo me lo como");
-                            cargaUsers(response);
+    //esta funcion deberia abrir la pantalla de un user
+    @Override
+    public void openUserScreen(FriendsViewModel friend) {
+        // UserDetailActivity.open(this, friend.getId());
+    }
 
-                        }
-                    }
-                }, new Response.ErrorListener() {
+    private void initializeDagger() {
+        RunnimalApplication app = (RunnimalApplication) getApplication();
+        app.getMainComponent().inject(this);
+    }
+
+    private void initializePresenter() {
+        presenter.setView(this);
+    }
+
+    private void initializeAdapter() {
+        adapter = new FriendsListAdapter(presenter);
+    }
+
+    private void initializeRecyclerView() {
+        friendsList.setLayoutManager(new LinearLayoutManager(this));
+        friendsList.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        friendsList.setHasFixedSize(true);
+        friendsList.setAdapter(adapter);
+    }
+
+    private void initializeSearch() {
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText((GodActivity) getActivity(),"Error: " + error.toString(), Toast.LENGTH_SHORT).show();
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.filter(newText);
+                return true;
             }
         });
-
-        // Add the request to the RequestQueue.
-        queue.add(stringRequest);
     }
 
-    private void cargaUsers (String response){
 
-        try {
-            JSONArray responseArray = new JSONArray(response);
-            textoAux = responseArray.getJSONObject(0).getString("alias");
-
-            if (arrayList.size() > 0) {
-                arrayList = new ArrayList<ModelBusqueda>();
-            }
-            for (int i = 0; i < responseArray.length(); ++i) {
-                ModelBusqueda model = new ModelBusqueda(responseArray.getJSONObject(i).getString("alias"), icon[0], responseArray.getJSONObject(i).getString("email"));
-                arrayList.add(model);
-            }
-
-
-            //(GodActivity)getActivity())
-            adapter = new BusquedaListViewAdapter((GodActivity) getActivity(), arrayList);
-            listView.setAdapter(adapter);
-
-            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                @Override
-                public boolean onQueryTextSubmit(String query) {
-                    return false;
-                }
-
-                @Override
-                public boolean onQueryTextChange(String newText) {
-                    if (TextUtils.isEmpty(newText)) {
-                        adapter.filter("");
-                        listView.clearTextFilter();
-                    } else {
-                        adapter.filter(newText);
-                    }
-                    return true;
-                }
-            });
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-
-
-    }
-     */
 }
