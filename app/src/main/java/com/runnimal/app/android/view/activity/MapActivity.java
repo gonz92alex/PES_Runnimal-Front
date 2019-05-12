@@ -10,7 +10,7 @@ public class MapActivity extends BaseActivity {
     //TODO
 
     public static void open(Context context) {
-        Intent intent = new Intent(context, PetModifyActivity.class);
+        Intent intent = new Intent(context, MapActivity.class);
         context.startActivity(intent);
     }
 
