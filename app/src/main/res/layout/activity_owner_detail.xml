@@ -10,6 +10,7 @@
         android:id="@+id/container_owner_detail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@id/navigation"
         tools:context=".view.activity.OwnerDetailActivity">
 
         <RelativeLayout
