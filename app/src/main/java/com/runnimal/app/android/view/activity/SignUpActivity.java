@@ -67,6 +67,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpPresenter
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initializeDagger();
+        initializePresenter();
         setContentView(R.layout.activity_sign_up);
         bindViews();
         initializeBackButton();
@@ -87,6 +88,11 @@ public class SignUpActivity extends AppCompatActivity implements SignUpPresenter
         SingletonSession.Instance().setMail(owner.getEmail());
         SingletonSession.Instance().setUsername(owner.getAlias());
         SingletonSession.Instance().setId(owner.getId());
+        MapActivity.open(this);
+    }
+
+    private void bindViews() {
+        ButterKnife.bind(this);
     }
 
     private void initializeDagger() {
@@ -94,8 +100,8 @@ public class SignUpActivity extends AppCompatActivity implements SignUpPresenter
         app.getMainComponent().inject(this);
     }
 
-    private void bindViews() {
-        ButterKnife.bind(this);
+    private void initializePresenter() {
+        presenter.setView(this);
     }
 
     private void initializeBackButton() {

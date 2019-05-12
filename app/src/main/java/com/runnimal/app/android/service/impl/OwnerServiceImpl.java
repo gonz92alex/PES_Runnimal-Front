@@ -29,6 +29,11 @@ public class OwnerServiceImpl extends AbstractService implements OwnerService {
     }
 
     @Override
+    public void login(String email, String password, DisposableObserver<String> callback) {
+        execute(ownerRepository.login(email, password), callback);
+    }
+
+    @Override
     public void get(String id, DisposableObserver<Owner> callback) {
         execute(ownerRepository.get(id), callback);
     }

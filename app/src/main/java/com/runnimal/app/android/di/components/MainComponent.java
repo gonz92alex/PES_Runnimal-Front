@@ -2,16 +2,16 @@ package com.runnimal.app.android.di.components;
 
 import android.content.Context;
 
-import com.runnimal.app.android.di.modules.MainModule;
 import com.runnimal.app.android.di.modules.DataModule;
+import com.runnimal.app.android.di.modules.MainModule;
 import com.runnimal.app.android.di.modules.ServiceModule;
+import com.runnimal.app.android.view.activity.LoginActivity;
 import com.runnimal.app.android.view.activity.OwnerDetailActivity;
 import com.runnimal.app.android.view.activity.OwnerModifyActivity;
 import com.runnimal.app.android.view.activity.PetAddActivity;
 import com.runnimal.app.android.view.activity.PetDetailActivity;
 import com.runnimal.app.android.view.activity.PetModifyActivity;
 import com.runnimal.app.android.view.activity.PetsActivity;
-import com.runnimal.app.android.domain.Ranking;
 import com.runnimal.app.android.view.activity.RankingActivity;
 import com.runnimal.app.android.view.activity.SignUpActivity;
 import com.runnimal.app.android.view.activity.TrainingDetailActivity;
@@ -26,6 +26,8 @@ import dagger.Component;
 public interface MainComponent {
 
     void inject(SignUpActivity activity);
+
+    void inject(LoginActivity activity);
 
     void inject(TrainingsActivity activity);
 

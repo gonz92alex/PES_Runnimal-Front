@@ -9,6 +9,8 @@ import io.reactivex.Observable;
 
 public interface OwnerRepository {
 
+    Observable<String> login(String email, String password);
+
     Observable<Owner> get(String id);
 
     Observable<String> modify(Owner owner);

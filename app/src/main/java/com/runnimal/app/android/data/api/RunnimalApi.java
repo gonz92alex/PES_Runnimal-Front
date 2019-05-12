@@ -12,6 +12,8 @@ import java.util.List;
 
 public interface RunnimalApi {
 
+    void login(String email, String password, RunnimalApiCallback<String> callback);
+
     void listTrainings(RunnimalApiCallback<List<Training>> callback);
 
     void getTraining(String id, RunnimalApiCallback<Training> callback);

@@ -9,6 +9,8 @@ import io.reactivex.observers.DisposableObserver;
 
 public interface OwnerService {
 
+    void login(String email, String password, DisposableObserver<String> callback);
+
     void get(String id, DisposableObserver<Owner> callback);
 
     void modify(Owner owner, DisposableObserver<String> callback);

@@ -1,8 +1,10 @@
-package com.runnimal.app.android.service;
+package com.runnimal.app.android.service.impl;
 
 import com.runnimal.app.android.data.repository.RankingRepository;
 
 import com.runnimal.app.android.domain.Ranking;
+import com.runnimal.app.android.service.AbstractService;
+import com.runnimal.app.android.service.RankingService;
 
 
 import java.util.List;

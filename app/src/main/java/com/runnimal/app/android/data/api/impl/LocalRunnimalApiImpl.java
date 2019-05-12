@@ -11,6 +11,8 @@ import com.runnimal.app.android.domain.Training;
 import com.runnimal.app.android.util.IOUtils;
 import com.runnimal.app.android.util.JacksonFactory;
 
+import org.json.JSONObject;
+
 import java.util.List;
 
 import javax.inject.Inject;
@@ -32,6 +34,17 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
     @Inject
     public LocalRunnimalApiImpl(JacksonFactory jacksonFactory) {
         this.jacksonFactory = jacksonFactory;
+    }
+
+    @Override
+    @SneakyThrows
+    public void login(String email, String password, RunnimalApiCallback<String> callback) {
+        if (email.equals("email") && password.equals("password")) {
+            callback.responseOK("OK");
+        }
+        else {
+            callback.responseError(new RuntimeException("Invalid login"));
+        }
     }
 
     @Override

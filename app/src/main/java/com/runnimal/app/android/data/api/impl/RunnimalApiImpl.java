@@ -31,6 +31,15 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
     }
 
     @Override
+    @SneakyThrows
+    public void login(String email, String password, RunnimalApiCallback<String> callback) {
+        JSONObject jsonBody = new JSONObject() //
+                .put("email", email) //
+                .put("password", password);
+        post("http://nidorana.fib.upc.edu/api/users/", jsonBody, callback);
+    }
+
+    @Override
     public void listTrainings(RunnimalApiCallback<List<Training>> callback) {
         get("http://nidorana.fib.upc.edu/api/trainnings", //
                 response -> {
@@ -102,7 +111,7 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
 
     @Override
     public void getOwner(String id, RunnimalApiCallback<Owner> callback) {
-        get("http://nidorana.fib.upc.edu/api/users/" + SingletonSession.Instance().getMail() + "/" + id, //
+        get("http://nidorana.fib.upc.edu/api/users/" + id, //
                 response -> {
                     return jacksonFactory.toObject(response, Owner.class);
 

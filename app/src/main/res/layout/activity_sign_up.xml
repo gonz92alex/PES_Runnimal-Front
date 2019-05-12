@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#C5EFF7"
-    tools:context=".SignUpActivity">
+    tools:context=".view.activity.SignUpActivity">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
