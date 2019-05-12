@@ -10,7 +10,6 @@
         android:id="@+id/detail_pet_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".EntrenamientoDetalladoFragment"
         tools:layout_editor_absoluteY="25dp">
 
         <RelativeLayout

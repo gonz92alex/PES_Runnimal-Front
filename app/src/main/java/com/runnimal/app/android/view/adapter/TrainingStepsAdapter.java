@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 
 import com.runnimal.app.android.R;
 import com.runnimal.app.android.view.presenter.TrainingDetailPresenter;
-import com.runnimal.app.android.view.viewmodel.TrainingViewModel;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -25,7 +24,7 @@ public class TrainingStepsAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.step_row, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.content_steps_row, parent, false);
         return new TrainingStepsViewHolder(view, presenter);
     }
 

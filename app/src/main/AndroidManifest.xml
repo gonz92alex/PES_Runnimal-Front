@@ -47,8 +47,27 @@
 
         <activity android:name=".view.activity.PetsActivity" />
 
+        <activity android:name=".view.activity.PetAddActivity" />
+
+        <activity android:name=".view.activity.PetDetailActivity" />
+
+        <activity android:name=".view.activity.PetModifyActivity" />
+
         <activity android:name=".view.activity.RankingActivity" />
 
+        <activity android:name=".view.activity.OwnerDetailActivity" />
+
+        <activity android:name=".view.activity.OwnerModifyActivity" />
+
+        <!--
+                <activity android:name=".view.activity.FriendRequestsActivity" />
+
+                <activity android:name=".view.activity.FriendsActivity" />
+
+                <activity android:name=".view.activity.SettingsActivity" />
+
+                <activity android:name=".view.activity.SignUpActivity" />
+        -->
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />

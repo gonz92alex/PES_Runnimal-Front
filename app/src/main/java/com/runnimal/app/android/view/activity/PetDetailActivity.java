@@ -91,7 +91,7 @@ public class PetDetailActivity extends BaseActivity implements PetDetailPresente
         description.setText(pet.getDescription());
         breed.setText(pet.getBreed());
         weight.setText(pet.getWeight() + " kg");
-        age.setText(LocalDate.now().getYear() - pet.getBirth());
+        age.setText(String.valueOf(LocalDate.now().getYear() - pet.getBirth()));
 
         ImageUtils.setImage(pet.getOwner().getImageUrl(), ownerImage);
         initializeOwnerImageButton(pet);
