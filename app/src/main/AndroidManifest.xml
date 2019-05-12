@@ -33,11 +33,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.runnimal.app.android.LogInActivity" />
+        <activity android:name=".view.activity.LoginActivity" />
 
-        <activity android:name="com.runnimal.app.android.SignUpActivity" />
+        <activity android:name=".view.activity.SignUpActivity" />
 
-        <!-- New activities -->
         <activity android:name=".view.activity.MapActivity" />
 
         <activity android:name=".view.activity.TrainingsActivity" />
