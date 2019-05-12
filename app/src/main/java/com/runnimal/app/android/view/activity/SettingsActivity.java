@@ -1,16 +1,9 @@
-package com.runnimal.app.android;
+package com.runnimal.app.android.view.activity;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.Spinner;
+public class SettingsActivity {
 
-public class AjustesFragment extends Fragment {
+    //TODO: Implementar
+    /*
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -59,4 +52,5 @@ public class AjustesFragment extends Fragment {
     public void NotificacionEv(){
         ((GodActivity)getActivity()).loadFragment(SolicitudesFragment.newInstance());
     }
+     */
 }

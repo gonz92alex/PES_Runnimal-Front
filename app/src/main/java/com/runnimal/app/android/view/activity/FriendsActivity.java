@@ -1,41 +1,10 @@
-package com.runnimal.app.android;
+package com.runnimal.app.android.view.activity;
 
-import android.app.ProgressDialog;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.text.TextUtils;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ListView;
-import android.widget.SearchView;
-import android.widget.Toast;
+public class FriendsActivity {
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-
-public class AmigosFragment extends Fragment {
-
-
-    ListView listView;
+    //TODO: Implementar
+    /*
+ListView listView;
     BusquedaListViewAdapter adapter;
     int[] icon = new int[]{R.mipmap.ic_launcher_round, R.mipmap.ic_launcher_round, R.mipmap.ic_launcher_round, R.mipmap.ic_launcher_round};
     SearchView searchView;
@@ -190,6 +159,5 @@ public class AmigosFragment extends Fragment {
             });
         }
     }
-
+     */
 }
-
