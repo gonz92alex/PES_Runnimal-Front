@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.runnimal.app.android.R;
 import com.runnimal.app.android.RunnimalApplication;
-import com.runnimal.app.android.SingletonSession;
+import com.runnimal.app.android.util.SingletonSession;
 import com.runnimal.app.android.view.presenter.LoginPresenter;
 
 import javax.inject.Inject;

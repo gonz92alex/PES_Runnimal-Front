@@ -1,9 +1,7 @@
 package com.runnimal.app.android.data.api.impl;
 
-import android.graphics.Bitmap;
-
 import com.android.volley.RequestQueue;
-import com.runnimal.app.android.SingletonSession;
+import com.runnimal.app.android.util.SingletonSession;
 import com.runnimal.app.android.data.api.RunnimalApi;
 import com.runnimal.app.android.domain.FriendRequest;
 import com.runnimal.app.android.domain.Owner;

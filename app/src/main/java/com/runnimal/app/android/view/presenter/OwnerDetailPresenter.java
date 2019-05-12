@@ -1,6 +1,6 @@
 package com.runnimal.app.android.view.presenter;
 
-import com.runnimal.app.android.SingletonSession;
+import com.runnimal.app.android.util.SingletonSession;
 import com.runnimal.app.android.domain.FriendRequest;
 import com.runnimal.app.android.domain.FriendRequestState;
 import com.runnimal.app.android.domain.Owner;

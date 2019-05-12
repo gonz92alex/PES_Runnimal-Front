@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.runnimal.app.android.R;
 import com.runnimal.app.android.RunnimalApplication;
-import com.runnimal.app.android.SingletonSession;
+import com.runnimal.app.android.util.SingletonSession;
 import com.runnimal.app.android.domain.Owner;
 import com.runnimal.app.android.view.presenter.SignUpPresenter;
 import com.runnimal.app.android.view.viewmodel.OwnerViewModel;

@@ -1,8 +1,6 @@
-package com.runnimal.app.android;
+package com.runnimal.app.android.util;
 
 import android.graphics.Bitmap;
-
-import java.util.ArrayList;
 
 public class SingletonSession {
 
