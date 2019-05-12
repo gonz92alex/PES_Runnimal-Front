@@ -109,6 +109,11 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
     }
 
     @Override
+    public void createOwner(Owner owner, RunnimalApiCallback<String> callback) {
+        callback.responseOK("OK");
+    }
+
+    @Override
     public void getFriendRequests(String ownerEmail, RunnimalApiCallback<List<FriendRequest>> callback) {
         callback.responseOK(jacksonFactory.toList(IOUtils.getResource(FRIEND_REQUESTS_FILE), FriendRequest.class));
     }

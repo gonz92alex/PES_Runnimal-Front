@@ -1,6 +1,7 @@
 package com.runnimal.app.android.view.presenter;
 
 import com.runnimal.app.android.domain.Pet;
+import com.runnimal.app.android.service.MediaService;
 import com.runnimal.app.android.service.PetService;
 import com.runnimal.app.android.view.viewmodel.PetViewModel;
 import com.runnimal.app.android.view.viewmodel.converter.PetViewModelConverter;
@@ -17,7 +18,8 @@ public class PetDetailPresenter extends Presenter<PetDetailPresenter.View> {
     private String petId;
 
     @Inject
-    public PetDetailPresenter(PetService petsService) {
+    public PetDetailPresenter(MediaService mediaService, PetService petsService) {
+        super(mediaService);
         this.petsService = petsService;
     }
 

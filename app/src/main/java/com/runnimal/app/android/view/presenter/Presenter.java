@@ -56,6 +56,7 @@ public class Presenter<T extends Presenter.View> {
 
         void hideLoading();
 
-        default void onUploadPhoto() {}
+        default void onUploadPhoto() {
+        }
     }
 }

@@ -1,32 +1,32 @@
 package com.runnimal.app.android.view.presenter;
 
-import com.runnimal.app.android.domain.Pet;
+import com.runnimal.app.android.domain.Owner;
 import com.runnimal.app.android.service.MediaService;
-import com.runnimal.app.android.service.PetService;
-import com.runnimal.app.android.view.viewmodel.PetViewModel;
-import com.runnimal.app.android.view.viewmodel.converter.PetViewModelConverter;
+import com.runnimal.app.android.service.OwnerService;
+import com.runnimal.app.android.view.viewmodel.OwnerViewModel;
+import com.runnimal.app.android.view.viewmodel.converter.OwnerViewModelConverter;
 
 import javax.inject.Inject;
 
 import io.reactivex.observers.DisposableObserver;
 
-public class PetAddPresenter extends Presenter<PetAddPresenter.View> {
+public class SignUpPresenter extends Presenter<SignUpPresenter.View> {
 
-    private PetService petsService;
+    private OwnerService ownerService;
 
     @Inject
-    public PetAddPresenter(MediaService mediaService, PetService petsService) {
+    public SignUpPresenter(MediaService mediaService, OwnerService ownerService) {
         super(mediaService);
-        this.petsService = petsService;
+        this.ownerService = ownerService;
     }
 
-    public void addPet(Pet pet) {
-        petsService.modify(pet, //
+    public void createOwner(Owner owner) {
+        ownerService.create(owner, //
                 new DisposableObserver<String>() {
 
                     @Override
                     public void onNext(String message) {
-                        getView().successfullyCreated(PetViewModelConverter.convert(pet));
+                        getView().successfullyCreated(OwnerViewModelConverter.convert(owner));
                     }
 
                     @Override
@@ -44,6 +44,6 @@ public class PetAddPresenter extends Presenter<PetAddPresenter.View> {
 
     public interface View extends Presenter.View {
 
-        void successfullyCreated(PetViewModel pet);
+        void successfullyCreated(OwnerViewModel owner);
     }
 }

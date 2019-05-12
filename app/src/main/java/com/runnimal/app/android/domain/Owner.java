@@ -13,4 +13,5 @@ public class Owner {
     private String id;
     private String alias;
     private String email;
+    private String password;
 }

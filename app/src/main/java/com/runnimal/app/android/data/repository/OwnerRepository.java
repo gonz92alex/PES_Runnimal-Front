@@ -13,6 +13,8 @@ public interface OwnerRepository {
 
     Observable<String> modify(Owner owner);
 
+    Observable<String> create(Owner owner);
+
     Observable<List<FriendRequest>> getFriendRequests(String ownerEmail);
 
     Observable<Boolean> isFriend(String friendEmail);

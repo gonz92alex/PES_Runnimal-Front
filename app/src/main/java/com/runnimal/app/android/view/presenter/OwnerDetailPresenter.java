@@ -4,6 +4,7 @@ import com.runnimal.app.android.SingletonSession;
 import com.runnimal.app.android.domain.FriendRequest;
 import com.runnimal.app.android.domain.FriendRequestState;
 import com.runnimal.app.android.domain.Owner;
+import com.runnimal.app.android.service.MediaService;
 import com.runnimal.app.android.service.OwnerService;
 import com.runnimal.app.android.view.viewmodel.OwnerViewModel;
 import com.runnimal.app.android.view.viewmodel.converter.OwnerViewModelConverter;
@@ -25,7 +26,8 @@ public class OwnerDetailPresenter extends Presenter<OwnerDetailPresenter.View> {
     private String ownerEmail;
 
     @Inject
-    public OwnerDetailPresenter(OwnerService ownerService) {
+    public OwnerDetailPresenter(MediaService mediaService, OwnerService ownerService) {
+        super(mediaService);
         this.ownerService = ownerService;
     }
 

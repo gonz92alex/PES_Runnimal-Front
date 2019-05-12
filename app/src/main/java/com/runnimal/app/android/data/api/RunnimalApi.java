@@ -32,6 +32,8 @@ public interface RunnimalApi {
 
     void modifyOwner(Owner owner, RunnimalApiCallback<String> callback);
 
+    void createOwner(Owner owner, RunnimalApiCallback<String> callback);
+
     void getFriendRequests(String ownerEmail, RunnimalApiCallback<List<FriendRequest>> callback);
 
     void isFriend(String friendEmail, RunnimalApiCallback<Boolean> callback);

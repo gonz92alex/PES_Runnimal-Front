@@ -13,6 +13,7 @@ import com.runnimal.app.android.view.activity.PetModifyActivity;
 import com.runnimal.app.android.view.activity.PetsActivity;
 import com.runnimal.app.android.domain.Ranking;
 import com.runnimal.app.android.view.activity.RankingActivity;
+import com.runnimal.app.android.view.activity.SignUpActivity;
 import com.runnimal.app.android.view.activity.TrainingDetailActivity;
 import com.runnimal.app.android.view.activity.TrainingsActivity;
 
@@ -23,6 +24,8 @@ import dagger.Component;
 @Singleton
 @Component(modules = {MainModule.class, ServiceModule.class, DataModule.class})
 public interface MainComponent {
+
+    void inject(SignUpActivity activity);
 
     void inject(TrainingsActivity activity);
 

@@ -123,6 +123,12 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
     }
 
     @Override
+    @SneakyThrows
+    public void createOwner(Owner owner, RunnimalApiCallback<String> callback) {
+        post("http://nidorana.fib.upc.edu/api/users/", new JSONObject(jacksonFactory.toJsonNode(owner).toString()), callback);
+    }
+
+    @Override
     public void getFriendRequests(String ownerEmail, RunnimalApiCallback<List<FriendRequest>> callback) {
         get("http://nidorana.fib.upc.edu/api/friendRequests/" + ownerEmail, //
                 response -> {

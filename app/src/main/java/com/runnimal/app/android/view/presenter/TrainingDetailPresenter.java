@@ -1,6 +1,7 @@
 package com.runnimal.app.android.view.presenter;
 
 import com.runnimal.app.android.domain.Training;
+import com.runnimal.app.android.service.MediaService;
 import com.runnimal.app.android.service.TrainingService;
 import com.runnimal.app.android.view.viewmodel.TrainingViewModel;
 import com.runnimal.app.android.view.viewmodel.converter.TrainingViewModelConverter;
@@ -17,7 +18,8 @@ public class TrainingDetailPresenter extends Presenter<TrainingDetailPresenter.V
     private String trainingId;
 
     @Inject
-    public TrainingDetailPresenter(TrainingService trainingService) {
+    public TrainingDetailPresenter(MediaService mediaService, TrainingService trainingService) {
+        super(mediaService);
         this.trainingService = trainingService;
     }
 
