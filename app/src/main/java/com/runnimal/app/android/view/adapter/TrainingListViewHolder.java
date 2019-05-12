@@ -6,8 +6,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.runnimal.app.android.R;
-import com.runnimal.app.android._service.fileUploader;
-import com.runnimal.app.android.view.activity.TrainingsActivity;
 import com.runnimal.app.android.view.presenter.TrainingsPresenter;
 import com.runnimal.app.android.view.viewmodel.TrainingViewModel;
 import com.squareup.picasso.Picasso;
@@ -49,7 +47,7 @@ public class TrainingListViewHolder extends RecyclerView.ViewHolder {
         }
     }*/
 
-    private void getImage(URI photo, ImageView photoImageView){
+    private void getImage(URI photo, ImageView photoImageView) {
         //toDO Cambiar esta funcion por la llamada a utils de ImageUtil
         Picasso.get().load(photo.toString())
                 .fit()

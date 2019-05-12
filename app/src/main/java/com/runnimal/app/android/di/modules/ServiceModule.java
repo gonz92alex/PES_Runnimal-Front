@@ -1,8 +1,14 @@
 package com.runnimal.app.android.di.modules;
 
+import com.runnimal.app.android.service.MediaService;
+import com.runnimal.app.android.service.OwnerService;
 import com.runnimal.app.android.service.PetService;
+import com.runnimal.app.android.service.RankingService;
+import com.runnimal.app.android.service.impl.MediaServiceImpl;
+import com.runnimal.app.android.service.impl.OwnerServiceImpl;
 import com.runnimal.app.android.service.impl.PetServiceImpl;
 import com.runnimal.app.android.service.TrainingService;
+import com.runnimal.app.android.service.impl.RankingServiceImpl;
 import com.runnimal.app.android.service.impl.TrainingServiceImpl;
 
 import javax.inject.Singleton;
@@ -17,14 +23,32 @@ public class ServiceModule {
 
     @Provides
     @Singleton
-    TrainingService trainingService(TrainingServiceImpl trainingService) {
-        return trainingService;
+    MediaService mediaService(MediaServiceImpl mediaService) {
+        return mediaService;
     }
 
     @Provides
     @Singleton
-    PetService petsService(PetServiceImpl petsService) {
-        return petsService;
+    OwnerService ownerService(OwnerServiceImpl ownerService) {
+        return ownerService;
+    }
+
+    @Provides
+    @Singleton
+    PetService petService(PetServiceImpl petService) {
+        return petService;
+    }
+
+    @Provides
+    @Singleton
+    RankingService rankingService(RankingServiceImpl rankingService) {
+        return rankingService;
+    }
+
+    @Provides
+    @Singleton
+    TrainingService trainingService(TrainingServiceImpl trainingService) {
+        return trainingService;
     }
 
 }

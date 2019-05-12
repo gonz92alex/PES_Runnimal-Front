@@ -6,19 +6,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.runnimal.app.android.R;
-import com.runnimal.app.android.models.EntrenamientoContent;
 import com.runnimal.app.android.view.presenter.RankingPresenter;
-import com.runnimal.app.android.view.presenter.TrainingsPresenter;
 import com.runnimal.app.android.view.viewmodel.RankingViewModel;
-import com.runnimal.app.android.view.viewmodel.TrainingViewModel;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Locale;
-import java.util.stream.Collectors;
 
-public class RankingListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class RankingListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private final RankingPresenter presenter;
     private final List<RankingViewModel> rankingList;

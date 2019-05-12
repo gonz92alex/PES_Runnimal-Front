@@ -14,5 +14,5 @@ public interface PetService {
 
     void modify(Pet pet, DisposableObserver<String> callback);
 
-    void create(Pet pet, DisposableObserver<Pet> callback);
+    void create(Pet pet, DisposableObserver<String> callback);
 }

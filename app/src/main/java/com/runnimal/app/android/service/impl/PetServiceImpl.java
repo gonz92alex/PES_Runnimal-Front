@@ -43,7 +43,7 @@ public class PetServiceImpl extends AbstractService implements PetService {
     }
 
     @Override
-    public void create(Pet pet, DisposableObserver<Pet> callback) {
+    public void create(Pet pet, DisposableObserver<String> callback) {
         execute(petsRepository.create(pet), callback);
     }
 
