@@ -123,6 +123,7 @@ public class LoginActivity extends AppCompatActivity implements LoginPresenter.V
             Intent GodIntent = new Intent(this, MapActivity.class);
             SingletonSession.Instance().setMail("ash@pokemon.com");
             SingletonSession.Instance().setUsername("Ash");
+            SingletonSession.Instance().setId("5c9518c262d914013dd5af3b");
             MapActivity.open(this);
         });
     }

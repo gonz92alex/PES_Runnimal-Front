@@ -1,5 +1,7 @@
 package com.runnimal.app.android.view.presenter;
 
+import android.util.Log;
+
 import com.runnimal.app.android.util.SingletonSession;
 import com.runnimal.app.android.domain.FriendRequest;
 import com.runnimal.app.android.domain.FriendRequestState;
@@ -35,7 +37,7 @@ public class OwnerDetailPresenter extends Presenter<OwnerDetailPresenter.View> {
     public void initialize() {
         super.initialize();
         getView().showLoading();
-        ownerService.get(ownerId,
+        ownerService.get(ownerEmail,
                 new DisposableObserver<Owner>() {
 
                     @Override

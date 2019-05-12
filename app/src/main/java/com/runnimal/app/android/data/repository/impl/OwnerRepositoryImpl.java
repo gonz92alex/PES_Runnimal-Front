@@ -42,9 +42,9 @@ public class OwnerRepositoryImpl implements OwnerRepository {
     }
 
     @Override
-    public Observable<Owner> get(String id) {
+    public Observable<Owner> get(String owner) {
         return Observable.create(emitter -> {
-            api.getOwner(id, //
+            api.getOwner(owner, //
                     new RunnimalApi.RunnimalApiCallback<Owner>() {
                         @Override
                         public void responseOK(Owner owner) {

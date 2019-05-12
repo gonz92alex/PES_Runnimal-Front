@@ -95,7 +95,7 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
     @Override
     @SneakyThrows
     public void modifyPet(Pet pet, RunnimalApiCallback<String> callback) {
-        String url = "http://nidorana.fib.upc.edu/api/pets/" + SingletonSession.Instance().getMail() + "/" + pet.getId();
+        String url = "http://nidorana.fib.upc.edu/api/pets/" + SingletonSession.Instance().getMail() + "/" + pet.getName();
 
         pet.setId(null);
         JSONObject jsonBody = new JSONObject(jacksonFactory.toJsonNode(pet).toString());
@@ -124,8 +124,8 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
     }
 
     @Override
-    public void getOwner(String id, RunnimalApiCallback<Owner> callback) {
-        get("http://nidorana.fib.upc.edu/api/users/" + id, //
+    public void getOwner(String email, RunnimalApiCallback<Owner> callback) {
+        get("http://nidorana.fib.upc.edu/api/users/" + email, //
                 response -> {
                     return jacksonFactory.toObject(response, Owner.class);
 

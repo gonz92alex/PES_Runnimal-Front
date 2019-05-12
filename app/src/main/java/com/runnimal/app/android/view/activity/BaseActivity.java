@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.WindowManager;
 
 import com.runnimal.app.android.R;
+import com.runnimal.app.android.util.SingletonSession;
 
 import butterknife.ButterKnife;
 
