@@ -120,7 +120,6 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
         jsonBody.put("birth", pet.getBirth());
         jsonBody.put("owner", SingletonSession.Instance().getMail());
 
-        Log.d("refactor", "EEEEOOOOO-->" + jsonBody.toString());
         post("http://nidorana.fib.upc.edu/api/pets/", jsonBody, callback);
     }
 

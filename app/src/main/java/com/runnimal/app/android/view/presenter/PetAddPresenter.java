@@ -28,6 +28,7 @@ public class PetAddPresenter extends Presenter<PetAddPresenter.View> {
 
                     @Override
                     public void onNext(String message) {
+                        Log.d("refactor", "leer --> " + getView().toString());
                         getView().successfullyCreated(PetViewModelConverter.convert(pet));
                     }
 

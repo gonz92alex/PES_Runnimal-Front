@@ -39,7 +39,8 @@
 
         <activity android:name=".view.activity.MapActivity" />
 
-        <activity android:name=".view.activity.TrainingsActivity" />
+        <activity android:name=".view.activity.TrainingsActivity"
+                  android:windowSoftInputMode="stateHidden"/>
 
         <activity android:name=".view.activity.TrainingDetailActivity" />
 

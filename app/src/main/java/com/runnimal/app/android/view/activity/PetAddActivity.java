@@ -93,6 +93,7 @@ public class PetAddActivity extends BaseActivity implements PetAddPresenter.View
     @Override
     protected void initView() {
         initializeDagger();
+        initializePresenter();
         initializeAddButton();
         requestMultiplePermissions();
         initializeCameraButton();
@@ -114,6 +115,10 @@ public class PetAddActivity extends BaseActivity implements PetAddPresenter.View
     private void initializeDagger() {
         RunnimalApplication app = (RunnimalApplication) getApplication();
         app.getMainComponent().inject(this);
+    }
+
+    private void initializePresenter() {
+        presenter.setView(this);
     }
 
     private void initializeAddButton() {
