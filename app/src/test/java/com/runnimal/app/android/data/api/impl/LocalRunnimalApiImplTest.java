@@ -1,6 +1,7 @@
 package com.runnimal.app.android.data.api.impl;
 
 import com.runnimal.app.android.data.api.RunnimalApi;
+import com.runnimal.app.android.domain.Pet;
 import com.runnimal.app.android.domain.Training;
 import com.runnimal.app.android.util.JacksonFactory;
 
@@ -38,7 +39,7 @@ public class LocalRunnimalApiImplTest {
 
     @Test
     public void testTrainingGetInfo() {
-        api.getTraining("0", new RunnimalApi.RunnimalApiCallback<Training>() {
+        api.getTraining("", new RunnimalApi.RunnimalApiCallback<Training>() {
             @Override
             public void responseOK(Training training) {
                 Assert.assertEquals("5caf8caaa996140c5c759f76", training.getId());
@@ -48,6 +49,20 @@ public class LocalRunnimalApiImplTest {
                 Assert.assertEquals(2, training.getSteps().size());
                 Assert.assertEquals("first step", training.getSteps().get(0));
                 Assert.assertEquals("second step", training.getSteps().get(1));
+            }
+
+            @Override
+            public void responseError(Exception e) {
+            }
+        });
+    }
+
+    @Test
+    public void testListPetsResultSize() {
+        api.listPets("", new RunnimalApi.RunnimalApiCallback<List<Pet>>() {
+            @Override
+            public void responseOK(List<Pet> pets) {
+                Assert.assertEquals(5, pets.size());
             }
 
             @Override

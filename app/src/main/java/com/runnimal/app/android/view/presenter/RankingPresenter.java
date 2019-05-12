@@ -1,12 +1,10 @@
 package com.runnimal.app.android.view.presenter;
 
 import com.runnimal.app.android.domain.Ranking;
-
+import com.runnimal.app.android.service.MediaService;
 import com.runnimal.app.android.service.RankingService;
-import com.runnimal.app.android.service.RankingServiceImpl;
 import com.runnimal.app.android.view.viewmodel.RankingViewModel;
 import com.runnimal.app.android.view.viewmodel.converter.RankingViewModelConverter;
-
 
 import java.util.List;
 
@@ -14,12 +12,13 @@ import javax.inject.Inject;
 
 import io.reactivex.observers.DisposableObserver;
 
-public class RankingPresenter extends Presenter<RankingPresenter.View>{
+public class RankingPresenter extends Presenter<RankingPresenter.View> {
 
     private RankingService rankingService;
 
     @Inject
-    public RankingPresenter(RankingService rankingService) {
+    public RankingPresenter(MediaService mediaService, RankingService rankingService) {
+        super(mediaService);
         this.rankingService = rankingService;
     }
 

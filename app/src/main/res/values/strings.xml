@@ -15,8 +15,8 @@
     <string name="Create_Account">Create Account</string>
     <string name="sign_in_with">Sign in with</string>
     <string name="or">Or</string>
-    <string name="my_pets">My pets</string>
-    <string name="Add">Add</string>
+    <string name="text_pets_title">My pets</string>
+    <string name="button_pets_add">Add</string>
     <string name="Name">Name</string>
     <string name="format_email">user@example.com</string>
     <string name="alias">Alias</string>
@@ -38,7 +38,7 @@
     <string name="location_error_descr">Your locations settings is set to \'Off\'. \nPlease enable location to use this feature</string>
     <string name="gps_settings">Location settings</string>
 
-    <string-array name="size_arrays">
+    <string-array name="size_array">
         <item>Small</item>
         <item>Big</item>
         <item>Medium</item>

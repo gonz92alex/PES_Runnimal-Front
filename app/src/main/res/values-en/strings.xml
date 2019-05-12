@@ -16,8 +16,8 @@
     <string name="Create_Account">Create account</string>
     <string name="sign_in_with">Sign in with</string>
     <string name="or">or</string>
-    <string name="my_pets">My pets</string>
-    <string name="Add">Add</string>
+    <string name="text_pets_title">My pets</string>
+    <string name="button_pets_add">Add</string>
     <string name="Name">Name</string>
     <string name="format_email">user@example.com</string>
     <string name="alias">Alias</string>

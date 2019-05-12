@@ -23,7 +23,7 @@
         tools:ignore="HardcodedDebugMode">
 
         <activity
-            android:name="com.runnimal.app.android.MainActivity"
+            android:name=".view.activity.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,17 +33,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.runnimal.app.android.LogInActivity" />
+        <activity android:name=".view.activity.LoginActivity" />
 
-        <activity android:name="com.runnimal.app.android.SignUpActivity" />
+        <activity android:name=".view.activity.SignUpActivity" />
 
-        <activity
-            android:name="com.runnimal.app.android.GodActivity"
-            android:label="@string/title_activity_god"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- New activities -->
         <activity android:name=".view.activity.MapActivity" />
 
         <activity android:name=".view.activity.TrainingsActivity" />
@@ -54,8 +47,27 @@
 
         <activity android:name=".view.activity.PetsActivity" />
 
+        <activity android:name=".view.activity.PetAddActivity" />
+
+        <activity android:name=".view.activity.PetDetailActivity" />
+
+        <activity android:name=".view.activity.PetModifyActivity" />
+
         <activity android:name=".view.activity.RankingActivity" />
 
+        <activity android:name=".view.activity.OwnerDetailActivity" />
+
+        <activity android:name=".view.activity.OwnerModifyActivity" />
+
+        <!--
+                <activity android:name=".view.activity.FriendRequestsActivity" />
+
+                <activity android:name=".view.activity.FriendsActivity" />
+
+                <activity android:name=".view.activity.SettingsActivity" />
+
+                <activity android:name=".view.activity.SignUpActivity" />
+        -->
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
