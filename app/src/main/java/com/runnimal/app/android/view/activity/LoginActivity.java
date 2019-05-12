@@ -121,8 +121,8 @@ public class LoginActivity extends AppCompatActivity implements LoginPresenter.V
     private void initializeDirectLoginButton() {
         directLoginButton.setOnClickListener(view -> {
             Intent GodIntent = new Intent(this, MapActivity.class);
-            SingletonSession.Instance().setMail("arthur@gmail.com");
-            SingletonSession.Instance().setUsername("arthur");
+            SingletonSession.Instance().setMail("ash@pokemon.com");
+            SingletonSession.Instance().setUsername("Ash");
             MapActivity.open(this);
         });
     }

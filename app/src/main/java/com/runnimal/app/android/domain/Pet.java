@@ -11,7 +11,7 @@ public class Pet {
 
     public enum PetSize {
 
-        SMALL, MEDIUM, BIG
+        Small, Medium, Big
     }
 
     @JsonAlias("_id")
