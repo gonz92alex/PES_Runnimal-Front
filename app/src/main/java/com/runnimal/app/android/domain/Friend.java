@@ -17,4 +17,5 @@ public class Friend {
     private String id;
     private String name;
     private URI imageUrl; //que alguien haga lo de la url bien
+
 }

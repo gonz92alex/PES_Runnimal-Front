@@ -75,7 +75,7 @@ public class SearchActivity extends BaseActivity implements SearchPresenter.View
     //esta funcion deberia abrir la pantalla de un user
     @Override
     public void openUserScreen(OwnerViewModel user) {
-        //UserDetailActivity.open(this, friend.getId());
+        OwnerDetailActivity.open(this, user.getId(), user.getEmail());
     }
 
     private void initializeDagger() {
