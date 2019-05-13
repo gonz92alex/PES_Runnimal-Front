@@ -1,6 +1,7 @@
 package com.runnimal.app.android.data.api.impl;
 
 import android.graphics.Bitmap;
+import android.util.Log;
 
 import com.runnimal.app.android.data.api.RunnimalApi;
 import com.runnimal.app.android.domain.Friend;
@@ -180,5 +181,10 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
     @Override
     public void getUser(String id, RunnimalApiCallback<User> userRunnimalApiCallback) {
 
+    }
+
+    @Override
+    public void listOwners(RunnimalApiCallback<List<Owner>> listRunnimalApiCallback) {
+        Log.d("refactor", "local Hola");
     }
 }

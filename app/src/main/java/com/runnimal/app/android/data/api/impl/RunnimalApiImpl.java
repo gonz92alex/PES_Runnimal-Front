@@ -124,6 +124,15 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
     }
 
     @Override
+    public void listOwners(RunnimalApiCallback<List<Owner>> callback) {
+        get("http://nidorana.fib.upc.edu/api/users", //
+                response -> {
+                    return jacksonFactory.toList(response, Owner.class);
+                }, //
+                callback);
+    }
+
+    @Override
     public void getOwner(String email, RunnimalApiCallback<Owner> callback) {
         get("http://nidorana.fib.upc.edu/api/users/" + email, //
                 response -> {

@@ -24,4 +24,6 @@ public interface OwnerRepository {
     Observable<String> createFriendRequest(String requestedEmail);
 
     Observable<String> deteleFriend(String ownerId);
+
+    Observable<List<Owner>> list();
 }

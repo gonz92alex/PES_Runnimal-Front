@@ -56,6 +56,8 @@ public interface RunnimalApi {
 
     void getUser(String id, RunnimalApiCallback<User> userRunnimalApiCallback);
 
+    void listOwners(RunnimalApiCallback<List<Owner>> listRunnimalApiCallback);
+
     interface RunnimalApiCallback<T> {
 
         void responseOK(T response);

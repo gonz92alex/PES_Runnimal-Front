@@ -42,6 +42,24 @@ public class OwnerRepositoryImpl implements OwnerRepository {
     }
 
     @Override
+    public Observable<List<Owner>> list() {
+        return Observable.create(emitter -> {
+            api.listOwners(new RunnimalApi.RunnimalApiCallback<List<Owner>>() {
+                               @Override
+                               public void responseOK(List<Owner> owners) {
+                                   emitter.onNext(owners);
+                                   emitter.onComplete();
+                               }
+
+                               @Override
+                               public void responseError(Exception e) {
+                                   emitter.onError(e);
+                               }
+                           });
+        });
+    }
+
+    @Override
     public Observable<Owner> get(String owner) {
         return Observable.create(emitter -> {
             api.getOwner(owner, //
@@ -169,4 +187,5 @@ public class OwnerRepositoryImpl implements OwnerRepository {
                     });
         });
     }
+
 }

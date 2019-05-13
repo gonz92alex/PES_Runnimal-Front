@@ -7,6 +7,7 @@ import android.widget.TextView;
 import com.runnimal.app.android.R;
 import com.runnimal.app.android.view.presenter.SearchPresenter;
 import com.runnimal.app.android.view.util.ImageUtils;
+import com.runnimal.app.android.view.viewmodel.OwnerViewModel;
 import com.runnimal.app.android.view.viewmodel.SearchViewModel;
 
 import butterknife.BindView;
@@ -28,13 +29,13 @@ public class SearchListViewHolder extends RecyclerView.ViewHolder {
         ButterKnife.bind(this, itemView);
     }
 
-    public void render(SearchViewModel user) {
+    public void render(OwnerViewModel user) {
         onItemClick(user);
         ImageUtils.setImage(user.getImageUrl(), image);
-        name.setText(user.getName());
+        name.setText(user.getAlias());
     }
 
-    private void onItemClick(final SearchViewModel user) {
+    private void onItemClick(final OwnerViewModel user) {
         itemView.setOnClickListener(v -> searchPresenter.onTrainingClicked(user));
     }
 

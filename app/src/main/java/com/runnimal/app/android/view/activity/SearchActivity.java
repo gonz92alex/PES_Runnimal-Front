@@ -11,6 +11,7 @@ import com.runnimal.app.android.R;
 import com.runnimal.app.android.RunnimalApplication;
 import com.runnimal.app.android.view.adapter.SearchListAdapter;
 import com.runnimal.app.android.view.presenter.SearchPresenter;
+import com.runnimal.app.android.view.viewmodel.OwnerViewModel;
 import com.runnimal.app.android.view.viewmodel.SearchViewModel;
 
 
@@ -66,15 +67,15 @@ public class SearchActivity extends BaseActivity implements SearchPresenter.View
     }
 
     @Override
-    public void showUsersList(List<SearchViewModel> usersList) {
+    public void showUsersList(List<OwnerViewModel> usersList) {
         adapter.addAll(usersList);
         adapter.notifyDataSetChanged();
     }
 
     //esta funcion deberia abrir la pantalla de un user
     @Override
-    public void openUserScreen(SearchViewModel user) {
-        // UserDetailActivity.open(this, friend.getId());
+    public void openUserScreen(OwnerViewModel user) {
+        //UserDetailActivity.open(this, friend.getId());
     }
 
     private void initializeDagger() {

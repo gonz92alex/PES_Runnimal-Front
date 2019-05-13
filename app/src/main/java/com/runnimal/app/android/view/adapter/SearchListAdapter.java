@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import com.runnimal.app.android.R;
 import com.runnimal.app.android.view.presenter.SearchPresenter;
+import com.runnimal.app.android.view.viewmodel.OwnerViewModel;
 import com.runnimal.app.android.view.viewmodel.SearchViewModel;
 
 
@@ -18,8 +19,8 @@ import java.util.stream.Collectors;
 public class SearchListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private final SearchPresenter presenter;
-    private final List<SearchViewModel> usersList;
-    private final List<SearchViewModel> filteredList;
+    private final List<OwnerViewModel> usersList;
+    private final List<OwnerViewModel> filteredList;
 
     public SearchListAdapter(SearchPresenter presenter) {
         this.presenter = presenter;
@@ -36,7 +37,7 @@ public class SearchListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         SearchListViewHolder usersListViewHolder = (SearchListViewHolder) holder;
-        SearchViewModel friend = filteredList.get(position);
+        OwnerViewModel friend = filteredList.get(position);
         usersListViewHolder.render(friend);
     }
 
@@ -45,7 +46,7 @@ public class SearchListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         return filteredList.size();
     }
 
-    public void addAll(Collection<SearchViewModel> collection) {
+    public void addAll(Collection<OwnerViewModel> collection) {
         usersList.addAll(collection);
         filteredList.addAll(collection);
     }
@@ -55,7 +56,7 @@ public class SearchListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
         final String textLowerCase = text.toLowerCase();
         usersList.stream() //
-                .filter(t -> t.getName().toLowerCase().contains(textLowerCase)) //
+                .filter(t -> t.getAlias().toLowerCase().contains(textLowerCase)) //
                 .collect(Collectors.toCollection(() -> filteredList));
 
         notifyDataSetChanged();

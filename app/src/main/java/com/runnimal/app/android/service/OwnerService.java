@@ -11,6 +11,8 @@ public interface OwnerService {
 
     void login(String email, String password, DisposableObserver<String> callback);
 
+    void list(DisposableObserver<List<Owner>> callback);
+
     void get(String id, DisposableObserver<Owner> callback);
 
     void modify(Owner owner, DisposableObserver<String> callback);
