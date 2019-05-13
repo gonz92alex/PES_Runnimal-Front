@@ -32,6 +32,8 @@ import butterknife.BindView;
 public class OwnerModifyActivity extends BaseActivity implements OwnerModifyPresenter.View {
 
     private static final int CAMERA_REQUEST = 1888;
+    private Bitmap bitmapPhoto;
+
 
     @Inject
     OwnerModifyPresenter presenter;
@@ -112,6 +114,11 @@ public class OwnerModifyActivity extends BaseActivity implements OwnerModifyPres
         finish();
     }
 
+    @Override
+    public void onUploadPhoto(){
+        finish();
+    }
+
     private void initializeDagger() {
         RunnimalApplication app = (RunnimalApplication) getApplication();
         app.getMainComponent().inject(this);
@@ -143,6 +150,7 @@ public class OwnerModifyActivity extends BaseActivity implements OwnerModifyPres
                 Owner owner = new Owner() //
                         .setAlias(alias.getText().toString());
                 presenter.modifyOwner(owner);
+                presenter.uploadImage(bitmapPhoto, "/users/" + SingletonSession.Instance().getMail());
             }
         });
     }
