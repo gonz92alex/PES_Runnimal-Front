@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ScrollView;
@@ -86,8 +85,8 @@ public class PetAddActivity extends BaseActivity implements PetAddPresenter.View
     }
 
     @Override
-    protected int getNavigationMenuItemId() {
-        return R.id.navigation_pets;
+    protected int getBottomMenuItemId() {
+        return R.id.menu_bottom_pets;
     }
 
     @Override

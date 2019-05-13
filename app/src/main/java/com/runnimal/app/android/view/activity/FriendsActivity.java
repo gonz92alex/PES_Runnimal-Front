@@ -39,8 +39,8 @@ public class FriendsActivity extends BaseActivity implements FriendsPresenter.Vi
     }
 
     @Override
-    protected int getNavigationMenuItemId() {
-        return R.id.navigation_challenges;
+    protected int getBottomMenuItemId() {
+        return -1;
     }
 
     @Override

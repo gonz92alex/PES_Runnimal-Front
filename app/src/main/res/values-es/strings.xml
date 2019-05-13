@@ -4,10 +4,14 @@
     <string name="back" translatable="false">Atrás</string>
     <string name="Login" translatable="false">Iniciar sesión</string>
     <string name="title_notifications">Notificaciones</string>
-    <string name="navigation_trainings_title">Entrenamientos</string>
-    <string name="navigation_map_title">Mapa</string>
-    <string name="navigation_pets_title">Mascotas</string>
-    <string name="navigation_challenges_title">Desafios</string>
+    <string name="menu_friends_title">Amigos</string>
+    <string name="menu_ranking_title">Ranking</string>
+    <string name="menu_settings_title">Ajustes</string>
+    <string name="menu_search_title">Búsqueda</string>
+    <string name="menu_bottom_trainings_title">Entrenamientos</string>
+    <string name="menu_bottom_map_title">Mapa</string>
+    <string name="menu_bottom_pets_title">Mascotas</string>
+    <string name="menu_bottom_challenges_title">Desafios</string>
     <string name="title_profile">Perfil</string>
     <string name="title_home">Principal</string>
     <string name="title_activity_god">GodActivity</string>

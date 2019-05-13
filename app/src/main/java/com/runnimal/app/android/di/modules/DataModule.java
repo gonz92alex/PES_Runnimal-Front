@@ -34,7 +34,7 @@ public class DataModule {
 
     @Provides
     @Singleton
-    RunnimalApi runnimalApi(RunnimalApiImpl runnimalApi) {
+    RunnimalApi runnimalApi(LocalRunnimalApiImpl runnimalApi) {
         return runnimalApi;
     }
 

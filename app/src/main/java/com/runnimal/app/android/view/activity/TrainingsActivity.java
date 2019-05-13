@@ -38,8 +38,8 @@ public class TrainingsActivity extends BaseActivity implements TrainingsPresente
     }
 
     @Override
-    protected int getNavigationMenuItemId() {
-        return R.id.navigation_trainings;
+    protected int getBottomMenuItemId() {
+        return R.id.menu_bottom_trainings;
     }
 
     @Override

@@ -1,24 +1,23 @@
 package com.runnimal.app.android.util;
 
-import android.graphics.Bitmap;
+import java.net.URI;
 
 public class SingletonSession {
 
     private static SingletonSession instance;
     private String username;
-    private Bitmap photo;
+    private URI photo;
     private String mail;
     private String id;
 
     //no outer class can initialize this class's object
-    private SingletonSession() {}
+    private SingletonSession() {
+    }
 
-    public static SingletonSession Instance()
-    {
+    public static SingletonSession Instance() {
         //if no instance is initialized yet then create new instance
         //else return stored instance
-        if (instance == null)
-        {
+        if (instance == null) {
             instance = new SingletonSession();
         }
         return instance;
@@ -32,11 +31,11 @@ public class SingletonSession {
         this.username = username;
     }
 
-    public Bitmap getPhoto() {
+    public URI getPhoto() {
         return photo;
     }
 
-    public void setPhoto(Bitmap photo) {
+    public void setPhoto(URI photo) {
         this.photo = photo;
     }
 

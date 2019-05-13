@@ -69,7 +69,7 @@ public class OwnerModifyActivity extends BaseActivity implements OwnerModifyPres
     }
 
     @Override
-    protected int getNavigationMenuItemId() {
+    protected int getBottomMenuItemId() {
         return -1;
     }
 

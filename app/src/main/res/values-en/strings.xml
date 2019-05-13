@@ -5,10 +5,14 @@
     <string name="Login" translatable="false">Login</string>
     <string name="title_profile">Profile</string>
     <string name="title_notifications">Notifications</string>
-    <string name="navigation_trainings_title">Trainings</string>
-    <string name="navigation_map_title">Map</string>
-    <string name="navigation_pets_title">Pets</string>
-    <string name="navigation_challenges_title">Challenges</string>
+    <string name="menu_friends_title">Friends</string>
+    <string name="menu_ranking_title">Ranking</string>
+    <string name="menu_settings_title">Settings</string>
+    <string name="menu_search_title">Search</string>
+    <string name="menu_bottom_trainings_title">Trainings</string>
+    <string name="menu_bottom_map_title">Map</string>
+    <string name="menu_bottom_pets_title">Pets</string>
+    <string name="menu_bottom_challenges_title">Challenges</string>
     <string name="title_home">Home</string>
     <string name="title_activity_god">GodActivity</string>
     <string name="Password">Password</string>

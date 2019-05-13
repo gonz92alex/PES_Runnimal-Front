@@ -1,6 +1,5 @@
 package com.runnimal.app.android.view.activity;
 
-import android.content.Intent;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -39,8 +38,8 @@ public class PetsActivity extends BaseActivity implements PetsPresenter.View {
     }
 
     @Override
-    protected int getNavigationMenuItemId() {
-        return R.id.navigation_pets;
+    protected int getBottomMenuItemId() {
+        return R.id.menu_bottom_pets;
     }
 
     @Override

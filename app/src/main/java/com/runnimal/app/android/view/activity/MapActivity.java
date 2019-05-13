@@ -7,8 +7,6 @@ import com.runnimal.app.android.R;
 
 public class MapActivity extends BaseActivity {
 
-    //TODO
-
     public static void open(Context context) {
         Intent intent = new Intent(context, MapActivity.class);
         context.startActivity(intent);
@@ -20,8 +18,8 @@ public class MapActivity extends BaseActivity {
     }
 
     @Override
-    protected int getNavigationMenuItemId() {
-        return R.id.navigation_map;
+    protected int getBottomMenuItemId() {
+        return R.id.menu_bottom_map;
     }
 
     @Override

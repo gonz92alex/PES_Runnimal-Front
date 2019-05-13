@@ -68,7 +68,7 @@ public class OwnerDetailActivity extends BaseActivity implements OwnerDetailPres
     }
 
     @Override
-    protected int getNavigationMenuItemId() {
+    protected int getBottomMenuItemId() {
         return -1;
     }
 

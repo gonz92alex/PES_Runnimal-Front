@@ -61,8 +61,8 @@ public class PetDetailActivity extends BaseActivity implements PetDetailPresente
     }
 
     @Override
-    protected int getNavigationMenuItemId() {
-        return R.id.navigation_pets;
+    protected int getBottomMenuItemId() {
+        return R.id.menu_bottom_pets;
     }
 
     @Override
