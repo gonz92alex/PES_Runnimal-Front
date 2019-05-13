@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.runnimal.app.android.R;
 import com.runnimal.app.android.RunnimalApplication;
+import com.runnimal.app.android.service.fileUploader;
 import com.runnimal.app.android.util.SingletonSession;
 import com.runnimal.app.android.domain.Owner;
 import com.runnimal.app.android.view.presenter.OwnerModifyPresenter;
@@ -65,10 +66,8 @@ public class OwnerModifyActivity extends BaseActivity implements OwnerModifyPres
         super.onActivityResult(requestCode, resultCode, data);
         if (data != null) {
             if (requestCode == CAMERA_REQUEST) {
-                Bitmap bitmapPhoto = (Bitmap) data.getExtras().get("data");
+                bitmapPhoto = (Bitmap) data.getExtras().get("data");
                 image.setImageBitmap(bitmapPhoto);
-                //TODO: hacer la llamada al clickar el boton de crear
-                //presenter.uploadImage(bitmapPhoto, "/photo/users/" + SingletonSession.Instance().getMail());
             }
         }
     }
@@ -150,7 +149,10 @@ public class OwnerModifyActivity extends BaseActivity implements OwnerModifyPres
                 Owner owner = new Owner() //
                         .setAlias(alias.getText().toString());
                 presenter.modifyOwner(owner);
-                presenter.uploadImage(bitmapPhoto, "/users/" + SingletonSession.Instance().getMail());
+                //presenter.uploadImage(bitmapPhoto, "/users/" + SingletonSession.Instance().getMail());
+                if (bitmapPhoto==null) Log.d("refactor", "null print: ");
+                fileUploader fileUploader = new fileUploader(this, "/users/" + SingletonSession.Instance().getMail());
+                fileUploader.uploadImage(bitmapPhoto);
             }
         });
     }

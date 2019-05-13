@@ -1,6 +1,7 @@
 package com.runnimal.app.android.view.presenter;
 
 import android.graphics.Bitmap;
+import android.util.Log;
 
 import com.runnimal.app.android.service.MediaService;
 
@@ -28,6 +29,7 @@ public class Presenter<T extends Presenter.View> {
     }
 
     public void uploadImage(Bitmap image, String path) {
+        Log.d("refactor", "uploadImage: ");
         mediaService.uploadImage(image, //
                 path, //
                 new DisposableObserver<String>() {
@@ -35,6 +37,7 @@ public class Presenter<T extends Presenter.View> {
                     @Override
                     public void onNext(String message) {
                         //TODO
+                        Log.d("refactor", "onNext: ");
                         getView().onUploadPhoto();
                     }
 
@@ -46,6 +49,7 @@ public class Presenter<T extends Presenter.View> {
 
                     @Override
                     public void onComplete() {
+                        Log.d("refactor", "onComplete: ");
                     }
                 });
     }

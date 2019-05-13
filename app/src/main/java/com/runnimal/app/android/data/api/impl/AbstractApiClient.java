@@ -68,6 +68,7 @@ public abstract class AbstractApiClient {
     }
 
     public void uploadImage(Bitmap image, String path, RunnimalApi.RunnimalApiCallback<String> callback) {
+        Log.d("refactor", "http://nidorana.fib.upc.edu/api/photo" + path);
         VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, //
                 "http://nidorana.fib.upc.edu/api/photo" + path, //
                 response -> {

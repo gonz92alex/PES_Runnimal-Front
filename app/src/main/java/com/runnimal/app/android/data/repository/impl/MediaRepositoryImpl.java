@@ -23,18 +23,19 @@ public class MediaRepositoryImpl implements MediaRepository {
     @Override
     public Observable<String> uploadImage(Bitmap image, String path) {
         return Observable.create(emitter -> {
-            api.uploadImage(image, path, new RunnimalApi.RunnimalApiCallback<String>() {
-                @Override
-                public void responseOK(String message) {
-                    emitter.onNext(message);
-                    emitter.onComplete();
-                }
+            api.uploadImage(image, path, //
+                    new RunnimalApi.RunnimalApiCallback<String>() {
+                        @Override
+                        public void responseOK(String message) {
+                            emitter.onNext(message);
+                            emitter.onComplete();
+                        }
 
-                @Override
-                public void responseError(Exception e) {
-                    emitter.onError(e);
-                }
-            });
+                        @Override
+                        public void responseError(Exception e) {
+                        emitter.onError(e);
+                    }
+                    });
         });
     }
 }

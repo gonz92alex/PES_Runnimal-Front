@@ -196,11 +196,6 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
         delete("http://nidorana.fib.upc.edu/api/friends/delete/" + ownerId, callback);
     }
 
-    @Override
-    public void uploadImage(Bitmap image, String url, RunnimalApiCallback<String> callback) {
-        uploadImage(image, url, callback);
-    }
-
 
     ///OTROS?/////
 
