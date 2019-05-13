@@ -65,7 +65,7 @@ public class OwnerModifyActivity extends BaseActivity implements OwnerModifyPres
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_pet_modify;
+        return R.layout.activity_owner_modify;
     }
 
     @Override
