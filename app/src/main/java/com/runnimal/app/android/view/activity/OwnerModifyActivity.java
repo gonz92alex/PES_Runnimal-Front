@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.support.design.widget.NavigationView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -18,7 +20,10 @@ import com.runnimal.app.android.RunnimalApplication;
 import com.runnimal.app.android.util.SingletonSession;
 import com.runnimal.app.android.domain.Owner;
 import com.runnimal.app.android.view.presenter.OwnerModifyPresenter;
+import com.runnimal.app.android.view.util.ImageUtils;
 import com.runnimal.app.android.view.viewmodel.OwnerViewModel;
+
+import java.net.URI;
 
 import javax.inject.Inject;
 
@@ -45,6 +50,9 @@ public class OwnerModifyActivity extends BaseActivity implements OwnerModifyPres
     @BindView(R.id.owner_modify_progress_bar)
     ProgressBar progressBar;
 
+    @BindView(R.id.navigation_menu)
+    NavigationView navigationView;
+
     public static void open(Context context) {
         Intent intent = new Intent(context, OwnerModifyActivity.class);
         context.startActivity(intent);
@@ -58,7 +66,7 @@ public class OwnerModifyActivity extends BaseActivity implements OwnerModifyPres
                 Bitmap bitmapPhoto = (Bitmap) data.getExtras().get("data");
                 image.setImageBitmap(bitmapPhoto);
                 //TODO: hacer la llamada al clickar el boton de crear
-                presenter.uploadImage(bitmapPhoto, "/photo/users/" + SingletonSession.Instance().getMail());
+                //presenter.uploadImage(bitmapPhoto, "/photo/users/" + SingletonSession.Instance().getMail());
             }
         }
     }
@@ -97,13 +105,11 @@ public class OwnerModifyActivity extends BaseActivity implements OwnerModifyPres
 
     @Override
     public void onUpdatedOwner(OwnerViewModel owner) {
-        /*
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        View header = (navigationView.getHeaderView(0));
-        TextView nombreView = (TextView) header.findViewById(R.id.NombreInApp);
+        View headerView = (navigationView.getHeaderView(0));
+        TextView aliasView = headerView.findViewById(R.id.text_menu_current_user_alias);
+        aliasView.setText(owner.getAlias());
         SingletonSession.Instance().setUsername(owner.getAlias());
-        nombreView.setText(SingletonSession.Instance().getUsername());
-        */
+        finish();
     }
 
     private void initializeDagger() {
@@ -116,7 +122,8 @@ public class OwnerModifyActivity extends BaseActivity implements OwnerModifyPres
     }
 
     private void initializeOwner() {
-        //TODO: Set current image
+        //ToDO: la id aqui(?)
+        ImageUtils.setImage(SingletonSession.Instance().getPhoto(), image);
         alias.setText(SingletonSession.Instance().getUsername());
     }
 

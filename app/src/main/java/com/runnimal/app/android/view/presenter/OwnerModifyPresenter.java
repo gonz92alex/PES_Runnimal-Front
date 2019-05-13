@@ -1,5 +1,7 @@
 package com.runnimal.app.android.view.presenter;
 
+import android.util.Log;
+
 import com.runnimal.app.android.domain.Owner;
 import com.runnimal.app.android.service.MediaService;
 import com.runnimal.app.android.service.OwnerService;
@@ -28,7 +30,7 @@ public class OwnerModifyPresenter extends Presenter<OwnerModifyPresenter.View> {
     @Override
     public void initialize() {
         super.initialize();
-        getView().showLoading();
+        getView().hideLoading();
     }
 
     public void modifyOwner(Owner owner) {

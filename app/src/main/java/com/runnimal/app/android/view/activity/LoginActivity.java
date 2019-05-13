@@ -13,6 +13,8 @@ import com.runnimal.app.android.RunnimalApplication;
 import com.runnimal.app.android.util.SingletonSession;
 import com.runnimal.app.android.view.presenter.LoginPresenter;
 
+import java.net.URI;
+
 import javax.inject.Inject;
 
 import butterknife.BindView;
@@ -122,8 +124,9 @@ public class LoginActivity extends AppCompatActivity implements LoginPresenter.V
         directLoginButton.setOnClickListener(view -> {
             Intent GodIntent = new Intent(this, MapActivity.class);
             SingletonSession.Instance().setMail("ash@pokemon.com");
-            SingletonSession.Instance().setUsername("Ash");
+            SingletonSession.Instance().setUsername("Swafta");
             SingletonSession.Instance().setId("5c9518c262d914013dd5af3b");
+            SingletonSession.Instance().setPhoto(URI.create("http://nidorana.fib.upc.edu/api/photo/users/" + "ash@pokemon.com"));
             MapActivity.open(this);
         });
     }

@@ -153,21 +153,18 @@ public class PetModifyActivity extends BaseActivity implements PetModifyPresente
                 presenter.modifyPet(pet);
             }
         });
-        Log.d("refactor", "DONE save");
     }
 
     private void initializeDeleteButton() {
         deleteButton.setOnClickListener(view -> {
             //TODO: implementar
         });
-        Log.d("refactor", "DONE Delete");
     }
 
     private void initializeEditImageButton() {
         imageEditButton.setOnClickListener(view -> {
             //TODO: implementar
         });
-        Log.d("refactor", "DONE editImage");
     }
 
 }
