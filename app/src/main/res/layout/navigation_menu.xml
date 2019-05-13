@@ -24,6 +24,5 @@
     <TextView
         android:id="@+id/text_menu_current_user_email"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="ProfileEv" />
+        android:layout_height="wrap_content" />
 </LinearLayout>
