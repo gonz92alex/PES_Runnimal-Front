@@ -9,21 +9,26 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.runnimal.app.android.R;
 import com.runnimal.app.android.RunnimalApplication;
+import com.runnimal.app.android.service.fileUploader;
 import com.runnimal.app.android.util.SingletonSession;
 import com.runnimal.app.android.domain.Owner;
 import com.runnimal.app.android.view.presenter.SignUpPresenter;
 import com.runnimal.app.android.view.viewmodel.OwnerViewModel;
 
+import java.net.URI;
+
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.Single;
 
 public class SignUpActivity extends AppCompatActivity implements SignUpPresenter.View {
 
@@ -88,6 +93,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpPresenter
         SingletonSession.Instance().setMail(owner.getEmail());
         SingletonSession.Instance().setUsername(owner.getAlias());
         SingletonSession.Instance().setId(owner.getId());
+        SingletonSession.Instance().setPhoto(URI.create("http://nidorana.fib.upc.edu/api/photo/users/" + owner.getEmail()));
         MapActivity.open(this);
     }
 
@@ -131,9 +137,12 @@ public class SignUpActivity extends AppCompatActivity implements SignUpPresenter
 
                 Bitmap bitmapImage = null;
                 if (image != null) {
+                    Log.d("refactor", "llamamos");
                     bitmapImage = ((BitmapDrawable) image.getDrawable()).getBitmap();
+                    fileUploader fileUploader = new fileUploader(this, "/users/" + owner.getEmail());
+                    fileUploader.uploadImage(bitmapImage);
                 }
-                presenter.uploadImage(bitmapImage, "/photo/users/" + owner.getEmail());
+
             }
         });
     }

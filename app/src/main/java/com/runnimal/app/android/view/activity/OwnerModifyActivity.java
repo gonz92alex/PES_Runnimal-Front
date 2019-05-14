@@ -106,10 +106,8 @@ public class OwnerModifyActivity extends BaseActivity implements OwnerModifyPres
 
     @Override
     public void onUpdatedOwner(OwnerViewModel owner) {
-        View headerView = (navigationView.getHeaderView(0));
-        TextView aliasView = headerView.findViewById(R.id.text_menu_current_user_alias);
-        aliasView.setText(owner.getAlias());
         SingletonSession.Instance().setUsername(owner.getAlias());
+        refreshMenuInfo();
         finish();
     }
 
