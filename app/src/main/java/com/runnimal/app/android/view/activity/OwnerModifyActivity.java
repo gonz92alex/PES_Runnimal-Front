@@ -152,7 +152,7 @@ public class OwnerModifyActivity extends BaseActivity implements OwnerModifyPres
                 //presenter.uploadImage(bitmapPhoto, "/users/" + SingletonSession.Instance().getMail());
                 if (bitmapPhoto==null) Log.d("refactor", "null print: ");
                 fileUploader fileUploader = new fileUploader(this, "/users/" + SingletonSession.Instance().getMail());
-                fileUploader.uploadImage(bitmapPhoto);
+                if (bitmapPhoto!=null) fileUploader.uploadImage(bitmapPhoto);
             }
         });
     }
