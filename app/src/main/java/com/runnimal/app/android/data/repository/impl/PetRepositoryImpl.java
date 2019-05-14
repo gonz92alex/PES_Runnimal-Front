@@ -96,4 +96,23 @@ public class PetRepositoryImpl implements PetRepository {
                     });
         });
     }
+
+    @Override
+    public Observable<String> delete(String email, String petName){
+        return Observable.create(emitter -> {
+            api.deletePet(email, petName, //
+                    new RunnimalApi.RunnimalApiCallback<String>() {
+                        @Override
+                        public void responseOK(String response) {
+                            emitter.onNext(response);
+                            emitter.onComplete();
+                        }
+
+                        @Override
+                        public void responseError(Exception e) {
+                            emitter.onError(e);
+                        }
+                    });
+        });
+    }
 }

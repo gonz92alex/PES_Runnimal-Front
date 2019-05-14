@@ -3,6 +3,10 @@ package com.runnimal.app.android.view.activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.provider.MediaStore;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +19,7 @@ import android.widget.TextView;
 import com.runnimal.app.android.R;
 import com.runnimal.app.android.RunnimalApplication;
 import com.runnimal.app.android.domain.Pet;
+import com.runnimal.app.android.service.fileUploader;
 import com.runnimal.app.android.view.presenter.PetModifyPresenter;
 import com.runnimal.app.android.view.util.ImageUtils;
 import com.runnimal.app.android.view.viewmodel.PetViewModel;
@@ -26,6 +31,10 @@ import javax.inject.Inject;
 import butterknife.BindView;
 
 public class PetModifyActivity extends BaseActivity implements PetModifyPresenter.View {
+
+    private static final int CAMERA_REQUEST = 1888;
+    private Bitmap bitmapPhoto;
+
 
     private final static String PET_ID_KEY = "pet_id_key";
 
@@ -63,6 +72,17 @@ public class PetModifyActivity extends BaseActivity implements PetModifyPresente
     }
 
     @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (data != null) {
+            if (requestCode == CAMERA_REQUEST) {
+                bitmapPhoto = (Bitmap) data.getExtras().get("data");
+                image.setImageBitmap(bitmapPhoto);
+            }
+        }
+    }
+
+    @Override
     protected int getLayoutId() {
         return R.layout.activity_pet_modify;
     }
@@ -83,14 +103,12 @@ public class PetModifyActivity extends BaseActivity implements PetModifyPresente
     public void showLoading() {
         progressBar.setVisibility(View.VISIBLE);
         container.setVisibility(View.GONE);
-        Log.d("refactor", "showLoad");
     }
 
     @Override
     public void hideLoading() {
         progressBar.setVisibility(View.GONE);
         container.setVisibility(View.VISIBLE);
-        Log.d("refactor", "hideLoad");
     }
 
     @Override
@@ -110,27 +128,29 @@ public class PetModifyActivity extends BaseActivity implements PetModifyPresente
                 .orElse(0);
         size.setSelection(sizePosition);
 
-        initializeSaveButton();
-        initializeDeleteButton();
+        initializeSaveButton(pet);
+        initializeDeleteButton(pet);
         initializeEditImageButton();
+    }
+
+    @Override
+    public void onDelete() {
+        finish();
     }
 
     private void initializeDagger() {
         RunnimalApplication app = (RunnimalApplication) getApplication();
         app.getMainComponent().inject(this);
-        Log.d("refactor", "DONE DAGGER");
-
     }
 
     private void initializePresenter() {
         presenter.setView(this);
         String petId = getIntent().getExtras().getString(PET_ID_KEY);
         presenter.setPetId(petId);
-        Log.d("refactor", "DONE PRESENTER");
-
     }
 
-    private void initializeSaveButton() {
+    private void initializeSaveButton(PetViewModel petOriginal) {
+        Log.d("refactor", "initializeSaveButton: ");
         saveButton.setOnClickListener(view -> {
             if (description.getText().toString().equals("") || breed.getText().toString().equals("") || size.getSelectedItem().toString().equals("") || birthYear.getText().toString().equals("") || weight.getText().toString().equals("")) {
                 new AlertDialog.Builder(this) //
@@ -144,26 +164,31 @@ public class PetModifyActivity extends BaseActivity implements PetModifyPresente
             } else {
                 String petId = getIntent().getExtras().getString(PET_ID_KEY);
                 Pet pet = new Pet() //
-                        .setId(petId)
+                        .setName(petId)
                         .setDescription(description.getText().toString()) //
                         .setBreed(breed.getText().toString()) //
                         .setWeight(Integer.valueOf(weight.getText().toString())) //
                         .setSize(Pet.PetSize.valueOf(size.getSelectedItem().toString())) //
                         .setBirth(Integer.valueOf(birthYear.getText().toString()));
                 presenter.modifyPet(pet);
+
+                //toDo imagen
+                //fileUploader fileUploader = new fileUploader(this, "/pets/" + petOriginal.getOwner().getEmail() + "/" + pet.getName());
+                //if (bitmapPhoto!=null) fileUploader.uploadImage(bitmapPhoto);
             }
         });
     }
 
-    private void initializeDeleteButton() {
+    private void initializeDeleteButton(PetViewModel petOriginal) {
         deleteButton.setOnClickListener(view -> {
-            //TODO: implementar
+            presenter.deletePet(petOriginal.getOwner().getEmail(), petOriginal.getName());
         });
     }
 
     private void initializeEditImageButton() {
         imageEditButton.setOnClickListener(view -> {
-            //TODO: implementar
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivityForResult(intent, CAMERA_REQUEST);
         });
     }
 

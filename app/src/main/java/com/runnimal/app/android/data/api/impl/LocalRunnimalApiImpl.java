@@ -111,6 +111,11 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
     }
 
     @Override
+    public void deletePet(String email, String petName, RunnimalApiCallback<String> callback) {
+        callback.responseOK("OK");
+    }
+
+    @Override
     public void getOwner(String id, RunnimalApiCallback<Owner> callback) {
         try {
             callback.responseOK(jacksonFactory.toObject(IOUtils.getResource(OWNER_DETAIL_FILE), Owner.class));

@@ -47,4 +47,9 @@ public class PetServiceImpl extends AbstractService implements PetService {
         execute(petsRepository.create(pet), callback);
     }
 
+    @Override
+    public void delete(String email, String petName, DisposableObserver<String> callback){
+        execute(petsRepository.delete(email,petName),callback);
+    }
+
 }

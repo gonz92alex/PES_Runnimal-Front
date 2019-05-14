@@ -1,5 +1,7 @@
 package com.runnimal.app.android.view.presenter;
 
+import android.util.Log;
+
 import com.runnimal.app.android.domain.Pet;
 import com.runnimal.app.android.service.MediaService;
 import com.runnimal.app.android.service.PetService;
@@ -32,6 +34,7 @@ public class PetModifyPresenter extends Presenter<PetModifyPresenter.View> {
 
                     @Override
                     public void onNext(Pet pet) {
+                        Log.d("refactor", "onNext: ");
                         PetViewModel petViewModel = PetViewModelConverter.convert(pet);
                         getView().showPet(petViewModel);
                     }
@@ -71,8 +74,31 @@ public class PetModifyPresenter extends Presenter<PetModifyPresenter.View> {
                 });
     }
 
+    public void deletePet(String email, String petName){
+        petsService.delete(email, petName, //
+                new DisposableObserver<String>() {
+                    @Override
+                    public void onNext(String s) {
+                        //ToDo
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        getView().hideLoading();
+                        e.printStackTrace();
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        getView().onDelete();
+                    }
+                });
+    }
+
     public interface View extends Presenter.View {
 
         void showPet(PetViewModel pet);
+
+        void onDelete();
     }
 }

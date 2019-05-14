@@ -147,8 +147,7 @@ public class OwnerModifyActivity extends BaseActivity implements OwnerModifyPres
                 Owner owner = new Owner() //
                         .setAlias(alias.getText().toString());
                 presenter.modifyOwner(owner);
-                //presenter.uploadImage(bitmapPhoto, "/users/" + SingletonSession.Instance().getMail());
-                if (bitmapPhoto==null) Log.d("refactor", "null print: ");
+
                 fileUploader fileUploader = new fileUploader(this, "/users/" + SingletonSession.Instance().getMail());
                 if (bitmapPhoto!=null) fileUploader.uploadImage(bitmapPhoto);
             }

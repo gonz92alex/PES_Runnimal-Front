@@ -52,7 +52,7 @@ public abstract class AbstractApiClient {
     }
 
     public void delete(String url, RunnimalApi.RunnimalApiCallback<String> callback) {
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, //
+        StringRequest stringRequest = new StringRequest(Request.Method.DELETE, //
                 url, //
                 response -> {
                     //TODO: que mensaje poner como respuesta?

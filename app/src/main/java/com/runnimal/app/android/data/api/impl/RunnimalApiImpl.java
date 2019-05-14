@@ -100,7 +100,7 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
 
         pet.setId(null);
         JSONObject jsonBody = new JSONObject(jacksonFactory.toJsonNode(pet).toString());
-
+        Log.d("refactor", "modifyPet: " + jsonBody);
         put(url, jsonBody, callback);
     }
 
@@ -122,6 +122,14 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
         jsonBody.put("owner", SingletonSession.Instance().getMail());
 
         post("http://nidorana.fib.upc.edu/api/pets/", jsonBody, callback);
+    }
+
+    @Override
+    @SneakyThrows
+    public void deletePet(String email, String petName, RunnimalApiCallback<String> callback){
+        String url = "http://nidorana.fib.upc.edu/api/pets/" + email + "/" + petName;
+        Log.d("refactor", "deletePet: " + url);
+        delete(url,callback);
     }
 
     @Override
