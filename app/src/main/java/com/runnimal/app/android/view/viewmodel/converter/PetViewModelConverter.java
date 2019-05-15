@@ -23,7 +23,9 @@ public class PetViewModelConverter {
                 .setBirth(pet.getBirth()) //
                 .setSize(pet.getSize());
 
+        Log.d("refactor", "convert: " + pet.getOwner().getEmail() + " " + pet.getName());
         petViewModel.setImageUrl(URI.create("http://nidorana.fib.upc.edu/api/photo/pets/" + pet.getOwner().getEmail() + "/" + pet.getName()));
+        //petViewModel.setImageUrl(URI.create("https://www.wikipets.es/wp-content/uploads/2015/11/perro.jpg"));
 
         petViewModel.setOwner(OwnerViewModelConverter.convert(pet.getOwner()));
 
