@@ -173,8 +173,8 @@ public class PetModifyActivity extends BaseActivity implements PetModifyPresente
                 presenter.modifyPet(pet);
 
                 //toDo imagen
-                //fileUploader fileUploader = new fileUploader(this, "/pets/" + petOriginal.getOwner().getEmail() + "/" + pet.getName());
-                //if (bitmapPhoto!=null) fileUploader.uploadImage(bitmapPhoto);
+                fileUploader fileUploader = new fileUploader(this, "/pets/" + petOriginal.getOwner().getEmail() + "/" + pet.getName());
+                if (bitmapPhoto!=null) fileUploader.uploadImage(bitmapPhoto);
             }
         });
     }
