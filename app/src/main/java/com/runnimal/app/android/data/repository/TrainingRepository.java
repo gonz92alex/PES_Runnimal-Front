@@ -11,4 +11,6 @@ public interface TrainingRepository {
     Observable<List<Training>> list();
 
     Observable<Training> get(String id);
+
+    Observable<String> addPoints(int points, String email);
 }

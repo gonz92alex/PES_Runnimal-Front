@@ -55,4 +55,25 @@ public class TrainingRepositoryImpl implements TrainingRepository {
                     });
         });
     }
+
+    @Override
+    public Observable<String> addPoints(int points, String email) {
+        return Observable.create(emitter -> {
+            api.addPoint(points,email, //
+                    new RunnimalApi.RunnimalApiCallback<String>() {
+                        @Override
+                        public void responseOK(String response) {
+                            emitter.onNext(response);
+                            emitter.onComplete();
+                        }
+
+                        @Override
+                        public void responseError(Exception e) {
+                            emitter.onError(e);
+                        }
+                    });
+            });
+    }
+
+
 }
