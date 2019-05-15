@@ -33,6 +33,8 @@ import io.reactivex.Single;
 public class SignUpActivity extends AppCompatActivity implements SignUpPresenter.View {
 
     private static final int CAMERA_REQUEST = 1888;
+    private Bitmap bitmapPhoto;
+
 
     @Inject
     SignUpPresenter presenter;
@@ -62,7 +64,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpPresenter
         super.onActivityResult(requestCode, resultCode, data);
         if (data != null) {
             if (requestCode == CAMERA_REQUEST) {
-                Bitmap bitmapPhoto = (Bitmap) data.getExtras().get("data");
+                bitmapPhoto = (Bitmap) data.getExtras().get("data");
                 image.setImageBitmap(bitmapPhoto);
             }
         }
@@ -135,14 +137,8 @@ public class SignUpActivity extends AppCompatActivity implements SignUpPresenter
                         .setPassword(password.getText().toString());
                 presenter.createOwner(owner);
 
-                Bitmap bitmapImage = null;
-                if (image != null) {
-                    Log.d("refactor", "llamamos");
-                    bitmapImage = ((BitmapDrawable) image.getDrawable()).getBitmap();
-                    fileUploader fileUploader = new fileUploader(this, "/users/" + owner.getEmail());
-                    fileUploader.uploadImage(bitmapImage);
-                }
-
+                fileUploader fileUploader = new fileUploader(this, "/users/" + owner.getEmail());
+                if (bitmapPhoto!=null) fileUploader.uploadImage(bitmapPhoto);
             }
         });
     }

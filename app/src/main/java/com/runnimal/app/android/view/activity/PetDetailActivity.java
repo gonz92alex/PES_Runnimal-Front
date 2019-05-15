@@ -122,7 +122,7 @@ public class PetDetailActivity extends BaseActivity implements PetDetailPresente
 
     private void initializeEditImageButton(PetViewModel pet) {
         editImage.setOnClickListener(view -> {
-            PetModifyActivity.open(this, pet.getId());
+            PetModifyActivity.open(this, pet.getName());
         });
     }
 

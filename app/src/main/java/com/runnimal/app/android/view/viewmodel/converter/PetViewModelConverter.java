@@ -1,5 +1,7 @@
 package com.runnimal.app.android.view.viewmodel.converter;
 
+import android.util.Log;
+
 import com.runnimal.app.android.domain.Pet;
 import com.runnimal.app.android.view.viewmodel.PetViewModel;
 
@@ -21,7 +23,9 @@ public class PetViewModelConverter {
                 .setBirth(pet.getBirth()) //
                 .setSize(pet.getSize());
 
-        petViewModel.setImageUrl(URI.create("https://cdn.shopify.com/s/files/1/0257/6087/products/Pikachu_Single_Front_dc998741-c845-43a8-91c9-c1c97bec17a4.png?v=1523938908"));
+        Log.d("refactor", "convert: " + pet.getOwner().getEmail() + " " + pet.getName());
+        petViewModel.setImageUrl(URI.create("http://nidorana.fib.upc.edu/api/photo/pets/" + pet.getOwner().getEmail() + "/" + pet.getName()));
+        //petViewModel.setImageUrl(URI.create("https://www.wikipets.es/wp-content/uploads/2015/11/perro.jpg"));
 
         petViewModel.setOwner(OwnerViewModelConverter.convert(pet.getOwner()));
 

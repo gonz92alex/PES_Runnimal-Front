@@ -15,6 +15,7 @@ import com.runnimal.app.android.domain.Ranking;
 import com.runnimal.app.android.domain.Training;
 import com.runnimal.app.android.util.JacksonFactory;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.List;
@@ -100,7 +101,7 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
 
         pet.setId(null);
         JSONObject jsonBody = new JSONObject(jacksonFactory.toJsonNode(pet).toString());
-
+        Log.d("refactor", "modifyPet: " + jsonBody);
         put(url, jsonBody, callback);
     }
 
@@ -125,12 +126,33 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
     }
 
     @Override
+    @SneakyThrows
+    public void deletePet(String email, String petName, RunnimalApiCallback<String> callback){
+        String url = "http://nidorana.fib.upc.edu/api/pets/" + email + "/" + petName;
+        Log.d("refactor", "deletePet: " + url);
+        delete(url,callback);
+    }
+
+    @Override
     public void listOwners(RunnimalApiCallback<List<Owner>> callback) {
         get("http://nidorana.fib.upc.edu/api/users", //
                 response -> {
                     return jacksonFactory.toList(response, Owner.class);
                 }, //
                 callback);
+    }
+
+    @Override
+    public void addPoint(int points, String email, RunnimalApiCallback<String> callback) {
+        JSONObject jsonBody = new JSONObject();
+        try {
+            jsonBody.put("points", points);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        Log.d("refactor", "http://nidorana.fib.upc.edu/api/users/" + email + "/addpoints");
+        put("http://nidorana.fib.upc.edu/api/users/" + email + "/addpoints", jsonBody, callback);
     }
 
     @Override

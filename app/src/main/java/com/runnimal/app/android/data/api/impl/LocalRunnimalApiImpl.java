@@ -111,6 +111,11 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
     }
 
     @Override
+    public void deletePet(String email, String petName, RunnimalApiCallback<String> callback) {
+        callback.responseOK("OK");
+    }
+
+    @Override
     public void getOwner(String id, RunnimalApiCallback<Owner> callback) {
         try {
             callback.responseOK(jacksonFactory.toObject(IOUtils.getResource(OWNER_DETAIL_FILE), Owner.class));
@@ -186,5 +191,10 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
     @Override
     public void listOwners(RunnimalApiCallback<List<Owner>> listRunnimalApiCallback) {
         Log.d("refactor", "local Hola");
+    }
+
+    @Override
+    public void addPoint(int points, String email, RunnimalApiCallback<String> stringRunnimalApiCallback) {
+        Log.d("refactor", "addPoint: hola");
     }
 }

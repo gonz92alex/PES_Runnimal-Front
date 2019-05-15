@@ -15,4 +15,6 @@ public interface PetRepository {
     Observable<String> modify(Pet pet);
 
     Observable<String> create(Pet pet);
+
+    Observable<String> delete(String email, String petName);
 }

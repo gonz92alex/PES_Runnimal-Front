@@ -22,7 +22,9 @@ import com.karumi.dexter.listener.PermissionRequestErrorListener;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.runnimal.app.android.R;
 import com.runnimal.app.android.RunnimalApplication;
+import com.runnimal.app.android.domain.Owner;
 import com.runnimal.app.android.domain.Pet;
+import com.runnimal.app.android.util.SingletonSession;
 import com.runnimal.app.android.view.presenter.PetAddPresenter;
 import com.runnimal.app.android.view.viewmodel.PetViewModel;
 
@@ -144,7 +146,8 @@ public class PetAddActivity extends BaseActivity implements PetAddPresenter.View
                         .setBreed(breed.getText().toString()) //
                         .setWeight(Integer.valueOf(weight.getText().toString())) //
                         .setSize(Pet.PetSize.valueOf(size.getSelectedItem().toString())) //
-                        .setBirth(Integer.valueOf(birthYear.getText().toString()));
+                        .setBirth(Integer.valueOf(birthYear.getText().toString())) //
+                        .setOwner(new Owner().setEmail(SingletonSession.Instance().getMail()));
                 presenter.addPet(pet);
             }
         });

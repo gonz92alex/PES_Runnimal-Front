@@ -36,4 +36,9 @@ public class TrainingServiceImpl extends AbstractService implements TrainingServ
     public void get(String id, DisposableObserver<Training> callback) {
         execute(trainingRepository.get(id), callback);
     }
+
+    @Override
+    public void addPoints(int points, String email, DisposableObserver<String> callback) {
+        execute(trainingRepository.addPoints(points,email),callback);
+    }
 }
