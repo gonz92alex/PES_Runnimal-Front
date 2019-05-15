@@ -15,6 +15,7 @@ import com.runnimal.app.android.domain.Ranking;
 import com.runnimal.app.android.domain.Training;
 import com.runnimal.app.android.util.JacksonFactory;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.List;
@@ -142,9 +143,16 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
     }
 
     @Override
-    public void addPoint(int points, String email, RunnimalApiCallback<String> stringRunnimalApiCallback) {
-        //toDo
-        Log.d("refactor", "addPoint: ");
+    public void addPoint(int points, String email, RunnimalApiCallback<String> callback) {
+        JSONObject jsonBody = new JSONObject();
+        try {
+            jsonBody.put("points", points);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        Log.d("refactor", "http://nidorana.fib.upc.edu/api/users/" + email + "/addpoints");
+        put("http://nidorana.fib.upc.edu/api/users/" + email + "/addpoints", jsonBody, callback);
     }
 
     @Override

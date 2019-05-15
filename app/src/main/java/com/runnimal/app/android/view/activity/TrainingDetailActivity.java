@@ -69,6 +69,7 @@ public class TrainingDetailActivity extends BaseActivity implements TrainingDeta
         initializePresenter();
         initializeAdapter();
         initializeRecyclerView();
+        initializeAddPointButton();
         presenter.initialize();
     }
 
