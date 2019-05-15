@@ -60,6 +60,8 @@ public interface RunnimalApi {
 
     void listOwners(RunnimalApiCallback<List<Owner>> listRunnimalApiCallback);
 
+    void addPoint(int points, String email, RunnimalApiCallback<String> stringRunnimalApiCallback);
+
     interface RunnimalApiCallback<T> {
 
         void responseOK(T response);

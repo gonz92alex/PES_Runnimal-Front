@@ -49,6 +49,27 @@ public class TrainingDetailPresenter extends Presenter<TrainingDetailPresenter.V
                 });
     }
 
+    public void addPoints(int points, String email) {
+        trainingService.addPoints(points, email, //
+                new DisposableObserver<String>() {
+
+                    @Override
+                    public void onNext(String response){
+                        //toDo
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        //toDO
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        //toDo
+                    }
+                });
+    }
+
     public interface View extends Presenter.View {
 
         void showTraining(TrainingViewModel training);

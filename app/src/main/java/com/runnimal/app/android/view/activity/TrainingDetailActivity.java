@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.runnimal.app.android.R;
 import com.runnimal.app.android.RunnimalApplication;
+import com.runnimal.app.android.util.SingletonSession;
 import com.runnimal.app.android.view.adapter.TrainingStepsAdapter;
 import com.runnimal.app.android.view.presenter.TrainingDetailPresenter;
 import com.runnimal.app.android.view.viewmodel.TrainingViewModel;
@@ -68,6 +69,7 @@ public class TrainingDetailActivity extends BaseActivity implements TrainingDeta
         initializePresenter();
         initializeAdapter();
         initializeRecyclerView();
+        initializeAddPointButton();
         presenter.initialize();
     }
 
@@ -116,6 +118,12 @@ public class TrainingDetailActivity extends BaseActivity implements TrainingDeta
         trainingStepsList.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         trainingStepsList.setHasFixedSize(true);
         trainingStepsList.setAdapter(adapter);
+    }
+
+    private void initializeAddPointButton(){
+        buttonPoints.setOnClickListener(view -> {
+            presenter.addPoints(20, SingletonSession.Instance().getMail());
+        });
     }
 
 }

@@ -192,4 +192,9 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
     public void listOwners(RunnimalApiCallback<List<Owner>> listRunnimalApiCallback) {
         Log.d("refactor", "local Hola");
     }
+
+    @Override
+    public void addPoint(int points, String email, RunnimalApiCallback<String> stringRunnimalApiCallback) {
+        Log.d("refactor", "addPoint: hola");
+    }
 }
