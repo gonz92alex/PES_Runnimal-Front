@@ -1,5 +1,6 @@
 package com.runnimal.app.android.data.api.impl;
 
+import android.graphics.Bitmap;
 import android.util.Log;
 
 import com.android.volley.RequestQueue;
@@ -194,6 +195,9 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
     public void deleteFriend(String ownerId, RunnimalApiCallback<String> callback) {
         delete("http://nidorana.fib.upc.edu/api/friends/delete/" + ownerId, callback);
     }
+
+
+    ///OTROS?/////
 
     @Override
     public void listFriends(RunnimalApiCallback<List<Friend>> listRunnimalApiCallback) {

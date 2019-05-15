@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.runnimal.app.android.R;
 import com.runnimal.app.android.RunnimalApplication;
+import com.runnimal.app.android.service.fileUploader;
 import com.runnimal.app.android.util.SingletonSession;
 import com.runnimal.app.android.domain.Owner;
 import com.runnimal.app.android.view.presenter.OwnerModifyPresenter;
@@ -32,6 +33,8 @@ import butterknife.BindView;
 public class OwnerModifyActivity extends BaseActivity implements OwnerModifyPresenter.View {
 
     private static final int CAMERA_REQUEST = 1888;
+    private Bitmap bitmapPhoto;
+
 
     @Inject
     OwnerModifyPresenter presenter;
@@ -63,10 +66,8 @@ public class OwnerModifyActivity extends BaseActivity implements OwnerModifyPres
         super.onActivityResult(requestCode, resultCode, data);
         if (data != null) {
             if (requestCode == CAMERA_REQUEST) {
-                Bitmap bitmapPhoto = (Bitmap) data.getExtras().get("data");
+                bitmapPhoto = (Bitmap) data.getExtras().get("data");
                 image.setImageBitmap(bitmapPhoto);
-                //TODO: hacer la llamada al clickar el boton de crear
-                //presenter.uploadImage(bitmapPhoto, "/photo/users/" + SingletonSession.Instance().getMail());
             }
         }
     }
@@ -105,10 +106,13 @@ public class OwnerModifyActivity extends BaseActivity implements OwnerModifyPres
 
     @Override
     public void onUpdatedOwner(OwnerViewModel owner) {
-        View headerView = (navigationView.getHeaderView(0));
-        TextView aliasView = headerView.findViewById(R.id.text_menu_current_user_alias);
-        aliasView.setText(owner.getAlias());
         SingletonSession.Instance().setUsername(owner.getAlias());
+        refreshMenuInfo();
+        finish();
+    }
+
+    @Override
+    public void onUploadPhoto(){
         finish();
     }
 
@@ -143,6 +147,10 @@ public class OwnerModifyActivity extends BaseActivity implements OwnerModifyPres
                 Owner owner = new Owner() //
                         .setAlias(alias.getText().toString());
                 presenter.modifyOwner(owner);
+                //presenter.uploadImage(bitmapPhoto, "/users/" + SingletonSession.Instance().getMail());
+                if (bitmapPhoto==null) Log.d("refactor", "null print: ");
+                fileUploader fileUploader = new fileUploader(this, "/users/" + SingletonSession.Instance().getMail());
+                if (bitmapPhoto!=null) fileUploader.uploadImage(bitmapPhoto);
             }
         });
     }
