@@ -190,13 +190,13 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
     }
 
     @Override
-    public void listOwners(RunnimalApiCallback<List<Owner>> listRunnimalApiCallback) {
+    public void listOwners(RunnimalApiCallback<List<Owner>> callback) {
         Log.d("refactor", "local Hola");
     }
 
     @Override
-    public void addPoint(int points, String email, RunnimalApiCallback<String> stringRunnimalApiCallback) {
-        Log.d("refactor", "addPoint: hola");
+    public void addPoint(int points, String email, RunnimalApiCallback<String> callback) {
+        callback.responseOK("OK");
     }
 
     @Override
@@ -206,5 +206,10 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
         } catch (Exception e) {
             listRunnimalApiCallback.responseError(e);
         }
+    }
+
+    @Override
+    public void deleteOwner(String id, String mail, RunnimalApiCallback<String> callback) {
+        callback.responseOK("OK");
     }
 }

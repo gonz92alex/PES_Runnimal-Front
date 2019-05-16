@@ -101,7 +101,11 @@ public class PetDetailActivity extends BaseActivity implements PetDetailPresente
         //Check if owner is the current user
         if (SingletonSession.Instance().getMail().equals(pet.getOwner().getEmail())) {
             editImage.setImageResource(R.drawable.icon_edit);
-            initializeEditImageButton(pet);
+            initializeEditImageButton(pet, 0);
+        }
+        else{
+            editImage.setImageResource(R.drawable.ic_remove);
+            initializeEditImageButton(pet, 1);
         }
     }
 
@@ -124,10 +128,17 @@ public class PetDetailActivity extends BaseActivity implements PetDetailPresente
         });
     }
 
-    private void initializeEditImageButton(PetViewModel pet) {
-        editImage.setOnClickListener(view -> {
-            PetModifyActivity.open(this, pet.getName(), pet.getOwner().getEmail());
-        });
+    private void initializeEditImageButton(PetViewModel pet, int state) {
+        if (state==0){
+            editImage.setOnClickListener(view -> {
+                PetModifyActivity.open(this, pet.getName(), pet.getOwner().getEmail());
+            });
+        }
+        else{
+            editImage.setOnClickListener(view -> {
+                presenter.deleteOwner(pet.getId(), SingletonSession.Instance().getMail());
+            });
+        }
     }
 
 }

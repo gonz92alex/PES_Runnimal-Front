@@ -10,6 +10,8 @@ import com.runnimal.app.android.domain.Ranking;
 import com.runnimal.app.android.domain.Training;
 import com.runnimal.app.android.domain.User;
 
+import org.json.JSONException;
+
 import java.util.List;
 
 public interface RunnimalApi {
@@ -60,9 +62,11 @@ public interface RunnimalApi {
 
     void listOwners(RunnimalApiCallback<List<Owner>> listRunnimalApiCallback);
 
-    void addPoint(int points, String email, RunnimalApiCallback<String> stringRunnimalApiCallback);
+    void addPoint(int points, String email, RunnimalApiCallback<String> stringRunnimalApiCallback) throws JSONException;
 
     void listLocalRanking(RunnimalApiCallback<List<Ranking>> listRunnimalApiCallback);
+
+    void deleteOwner(String id, String mail, RunnimalApiCallback<String> stringRunnimalApiCallback);
 
     interface RunnimalApiCallback<T> {
 

@@ -53,6 +53,28 @@ public class PetDetailPresenter extends Presenter<PetDetailPresenter.View> {
                 });
     }
 
+    public void deleteOwner(String id, String mail) {
+        petsService.deleteOwner(id, mail,
+                new DisposableObserver<String>() {
+
+                    @Override
+                    public void onNext(String response) {
+                        //toDO
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        getView().hideLoading();
+                        e.printStackTrace();
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        //toDO
+                    }
+                });
+    }
+
 
     public interface View extends Presenter.View {
 

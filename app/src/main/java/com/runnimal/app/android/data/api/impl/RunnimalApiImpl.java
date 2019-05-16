@@ -137,13 +137,9 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
     }
 
     @Override
-    public void addPoint(int points, String email, RunnimalApiCallback<String> callback) {
+    public void addPoint(int points, String email, RunnimalApiCallback<String> callback) throws JSONException {
         JSONObject jsonBody = new JSONObject();
-        try {
-            jsonBody.put("points", points);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        jsonBody.put("points", points);
 
         Log.d("refactor", "http://nidorana.fib.upc.edu/api/users/" + email + "/addpoints");
         put("http://nidorana.fib.upc.edu/api/users/" + email + "/addpoints", jsonBody, callback);
@@ -152,6 +148,11 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
     @Override
     public void listLocalRanking(RunnimalApiCallback<List<Ranking>> listRunnimalApiCallback) {
 
+    }
+
+    @Override
+    public void deleteOwner(String id, String mail, RunnimalApiCallback<String> stringRunnimalApiCallback) {
+        String url = "http://nidorana.fib.upc.edu/api/pets/" + id + "/owners";
     }
 
     @Override

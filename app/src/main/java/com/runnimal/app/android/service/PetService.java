@@ -17,4 +17,6 @@ public interface PetService {
     void create(Pet pet, DisposableObserver<String> callback);
 
     void delete(String email, String petName, DisposableObserver<String> callback);
+
+    void deleteOwner(String id, String mail, DisposableObserver<String> stringDisposableObserver);
 }
