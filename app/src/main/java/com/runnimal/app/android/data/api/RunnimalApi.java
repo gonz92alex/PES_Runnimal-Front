@@ -26,7 +26,7 @@ public interface RunnimalApi {
 
     void listPets(String ownerEmail, RunnimalApiCallback<List<Pet>> callback);
 
-    void getPet(String id, RunnimalApiCallback<Pet> callback);
+    void getPet(String id, String email, RunnimalApiCallback<Pet> callback);
 
     void modifyPet(Pet pet, RunnimalApiCallback<String> callback);
 

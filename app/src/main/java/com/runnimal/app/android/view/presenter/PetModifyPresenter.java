@@ -18,6 +18,8 @@ public class PetModifyPresenter extends Presenter<PetModifyPresenter.View> {
     private PetService petsService;
     @Setter
     private String petId;
+    @Setter
+    private String OwnerEmail;
 
     @Inject
     public PetModifyPresenter(MediaService mediaService, PetService petsService) {
@@ -30,7 +32,7 @@ public class PetModifyPresenter extends Presenter<PetModifyPresenter.View> {
         super.initialize();
         getView().showLoading();
         petsService.get(petId,
-                new DisposableObserver<Pet>() {
+                OwnerEmail, new DisposableObserver<Pet>() {
 
                     @Override
                     public void onNext(Pet pet) {

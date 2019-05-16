@@ -113,7 +113,9 @@ public class PetDetailActivity extends BaseActivity implements PetDetailPresente
     private void initializePresenter() {
         presenter.setView(this);
         String petId = getIntent().getExtras().getString(PET_ID_KEY);
+        String ownerEmail = getIntent().getExtras().getString(PET_OWNER_EMAIL);
         presenter.setPetId(petId);
+        presenter.setOwnerEmail(ownerEmail);
     }
 
     private void initializeOwnerImageButton(PetViewModel pet) {
@@ -124,7 +126,7 @@ public class PetDetailActivity extends BaseActivity implements PetDetailPresente
 
     private void initializeEditImageButton(PetViewModel pet) {
         editImage.setOnClickListener(view -> {
-            PetModifyActivity.open(this, pet.getName());
+            PetModifyActivity.open(this, pet.getName(), pet.getOwner().getEmail());
         });
     }
 

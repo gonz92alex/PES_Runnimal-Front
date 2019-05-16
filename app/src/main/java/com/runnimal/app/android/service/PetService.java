@@ -10,7 +10,7 @@ public interface PetService {
 
     void list(String ownerEmail, DisposableObserver<List<Pet>> callback);
 
-    void get(String id, DisposableObserver<Pet> callback);
+    void get(String id, String ownerEmail, DisposableObserver<Pet> callback);
 
     void modify(Pet pet, DisposableObserver<String> callback);
 

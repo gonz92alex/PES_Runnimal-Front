@@ -92,8 +92,8 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
     }
 
     @Override
-    public void getPet(String id, RunnimalApiCallback<Pet> callback) {
-        get("http://nidorana.fib.upc.edu/api/pets/" + SingletonSession.Instance().getMail() + "/" + id, //
+    public void getPet(String id, String email, RunnimalApiCallback<Pet> callback) {
+        get("http://nidorana.fib.upc.edu/api/pets/" + email + "/" + id, //
                 response -> {
                     return jacksonFactory.toObject(response, Pet.class);
 

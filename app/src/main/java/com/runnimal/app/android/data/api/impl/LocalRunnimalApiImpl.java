@@ -93,7 +93,7 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
     }
 
     @Override
-    public void getPet(String id, RunnimalApiCallback<Pet> callback) {
+    public void getPet(String id, String email, RunnimalApiCallback<Pet> callback) {
         try {
             callback.responseOK(jacksonFactory.toObject(IOUtils.getResource(PET_DETAIL_FILE), Pet.class));
         } catch (Exception e) {

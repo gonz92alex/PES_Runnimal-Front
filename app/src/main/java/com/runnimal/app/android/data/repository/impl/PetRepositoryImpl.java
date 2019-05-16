@@ -41,9 +41,9 @@ public class PetRepositoryImpl implements PetRepository {
     }
 
     @Override
-    public Observable<Pet> get(String id) {
+    public Observable<Pet> get(String id, String email) {
         return Observable.create(emitter -> {
-            api.getPet(id, //
+            api.getPet(id, email, //
                     new RunnimalApi.RunnimalApiCallback<Pet>() {
                         @Override
                         public void responseOK(Pet pet) {

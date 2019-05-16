@@ -10,7 +10,7 @@ public interface PetRepository {
 
     Observable<List<Pet>> list(String ownerEmail);
 
-    Observable<Pet> get(String id);
+    Observable<Pet> get(String id, String email);
 
     Observable<String> modify(Pet pet);
 

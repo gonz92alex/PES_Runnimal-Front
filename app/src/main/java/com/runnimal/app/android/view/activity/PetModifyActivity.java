@@ -37,6 +37,7 @@ public class PetModifyActivity extends BaseActivity implements PetModifyPresente
 
 
     private final static String PET_ID_KEY = "pet_id_key";
+    private final static String PET_OWNER_EMAIL = "pet_owner_email";
 
     @Inject
     PetModifyPresenter presenter;
@@ -65,9 +66,10 @@ public class PetModifyActivity extends BaseActivity implements PetModifyPresente
     @BindView(R.id.pet_detail_modify_progress_bar)
     ProgressBar progressBar;
 
-    public static void open(Context context, String petId) {
+    public static void open(Context context, String petId, String ownerEmail) {
         Intent intent = new Intent(context, PetModifyActivity.class);
         intent.putExtra(PET_ID_KEY, petId);
+        intent.putExtra(PET_OWNER_EMAIL, ownerEmail);
         context.startActivity(intent);
     }
 
@@ -146,7 +148,9 @@ public class PetModifyActivity extends BaseActivity implements PetModifyPresente
     private void initializePresenter() {
         presenter.setView(this);
         String petId = getIntent().getExtras().getString(PET_ID_KEY);
+        String ownerEmail = getIntent().getExtras().getString(PET_OWNER_EMAIL);
         presenter.setPetId(petId);
+        presenter.setOwnerEmail(ownerEmail);
     }
 
     private void initializeSaveButton(PetViewModel petOriginal) {
