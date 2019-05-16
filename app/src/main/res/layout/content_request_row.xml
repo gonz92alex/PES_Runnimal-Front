@@ -49,12 +49,12 @@ android:orientation="horizontal">
         </LinearLayout>
 
         <Button
-            android:id="@+id/aceptar"
+            android:id="@+id/button_aceptar"
             android:text="V"
             android:layout_width="40dp"
             android:layout_height="wrap_content" />
         <Button
-            android:id="@+id/rechazar"
+            android:id="@+id/button_rechazar"
             android:text="X"
             android:layout_width="40dp"
             android:layout_height="wrap_content" />
