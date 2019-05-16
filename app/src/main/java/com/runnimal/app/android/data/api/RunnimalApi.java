@@ -23,8 +23,6 @@ public interface RunnimalApi {
 
     void listRankings(RunnimalApiCallback<List<Ranking>> callback);
 
-    void getRanking(String id, RunnimalApiCallback<Ranking> rankingRunnimalApiCallback);
-
     void listPets(String ownerEmail, RunnimalApiCallback<List<Pet>> callback);
 
     void getPet(String id, String email, RunnimalApiCallback<Pet> callback);
@@ -70,7 +68,6 @@ public interface RunnimalApi {
     void listFriendship(RunnimalApiCallback<List<Friendship>> listRunnimalApiCallback);
 
     void acceptFriend(String id, RunnimalApiCallback<String> listRunnimalApiCallback);
-
 
 
     interface RunnimalApiCallback<T> {

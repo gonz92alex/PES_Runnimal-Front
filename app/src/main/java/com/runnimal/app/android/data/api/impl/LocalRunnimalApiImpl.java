@@ -3,7 +3,6 @@ package com.runnimal.app.android.data.api.impl;
 import android.graphics.Bitmap;
 import android.util.Log;
 
-import com.fasterxml.jackson.core.JsonFactory;
 import com.runnimal.app.android.data.api.RunnimalApi;
 import com.runnimal.app.android.domain.Friend;
 import com.runnimal.app.android.domain.FriendRequest;
@@ -16,12 +15,6 @@ import com.runnimal.app.android.domain.User;
 import com.runnimal.app.android.util.IOUtils;
 import com.runnimal.app.android.util.JacksonFactory;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -81,11 +74,6 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
         } catch (Exception e) {
             callback.responseError(e);
         }
-    }
-
-    @Override
-    public void getRanking(String id, RunnimalApiCallback<Ranking> rankingRunnimalApiCallback) {
-
     }
 
     @Override

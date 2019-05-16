@@ -1,20 +1,19 @@
 package com.runnimal.app.android.data.api.impl;
 
-import android.graphics.Bitmap;
 import android.util.Log;
 
 import com.android.volley.RequestQueue;
-import com.runnimal.app.android.domain.Friend;
-import com.runnimal.app.android.domain.Friendship;
-import com.runnimal.app.android.domain.User;
-import com.runnimal.app.android.util.SingletonSession;
 import com.runnimal.app.android.data.api.RunnimalApi;
+import com.runnimal.app.android.domain.Friend;
 import com.runnimal.app.android.domain.FriendRequest;
+import com.runnimal.app.android.domain.Friendship;
 import com.runnimal.app.android.domain.Owner;
 import com.runnimal.app.android.domain.Pet;
 import com.runnimal.app.android.domain.Ranking;
 import com.runnimal.app.android.domain.Training;
+import com.runnimal.app.android.domain.User;
 import com.runnimal.app.android.util.JacksonFactory;
+import com.runnimal.app.android.util.SingletonSession;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -74,13 +73,6 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
                 callback);
     }
 
-
-
-    @Override
-    public void getRanking(String id, RunnimalApiCallback<Ranking> rankingRunnimalApiCallback) {
-
-    }
-
     @Override
     public void listPets(String ownerEmail, RunnimalApiCallback<List<Pet>> callback) {
         String email = ownerEmail != null ? ownerEmail : SingletonSession.Instance().getMail();
@@ -122,10 +114,10 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
 
     @Override
     @SneakyThrows
-    public void deletePet(String email, String petName, RunnimalApiCallback<String> callback){
+    public void deletePet(String email, String petName, RunnimalApiCallback<String> callback) {
         String url = "http://nidorana.fib.upc.edu/api/pets/" + email + "/" + petName;
         Log.d("refactor", "deletePet: " + url);
-        delete(url,callback);
+        delete(url, callback);
     }
 
     @Override
@@ -174,10 +166,8 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        put("http://nidorana.fib.upc.edu/api/friends/delete/" + id, jsonBody,callback);
+        put("http://nidorana.fib.upc.edu/api/friends/delete/" + id, jsonBody, callback);
     }
-
-
 
 
     @Override
@@ -193,7 +183,7 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
     @Override
     @SneakyThrows
     public void modifyOwner(Owner owner, RunnimalApiCallback<String> callback) {
-        String url = "http://nidorana.fib.upc.edu/api/users/"  + SingletonSession.Instance().getMail();
+        String url = "http://nidorana.fib.upc.edu/api/users/" + SingletonSession.Instance().getMail();
 
         owner.setId(null);
         owner.setEmail(null);

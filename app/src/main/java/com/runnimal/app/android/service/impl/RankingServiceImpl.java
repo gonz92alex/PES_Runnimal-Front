@@ -1,11 +1,9 @@
 package com.runnimal.app.android.service.impl;
 
 import com.runnimal.app.android.data.repository.RankingRepository;
-
 import com.runnimal.app.android.domain.Ranking;
 import com.runnimal.app.android.service.AbstractService;
 import com.runnimal.app.android.service.RankingService;
-
 
 import java.util.List;
 
@@ -21,8 +19,8 @@ public class RankingServiceImpl extends AbstractService implements RankingServic
 
     @Inject
     public RankingServiceImpl(@Named("executor_thread") Scheduler executorThread, //
-                               @Named("ui_thread") Scheduler uiThread, //
-                               RankingRepository rankingRepository) {
+                              @Named("ui_thread") Scheduler uiThread, //
+                              RankingRepository rankingRepository) {
         super(executorThread, uiThread);
         this.rankingRepository = rankingRepository;
     }
@@ -33,12 +31,7 @@ public class RankingServiceImpl extends AbstractService implements RankingServic
     }
 
     @Override
-    public void get(String id, DisposableObserver<Ranking> callback) {
-        execute(rankingRepository.get(id), callback);
-    }
-
-    @Override
     public void localRank(String mail, DisposableObserver<List<Ranking>> callback) {
-        execute(rankingRepository.localRank(mail),callback);
+        execute(rankingRepository.localRank(mail), callback);
     }
 }
