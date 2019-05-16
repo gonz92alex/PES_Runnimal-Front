@@ -1,12 +1,14 @@
 package com.runnimal.app.android.di.modules;
 
 import com.runnimal.app.android.service.FriendsService;
+import com.runnimal.app.android.service.FriendshipService;
 import com.runnimal.app.android.service.MediaService;
 import com.runnimal.app.android.service.OwnerService;
 import com.runnimal.app.android.service.PetService;
 import com.runnimal.app.android.service.RankingService;
 import com.runnimal.app.android.service.SearchService;
 import com.runnimal.app.android.service.impl.FriendsServiceImpl;
+import com.runnimal.app.android.service.impl.FriendshipServiceImpl;
 import com.runnimal.app.android.service.impl.MediaServiceImpl;
 import com.runnimal.app.android.service.impl.OwnerServiceImpl;
 import com.runnimal.app.android.service.impl.PetServiceImpl;
@@ -65,6 +67,12 @@ public class ServiceModule {
     @Singleton
     SearchService searchService(SearchServiceImpl searchService) {
         return searchService;
+    }
+
+    @Provides
+    @Singleton
+    FriendshipService friendshipService(FriendshipServiceImpl friendshipService) {
+        return friendshipService;
     }
 
 }

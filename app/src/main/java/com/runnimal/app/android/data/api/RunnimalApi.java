@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 
 import com.runnimal.app.android.domain.Friend;
 import com.runnimal.app.android.domain.FriendRequest;
+import com.runnimal.app.android.domain.Friendship;
 import com.runnimal.app.android.domain.Owner;
 import com.runnimal.app.android.domain.Pet;
 import com.runnimal.app.android.domain.Ranking;
@@ -63,6 +64,14 @@ public interface RunnimalApi {
     void addPoint(int points, String email, RunnimalApiCallback<String> stringRunnimalApiCallback);
 
     void listLocalRanking(RunnimalApiCallback<List<Ranking>> listRunnimalApiCallback);
+
+    void listRequests(RunnimalApiCallback<List<Owner>> listRunnimalApiCallback);
+
+    void listFriendship(RunnimalApiCallback<List<Friendship>> listRunnimalApiCallback);
+
+    void acceptFriend(String id, RunnimalApiCallback<String> listRunnimalApiCallback);
+
+
 
     interface RunnimalApiCallback<T> {
 

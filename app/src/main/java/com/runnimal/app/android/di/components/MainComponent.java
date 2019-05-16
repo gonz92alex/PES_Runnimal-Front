@@ -5,6 +5,7 @@ import android.content.Context;
 import com.runnimal.app.android.di.modules.DataModule;
 import com.runnimal.app.android.di.modules.MainModule;
 import com.runnimal.app.android.di.modules.ServiceModule;
+import com.runnimal.app.android.view.activity.FriendRequestsActivity;
 import com.runnimal.app.android.view.activity.FriendsActivity;
 import com.runnimal.app.android.view.activity.LoginActivity;
 import com.runnimal.app.android.view.activity.OwnerDetailActivity;
@@ -26,6 +27,8 @@ import dagger.Component;
 @Singleton
 @Component(modules = {MainModule.class, ServiceModule.class, DataModule.class})
 public interface MainComponent {
+
+    void inject(FriendRequestsActivity activity);
 
     void inject(SignUpActivity activity);
 

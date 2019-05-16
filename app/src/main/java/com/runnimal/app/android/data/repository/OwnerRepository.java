@@ -6,6 +6,7 @@ import com.runnimal.app.android.domain.Owner;
 import java.util.List;
 
 import io.reactivex.Observable;
+import io.reactivex.observers.DisposableObserver;
 
 public interface OwnerRepository {
 
@@ -26,4 +27,6 @@ public interface OwnerRepository {
     Observable<String> deteleFriend(String ownerId);
 
     Observable<List<Owner>> list();
+
+    Observable<List<Owner>>  listRequests();
 }
