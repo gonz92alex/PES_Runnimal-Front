@@ -4,6 +4,8 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.location.LocationManager;
 import android.support.annotation.NonNull;
@@ -15,18 +17,33 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.runnimal.app.android.R;
+import com.runnimal.app.android.RunnimalApplication;
 import com.runnimal.app.android.util.PermissionUtils;
+import com.runnimal.app.android.view.presenter.PointsPresenter;
+import com.runnimal.app.android.view.viewmodel.PointViewModel;
+
+import java.util.List;
+
+import javax.inject.Inject;
 
 public class MapActivity extends BaseActivity implements
         OnMapReadyCallback,
-        ActivityCompat.OnRequestPermissionsResultCallback {
+        ActivityCompat.OnRequestPermissionsResultCallback,
+        PointsPresenter.View {
 
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 6506;
 
+    @Inject
+    PointsPresenter pointsPresenter;
+
     private boolean mPermissionDenied = false;
     private GoogleMap map;
+
 
     public static void open(Context context) {
         Intent intent = new Intent(context, MapActivity.class);
@@ -46,6 +63,9 @@ public class MapActivity extends BaseActivity implements
     @Override
     protected void initView() {
         initMap();
+        initializeDagger();
+        initializePresenter();
+        pointsPresenter.initialize();
     }
 
     @Override
@@ -69,12 +89,52 @@ public class MapActivity extends BaseActivity implements
     }
 
     @Override
+    public void showLoading() {
+    }
+
+    @Override
+    public void hideLoading() {
+    }
+
+    @Override
+    public void showPointsList(List<PointViewModel> points) {
+        BitmapDescriptor pipicanImgDescriptor = BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.pipican));
+        BitmapDescriptor parkImgDescriptor = BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.park));
+
+        points.forEach(point -> {
+            MarkerOptions markerOptions = new MarkerOptions() //
+                    .position(new LatLng(point.getLat(), point.getLon())) //
+                    .title(point.getTitle());
+            switch (point.getType()) {
+                case PIPICAN:
+                    markerOptions.icon(pipicanImgDescriptor);
+                    break;
+                case PARK:
+                    markerOptions.icon(parkImgDescriptor);
+                    break;
+                case OTHER:
+                    break;
+            }
+            map.addMarker(markerOptions);
+        });
+    }
+
+    @Override
     protected void onResumeFragments() {
         super.onResumeFragments();
         if (mPermissionDenied) {
             showMissingPermissionError();
             mPermissionDenied = false;
         }
+    }
+
+    private void initializeDagger() {
+        RunnimalApplication app = (RunnimalApplication) getApplication();
+        app.getMainComponent().inject(this);
+    }
+
+    private void initializePresenter() {
+        pointsPresenter.setView(this);
     }
 
     private void initMap() {

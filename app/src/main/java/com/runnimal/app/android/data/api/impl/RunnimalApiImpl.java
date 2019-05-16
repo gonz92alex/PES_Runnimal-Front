@@ -9,6 +9,7 @@ import com.runnimal.app.android.domain.FriendRequest;
 import com.runnimal.app.android.domain.Friendship;
 import com.runnimal.app.android.domain.Owner;
 import com.runnimal.app.android.domain.Pet;
+import com.runnimal.app.android.domain.Point;
 import com.runnimal.app.android.domain.Ranking;
 import com.runnimal.app.android.domain.Training;
 import com.runnimal.app.android.domain.User;
@@ -231,6 +232,16 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
     @Override
     public void deleteFriend(String ownerId, RunnimalApiCallback<String> callback) {
         delete("http://nidorana.fib.upc.edu/api/friends/delete/" + ownerId, callback);
+    }
+
+    @Override
+    public void listPoints(RunnimalApiCallback<List<Point>> callback) {
+        get("http://nidorana.fib.upc.edu/api/points", //
+                response -> {
+                    return jacksonFactory.toList(response, Point.class);
+
+                }, //
+                callback);
     }
 
 
