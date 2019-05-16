@@ -17,6 +17,7 @@ import com.runnimal.app.android.RunnimalApplication;
 import com.runnimal.app.android.util.SingletonSession;
 import com.runnimal.app.android.view.adapter.TrainingStepsAdapter;
 import com.runnimal.app.android.view.presenter.TrainingDetailPresenter;
+import com.runnimal.app.android.view.util.ImageUtils;
 import com.runnimal.app.android.view.viewmodel.TrainingViewModel;
 import com.squareup.picasso.Picasso;
 
@@ -89,11 +90,7 @@ public class TrainingDetailActivity extends BaseActivity implements TrainingDeta
     public void showTraining(TrainingViewModel training) {
         name.setText(training.getName());
         description.setText(training.getDescription());
-        //toDo cambiar el picasso por la llamada a utils de ImageUtil
-        Picasso.get().load(training.getImageUrl().toString())
-                .fit()
-                .centerCrop()
-                .into(image);
+        ImageUtils.setImage(training.getImageUrl(), image);
         adapter.addAll(training.getSteps());
         adapter.notifyDataSetChanged();
     }
