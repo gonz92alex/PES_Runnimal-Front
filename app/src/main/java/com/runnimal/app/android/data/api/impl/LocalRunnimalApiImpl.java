@@ -7,6 +7,7 @@ import com.fasterxml.jackson.core.JsonFactory;
 import com.runnimal.app.android.data.api.RunnimalApi;
 import com.runnimal.app.android.domain.Friend;
 import com.runnimal.app.android.domain.FriendRequest;
+import com.runnimal.app.android.domain.Friendship;
 import com.runnimal.app.android.domain.Owner;
 import com.runnimal.app.android.domain.Pet;
 import com.runnimal.app.android.domain.Ranking;
@@ -50,8 +51,7 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
     public void login(String email, String password, RunnimalApiCallback<String> callback) {
         if (email.equals("email") && password.equals("password")) {
             callback.responseOK("OK");
-        }
-        else {
+        } else {
             callback.responseError(new RuntimeException("Invalid login"));
         }
     }
@@ -218,10 +218,27 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
 
         try {
             callback.responseOK(jacksonFactory.toList(IOUtils.getResource(FRIEND_REQUESTS_FILE), Owner.class));
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             callback.responseError(e);
         }
 
     }
+
+    @Override
+    public void listFriendship(RunnimalApiCallback<List<Friendship>> listRunnimalApiCallback) {
+        try {
+            listRunnimalApiCallback.responseOK(jacksonFactory.toList(IOUtils.getResource(FRIEND_REQUESTS_FILE), Friendship.class));
+        } catch (Exception e) {
+            listRunnimalApiCallback.responseError(e);
+        }
+
+
+    }
+
+    @Override
+    public void acceptFriend(String id, RunnimalApiCallback<String> listRunnimalApiCallback) {
+
+    }
+
+
 }

@@ -14,6 +14,7 @@ import com.runnimal.app.android.view.adapter.FriendRequestsListAdapter;
 import com.runnimal.app.android.view.adapter.SearchListAdapter;
 import com.runnimal.app.android.view.presenter.FriendRequestsPresenter;
 import com.runnimal.app.android.view.presenter.SearchPresenter;
+import com.runnimal.app.android.view.viewmodel.FriendshipViewModel;
 import com.runnimal.app.android.view.viewmodel.OwnerViewModel;
 
 
@@ -69,19 +70,20 @@ public class FriendRequestsActivity extends BaseActivity implements FriendReques
     }
 
     @Override
-    public void showUsersList(List<OwnerViewModel> usersList) {
+    public void showUsersList(List<FriendshipViewModel> usersList) {
         adapter.addAll(usersList);
         adapter.notifyDataSetChanged();
     }
 
     //esta funcion deberia abrir la pantalla de un user
     @Override
-    public void openUserScreen(OwnerViewModel user) {
-        OwnerDetailActivity.open(this, user.getId(), user.getEmail());
+    public void openUserScreen(FriendshipViewModel user) {
+        //OwnerDetailActivity.open(this, user.getIdUser(), user.getEmail());
     }
 
     private void initializeDagger() {
         RunnimalApplication app = (RunnimalApplication) getApplication();
+        app.getMainComponent().inject(this);
         app.getMainComponent().inject(this);
     }
 

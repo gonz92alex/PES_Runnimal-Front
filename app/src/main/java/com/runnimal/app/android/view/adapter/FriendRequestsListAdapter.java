@@ -10,6 +10,7 @@ import com.runnimal.app.android.domain.Friend;
 import com.runnimal.app.android.domain.FriendRequest;
 import com.runnimal.app.android.view.presenter.FriendRequestsPresenter;
 import com.runnimal.app.android.view.presenter.SearchPresenter;
+import com.runnimal.app.android.view.viewmodel.FriendshipViewModel;
 import com.runnimal.app.android.view.viewmodel.OwnerViewModel;
 import com.runnimal.app.android.view.viewmodel.SearchViewModel;
 
@@ -22,8 +23,8 @@ import java.util.stream.Collectors;
 public class FriendRequestsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private final FriendRequestsPresenter presenter;
-    private final List<OwnerViewModel> usersList;
-    private final List<OwnerViewModel> filteredList;
+    private final List<FriendshipViewModel> usersList;
+    private final List<FriendshipViewModel> filteredList;
 
     public FriendRequestsListAdapter(FriendRequestsPresenter presenter) {
         this.presenter = presenter;
@@ -42,7 +43,7 @@ public class FriendRequestsListAdapter extends RecyclerView.Adapter<RecyclerView
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         FriendRequestsListViewHolder usersListViewHolder = (FriendRequestsListViewHolder) holder;
-        OwnerViewModel friend = filteredList.get(position);
+        FriendshipViewModel friend = filteredList.get(position);
         usersListViewHolder.render(friend);
     }
 
@@ -51,7 +52,7 @@ public class FriendRequestsListAdapter extends RecyclerView.Adapter<RecyclerView
         return filteredList.size();
     }
 
-    public void addAll(Collection<OwnerViewModel> collection) {
+    public void addAll(Collection<FriendshipViewModel> collection) {
         usersList.addAll(collection);
         filteredList.addAll(collection);
     }

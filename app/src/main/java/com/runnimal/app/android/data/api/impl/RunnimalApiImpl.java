@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.android.volley.RequestQueue;
 import com.runnimal.app.android.domain.Friend;
+import com.runnimal.app.android.domain.Friendship;
 import com.runnimal.app.android.domain.User;
 import com.runnimal.app.android.util.SingletonSession;
 import com.runnimal.app.android.data.api.RunnimalApi;
@@ -171,6 +172,26 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
     public void listRequests(RunnimalApiCallback<List<Owner>> listRunnimalApiCallback) {
 
     }
+
+    @Override
+    public void listFriendship(RunnimalApiCallback<List<Friendship>> listRunnimalApiCallback) {
+
+    }
+
+    @Override
+    public void acceptFriend(String id, RunnimalApiCallback<String> callback) {
+
+        JSONObject jsonBody = new JSONObject();
+        try {
+            jsonBody.put("action", "FRIEND");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        put("http://nidorana.fib.upc.edu/api/friends/delete/" + id, jsonBody,callback);
+    }
+
+
+
 
     @Override
     public void getOwner(String email, RunnimalApiCallback<Owner> callback) {

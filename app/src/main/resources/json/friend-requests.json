@@ -1,8 +1,11 @@
 [
   {
     "_id": "5c9518c262d914013dd5af3b",
-    "alias": "Swafta",
-    "email": "ash@pokemon.com"
+    "user2" :
+    {
+      "id" : "637474839",
+      "alias": "Swaftapatata",
+      "email": "ash@pokemon.com"
+    }
   }
-
 ]

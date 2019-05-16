@@ -8,6 +8,7 @@ import com.runnimal.app.android.data.api.RunnimalApi;
 import com.runnimal.app.android.data.api.impl.LocalRunnimalApiImpl;
 import com.runnimal.app.android.data.api.impl.RunnimalApiImpl;
 import com.runnimal.app.android.data.repository.FriendsRepository;
+import com.runnimal.app.android.data.repository.FriendshipRepository;
 import com.runnimal.app.android.data.repository.MediaRepository;
 import com.runnimal.app.android.data.repository.OwnerRepository;
 import com.runnimal.app.android.data.repository.PetRepository;
@@ -15,6 +16,7 @@ import com.runnimal.app.android.data.repository.RankingRepository;
 import com.runnimal.app.android.data.repository.SearchRepository;
 import com.runnimal.app.android.data.repository.TrainingRepository;
 import com.runnimal.app.android.data.repository.impl.FriendsRepositoryImpl;
+import com.runnimal.app.android.data.repository.impl.FriendshipRepositoryImpl;
 import com.runnimal.app.android.data.repository.impl.MediaRepositoryImpl;
 import com.runnimal.app.android.data.repository.impl.OwnerRepositoryImpl;
 import com.runnimal.app.android.data.repository.impl.PetRepositoryImpl;
@@ -34,7 +36,7 @@ public class DataModule {
 
     @Provides
     @Singleton
-    RunnimalApi runnimalApi(LocalRunnimalApiImpl runnimalApi) {
+    RunnimalApi runnimalApi(RunnimalApiImpl runnimalApi) {
         return runnimalApi;
     }
 
@@ -85,6 +87,13 @@ public class DataModule {
     @Singleton
     FriendsRepository friendsRepository(FriendsRepositoryImpl friendsRepository) {
         return friendsRepository;
+    }
+
+
+    @Provides
+    @Singleton
+    FriendshipRepository friendshipRepository(FriendshipRepositoryImpl friendshipRepository) {
+        return friendshipRepository;
     }
 
 }

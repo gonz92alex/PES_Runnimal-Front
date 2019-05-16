@@ -6,9 +6,11 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.runnimal.app.android.R;
+import com.runnimal.app.android.util.SingletonSession;
 import com.runnimal.app.android.view.presenter.FriendRequestsPresenter;
 import com.runnimal.app.android.view.presenter.SearchPresenter;
 import com.runnimal.app.android.view.util.ImageUtils;
+import com.runnimal.app.android.view.viewmodel.FriendshipViewModel;
 import com.runnimal.app.android.view.viewmodel.OwnerViewModel;
 import com.runnimal.app.android.view.viewmodel.SearchViewModel;
 
@@ -38,21 +40,28 @@ public class FriendRequestsListViewHolder extends RecyclerView.ViewHolder {
         ButterKnife.bind(this, itemView);
     }
 
-    public void render(OwnerViewModel user) {
-        onAcceptClick();
-        onRejectClick();
+    public void render(FriendshipViewModel user) {
+        onAcceptClick(user.getIdFriendship());
+        onRejectClick(user.getIdFriendship());
         onItemClick(user);
         ImageUtils.setImage(user.getImageUrl(), image);
         name.setText(user.getAlias());
         mail.setText(user.getEmail());
     }
 
-    private void onAcceptClick() {
+    private void onAcceptClick(String id) {
+        buttonAceptar.setOnClickListener(view -> {
+            friendRequestsPresenter.acceptFriend(id);
+        });
     }
-    private void onRejectClick() {
+    private void onRejectClick(String id) {
+        buttonAceptar.setOnClickListener(view -> {
+            friendRequestsPresenter.rejectFriend(id);
+        });
     }
 
-    private void onItemClick(final OwnerViewModel user) {
+
+    private void onItemClick(final FriendshipViewModel user) {
         itemView.setOnClickListener(v -> friendRequestsPresenter.onTrainingClicked(user));
     }
 
