@@ -68,6 +68,8 @@ public interface RunnimalApi {
 
     void deleteOwner(String id, String mail, RunnimalApiCallback<String> stringRunnimalApiCallback) throws JSONException;
 
+    void addOwner(String petId, String email, RunnimalApiCallback<String> callback);
+
     interface RunnimalApiCallback<T> {
 
         void responseOK(T response);

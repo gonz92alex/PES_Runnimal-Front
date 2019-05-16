@@ -10,6 +10,7 @@ import com.runnimal.app.android.view.activity.LoginActivity;
 import com.runnimal.app.android.view.activity.OwnerDetailActivity;
 import com.runnimal.app.android.view.activity.OwnerModifyActivity;
 import com.runnimal.app.android.view.activity.PetAddActivity;
+import com.runnimal.app.android.view.activity.PetAddOwnerActivity;
 import com.runnimal.app.android.view.activity.PetDetailActivity;
 import com.runnimal.app.android.view.activity.PetModifyActivity;
 import com.runnimal.app.android.view.activity.PetsActivity;
@@ -52,6 +53,8 @@ public interface MainComponent {
     void inject(FriendsActivity activity);
 
     void inject(SearchActivity activity);
+
+    void inject(PetAddOwnerActivity activity);
 
     Context context();
 }

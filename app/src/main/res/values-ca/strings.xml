@@ -54,5 +54,8 @@
     <string name="idioma">Idioma</string>
     <string name="Delete">Esborrar</string>
     <string name="Completed">Completat</string>
+    <string name="email">email</string>
+    <string name="World">Global</string>
+    <string name="Local">Local</string>
 
 </resources>

@@ -59,7 +59,7 @@ public class PetDetailPresenter extends Presenter<PetDetailPresenter.View> {
 
                     @Override
                     public void onNext(String response) {
-                        Log.d("refactor", "onComplete: hecho");
+                        Log.d("refactor", "onNext: hecho");
                     }
 
                     @Override

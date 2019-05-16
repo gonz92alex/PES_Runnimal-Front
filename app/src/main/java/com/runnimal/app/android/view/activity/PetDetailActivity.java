@@ -40,6 +40,8 @@ public class PetDetailActivity extends BaseActivity implements PetDetailPresente
     TextView description;
     @BindView(R.id.image_detail_pet_edit)
     ImageView editImage;
+    @BindView(R.id.addOwner)
+    ImageView addOwnerButton;
     @BindView(R.id.image_detail_pet_owner)
     ImageView ownerImage;
     @BindView(R.id.text_detail_pet_breed)
@@ -103,12 +105,16 @@ public class PetDetailActivity extends BaseActivity implements PetDetailPresente
         if (SingletonSession.Instance().getMail().equals(pet.getOwner().getEmail())) {
             editImage.setImageResource(R.drawable.icon_edit);
             initializeEditImageButton(pet, 0);
+
+            addOwnerButton.setImageResource(R.drawable.ic_add_user);
+            initializeAddOwnerButton(pet);
         }
         else{
             editImage.setImageResource(R.drawable.ic_remove);
             initializeEditImageButton(pet, 1);
         }
     }
+
 
     private void initializeDagger() {
         RunnimalApplication app = (RunnimalApplication) getApplication();
@@ -141,6 +147,12 @@ public class PetDetailActivity extends BaseActivity implements PetDetailPresente
                 presenter.deleteOwner(pet.getId(), SingletonSession.Instance().getMail());
             });
         }
+    }
+
+    private void initializeAddOwnerButton(PetViewModel pet) {
+        addOwnerButton.setOnClickListener(view -> {
+            PetAddOwnerActivity.open(this,pet.getId());
+        });
     }
 
 }

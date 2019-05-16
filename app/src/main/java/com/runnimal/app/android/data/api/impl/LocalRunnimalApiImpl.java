@@ -212,4 +212,9 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
     public void deleteOwner(String id, String mail, RunnimalApiCallback<String> callback) {
         callback.responseOK("OK");
     }
+
+    @Override
+    public void addOwner(String petId, String email, RunnimalApiCallback<String> callback) {
+        callback.responseOK("OK");
+    }
 }

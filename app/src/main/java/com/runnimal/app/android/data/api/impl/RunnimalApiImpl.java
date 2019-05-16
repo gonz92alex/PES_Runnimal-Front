@@ -192,6 +192,17 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
     }
 
     @Override
+    @SneakyThrows
+    public void addOwner(String petId, String email, RunnimalApiCallback<String> callback) {
+        String url = "http://nidorana.fib.upc.edu/api/pets/" + petId + "/owners";
+
+        JSONObject jsonBody = new JSONObject();
+        jsonBody.put("userEmail", email);
+
+        post(url, jsonBody, callback);
+    }
+
+    @Override
     public void getFriendRequests(String ownerEmail, RunnimalApiCallback<List<FriendRequest>> callback) {
         get("http://nidorana.fib.upc.edu/api/friendRequests/" + ownerEmail, //
                 response -> {
