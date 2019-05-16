@@ -44,7 +44,7 @@
                 android:layout_height="match_parent"
                 app:layoutManager="LinearLayoutManager"
                 tools:context=".view.activity.TrainingsActivity"
-                tools:listitem="@layout/content_trainings_row" />
+                tools:listitem="@layout/content_request_row" />
 
         </LinearLayout>
 
