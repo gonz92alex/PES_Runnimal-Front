@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -18,8 +17,10 @@ import android.widget.TextView;
 
 import com.runnimal.app.android.R;
 import com.runnimal.app.android.RunnimalApplication;
+import com.runnimal.app.android.domain.Owner;
 import com.runnimal.app.android.domain.Pet;
 import com.runnimal.app.android.service.fileUploader;
+import com.runnimal.app.android.util.SingletonSession;
 import com.runnimal.app.android.view.presenter.PetModifyPresenter;
 import com.runnimal.app.android.view.util.ImageUtils;
 import com.runnimal.app.android.view.viewmodel.PetViewModel;
@@ -138,6 +139,14 @@ public class PetModifyActivity extends BaseActivity implements PetModifyPresente
     @Override
     public void onDelete() {
         finish();
+        startActivity(new Intent(this, PetsActivity.class));
+    }
+
+    @Override
+    public void onUpdatePet(PetViewModel pet) {
+        finish();
+        //startActivity(new Intent(this, PetsActivity.class));
+        PetDetailActivity.open(this, pet.getName(), pet.getOwner().getEmail());
     }
 
     private void initializeDagger() {
@@ -173,7 +182,8 @@ public class PetModifyActivity extends BaseActivity implements PetModifyPresente
                         .setBreed(breed.getText().toString()) //
                         .setWeight(Integer.valueOf(weight.getText().toString())) //
                         .setSize(Pet.PetSize.valueOf(size.getSelectedItem().toString())) //
-                        .setBirth(Integer.valueOf(birthYear.getText().toString()));
+                        .setBirth(Integer.valueOf(birthYear.getText().toString())) //
+                        .setOwner(new Owner().setEmail(SingletonSession.Instance().getMail()));
                 presenter.modifyPet(pet);
 
                 fileUploader fileUploader = new fileUploader(this, "/pets/" + petOriginal.getOwner().getEmail() + "/" + pet.getName());

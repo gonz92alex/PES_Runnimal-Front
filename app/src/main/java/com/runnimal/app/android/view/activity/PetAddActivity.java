@@ -7,8 +7,10 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -64,6 +66,9 @@ public class PetAddActivity extends BaseActivity implements PetAddPresenter.View
     Button addButton;
     @BindView(R.id.button_add_pet_camera_edit)
     Button cameraButton;
+    @BindView(R.id.pet_detail_add_progress_bar)
+    ProgressBar progressBar;
+
 
     public static void open(Context context) {
         Intent intent = new Intent(context, PetAddActivity.class);
@@ -93,6 +98,7 @@ public class PetAddActivity extends BaseActivity implements PetAddPresenter.View
 
     @Override
     protected void initView() {
+        hideLoading();
         initializeDagger();
         initializePresenter();
         initializeAddButton();
@@ -102,15 +108,20 @@ public class PetAddActivity extends BaseActivity implements PetAddPresenter.View
 
     @Override
     public void showLoading() {
+        progressBar.setVisibility(View.VISIBLE);
+        container.setVisibility(View.GONE);
     }
 
     @Override
     public void hideLoading() {
+        progressBar.setVisibility(View.GONE);
+        container.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void successfullyCreated(PetViewModel pet) {
         finish();
+        startActivity(new Intent(this, PetsActivity.class));
     }
 
     private void initializeDagger() {

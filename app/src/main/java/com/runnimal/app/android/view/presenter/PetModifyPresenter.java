@@ -55,12 +55,13 @@ public class PetModifyPresenter extends Presenter<PetModifyPresenter.View> {
     }
 
     public void modifyPet(Pet pet) {
+        getView().showLoading();
         petsService.modify(pet, //
                 new DisposableObserver<String>() {
 
                     @Override
                     public void onNext(String message) {
-                        //TODO
+                        getView().onUpdatePet(PetViewModelConverter.convert(pet));
                     }
 
                     @Override
@@ -102,5 +103,7 @@ public class PetModifyPresenter extends Presenter<PetModifyPresenter.View> {
         void showPet(PetViewModel pet);
 
         void onDelete();
+
+        void onUpdatePet(PetViewModel pet);
     }
 }

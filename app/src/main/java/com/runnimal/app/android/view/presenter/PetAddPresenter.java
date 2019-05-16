@@ -23,12 +23,12 @@ public class PetAddPresenter extends Presenter<PetAddPresenter.View> {
     }
 
     public void addPet(Pet pet) {
+        getView().showLoading();
         petsService.create(pet, //
                 new DisposableObserver<String>() {
 
                     @Override
                     public void onNext(String message) {
-                        Log.d("refactor", "onNext: akiii " + pet.getName());
                         getView().successfullyCreated(PetViewModelConverter.convert(pet));
                     }
 
