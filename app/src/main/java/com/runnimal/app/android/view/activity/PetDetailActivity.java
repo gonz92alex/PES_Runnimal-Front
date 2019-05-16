@@ -2,6 +2,7 @@ package com.runnimal.app.android.view.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -135,6 +136,7 @@ public class PetDetailActivity extends BaseActivity implements PetDetailPresente
             });
         }
         else{
+            Log.d("refactor", "initializeEditImageButton: ");
             editImage.setOnClickListener(view -> {
                 presenter.deleteOwner(pet.getId(), SingletonSession.Instance().getMail());
             });

@@ -151,8 +151,13 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
     }
 
     @Override
-    public void deleteOwner(String id, String mail, RunnimalApiCallback<String> stringRunnimalApiCallback) {
+    public void deleteOwner(String id, String mail, RunnimalApiCallback<String> callback) throws JSONException {
         String url = "http://nidorana.fib.upc.edu/api/pets/" + id + "/owners";
+
+        JSONObject jsonBody = new JSONObject();
+        jsonBody.put("userEmail", mail);
+
+        delete(url, jsonBody, callback);
     }
 
     @Override
