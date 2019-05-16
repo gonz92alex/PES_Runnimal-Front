@@ -3,7 +3,7 @@ package com.runnimal.app.android.view.viewmodel.converter;
 import com.runnimal.app.android.domain.Point;
 import com.runnimal.app.android.view.viewmodel.PointViewModel;
 
-public class PointViewConverter {
+public class PointViewModelConverter {
 
     public static PointViewModel convert(Point point) {
         return new PointViewModel() //
@@ -11,6 +11,7 @@ public class PointViewConverter {
                 .setDescription(point.getDescription()) //
                 .setType(point.getType()) //
                 .setPhotoUrl(point.getPhotoUrl()) //
-                .setCoord(point.getCoord());
+                .setLat(point.getCoord()[0]) //
+                .setLon(point.getCoord()[1]);
     }
 }

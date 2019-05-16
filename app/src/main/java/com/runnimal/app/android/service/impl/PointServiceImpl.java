@@ -1,9 +1,9 @@
 package com.runnimal.app.android.service.impl;
 
-import com.runnimal.app.android.data.repository.RankingRepository;
-import com.runnimal.app.android.domain.Ranking;
+import com.runnimal.app.android.data.repository.PointRepository;
+import com.runnimal.app.android.domain.Point;
 import com.runnimal.app.android.service.AbstractService;
-import com.runnimal.app.android.service.RankingService;
+import com.runnimal.app.android.service.PointService;
 
 import java.util.List;
 
@@ -13,25 +13,20 @@ import javax.inject.Named;
 import io.reactivex.Scheduler;
 import io.reactivex.observers.DisposableObserver;
 
-public class RankingServiceImpl extends AbstractService implements RankingService {
+public class PointServiceImpl extends AbstractService implements PointService {
 
-    private final RankingRepository rankingRepository;
+    private final PointRepository pointRepository;
 
     @Inject
-    public RankingServiceImpl(@Named("executor_thread") Scheduler executorThread, //
-                              @Named("ui_thread") Scheduler uiThread, //
-                              RankingRepository rankingRepository) {
+    public PointServiceImpl(@Named("executor_thread") Scheduler executorThread, //
+                            @Named("ui_thread") Scheduler uiThread, //
+                            PointRepository pointRepository) {
         super(executorThread, uiThread);
-        this.rankingRepository = rankingRepository;
+        this.pointRepository = pointRepository;
     }
 
     @Override
-    public void list(DisposableObserver<List<Ranking>> callback) {
-        execute(rankingRepository.list(), callback);
-    }
-
-    @Override
-    public void localRank(String mail, DisposableObserver<List<Ranking>> callback) {
-        execute(rankingRepository.localRank(mail), callback);
+    public void list(DisposableObserver<List<Point>> callback) {
+        execute(pointRepository.list(), callback);
     }
 }
