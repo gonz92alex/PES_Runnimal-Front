@@ -168,6 +168,11 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
     }
 
     @Override
+    public void listRequests(RunnimalApiCallback<List<Owner>> listRunnimalApiCallback) {
+
+    }
+
+    @Override
     public void getOwner(String email, RunnimalApiCallback<Owner> callback) {
         get("http://nidorana.fib.upc.edu/api/users/" + email, //
                 response -> {

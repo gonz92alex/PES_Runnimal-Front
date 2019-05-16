@@ -12,7 +12,6 @@ import com.runnimal.app.android.RunnimalApplication;
 import com.runnimal.app.android.view.adapter.SearchListAdapter;
 import com.runnimal.app.android.view.presenter.SearchPresenter;
 import com.runnimal.app.android.view.viewmodel.OwnerViewModel;
-import com.runnimal.app.android.view.viewmodel.SearchViewModel;
 
 
 import java.util.List;

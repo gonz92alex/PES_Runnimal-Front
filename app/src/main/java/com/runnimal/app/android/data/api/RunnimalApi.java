@@ -64,6 +64,8 @@ public interface RunnimalApi {
 
     void listLocalRanking(RunnimalApiCallback<List<Ranking>> listRunnimalApiCallback);
 
+    void listRequests(RunnimalApiCallback<List<Owner>> listRunnimalApiCallback);
+
     interface RunnimalApiCallback<T> {
 
         void responseOK(T response);

@@ -26,4 +26,6 @@ public interface OwnerService {
     void createFriendRequest(String requestedEmail, DisposableObserver<String> callback);
 
     void deleteFriend(String ownerId, DisposableObserver<String> callback);
+
+    void listRequests(DisposableObserver<List<Owner>> callback);
 }
