@@ -18,7 +18,8 @@ public class Ranking {
 
     @JsonAlias("_id")
     private String id;
-    private String name;
+    private String alias;
+    private String email;
     private String points;
     private URI imageUrl;
 

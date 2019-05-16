@@ -3,7 +3,10 @@ package com.runnimal.app.android.view.presenter;
 import com.runnimal.app.android.domain.Ranking;
 import com.runnimal.app.android.service.MediaService;
 import com.runnimal.app.android.service.RankingService;
+import com.runnimal.app.android.util.ConverterUtils;
+import com.runnimal.app.android.view.viewmodel.OwnerViewModel;
 import com.runnimal.app.android.view.viewmodel.RankingViewModel;
+import com.runnimal.app.android.view.viewmodel.converter.OwnerViewModelConverter;
 import com.runnimal.app.android.view.viewmodel.converter.RankingViewModelConverter;
 
 import java.util.List;
@@ -29,9 +32,9 @@ public class RankingPresenter extends Presenter<RankingPresenter.View> {
         rankingService.list(new DisposableObserver<List<Ranking>>() {
 
             @Override
-            public void onNext(List<Ranking> rankings) {
-                List<RankingViewModel> rankingViewModels = RankingViewModelConverter.convert(rankings);
-                getView().showRankingList(rankingViewModels);
+            public void onNext(List<Ranking> rankings){
+            List<RankingViewModel> rankingViewModels = ConverterUtils.convert(rankings, RankingViewModelConverter::convert);
+            getView().showRankingList(rankingViewModels);
             }
 
             @Override

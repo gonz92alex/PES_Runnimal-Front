@@ -12,7 +12,8 @@ import lombok.experimental.Accessors;
 public class RankingViewModel {
 
     private String id;
-    private String name;
+    private String alias;
+    private String email;
     private String points;
     private URI imageUrl;
 

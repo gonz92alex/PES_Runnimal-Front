@@ -39,7 +39,7 @@ public class RankingListViewHolder extends RecyclerView.ViewHolder {
     public void render(RankingViewModel ranking) {
         onItemClick(ranking);
         getImage(ranking.getImageUrl(), image);
-        name.setText(ranking.getName());
+        name.setText(ranking.getAlias());
         points.setText(ranking.getPoints());
     }
 

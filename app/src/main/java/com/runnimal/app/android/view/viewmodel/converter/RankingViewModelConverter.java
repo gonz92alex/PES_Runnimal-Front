@@ -5,22 +5,25 @@ import com.runnimal.app.android.view.viewmodel.RankingViewModel;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.net.URI;
+
 
 public class RankingViewModelConverter {
 
+
     public static RankingViewModel convert(Ranking ranking) {
-        RankingViewModel rankingViewModel = new RankingViewModel() //
+        if (ranking == null) {
+            return null;
+        }
+
+        RankingViewModel ownerViewModel = new RankingViewModel() //
                 .setId(ranking.getId()) //
-                .setName(ranking.getName())
-                .setPoints(ranking.getPoints())////
-                .setImageUrl(ranking.getImageUrl());
+                .setAlias(ranking.getAlias()) //
+                .setPoints(ranking.getPoints())
+                .setEmail(ranking.getEmail());
 
-        return rankingViewModel;
-    }
+        ownerViewModel.setImageUrl(URI.create("http://nidorana.fib.upc.edu/api/photo/users/" + ranking.getEmail()));
 
-    public static List<RankingViewModel> convert(List<Ranking> rankings) {
-        return rankings.stream() //
-                .map(RankingViewModelConverter::convert) //
-                .collect(Collectors.toList());
+        return ownerViewModel;
     }
 }
