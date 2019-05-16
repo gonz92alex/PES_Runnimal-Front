@@ -137,7 +137,8 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
     }
 
     @Override
-    public void addPoint(int points, String email, RunnimalApiCallback<String> callback) throws JSONException {
+    @SneakyThrows
+    public void addPoint(int points, String email, RunnimalApiCallback<String> callback) {
         JSONObject jsonBody = new JSONObject();
         jsonBody.put("points", points);
 
@@ -148,16 +149,6 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
     @Override
     public void listLocalRanking(RunnimalApiCallback<List<Ranking>> listRunnimalApiCallback) {
 
-    }
-
-    @Override
-    public void deleteOwner(String id, String mail, RunnimalApiCallback<String> callback) throws JSONException {
-        String url = "http://nidorana.fib.upc.edu/api/pets/" + id + "/owners";
-
-        JSONObject jsonBody = new JSONObject();
-        jsonBody.put("userEmail", mail);
-
-        delete(url, jsonBody, callback);
     }
 
     @Override
@@ -186,6 +177,18 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
     @SneakyThrows
     public void createOwner(Owner owner, RunnimalApiCallback<String> callback) {
         post("http://nidorana.fib.upc.edu/api/users/", new JSONObject(jacksonFactory.toJsonNode(owner).toString()), callback);
+    }
+
+
+    @Override
+    @SneakyThrows
+    public void deleteOwner(String id, String mail, RunnimalApiCallback<String> callback) {
+        String url = "http://nidorana.fib.upc.edu/api/pets/" + id + "/owners";
+
+        JSONObject jsonBody = new JSONObject();
+        jsonBody.put("userEmail", mail);
+
+        delete(url, jsonBody, callback);
     }
 
     @Override
