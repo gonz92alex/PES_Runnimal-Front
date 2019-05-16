@@ -143,7 +143,7 @@ public class OwnerDetailActivity extends BaseActivity implements OwnerDetailPres
 
     @Override
     public void openPetScreen(PetViewModel pet) {
-        PetDetailActivity.open(this, pet.getName());
+        PetDetailActivity.open(this, pet.getName(), pet.getOwner().getEmail());
     }
 
     private void initializeDagger() {

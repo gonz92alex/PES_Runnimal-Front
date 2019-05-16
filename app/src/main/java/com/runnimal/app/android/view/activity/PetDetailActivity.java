@@ -23,7 +23,8 @@ import butterknife.BindView;
 
 public class PetDetailActivity extends BaseActivity implements PetDetailPresenter.View {
 
-    private final static String PET_ID_KEY = "pet_id_key";
+    private final static String PET_ID_KEY = "pet_id_key"; //lo que le llega es el nombre de la pet
+    private final static String PET_OWNER_EMAIL = "pet_owner_email";
 
     @Inject
     PetDetailPresenter presenter;
@@ -49,9 +50,10 @@ public class PetDetailActivity extends BaseActivity implements PetDetailPresente
     @BindView(R.id.pet_detail_progress_bar)
     ProgressBar progressBar;
 
-    public static void open(Context context, String petId) {
+    public static void open(Context context, String petId, String petOwner) {
         Intent intent = new Intent(context, PetDetailActivity.class);
         intent.putExtra(PET_ID_KEY, petId);
+        intent.putExtra(PET_OWNER_EMAIL, petOwner);
         context.startActivity(intent);
     }
 

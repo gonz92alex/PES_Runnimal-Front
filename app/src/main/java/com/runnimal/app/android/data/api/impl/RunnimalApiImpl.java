@@ -115,19 +115,9 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
     @Override
     @SneakyThrows
     public void createPet(Pet pet, RunnimalApiCallback<String> callback) {
-        //ToDO el atributo breed se debe enviar a la api como 'race'...una vez solucionado esto se podra utilizar este metodo
-      /*  JSONObject jsonBody = new JSONObject(jacksonFactory.toJsonNode(pet).toString()) //
-                .put("owner", SingletonSession.Instance().getMail());*/
-
-        //quitar una vez utilizemos el metodo de arriba para pasar el body
-        JSONObject jsonBody = new JSONObject();
-        jsonBody.put("name", pet.getName());
-        jsonBody.put("description", pet.getDescription());
-        jsonBody.put("race", pet.getBreed());
-        jsonBody.put("weight", pet.getWeight());
-        jsonBody.put("size", pet.getSize());
-        jsonBody.put("birth", pet.getBirth());
-        jsonBody.put("owner", SingletonSession.Instance().getMail());
+        JSONObject jsonBody = new JSONObject(jacksonFactory.toJsonNode(pet).toString()) //
+                .put("owner", SingletonSession.Instance().getMail());
+        Log.d("refactor", "createPet: " + jsonBody);
 
         post("http://nidorana.fib.upc.edu/api/pets/", jsonBody, callback);
     }
