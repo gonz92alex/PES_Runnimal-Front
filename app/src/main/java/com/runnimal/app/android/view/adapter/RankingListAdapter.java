@@ -47,4 +47,8 @@ public class RankingListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         rankingList.addAll(collection);
         filteredList.addAll(collection);
     }
+    public void clearAll(){
+        rankingList.clear();
+        filteredList.clear();
+    }
 }

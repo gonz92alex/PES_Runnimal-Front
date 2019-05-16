@@ -116,13 +116,14 @@ public class RankingActivity extends BaseActivity implements RankingPresenter.Vi
 
     private void initializeWorldButton() {
         buttonWorld.setOnClickListener(view -> {
+            adapter.clearAll();
             presenter.initialize();
         });
     }
 
     private void initializeLocalButton() {
         buttonLocal.setOnClickListener(view -> {
-
+            adapter.clearAll();
             presenter.localRank( SingletonSession.Instance().getMail());
         });
     }
