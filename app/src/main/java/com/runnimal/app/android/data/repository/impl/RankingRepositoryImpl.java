@@ -55,4 +55,22 @@ public class RankingRepositoryImpl implements RankingRepository {
                     });
         });
     }
+
+    @Override
+    public Observable<List<Ranking>> localRank(String mail) {
+        return Observable.create(emitter -> {
+            api.listLocalRanking(new RunnimalApi.RunnimalApiCallback<List<Ranking>>() {
+                @Override
+                public void responseOK(List<Ranking> rankings) {
+                    emitter.onNext(rankings);
+                    emitter.onComplete();
+                }
+
+                @Override
+                public void responseError(Exception e) {
+                    emitter.onError(e);
+                }
+            });
+        });
+    }
 }

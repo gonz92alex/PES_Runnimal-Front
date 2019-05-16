@@ -59,6 +59,29 @@ public class RankingPresenter extends Presenter<RankingPresenter.View> {
         setView(null);
     }
 
+    public void localRank(String mail) {
+        rankingService.localRank(mail, //
+                new DisposableObserver<List<Ranking>>() {
+                    @Override
+                    public void onNext(List<Ranking> rankings){
+                        List<RankingViewModel> rankingViewModels = ConverterUtils.convert(rankings, RankingViewModelConverter::convert);
+                        getView().showRankingList(rankingViewModels);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        getView().hideLoading();
+                        e.printStackTrace();
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        getView().hideLoading();
+                    }
+                });
+
+    }
+
 
     public interface View extends Presenter.View {
 

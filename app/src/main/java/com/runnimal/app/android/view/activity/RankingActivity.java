@@ -9,6 +9,7 @@ import android.widget.ProgressBar;
 
 import com.runnimal.app.android.R;
 import com.runnimal.app.android.RunnimalApplication;
+import com.runnimal.app.android.util.SingletonSession;
 import com.runnimal.app.android.view.adapter.RankingListAdapter;
 import com.runnimal.app.android.view.presenter.RankingPresenter;
 import com.runnimal.app.android.view.viewmodel.RankingViewModel;
@@ -53,6 +54,8 @@ public class RankingActivity extends BaseActivity implements RankingPresenter.Vi
         initializePresenter();
         initializeAdapter();
         initializeRecyclerView();
+        initializeWorldButton();
+        initializeLocalButton();
         presenter.initialize();
     }
 
@@ -109,6 +112,19 @@ public class RankingActivity extends BaseActivity implements RankingPresenter.Vi
         rankingList.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         rankingList.setHasFixedSize(true);
         rankingList.setAdapter(adapter);
+    }
+
+    private void initializeWorldButton() {
+        buttonWorld.setOnClickListener(view -> {
+            presenter.initialize();
+        });
+    }
+
+    private void initializeLocalButton() {
+        buttonLocal.setOnClickListener(view -> {
+
+            presenter.localRank( SingletonSession.Instance().getMail());
+        });
     }
 
 }

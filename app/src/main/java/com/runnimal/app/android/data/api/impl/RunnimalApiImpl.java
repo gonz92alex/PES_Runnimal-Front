@@ -163,6 +163,11 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
     }
 
     @Override
+    public void listLocalRanking(RunnimalApiCallback<List<Ranking>> listRunnimalApiCallback) {
+
+    }
+
+    @Override
     public void getOwner(String email, RunnimalApiCallback<Owner> callback) {
         get("http://nidorana.fib.upc.edu/api/users/" + email, //
                 response -> {

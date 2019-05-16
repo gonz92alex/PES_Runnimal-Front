@@ -26,6 +26,7 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
 
     private static final String TRAININGS_FILE = "json/trainings.json";
     private static final String RANKINGS_FILE = "json/rankings.json";
+    private static final String RANKINGS_LOCAL_FILE = "json/rankings-local.json";
     private static final String TRAINING_DETAIL_FILE = "json/training-detail.json";
     private static final String PETS_FILE = "json/pets.json";
     private static final String PET_DETAIL_FILE = "json/pet-detail.json";
@@ -196,5 +197,14 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
     @Override
     public void addPoint(int points, String email, RunnimalApiCallback<String> stringRunnimalApiCallback) {
         Log.d("refactor", "addPoint: hola");
+    }
+
+    @Override
+    public void listLocalRanking(RunnimalApiCallback<List<Ranking>> listRunnimalApiCallback) {
+        try {
+            listRunnimalApiCallback.responseOK(jacksonFactory.toList(IOUtils.getResource(RANKINGS_LOCAL_FILE), Ranking.class));
+        } catch (Exception e) {
+            listRunnimalApiCallback.responseError(e);
+        }
     }
 }

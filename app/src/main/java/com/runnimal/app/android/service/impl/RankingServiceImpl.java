@@ -36,4 +36,9 @@ public class RankingServiceImpl extends AbstractService implements RankingServic
     public void get(String id, DisposableObserver<Ranking> callback) {
         execute(rankingRepository.get(id), callback);
     }
+
+    @Override
+    public void localRank(String mail, DisposableObserver<List<Ranking>> callback) {
+        execute(rankingRepository.localRank(mail),callback);
+    }
 }

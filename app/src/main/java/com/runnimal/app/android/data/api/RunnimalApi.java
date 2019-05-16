@@ -62,6 +62,8 @@ public interface RunnimalApi {
 
     void addPoint(int points, String email, RunnimalApiCallback<String> stringRunnimalApiCallback);
 
+    void listLocalRanking(RunnimalApiCallback<List<Ranking>> listRunnimalApiCallback);
+
     interface RunnimalApiCallback<T> {
 
         void responseOK(T response);

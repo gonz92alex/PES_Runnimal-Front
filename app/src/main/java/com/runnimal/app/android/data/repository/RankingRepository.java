@@ -11,4 +11,6 @@ public interface RankingRepository {
     Observable<List<Ranking>> list();
 
     Observable<Ranking> get(String id);
+
+    Observable<List<Ranking>>  localRank(String mail);
 }
