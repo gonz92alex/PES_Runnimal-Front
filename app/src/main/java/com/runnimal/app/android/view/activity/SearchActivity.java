@@ -31,7 +31,7 @@ public class SearchActivity extends BaseActivity implements SearchPresenter.View
     SearchView searchView;
     @BindView(R.id.list_users)
     RecyclerView usersList;
-    @BindView(R.id.users_progress_bar)
+    @BindView(R.id.search_progress_bar)
     ProgressBar progressBar;
 
     @Override

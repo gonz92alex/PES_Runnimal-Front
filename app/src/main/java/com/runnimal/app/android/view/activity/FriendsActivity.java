@@ -30,7 +30,7 @@ public class FriendsActivity extends BaseActivity implements FriendsPresenter.Vi
     SearchView searchView;
     @BindView(R.id.list_friends)
     RecyclerView friendsList;
-    @BindView(R.id.friends_progress_bar)
+    @BindView(R.id.progress_bar)
     ProgressBar progressBar;
 
     @Override
