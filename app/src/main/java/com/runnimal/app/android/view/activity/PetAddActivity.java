@@ -24,6 +24,7 @@ import com.runnimal.app.android.R;
 import com.runnimal.app.android.RunnimalApplication;
 import com.runnimal.app.android.domain.Owner;
 import com.runnimal.app.android.domain.Pet;
+import com.runnimal.app.android.service.fileUploader;
 import com.runnimal.app.android.util.SingletonSession;
 import com.runnimal.app.android.view.presenter.PetAddPresenter;
 import com.runnimal.app.android.view.viewmodel.PetViewModel;
@@ -38,6 +39,7 @@ public class PetAddActivity extends BaseActivity implements PetAddPresenter.View
 
     private final static String PET_ID_KEY = "pet_id_key";
     private static final int CAMERA_REQUEST = 1888;
+    private Bitmap bitmapPhoto;
 
     @Inject
     PetAddPresenter presenter;
@@ -73,10 +75,8 @@ public class PetAddActivity extends BaseActivity implements PetAddPresenter.View
         super.onActivityResult(requestCode, resultCode, data);
         if (data != null) {
             if (requestCode == CAMERA_REQUEST) {
-                Bitmap bitmapPhoto = (Bitmap) data.getExtras().get("data");
+                bitmapPhoto = (Bitmap) data.getExtras().get("data");
                 image.setImageBitmap(bitmapPhoto);
-                //TODO: hacer la llamada al clickar el boton de crear
-                //presenter.uploadImage(bitmapPhoto, "/pet/emailDueño/nombrePet");
             }
         }
     }
@@ -149,6 +149,9 @@ public class PetAddActivity extends BaseActivity implements PetAddPresenter.View
                         .setBirth(Integer.valueOf(birthYear.getText().toString())) //
                         .setOwner(new Owner().setEmail(SingletonSession.Instance().getMail()));
                 presenter.addPet(pet);
+
+                fileUploader fileUploader = new fileUploader(this, "/pets/" + pet.getOwner().getEmail() + "/" + pet.getName());
+                if (bitmapPhoto!=null) fileUploader.uploadImage(bitmapPhoto);
             }
         });
     }
