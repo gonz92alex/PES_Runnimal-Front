@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -95,6 +96,7 @@ public class TrainingDetailActivity extends BaseActivity implements TrainingDeta
         adapter.notifyDataSetChanged();
     }
 
+
     private void initializeDagger() {
         RunnimalApplication app = (RunnimalApplication) getApplication();
         app.getMainComponent().inject(this);
@@ -121,6 +123,14 @@ public class TrainingDetailActivity extends BaseActivity implements TrainingDeta
         buttonPoints.setOnClickListener(view -> {
             presenter.addPoints(20, SingletonSession.Instance().getMail());
         });
+    }
+
+    @Override
+    public void onTrainingDone() {
+        buttonPoints.setOnClickListener(view -> {
+            Log.d("API", "onTrainingDone: ya has realizado el training");
+        });
+        buttonPoints.setBackgroundResource(R.drawable.btn_light_rounded);
     }
 
 }

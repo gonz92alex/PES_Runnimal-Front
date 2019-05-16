@@ -65,7 +65,7 @@ public class TrainingDetailPresenter extends Presenter<TrainingDetailPresenter.V
 
                     @Override
                     public void onComplete() {
-                        //toDo
+                        getView().onTrainingDone();
                     }
                 });
     }
@@ -73,5 +73,7 @@ public class TrainingDetailPresenter extends Presenter<TrainingDetailPresenter.V
     public interface View extends Presenter.View {
 
         void showTraining(TrainingViewModel training);
+
+        void onTrainingDone();
     }
 }
