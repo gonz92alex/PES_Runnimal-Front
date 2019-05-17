@@ -40,13 +40,13 @@ public class MainActivity extends AppCompatActivity {
             String token =  prefs.getString("token", "");
             // llamada a la api para obtener el usuario y guardarlo.
             System.out.println("TOKEN: "+token);
-            Toast.makeText(this, token, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, token, Toast.LENGTH_SHORT).show();
             //
 
     }
 
     private void initializePresenter() {
-        presenter.setView(this);
+        //presenter.setView(this);
     }
 
     private void bindViews() {
