@@ -51,9 +51,9 @@ public abstract class AbstractApiClient {
         bodyRequest(url, Request.Method.PUT, jsonBody, callback);
     }
 
-    public void delete(String url, JSONObject jsonBody, RunnimalApi.RunnimalApiCallback<String> callback) {
+    /*public void delete(String url, JSONObject jsonBody, RunnimalApi.RunnimalApiCallback<String> callback) {
         bodyRequest(url, Request.Method.DELETE, jsonBody, callback);
-    }
+    }*/
 
     public void delete(String url, RunnimalApi.RunnimalApiCallback<String> callback) {
         StringRequest stringRequest = new StringRequest(Request.Method.DELETE, //

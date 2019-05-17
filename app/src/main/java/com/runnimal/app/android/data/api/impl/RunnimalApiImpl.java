@@ -227,7 +227,7 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
         JSONObject jsonBody = new JSONObject();
         jsonBody.put("userEmail", mail);
 
-        delete(url, jsonBody, callback);
+        put(url, jsonBody, callback);
     }
 
     @Override
