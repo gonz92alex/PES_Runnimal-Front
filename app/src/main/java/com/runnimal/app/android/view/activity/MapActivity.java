@@ -166,13 +166,13 @@ public class MapActivity extends BaseActivity implements
             infoWindowAdapter.filter(null);
         });
         pipicanButton.setOnClickListener(view -> {
-            infoWindowAdapter.filter(PointType.PIPICAN);
+            infoWindowAdapter.filter(PointType.pipican);
         });
         parkButton.setOnClickListener(view -> {
-            infoWindowAdapter.filter(PointType.PARK);
+            infoWindowAdapter.filter(PointType.park);
         });
         otherButton.setOnClickListener(view -> {
-            infoWindowAdapter.filter(PointType.OTHER);
+            infoWindowAdapter.filter(PointType.other);
         });
     }
 
@@ -225,13 +225,13 @@ public class MapActivity extends BaseActivity implements
                     .title(point.getTitle());
 
             switch (point.getType()) {
-                case PIPICAN:
+                case pipican:
                     markerOptions.icon(pipicanImgDescriptor);
                     break;
-                case PARK:
+                case park:
                     markerOptions.icon(parkImgDescriptor);
                     break;
-                case OTHER:
+                case other:
                     break;
             }
 
