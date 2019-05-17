@@ -41,4 +41,10 @@
     <string name="location_error_descr">La configuración de ubicación está desactivada. \nPor favor, actívala para poder usar esta funcionalidad.</string>
     <string name="gps_settings">Configurar ubicación</string>
     <string name="size_prompt">Selecciona un tamaño</string>
+    <string name="owner">Dueño</string>
+    <string name="Search">Buscar</string>
+    <string name="Reject">Rechazar</string>
+    <string name="Accept">Aceptar</string>
+    <string name="Friends">Amigos</string>
+    <string name="Solicitudes">Solicitudes</string>
 </resources>

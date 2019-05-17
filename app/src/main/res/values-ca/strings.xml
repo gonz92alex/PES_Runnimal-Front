@@ -41,4 +41,11 @@
     <string name="location_error_descr">La configuració de la teva ubicació està desactivada. \nSi us plau, activa-la per poder fer servir aquesta funcionalitat.</string>
     <string name="gps_settings">Configurar ubicació</string>
     <string name="size_prompt">Selecciona un tamany</string>
+    <string name="owner">Amo</string>
+    <string name="Search">Buscar</string>
+    <string name="Reject">Rebutjar</string>
+    <string name="Accept">Acceptar</string>
+    <string name="Friends">Amics</string>
+    <string name="Solicitudes">Solicituts</string>
+
 </resources>

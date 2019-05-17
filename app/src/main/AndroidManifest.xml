@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.myapplication">
+    package="com.runnimal.app.android">
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
@@ -17,18 +17,18 @@
         android:debuggable="true"
         tools:ignore="HardcodedDebugMode">
         <activity
-            android:name=".GodActivity"
+            android:name="com.runnimal.app.android.GodActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:label="@string/title_activity_god"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".LogInActivity"
+            android:name="com.runnimal.app.android.LogInActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".SignUpActivity"
+            android:name="com.runnimal.app.android.SignUpActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".MainActivity"
+            android:name="com.runnimal.app.android.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
