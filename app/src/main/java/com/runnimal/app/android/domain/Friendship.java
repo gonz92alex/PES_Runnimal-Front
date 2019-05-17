@@ -11,5 +11,5 @@ public class Friendship {
 
     @JsonAlias("_id")
     private String id;
-    private Owner user2;
+    private Owner user1;
 }

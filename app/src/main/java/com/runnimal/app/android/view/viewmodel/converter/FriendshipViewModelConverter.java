@@ -17,10 +17,10 @@ public class FriendshipViewModelConverter {
 
         FriendshipViewModel friendshipViewModel = new FriendshipViewModel() //
                 .setIdUser(friendship.getId()) //
-                .setAlias(friendship.getUser2().getAlias()) //
-                .setEmail(friendship.getUser2().getEmail());
+                .setAlias(friendship.getUser1().getAlias()) //
+                .setEmail(friendship.getUser1().getEmail());
 
-        friendshipViewModel.setImageUrl(URI.create("http://nidorana.fib.upc.edu/api/photo/users/" + friendship.getUser2().getEmail()));
+        friendshipViewModel.setImageUrl(URI.create("http://nidorana.fib.upc.edu/api/photo/users/" + friendship.getUser1().getEmail()));
 
         return friendshipViewModel;
     }
