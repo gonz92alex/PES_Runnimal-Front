@@ -52,8 +52,14 @@ public class PointsPresenter extends Presenter<PointsPresenter.View> {
         });
     }
 
+    public void onPointsChanged(List<PointViewModel> points) {
+        getView().onPointsListChanged(points);
+    }
+
     public interface View extends Presenter.View {
 
-        void showPointsList(List<PointViewModel> pets);
+        void showPointsList(List<PointViewModel> points);
+
+        void onPointsListChanged(List<PointViewModel> points);
     }
 }

@@ -10,6 +10,9 @@ import android.location.LocationManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.view.View;
+import android.widget.RadioButton;
+import android.widget.RelativeLayout;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -23,6 +26,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.runnimal.app.android.R;
 import com.runnimal.app.android.RunnimalApplication;
+import com.runnimal.app.android.domain.PointType;
 import com.runnimal.app.android.util.PermissionUtils;
 import com.runnimal.app.android.view.adapter.CustomInfoWindowAdapter;
 import com.runnimal.app.android.view.domain.InfoWindowData;
@@ -32,6 +36,8 @@ import com.runnimal.app.android.view.viewmodel.PointViewModel;
 import java.util.List;
 
 import javax.inject.Inject;
+
+import butterknife.BindView;
 
 public class MapActivity extends BaseActivity implements
         OnMapReadyCallback,
@@ -45,9 +51,17 @@ public class MapActivity extends BaseActivity implements
     PointsPresenter pointsPresenter;
     CustomInfoWindowAdapter infoWindowAdapter;
 
+    @BindView(R.id.radio_button_point_type_all)
+    RadioButton allButton;
+    @BindView(R.id.radio_button_point_type_pipican)
+    RadioButton pipicanButton;
+    @BindView(R.id.radio_button_point_type_park)
+    RadioButton parkButton;
+    @BindView(R.id.radio_button_point_type_other)
+    RadioButton otherButton;
+
     private boolean mPermissionDenied = false;
     private GoogleMap map;
-
 
     public static void open(Context context) {
         Intent intent = new Intent(context, MapActivity.class);
@@ -76,6 +90,7 @@ public class MapActivity extends BaseActivity implements
         initializeDagger();
         initializePresenter();
         initializeAdapter();
+        initFilterButtons();
         pointsPresenter.initialize();
     }
 
@@ -112,6 +127,95 @@ public class MapActivity extends BaseActivity implements
 
     @Override
     public void showPointsList(List<PointViewModel> points) {
+        infoWindowAdapter.addAll(points);
+        initMarkers(points);
+    }
+
+    @Override
+    public void onPointsListChanged(List<PointViewModel> points) {
+        map.clear();
+        initMarkers(points);
+    }
+
+    @Override
+    protected void onResumeFragments() {
+        super.onResumeFragments();
+        if (mPermissionDenied) {
+            showMissingPermissionError();
+            mPermissionDenied = false;
+        }
+    }
+
+    private void initializeDagger() {
+        RunnimalApplication app = (RunnimalApplication) getApplication();
+        app.getMainComponent().inject(this);
+    }
+
+    private void initializePresenter() {
+        pointsPresenter.setView(this);
+    }
+
+    private void initializeAdapter() {
+        infoWindowAdapter = new CustomInfoWindowAdapter(this, pointsPresenter);
+    }
+
+    private void initFilterButtons() {
+        allButton.setChecked(true);
+
+        allButton.setOnClickListener(view -> {
+            infoWindowAdapter.filter(null);
+        });
+        pipicanButton.setOnClickListener(view -> {
+            infoWindowAdapter.filter(PointType.PIPICAN);
+        });
+        parkButton.setOnClickListener(view -> {
+            infoWindowAdapter.filter(PointType.PARK);
+        });
+        otherButton.setOnClickListener(view -> {
+            infoWindowAdapter.filter(PointType.OTHER);
+        });
+    }
+
+    private void initMap() {
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
+    }
+
+    private void enableMyLocation() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            PermissionUtils.requestPermission(this, LOCATION_PERMISSION_REQUEST_CODE,
+                    Manifest.permission.ACCESS_FINE_LOCATION, true);
+        } else if (map != null) {
+            initMyLocationButtonPosition();
+            map.setMyLocationEnabled(true);
+
+            centerMap();
+        }
+    }
+
+    private void initMyLocationButtonPosition() {
+        View locationButton = ((View) findViewById(Integer.parseInt("1")).getParent()).findViewById(Integer.parseInt("2"));
+        RelativeLayout.LayoutParams rlp = (RelativeLayout.LayoutParams) locationButton.getLayoutParams();
+        // position on right bottom
+        rlp.addRule(RelativeLayout.ALIGN_PARENT_TOP, 0);
+        rlp.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
+        rlp.setMargins(0, 180, 180, 0);
+    }
+
+    private void centerMap() {
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        try {
+            Location loc = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+            CameraUpdate center = CameraUpdateFactory.newLatLng(new LatLng(loc.getLatitude(), loc.getLongitude()));
+            CameraUpdate zoom = CameraUpdateFactory.zoomTo(15);
+            map.moveCamera(center);
+            map.animateCamera(zoom);
+        } catch (SecurityException e) {
+        }
+    }
+
+    private void initMarkers(List<PointViewModel> points) {
         BitmapDescriptor pipicanImgDescriptor = BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.pipican));
         BitmapDescriptor parkImgDescriptor = BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.park));
 
@@ -141,57 +245,6 @@ public class MapActivity extends BaseActivity implements
                     .setPhoto(point.getPhotoUrl());
             marker.setTag(info);
         });
-    }
-
-    @Override
-    protected void onResumeFragments() {
-        super.onResumeFragments();
-        if (mPermissionDenied) {
-            showMissingPermissionError();
-            mPermissionDenied = false;
-        }
-    }
-
-    private void initializeDagger() {
-        RunnimalApplication app = (RunnimalApplication) getApplication();
-        app.getMainComponent().inject(this);
-    }
-
-    private void initializePresenter() {
-        pointsPresenter.setView(this);
-    }
-
-    private void initializeAdapter() {
-        infoWindowAdapter = new CustomInfoWindowAdapter(this);
-    }
-
-    private void initMap() {
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
-    }
-
-    private void enableMyLocation() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-            PermissionUtils.requestPermission(this, LOCATION_PERMISSION_REQUEST_CODE,
-                    Manifest.permission.ACCESS_FINE_LOCATION, true);
-        } else if (map != null) {
-            map.setMyLocationEnabled(true);
-
-            centerMap();
-        }
-    }
-
-    private void centerMap() {
-        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        try {
-            Location loc = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-            CameraUpdate center = CameraUpdateFactory.newLatLng(new LatLng(loc.getLatitude(), loc.getLongitude()));
-            CameraUpdate zoom = CameraUpdateFactory.zoomTo(15);
-            map.moveCamera(center);
-            map.animateCamera(zoom);
-        } catch (SecurityException e) {
-        }
     }
 
     private void showMissingPermissionError() {

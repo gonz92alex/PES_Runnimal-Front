@@ -11,8 +11,16 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.runnimal.app.android.R;
+import com.runnimal.app.android.domain.PointType;
 import com.runnimal.app.android.view.domain.InfoWindowData;
+import com.runnimal.app.android.view.presenter.PointsPresenter;
 import com.runnimal.app.android.view.util.ImageUtils;
+import com.runnimal.app.android.view.viewmodel.PointViewModel;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,8 +29,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
 
     private final View modalPointsInfoLayout;
-
-    private Marker lastMarkerClicked = null;
+    private final List<PointViewModel> pointsList;
+    private final List<PointViewModel> filteredList;
 
     @BindView(R.id.text_point_title)
     TextView titleTextView;
@@ -31,8 +39,15 @@ public class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
     @BindView(R.id.text_point_description)
     TextView descriptionTextView;
 
-    public CustomInfoWindowAdapter(Context context) {
+    private PointsPresenter pointsPresenter;
+    private Marker lastMarkerClicked = null;
+
+    public CustomInfoWindowAdapter(Context context, PointsPresenter pointsPresenter) {
         this.modalPointsInfoLayout = LayoutInflater.from(context).inflate(R.layout.modal_points_info, null);
+        this.pointsList = new ArrayList<>();
+        this.filteredList = new ArrayList<>();
+        this.pointsPresenter = pointsPresenter;
+
         ButterKnife.bind(this, modalPointsInfoLayout);
     }
 
@@ -61,6 +76,25 @@ public class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
             showInfoWindow(map, marker);
             lastMarkerClicked = marker;
         }
+    }
+
+    public void addAll(Collection<PointViewModel> collection) {
+        pointsList.addAll(collection);
+        filteredList.addAll(collection);
+    }
+
+    public void filter(PointType pointType) {
+        filteredList.clear();
+
+        if (pointType == null) {
+            filteredList.addAll(pointsList);
+        } else {
+            pointsList.stream() //
+                    .filter(p -> p.getType() == pointType) //
+                    .collect(Collectors.toCollection(() -> filteredList));
+        }
+
+        pointsPresenter.onPointsChanged(filteredList);
     }
 
     private void showInfoWindow(GoogleMap map, Marker marker) {
