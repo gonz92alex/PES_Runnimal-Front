@@ -4,7 +4,6 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.location.LocationManager;
@@ -20,10 +19,13 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.runnimal.app.android.R;
 import com.runnimal.app.android.RunnimalApplication;
 import com.runnimal.app.android.util.PermissionUtils;
+import com.runnimal.app.android.view.adapter.CustomInfoWindowAdapter;
+import com.runnimal.app.android.view.domain.InfoWindowData;
 import com.runnimal.app.android.view.presenter.PointsPresenter;
 import com.runnimal.app.android.view.viewmodel.PointViewModel;
 
@@ -34,12 +36,14 @@ import javax.inject.Inject;
 public class MapActivity extends BaseActivity implements
         OnMapReadyCallback,
         ActivityCompat.OnRequestPermissionsResultCallback,
-        PointsPresenter.View {
+        PointsPresenter.View,
+        GoogleMap.OnMarkerClickListener {
 
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 6506;
 
     @Inject
     PointsPresenter pointsPresenter;
+    CustomInfoWindowAdapter infoWindowAdapter;
 
     private boolean mPermissionDenied = false;
     private GoogleMap map;
@@ -48,6 +52,12 @@ public class MapActivity extends BaseActivity implements
     public static void open(Context context) {
         Intent intent = new Intent(context, MapActivity.class);
         context.startActivity(intent);
+    }
+
+    @Override
+    public boolean onMarkerClick(final Marker marker) {
+        infoWindowAdapter.onMarkerClicked(map, marker);
+        return true;
     }
 
     @Override
@@ -65,12 +75,16 @@ public class MapActivity extends BaseActivity implements
         initMap();
         initializeDagger();
         initializePresenter();
+        initializeAdapter();
         pointsPresenter.initialize();
     }
 
     @Override
     public void onMapReady(GoogleMap map) {
         this.map = map;
+
+        map.setOnMarkerClickListener(this);
+        map.setInfoWindowAdapter(infoWindowAdapter);
 
         enableMyLocation();
     }
@@ -105,6 +119,7 @@ public class MapActivity extends BaseActivity implements
             MarkerOptions markerOptions = new MarkerOptions() //
                     .position(new LatLng(point.getLat(), point.getLon())) //
                     .title(point.getTitle());
+
             switch (point.getType()) {
                 case PIPICAN:
                     markerOptions.icon(pipicanImgDescriptor);
@@ -115,7 +130,16 @@ public class MapActivity extends BaseActivity implements
                 case OTHER:
                     break;
             }
-            map.addMarker(markerOptions);
+
+            Marker marker = map.addMarker(markerOptions);
+
+            marker.hideInfoWindow();
+
+            InfoWindowData info = new InfoWindowData() //
+                    .setTitle(point.getTitle()) //
+                    .setDescription(point.getDescription()) //
+                    .setPhoto(point.getPhotoUrl());
+            marker.setTag(info);
         });
     }
 
@@ -135,6 +159,10 @@ public class MapActivity extends BaseActivity implements
 
     private void initializePresenter() {
         pointsPresenter.setView(this);
+    }
+
+    private void initializeAdapter() {
+        infoWindowAdapter = new CustomInfoWindowAdapter(this);
     }
 
     private void initMap() {
