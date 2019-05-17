@@ -7,6 +7,7 @@ import com.runnimal.app.android.domain.FriendRequest;
 import com.runnimal.app.android.domain.Friendship;
 import com.runnimal.app.android.domain.Owner;
 import com.runnimal.app.android.domain.Pet;
+import com.runnimal.app.android.domain.Point;
 import com.runnimal.app.android.domain.Ranking;
 import com.runnimal.app.android.domain.Training;
 import com.runnimal.app.android.domain.User;
@@ -69,6 +70,7 @@ public interface RunnimalApi {
 
     void acceptFriend(String id, RunnimalApiCallback<String> listRunnimalApiCallback);
 
+    void listPoints(RunnimalApiCallback<List<Point>> listRunnimalApiCallback);
 
     interface RunnimalApiCallback<T> {
 
