@@ -237,5 +237,19 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
         }
     }
 
+    @Override
+    public void listFriendshipRequests(RunnimalApiCallback<List<Friendship>> listRunnimalApiCallback) {
+        try {
+            listRunnimalApiCallback.responseOK(jacksonFactory.toList(IOUtils.getResource(FRIEND_REQUESTS_FILE), Friendship.class));
+        } catch (Exception e) {
+            listRunnimalApiCallback.responseError(e);
+        }
+    }
+
+    @Override
+    public void rejectFriendship(String id, RunnimalApiCallback<String> callback) {
+
+    }
+
 
 }

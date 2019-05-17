@@ -26,7 +26,7 @@ public class FriendshipRepositoryImpl implements FriendshipRepository {
     @Override
     public Observable<List<Friendship>> list() {
         return Observable.create(emitter -> {
-            api.listFriendship(new RunnimalApi.RunnimalApiCallback<List<Friendship>>() {
+            api.listFriendshipRequests(new RunnimalApi.RunnimalApiCallback<List<Friendship>>() {
                 @Override
                 public void responseOK(List<Friendship> friendships) {
                     emitter.onNext(friendships);
@@ -63,7 +63,7 @@ public class FriendshipRepositoryImpl implements FriendshipRepository {
     @Override
     public Observable<String> rejectFriend(String id)  {
         return Observable.create(emitter -> {
-        api.deleteFriend(id, //
+        api.rejectFriendship(id, //
                 new RunnimalApi.RunnimalApiCallback<String>() {
                     @Override
                     public void responseOK(String message) {

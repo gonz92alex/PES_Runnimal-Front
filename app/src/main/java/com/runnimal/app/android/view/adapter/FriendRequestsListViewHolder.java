@@ -55,7 +55,7 @@ public class FriendRequestsListViewHolder extends RecyclerView.ViewHolder {
         });
     }
     private void onRejectClick(String id) {
-        buttonAceptar.setOnClickListener(view -> {
+        buttonRechazar.setOnClickListener(view -> {
             friendRequestsPresenter.rejectFriend(id);
         });
     }

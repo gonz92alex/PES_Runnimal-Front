@@ -159,15 +159,37 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
     }
 
     @Override
+    public void listFriendshipRequests(RunnimalApiCallback<List<Friendship>> listRunnimalApiCallback) {
+        get("http://nidorana.fib.upc.edu/api/users/" + SingletonSession.Instance().getMail() + "/friendRequests", //
+                response -> {
+                    return jacksonFactory.toList(response, Friendship.class);
+
+                }, //
+                listRunnimalApiCallback);
+    }
+
+    @Override
+    public void rejectFriendship(String id, RunnimalApiCallback<String> callback) {
+        JSONObject jsonBody = new JSONObject();
+        try {
+            jsonBody.put("action", "deny");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        put("http://nidorana.fib.upc.edu/api/friends/" + id, jsonBody, callback);
+    }
+
+
+    @Override
     public void acceptFriend(String id, RunnimalApiCallback<String> callback) {
 
         JSONObject jsonBody = new JSONObject();
         try {
-            jsonBody.put("action", "FRIEND");
+            jsonBody.put("action", "accept");
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        put("http://nidorana.fib.upc.edu/api/friends/delete/" + id, jsonBody, callback);
+        put("http://nidorana.fib.upc.edu/api/friends/" + id, jsonBody, callback);
     }
 
 
@@ -201,7 +223,7 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
 
     @Override
     public void getFriendRequests(String ownerEmail, RunnimalApiCallback<List<FriendRequest>> callback) {
-        get("http://nidorana.fib.upc.edu/api/friendRequests/" + ownerEmail, //
+        get("http://nidorana.fib.upc.edu/api/" + ownerEmail + "/friendRequests", //
                 response -> {
                     return jacksonFactory.toList(response, FriendRequest.class);
 
@@ -231,7 +253,7 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
 
     @Override
     public void deleteFriend(String ownerId, RunnimalApiCallback<String> callback) {
-        delete("http://nidorana.fib.upc.edu/api/friends/delete/" + ownerId, callback);
+        delete("http://nidorana.fib.upc.edu/api/friends/" + ownerId, callback);
     }
 
     @Override

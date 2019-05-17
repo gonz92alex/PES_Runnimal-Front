@@ -72,6 +72,10 @@ public interface RunnimalApi {
 
     void listPoints(RunnimalApiCallback<List<Point>> listRunnimalApiCallback);
 
+    void listFriendshipRequests(RunnimalApiCallback<List<Friendship>> listRunnimalApiCallback);
+
+    void rejectFriendship(String id, RunnimalApiCallback<String> callback);
+
     interface RunnimalApiCallback<T> {
 
         void responseOK(T response);

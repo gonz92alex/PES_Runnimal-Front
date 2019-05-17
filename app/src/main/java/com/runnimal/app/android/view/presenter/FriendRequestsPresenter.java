@@ -85,6 +85,20 @@ public class FriendRequestsPresenter extends Presenter<FriendRequestsPresenter.V
         });
     }
     public void rejectFriend(String id) {
+        friendshipService.rejectFriend(id,new DisposableObserver<String>() {
+
+            @Override
+            public void onNext(String users) {
+            }
+
+            @Override
+            public void onError(Throwable e) {
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
     }
 
     public interface View extends Presenter.View {
