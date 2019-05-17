@@ -64,7 +64,7 @@ public interface RunnimalApi {
 
     void listLocalRanking(RunnimalApiCallback<List<Ranking>> listRunnimalApiCallback);
 
-    void deleteOwner(String id, String mail, RunnimalApiCallback<String> stringRunnimalApiCallback) throws JSONException;
+    void deleteOwner(String id, String mail, RunnimalApiCallback<String> stringRunnimalApiCallback);
 
     void addOwner(String petId, String email, RunnimalApiCallback<String> callback);
 
