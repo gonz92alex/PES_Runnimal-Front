@@ -128,7 +128,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                 } else if (itemId == R.id.menu_bottom_trainings) {
                     startActivity(new Intent(this, TrainingsActivity.class));
                 } else if (itemId == R.id.menu_bottom_challenges) {
-                    startActivity(new Intent(this, ChallengesActivity.class));
+                    startActivity(new Intent(this, FriendRequestsActivity.class));
                 } else if (itemId == R.id.menu_bottom_pets) {
                     startActivity(new Intent(this, PetsActivity.class));
                 }

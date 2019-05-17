@@ -1,19 +1,20 @@
 package com.runnimal.app.android.data.api.impl;
 
-import android.graphics.Bitmap;
 import android.util.Log;
 
 import com.android.volley.RequestQueue;
-import com.runnimal.app.android.domain.Friend;
-import com.runnimal.app.android.domain.User;
-import com.runnimal.app.android.util.SingletonSession;
 import com.runnimal.app.android.data.api.RunnimalApi;
+import com.runnimal.app.android.domain.Friend;
 import com.runnimal.app.android.domain.FriendRequest;
+import com.runnimal.app.android.domain.Friendship;
 import com.runnimal.app.android.domain.Owner;
 import com.runnimal.app.android.domain.Pet;
+import com.runnimal.app.android.domain.Point;
 import com.runnimal.app.android.domain.Ranking;
 import com.runnimal.app.android.domain.Training;
+import com.runnimal.app.android.domain.User;
 import com.runnimal.app.android.util.JacksonFactory;
+import com.runnimal.app.android.util.SingletonSession;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -73,13 +74,6 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
                 callback);
     }
 
-
-
-    @Override
-    public void getRanking(String id, RunnimalApiCallback<Ranking> rankingRunnimalApiCallback) {
-
-    }
-
     @Override
     public void listPets(String ownerEmail, RunnimalApiCallback<List<Pet>> callback) {
         String email = ownerEmail != null ? ownerEmail : SingletonSession.Instance().getMail();
@@ -121,10 +115,10 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
 
     @Override
     @SneakyThrows
-    public void deletePet(String email, String petName, RunnimalApiCallback<String> callback){
+    public void deletePet(String email, String petName, RunnimalApiCallback<String> callback) {
         String url = "http://nidorana.fib.upc.edu/api/pets/" + email + "/" + petName;
         Log.d("refactor", "deletePet: " + url);
-        delete(url,callback);
+        delete(url, callback);
     }
 
     @Override
@@ -152,6 +146,51 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
     }
 
     @Override
+    public void listRequests(RunnimalApiCallback<List<Owner>> listRunnimalApiCallback) {
+
+    }
+
+    @Override
+    public void listFriendship(RunnimalApiCallback<List<Friendship>> listRunnimalApiCallback) {
+
+    }
+
+    @Override
+    public void listFriendshipRequests(RunnimalApiCallback<List<Friendship>> listRunnimalApiCallback) {
+        get("http://nidorana.fib.upc.edu/api/users/" + SingletonSession.Instance().getMail() + "/friendRequests", //
+                response -> {
+                    return jacksonFactory.toList(response, Friendship.class);
+
+                }, //
+                listRunnimalApiCallback);
+    }
+
+    @Override
+    public void rejectFriendship(String id, RunnimalApiCallback<String> callback) {
+        JSONObject jsonBody = new JSONObject();
+        try {
+            jsonBody.put("action", "deny");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        put("http://nidorana.fib.upc.edu/api/friends/" + id, jsonBody, callback);
+    }
+
+
+    @Override
+    public void acceptFriend(String id, RunnimalApiCallback<String> callback) {
+
+        JSONObject jsonBody = new JSONObject();
+        try {
+            jsonBody.put("action", "accept");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        put("http://nidorana.fib.upc.edu/api/friends/" + id, jsonBody, callback);
+    }
+
+
+    @Override
     public void getOwner(String email, RunnimalApiCallback<Owner> callback) {
         get("http://nidorana.fib.upc.edu/api/users/" + email, //
                 response -> {
@@ -164,7 +203,7 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
     @Override
     @SneakyThrows
     public void modifyOwner(Owner owner, RunnimalApiCallback<String> callback) {
-        String url = "http://nidorana.fib.upc.edu/api/users/"  + SingletonSession.Instance().getMail();
+        String url = "http://nidorana.fib.upc.edu/api/users/" + SingletonSession.Instance().getMail();
 
         owner.setId(null);
         owner.setEmail(null);
@@ -204,7 +243,7 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
 
     @Override
     public void getFriendRequests(String ownerEmail, RunnimalApiCallback<List<FriendRequest>> callback) {
-        get("http://nidorana.fib.upc.edu/api/friendRequests/" + ownerEmail, //
+        get("http://nidorana.fib.upc.edu/api/" + ownerEmail + "/friendRequests", //
                 response -> {
                     return jacksonFactory.toList(response, FriendRequest.class);
 
@@ -234,7 +273,17 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
 
     @Override
     public void deleteFriend(String ownerId, RunnimalApiCallback<String> callback) {
-        delete("http://nidorana.fib.upc.edu/api/friends/delete/" + ownerId, callback);
+        delete("http://nidorana.fib.upc.edu/api/friends/" + ownerId, callback);
+    }
+
+    @Override
+    public void listPoints(RunnimalApiCallback<List<Point>> callback) {
+        get("http://nidorana.fib.upc.edu/api/points", //
+                response -> {
+                    return jacksonFactory.toList(response, Point.class);
+
+                }, //
+                callback);
     }
 
 

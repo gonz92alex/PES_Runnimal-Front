@@ -5,8 +5,10 @@ import android.content.Context;
 import com.runnimal.app.android.di.modules.DataModule;
 import com.runnimal.app.android.di.modules.MainModule;
 import com.runnimal.app.android.di.modules.ServiceModule;
+import com.runnimal.app.android.view.activity.FriendRequestsActivity;
 import com.runnimal.app.android.view.activity.FriendsActivity;
 import com.runnimal.app.android.view.activity.LoginActivity;
+import com.runnimal.app.android.view.activity.MapActivity;
 import com.runnimal.app.android.view.activity.OwnerDetailActivity;
 import com.runnimal.app.android.view.activity.OwnerModifyActivity;
 import com.runnimal.app.android.view.activity.PetAddActivity;
@@ -28,9 +30,13 @@ import dagger.Component;
 @Component(modules = {MainModule.class, ServiceModule.class, DataModule.class})
 public interface MainComponent {
 
+    void inject(FriendRequestsActivity activity);
+
     void inject(SignUpActivity activity);
 
     void inject(LoginActivity activity);
+
+    void inject(MapActivity activity);
 
     void inject(TrainingsActivity activity);
 

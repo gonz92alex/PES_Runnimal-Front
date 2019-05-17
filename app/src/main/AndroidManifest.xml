@@ -66,15 +66,10 @@
 
         <activity android:name=".view.activity.PetAddOwnerActivity" />
 
-        <!--
-                <activity android:name=".view.activity.FriendRequestsActivity" />
+        <activity android:name=".view.activity.FriendRequestsActivity" />
 
-                <activity android:name=".view.activity.FriendsActivity" />
+        <activity android:name=".view.activity.SettingsActivity" />
 
-                <activity android:name=".view.activity.SettingsActivity" />
-
-                <activity android:name=".view.activity.SignUpActivity" />
-        -->
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />

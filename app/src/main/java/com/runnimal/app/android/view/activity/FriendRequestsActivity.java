@@ -1,151 +1,104 @@
 package com.runnimal.app.android.view.activity;
 
-public class FriendRequestsActivity {
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.SearchView;
 
-    //TODO: Implementar
-    /*
-    ListView listView;
-    SolicitudListViewAdapter adapter;
-    String[] title = new String[]{"user1", "user2", "user3", "user4"};
-    String[] mail =  new String[]{"user1@gmail.com", "jaja@gmail.com", "jaja@gmail.com", "user4@gmail.com"};
-    int[] icon = new int[]{R.mipmap.ic_launcher_round};
+import com.runnimal.app.android.R;
+import com.runnimal.app.android.RunnimalApplication;
+import com.runnimal.app.android.view.activity.BaseActivity;
+import com.runnimal.app.android.view.adapter.FriendRequestsListAdapter;
+import com.runnimal.app.android.view.adapter.SearchListAdapter;
+import com.runnimal.app.android.view.presenter.FriendRequestsPresenter;
+import com.runnimal.app.android.view.presenter.SearchPresenter;
+import com.runnimal.app.android.view.viewmodel.FriendshipViewModel;
+import com.runnimal.app.android.view.viewmodel.OwnerViewModel;
 
-    ArrayList<ModelSolicitud> arrayList = new ArrayList<ModelSolicitud>();
 
-    public SolicitudesFragment(){
+import java.util.List;
 
-    }
+import javax.inject.Inject;
 
-    public static SolicitudesFragment newInstance() {
-        SolicitudesFragment fragment = new SolicitudesFragment();
-        return fragment;
+import butterknife.BindView;
+
+public class FriendRequestsActivity extends BaseActivity implements FriendRequestsPresenter.View {
+
+
+    @Inject
+    FriendRequestsPresenter presenter;
+    FriendRequestsListAdapter adapter;
+
+    @BindView(R.id.list_friends)
+    RecyclerView usersList;
+    @BindView(R.id.friends_progress_bar)
+    ProgressBar progressBar;
+
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_friend_request;
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected int getBottomMenuItemId() {
+        return -1;
     }
 
-    @Nullable
+
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.fragment_notificaciones, container, false);
-        listView = view.findViewById(R.id.listView);
-
-
-        FriendRequests();
-        return view;
+    protected void initView() {
+        initializeDagger();
+        initializePresenter();
+        initializeAdapter();
+        initializeRecyclerView();
+        presenter.initialize();
     }
 
-    //llamada API
-
-    private void FriendRequests(){
-        // Instantiate the RequestQueue.
-        RequestQueue queue = Volley.newRequestQueue((GodActivity) getActivity());
-        String url ="http://nidorana.fib.upc.edu/api/friendRequests/" + SingletonSession.Instance().getMail();
-
-        //Loading Message
-        final ProgressDialog progressDialog = new ProgressDialog((GodActivity) getActivity());
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
-
-        // Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        progressDialog.dismiss();
-                        Log.i("VOLLEY", response);
-                        if(response != null){
-                            Log.i("VOLLEY", "yo me lo guiso yo me lo como");
-                            cargaRequests(response);
-
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText((GodActivity) getActivity(),"Error: " + error.toString(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        // Add the request to the RequestQueue.
-        queue.add(stringRequest);
+    @Override
+    public void showLoading() {
+        progressBar.setVisibility(View.VISIBLE);
+        usersList.setVisibility(View.GONE);
     }
 
-    private void cargaRequests  (String response){
-
-        try {
-            JSONArray responseArray = new JSONArray(response);
-
-
-            if (arrayList.size() > 0) {
-                arrayList = new ArrayList<ModelSolicitud>();
-            }
-            for (int i = 0; i < responseArray.length(); ++i) {
-                Log.i("VOLLEYcarga",responseArray.getJSONObject(i).getString("_id") );
-                InfoRequestant(responseArray.getJSONObject(i).getString("requestingId"), responseArray.getJSONObject(i).getString("_id"),  i, responseArray.length());
-            }
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+    @Override
+    public void hideLoading() {
+        progressBar.setVisibility(View.GONE);
+        usersList.setVisibility(View.VISIBLE);
     }
 
-
-    //llamada API
-    private void InfoRequestant(final String idUser, final String idReq, final int i, final int fin){
-        // Instantiate the RequestQueue.
-        RequestQueue queue = Volley.newRequestQueue((GodActivity) getActivity());
-        String url ="http://nidorana.fib.upc.edu/api/users/id/" + idUser;
-
-        //Loading Message
-        final ProgressDialog progressDialog = new ProgressDialog((GodActivity) getActivity());
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
-        Log.i("VOLLEYINFO", idUser);
-
-        // Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        progressDialog.dismiss();
-                        Log.i("VOLLEY", response);
-                        if(response != null){
-                            try {
-                                JSONObject user = new JSONObject(response);
-                                CargaArray(user.getString("alias"), user.getString("email"), idReq, i,  fin);
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-
-
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText((GodActivity) getActivity(),"Error: " + error.toString(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        // Add the request to the RequestQueue.
-        queue.add(stringRequest);
+    @Override
+    public void showUsersList(List<FriendshipViewModel> usersList) {
+        adapter.addAll(usersList);
+        adapter.notifyDataSetChanged();
     }
 
-
-    public void CargaArray(String name, String mail, String id, int i,  int fin){
-
-        ModelSolicitud model = new ModelSolicitud(name, icon[0],mail, id);
-        Log.i("VOLLEYCARGA", mail);
-        //necessito el nombre y la foto
-        arrayList.add(model);
-        if(i == fin -1){
-            adapter = new SolicitudListViewAdapter((GodActivity) getActivity(), arrayList);
-            listView.setAdapter(adapter);
-        }
-
+    //esta funcion deberia abrir la pantalla de un user
+    @Override
+    public void openUserScreen(FriendshipViewModel user) {
+        //OwnerDetailActivity.open(this, user.getIdUser(), user.getEmail());
     }
-     */
+
+    private void initializeDagger() {
+        RunnimalApplication app = (RunnimalApplication) getApplication();
+        app.getMainComponent().inject(this);
+        app.getMainComponent().inject(this);
+    }
+
+    private void initializePresenter() {
+        presenter.setView(this);
+    }
+
+    private void initializeAdapter() {
+        adapter = new FriendRequestsListAdapter(presenter);
+    }
+
+    private void initializeRecyclerView() {
+        usersList.setLayoutManager(new LinearLayoutManager(this));
+        usersList.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        usersList.setHasFixedSize(true);
+        usersList.setAdapter(adapter);
+    }
 }

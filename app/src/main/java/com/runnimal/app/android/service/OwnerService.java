@@ -1,6 +1,7 @@
 package com.runnimal.app.android.service;
 
 import com.runnimal.app.android.domain.FriendRequest;
+import com.runnimal.app.android.domain.Friendship;
 import com.runnimal.app.android.domain.Owner;
 
 import java.util.List;
@@ -26,4 +27,6 @@ public interface OwnerService {
     void createFriendRequest(String requestedEmail, DisposableObserver<String> callback);
 
     void deleteFriend(String ownerId, DisposableObserver<String> callback);
+
+    void listRequests(DisposableObserver<List<Owner>> callback);
 }

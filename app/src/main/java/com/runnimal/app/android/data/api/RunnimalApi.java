@@ -4,13 +4,13 @@ import android.graphics.Bitmap;
 
 import com.runnimal.app.android.domain.Friend;
 import com.runnimal.app.android.domain.FriendRequest;
+import com.runnimal.app.android.domain.Friendship;
 import com.runnimal.app.android.domain.Owner;
 import com.runnimal.app.android.domain.Pet;
+import com.runnimal.app.android.domain.Point;
 import com.runnimal.app.android.domain.Ranking;
 import com.runnimal.app.android.domain.Training;
 import com.runnimal.app.android.domain.User;
-
-import org.json.JSONException;
 
 import java.util.List;
 
@@ -23,8 +23,6 @@ public interface RunnimalApi {
     void getTraining(String id, RunnimalApiCallback<Training> callback);
 
     void listRankings(RunnimalApiCallback<List<Ranking>> callback);
-
-    void getRanking(String id, RunnimalApiCallback<Ranking> rankingRunnimalApiCallback);
 
     void listPets(String ownerEmail, RunnimalApiCallback<List<Pet>> callback);
 
@@ -62,13 +60,25 @@ public interface RunnimalApi {
 
     void listOwners(RunnimalApiCallback<List<Owner>> listRunnimalApiCallback);
 
-    void addPoint(int points, String email, RunnimalApiCallback<String> stringRunnimalApiCallback) throws JSONException;
+    void addPoint(int points, String email, RunnimalApiCallback<String> stringRunnimalApiCallback);
 
     void listLocalRanking(RunnimalApiCallback<List<Ranking>> listRunnimalApiCallback);
 
     void deleteOwner(String id, String mail, RunnimalApiCallback<String> stringRunnimalApiCallback) throws JSONException;
 
     void addOwner(String petId, String email, RunnimalApiCallback<String> callback);
+
+    void listRequests(RunnimalApiCallback<List<Owner>> listRunnimalApiCallback);
+
+    void listFriendship(RunnimalApiCallback<List<Friendship>> listRunnimalApiCallback);
+
+    void acceptFriend(String id, RunnimalApiCallback<String> listRunnimalApiCallback);
+
+    void listPoints(RunnimalApiCallback<List<Point>> listRunnimalApiCallback);
+
+    void listFriendshipRequests(RunnimalApiCallback<List<Friendship>> listRunnimalApiCallback);
+
+    void rejectFriendship(String id, RunnimalApiCallback<String> callback);
 
     interface RunnimalApiCallback<T> {
 

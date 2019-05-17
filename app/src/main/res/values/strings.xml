@@ -48,10 +48,10 @@
         <item>Medium</item>
     </string-array>
 
-    <string-array name="Language">
-        <item>Ca</item>
-        <item>Es</item>
-        <item>En</item>
+    <string-array name="array_language">
+        <item>EN</item>
+        <item>ES</item>
+        <item>CA</item>
     </string-array>
     <string name="size_prompt">Select a size</string>
     <string name="owner">Owner</string>
@@ -59,8 +59,8 @@
     <string name="Reject">Reject</string>
     <string name="Accept">Accept</string>
     <string name="Friends">Friends</string>
-    <string name="Solicitudes">Request</string>
-    <string name="idioma">Language</string>
+    <string name="request_title">Request</string>
+    <string name="settings_lang_title">Language</string>
     <string name="Delete">Delete</string>
     <string name="Completed">Completed</string>
     <string name="World">World</string>
@@ -71,4 +71,9 @@
     <string name="location_permission_denied">This sample requires location permission to show your current location on the map and track your walks . Please try again and grant access to use the location.\nIf the permission has been permanently denied, it can be enabled from the System Settings &gt; Apps &gt; \'Runnimal\'.</string>
     <string name="permission_required_toast">Location permission is required for use this APP.</string>
     <string name="email">email</string>
+
+    <string name="point_type_filter_all">All</string>
+    <string name="point_type_filter_park">Park</string>
+    <string name="point_type_filter_pipican">Pipican</string>
+    <string name="point_type_filter_other">Other</string>
 </resources>
