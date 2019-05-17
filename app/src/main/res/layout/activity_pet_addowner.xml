@@ -24,7 +24,16 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:textColor="@color/colorLightBlue"
+                    android:textSize="18sp"
+                    android:text="Puedes compartir tu mascota con otros usuarios añadiendoslos como dueños adicionales!"/>
 
                 <EditText
                     android:id="@+id/pet_add_owner_email"
