@@ -1,5 +1,7 @@
 package com.runnimal.app.android.view.presenter;
 
+import android.content.SharedPreferences;
+
 import com.runnimal.app.android.domain.Owner;
 import com.runnimal.app.android.service.MediaService;
 import com.runnimal.app.android.service.OwnerService;
@@ -13,7 +15,6 @@ import io.reactivex.observers.DisposableObserver;
 public class SignUpPresenter extends Presenter<SignUpPresenter.View> {
 
     private OwnerService ownerService;
-
     @Inject
     public SignUpPresenter(MediaService mediaService, OwnerService ownerService) {
         super(mediaService);
@@ -27,6 +28,7 @@ public class SignUpPresenter extends Presenter<SignUpPresenter.View> {
                     @Override
                     public void onNext(String message) {
                         getView().successfullyCreated(OwnerViewModelConverter.convert(owner));
+                        getView().setToken(message);
                     }
 
                     @Override
@@ -38,6 +40,7 @@ public class SignUpPresenter extends Presenter<SignUpPresenter.View> {
                     @Override
                     public void onComplete() {
                         getView().hideLoading();
+
                     }
                 });
     }
@@ -45,5 +48,6 @@ public class SignUpPresenter extends Presenter<SignUpPresenter.View> {
     public interface View extends Presenter.View {
 
         void successfullyCreated(OwnerViewModel owner);
+        void setToken(String message);
     }
 }

@@ -117,9 +117,9 @@ public abstract class AbstractApiClient {
         StringRequest stringRequest = new StringRequest( //
                 requestMethod, //
                 url, //
-                reponse -> {
+                response -> {
                     //TODO: que mensaje poner como respuesta?
-                    callback.responseOK("");
+                    callback.responseOK(response);
                 },
                 error -> {
                     Log.d("apiError", error.toString());

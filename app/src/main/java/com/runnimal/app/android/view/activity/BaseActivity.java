@@ -1,6 +1,7 @@
 package com.runnimal.app.android.view.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.runnimal.app.android.R;
 import com.runnimal.app.android.util.SingletonSession;
@@ -38,6 +40,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         bindViews();
         initView();
     }
+
+
 
     // Remove inter-activity transition to avoid screen tossing on tapping bottom menu_bottom items
     @Override

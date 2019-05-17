@@ -3,6 +3,7 @@ package com.runnimal.app.android.view.activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
@@ -65,13 +66,20 @@ public class LoginActivity extends AppCompatActivity implements LoginPresenter.V
     }
 
     @Override
-    public void loginOk() {
+    public void loginOk(String token) {
         /*
         Intent LoginIntent = new Intent(this, MapActivity.class);
         SingletonSession.Instance().setId(owner.getId());
         SingletonSession.Instance().setUsername(owner.getAlias());
         SingletonSession.Instance().setMail(owner.getEmail());
         */
+        SharedPreferences prefs =
+                getSharedPreferences("user",Context.MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("token", token);
+        editor.commit();
+        System.out.println("TOKEN: "+token);
         MapActivity.open(this);
     }
 

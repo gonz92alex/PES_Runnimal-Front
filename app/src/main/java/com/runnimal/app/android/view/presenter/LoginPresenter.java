@@ -14,6 +14,7 @@ public class LoginPresenter extends Presenter<LoginPresenter.View> {
 
     private OwnerService ownerService;
 
+
     @Inject
     public LoginPresenter(MediaService mediaService, OwnerService ownerService) {
         super(mediaService);
@@ -26,7 +27,7 @@ public class LoginPresenter extends Presenter<LoginPresenter.View> {
 
                     @Override
                     public void onNext(String id) {
-                        getView().loginOk();
+                        getView().loginOk(id);
                     }
 
                     @Override
@@ -44,6 +45,6 @@ public class LoginPresenter extends Presenter<LoginPresenter.View> {
 
     public interface View extends Presenter.View {
 
-        void loginOk();
+        void loginOk(String token);
     }
 }

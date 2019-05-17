@@ -3,6 +3,7 @@ package com.runnimal.app.android.view.activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
@@ -92,6 +93,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpPresenter
 
     @Override
     public void successfullyCreated(OwnerViewModel owner) {
+
         SingletonSession.Instance().setMail(owner.getEmail());
         SingletonSession.Instance().setUsername(owner.getAlias());
         SingletonSession.Instance().setId(owner.getId());
@@ -148,5 +150,15 @@ public class SignUpActivity extends AppCompatActivity implements SignUpPresenter
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             startActivityForResult(intent, CAMERA_REQUEST);
         });
+    }
+    @Override
+    public void setToken(String token){
+        SharedPreferences prefs =
+                getSharedPreferences("user",Context.MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("token", token);
+        editor.commit();
+        System.out.println("TOKEN: "+token);
     }
 }
