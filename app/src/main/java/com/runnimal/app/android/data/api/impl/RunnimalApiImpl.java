@@ -141,7 +141,15 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
     }
 
     @Override
-    public void listLocalRanking(RunnimalApiCallback<List<Ranking>> listRunnimalApiCallback) {
+    public void listLocalRanking(RunnimalApiCallback<List<Ranking>> callback) {
+        get("http://nidorana.fib.upc.edu/api/users/"+SingletonSession.Instance().getMail()+"/ranking", //http://nidorana.fib.upc.edu/api/users/ash@pokemon.com/ranking
+
+                response -> {
+                    return jacksonFactory.toList(response, Ranking.class);
+
+                }, //
+                callback);
+        Log.d("jajas","http://nidorana.fib.upc.edu/apiusers/"+SingletonSession.Instance().getMail()+"/ranking" );
 
     }
 
