@@ -39,8 +39,9 @@
 
         <activity android:name=".view.activity.MapActivity" />
 
-        <activity android:name=".view.activity.TrainingsActivity"
-                  android:windowSoftInputMode="stateHidden"/>
+        <activity
+            android:name=".view.activity.TrainingsActivity"
+            android:windowSoftInputMode="stateHidden" />
 
         <activity android:name=".view.activity.TrainingDetailActivity" />
 
@@ -65,15 +66,9 @@
         <activity android:name=".view.activity.SearchActivity" />
 
         <activity android:name=".view.activity.FriendRequestsActivity" />
-        <!--
-                <activity android:name=".view.activity.FriendRequestsActivity" />
 
-                <activity android:name=".view.activity.FriendsActivity" />
+        <activity android:name=".view.activity.SettingsActivity" />
 
-                <activity android:name=".view.activity.SettingsActivity" />
-
-                <activity android:name=".view.activity.SignUpActivity" />
-        -->
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />

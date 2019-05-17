@@ -50,8 +50,8 @@
     <string name="Reject">Reject</string>
     <string name="Accept">Accept</string>
     <string name="Friends">Friends</string>
-    <string name="Solicitudes">Requests</string>
-    <string name="idioma">Language</string>
+    <string name="request_title">Requests</string>
+    <string name="settings_lang_title">Language</string>
     <string name="Delete">Delete</string>
     <string name="Completed">Completed</string>
 </resources>

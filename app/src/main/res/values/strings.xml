@@ -48,10 +48,10 @@
         <item>Medium</item>
     </string-array>
 
-    <string-array name="Language">
-        <item>Ca</item>
-        <item>Es</item>
-        <item>En</item>
+    <string-array name="array_language">
+        <item>EN</item>
+        <item>ES</item>
+        <item>CA</item>
     </string-array>
     <string name="size_prompt">Select a size</string>
     <string name="owner">Owner</string>
@@ -59,8 +59,8 @@
     <string name="Reject">Reject</string>
     <string name="Accept">Accept</string>
     <string name="Friends">Friends</string>
-    <string name="Solicitudes">Request</string>
-    <string name="idioma">Language</string>
+    <string name="request_title">Request</string>
+    <string name="settings_lang_title">Language</string>
     <string name="Delete">Delete</string>
     <string name="Completed">Completed</string>
     <string name="World">World</string>

@@ -1,33 +1,83 @@
 package com.runnimal.app.android.view.activity;
 
-public class SettingsActivity {
+import android.content.Intent;
+import android.content.res.Configuration;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.Spinner;
 
-    //TODO: Implementar
-    /*
-    @Nullable
+import com.runnimal.app.android.R;
+
+import java.util.Locale;
+import java.util.stream.IntStream;
+
+import butterknife.BindView;
+
+public class SettingsActivity extends BaseActivity {
+
+    @BindView(R.id.button_settings_requests)
+
+    Button settingsButton;
+    @BindView(R.id.spinner_settings_lang)
+    Spinner langSpinner;
+
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.fragment_ajustes, container, false);
+    protected int getLayoutId() {
+        return R.layout.activity_settings;
+    }
 
+    @Override
+    protected int getBottomMenuItemId() {
+        return -1;
+    }
 
-        Button notificacionButton = view.findViewById(R.id.btn_notificaciones);
-        notificacionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               NotificacionEv();
-            }
+    @Override
+    protected void initView() {
+        initSettingsButton();
+        initLangButton();
+    }
+
+    private void initSettingsButton() {
+        settingsButton.setOnClickListener(view -> {
+            startActivity(new Intent(this, FriendRequestsActivity.class));
         });
+    }
 
-        final Spinner spinnerIdioma = view.findViewById(R.id.ChooseLanguage);
-        spinnerIdioma.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+    private void initLangButton() {
+        //TODO: Hacer que seleccione el idioma por defecto, ya que parece que esto no funciona
+        String[] langArray = getResources().getStringArray(R.array.array_language);
+        int currentLangPosition = IntStream.range(0, langArray.length - 1) //
+                .filter(i -> Locale.forLanguageTag(langArray[i]).equals(getResources().getConfiguration().getLocales().get(0))) //
+                .findFirst() //
+                .orElse(0);
+        langSpinner.setSelection(currentLangPosition);
+
+        langSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                //ToDO coger el texto y llamar a la funcion qeu cambia el texto de la aplicaicon
-                String LanguageCode = (String) spinnerIdioma.getSelectedItem();
+                String langCode = (String) langSpinner.getSelectedItem();
+                Locale langLocale = Locale.forLanguageTag(langCode);
 
-                GodActivity godActivity = (GodActivity)getActivity();
-                godActivity.setAppLocale(LanguageCode);
+                Configuration config = new Configuration();
 
+                //TODO: implementar bien
+                Locale.setDefault(langLocale);
+                config.locale = langLocale;
+                getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+                /*
+                Locale.setDefault(langLocale);
+                LocaleList langLocaleList = new LocaleList(langLocale);
+                config.setLocales(langLocaleList);
+                LocaleList.setDefault(langLocaleList);
+                getApplicationContext().createConfigurationContext(config);
+                */
+                /*
+                Locale.setDefault(langLocale);
+                Configuration config = new Configuration();
+                config.setLocale(langLocale);
+                getApplicationContext().createConfigurationContext(config);
+                */
             }
 
             @Override
@@ -35,22 +85,6 @@ public class SettingsActivity {
                 return;
             }
         });
-
-
-
-        return view;
     }
 
-    private void AddEvPet(View view) {
-        //((GodActivity)getActivity()).loadFragment(ModifyPetFragment.newInstance());
-    }
-
-    public void AddEvUser() {
-        ((GodActivity)getActivity()).loadFragment(ModifyUserFragment.newInstance());
-    }
-
-    public void NotificacionEv(){
-        ((GodActivity)getActivity()).loadFragment(SolicitudesFragment.newInstance());
-    }
-     */
 }
