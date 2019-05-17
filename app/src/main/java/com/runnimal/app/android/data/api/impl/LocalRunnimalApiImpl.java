@@ -35,6 +35,7 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
     private static final String OWNER_DETAIL_FILE = "json/owner-detail.json";
     private static final String FRIEND_REQUESTS_FILE = "json/friend-requests.json";
     private static final String POINTS_FILE = "json/points.json";
+    private static final String OWNERS_FILE = "json/owners.json";
 
     private final JacksonFactory jacksonFactory;
 
@@ -188,7 +189,7 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
 
     @Override
     public void listOwners(RunnimalApiCallback<List<Owner>> callback) {
-        Log.d("refactor", "local Hola");
+        callback.responseOK(jacksonFactory.toList(IOUtils.getResource(OWNERS_FILE), Owner.class));
     }
 
     @Override
