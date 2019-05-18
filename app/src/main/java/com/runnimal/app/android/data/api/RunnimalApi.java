@@ -80,6 +80,8 @@ public interface RunnimalApi {
 
     void rejectFriendship(String id, RunnimalApiCallback<String> callback);
 
+    void preLogin(String token, RunnimalApiCallback<Owner> callback);
+
     interface RunnimalApiCallback<T> {
 
         void responseOK(T response);

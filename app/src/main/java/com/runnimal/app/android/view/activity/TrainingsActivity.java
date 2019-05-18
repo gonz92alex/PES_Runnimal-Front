@@ -4,6 +4,7 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
 
@@ -44,6 +45,7 @@ public class TrainingsActivity extends BaseActivity implements TrainingsPresente
 
     @Override
     protected void initView() {
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         initializeDagger();
         initializePresenter();
         initializeAdapter();

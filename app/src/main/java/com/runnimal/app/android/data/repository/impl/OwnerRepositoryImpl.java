@@ -78,6 +78,25 @@ public class OwnerRepositoryImpl implements OwnerRepository {
         });    }
 
     @Override
+    public Observable<Owner> preLogin(String token) {
+        return Observable.create(emitter -> {
+            api.preLogin(token, //
+                    new RunnimalApi.RunnimalApiCallback<Owner>() {
+                        @Override
+                        public void responseOK(Owner owner) {
+                            emitter.onNext(owner);
+                            emitter.onComplete();
+                        }
+
+                        @Override
+                        public void responseError(Exception e) {
+                            emitter.onError(e);
+                        }
+                    });
+        });
+    }
+
+    @Override
     public Observable<Owner> get(String owner) {
         return Observable.create(emitter -> {
             api.getOwner(owner, //

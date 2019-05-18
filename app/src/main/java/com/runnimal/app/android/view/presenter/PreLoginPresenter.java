@@ -1,5 +1,6 @@
 package com.runnimal.app.android.view.presenter;
 
+import com.runnimal.app.android.domain.Owner;
 import com.runnimal.app.android.service.MediaService;
 import com.runnimal.app.android.service.OwnerService;
 
@@ -18,13 +19,13 @@ public class PreLoginPresenter extends Presenter<PreLoginPresenter.View> {
         this.ownerService = ownerService;
     }
 
-    public void login(String email, String password) {
-        ownerService.login(email, password, //
-                new DisposableObserver<String>() {
+    public void login(String token) {
+        ownerService.Prelogin(token, //
+                new DisposableObserver<Owner>() {
 
                     @Override
-                    public void onNext(String id) {
-                        getView().loginOk(id);
+                    public void onNext(Owner owner) {
+                        getView().loginOk(owner);
                     }
 
                     @Override
@@ -42,6 +43,6 @@ public class PreLoginPresenter extends Presenter<PreLoginPresenter.View> {
 
     public interface View extends Presenter.View {
 
-        void loginOk(String token);
+        void loginOk(Owner owner);
     }
 }

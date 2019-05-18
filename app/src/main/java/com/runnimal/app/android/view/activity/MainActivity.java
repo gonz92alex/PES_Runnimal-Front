@@ -4,19 +4,23 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.runnimal.app.android.R;
-import com.runnimal.app.android.view.presenter.LoginPresenter;
+import com.runnimal.app.android.RunnimalApplication;
+import com.runnimal.app.android.domain.Owner;
+import com.runnimal.app.android.util.SingletonSession;
+import com.runnimal.app.android.view.presenter.PreLoginPresenter;
+
+import java.net.URI;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements PreLoginPresenter.View {
     @Inject
-    LoginPresenter presenter;
+    PreLoginPresenter presenter;
 
     @BindView(R.id.button_main_login)
     Button loginButton;
@@ -26,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initializeDagger();
         initializePresenter();
         getUserData();
         setContentView(R.layout.activity_main);
@@ -40,13 +45,21 @@ public class MainActivity extends AppCompatActivity {
             String token =  prefs.getString("token", "");
             // llamada a la api para obtener el usuario y guardarlo.
             System.out.println("TOKEN: "+token);
+            if (!token.equals("")){
+                presenter.login(token);
+            }
             //Toast.makeText(this, token, Toast.LENGTH_SHORT).show();
             //
 
     }
 
     private void initializePresenter() {
-        //presenter.setView(this);
+        presenter.setView(this);
+    }
+
+    private void initializeDagger() {
+        RunnimalApplication app = (RunnimalApplication) getApplication();
+        app.getMainComponent().inject(this);
     }
 
     private void bindViews() {
@@ -63,5 +76,24 @@ public class MainActivity extends AppCompatActivity {
         signupButton.setOnClickListener(view -> {
             SignUpActivity.open(this);
         });
+    }
+
+    @Override
+    public void loginOk(Owner owner) {
+        SingletonSession.Instance().setMail(owner.getEmail());
+        SingletonSession.Instance().setUsername(owner.getAlias());
+        SingletonSession.Instance().setId(owner.getId());
+        SingletonSession.Instance().setPhoto(URI.create("http://nidorana.fib.upc.edu/api/photo/users/" + owner.getEmail()));
+        MapActivity.open(this);
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
     }
 }

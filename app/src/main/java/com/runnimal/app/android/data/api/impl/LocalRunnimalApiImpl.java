@@ -264,5 +264,10 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
 
     }
 
+    @Override
+    public void preLogin(String token, RunnimalApiCallback<Owner> callback) {
+        //callback.responseOK("OK");
+    }
+
 
 }

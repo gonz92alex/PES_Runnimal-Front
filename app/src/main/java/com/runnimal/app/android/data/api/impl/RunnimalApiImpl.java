@@ -184,6 +184,16 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
         put("http://nidorana.fib.upc.edu/api/friends/" + id, jsonBody, callback);
     }
 
+    @Override
+    public void preLogin(String token, RunnimalApiCallback<Owner> callback) {
+        String url = "http://nidorana.fib.upc.edu/api/login/token/" + token;
+        get(url, //
+                response -> {
+                    return jacksonFactory.toObject(response, Owner.class);
+
+                }, callback);
+    }
+
 
     @Override
     public void acceptFriend(String id, RunnimalApiCallback<String> callback) {
