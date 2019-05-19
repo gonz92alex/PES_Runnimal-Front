@@ -1,0 +1,21 @@
+[
+	{
+		"steps": [
+			"Coge la pelota",
+			"Lanza la pelota bien lejos",
+			"Cuando tu perro te traiga la pelota, dale una recompensa"
+		],
+		"name": "Enseña a tu perro a recoger la pelota",
+		"description": "Haz que tu perro te traiga la pelota cuando se la lances"
+	},
+	{
+		"steps": [
+			"Señala el suelo repetidamente",
+			"Haz que tu perro se siene, si es necesario empujando la parte trasera hacia abajo",
+			"Repite los 2 primeros pasos hasta que tu perro se mantenga sentado",
+			"Cuando se mantenga sentado, dale una recompensa"
+		],
+		"name": "Enseña a tu perro a sentarse",
+		"description": "Haz que tu perro se siente cuando se lo digas"
+	{
+]

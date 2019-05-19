@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Runnimal</string>
     <string name="back" translatable="false">Atrás</string>
     <string name="Login" translatable="false">Iniciar sesión</string>
     <string name="title_notifications">Notificaciones</string>
-    <string name="title_entrenamientos">Entrenamientos</string>
-    <string name="title_mapa">Mapa</string>
-    <string name="title_mascotas">Mascotas</string>
-    <string name="title_retos">Desafios</string>
+    <string name="menu_friends_title">Amigos</string>
+    <string name="menu_ranking_title">Ranking</string>
+    <string name="menu_settings_title">Ajustes</string>
+    <string name="menu_search_title">Búsqueda</string>
+    <string name="menu_bottom_trainings_title">Entrenamientos</string>
+    <string name="menu_bottom_map_title">Mapa</string>
+    <string name="menu_bottom_pets_title">Mascotas</string>
+    <string name="menu_bottom_challenges_title">Desafios</string>
     <string name="title_profile">Perfil</string>
     <string name="title_home">Principal</string>
     <string name="title_activity_god">GodActivity</string>
@@ -16,8 +20,8 @@
     <string name="Create_Account">Crea una cuenta</string>
     <string name="sign_in_with">Entrar con</string>
     <string name="or">o</string>
-    <string name="my_pets">Mis mascotas</string>
-    <string name="Add">Añadir</string>
+    <string name="text_pets_title">Mis mascotas</string>
+    <string name="button_pets_add">Añadir</string>
     <string name="Name">Nombre</string>
     <string name="format_email">usuario@example.com</string>
     <string name="alias">Alias</string>
@@ -25,7 +29,7 @@
     <string name="weight">Peso</string>
     <string name="age">Edad</string>
     <string name="sign_up">Registrarse</string>
-    <string name="steps">Pasos</string>
+    <string name="detail_training_steps">Pasos</string>
     <string name="UserProfile">Perfil de usuario</string>
     <string name="Modify">Modificar</string>
     <string name="Save">Guardar</string>
@@ -46,5 +50,11 @@
     <string name="Reject">Rechazar</string>
     <string name="Accept">Aceptar</string>
     <string name="Friends">Amigos</string>
-    <string name="Solicitudes">Solicitudes</string>
+    <string name="request_title">Solicitudes</string>
+    <string name="settings_lang_title">Idioma</string>
+    <string name="Delete">Borrar</string>
+    <string name="Completed">Completado</string>
+    <string name="email">email</string>
+    <string name="World">Global</string>
+    <string name="Local">Local</string>
 </resources>

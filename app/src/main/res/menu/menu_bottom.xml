@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_bottom_map"
+        android:icon="@drawable/menu_bottom_map"
+        android:title="@string/menu_bottom_map_title" />
+
+    <item
+        android:id="@+id/menu_bottom_trainings"
+        android:icon="@drawable/menu_bottom_trainings"
+        android:title="@string/menu_bottom_trainings_title" />
+
+    <item
+        android:id="@+id/menu_bottom_challenges"
+        android:icon="@drawable/menu_bottom_challenges"
+        android:title="@string/menu_bottom_challenges_title" />
+    <item
+        android:id="@+id/menu_bottom_pets"
+        android:icon="@drawable/menu_bottom_pets"
+        android:title="@string/menu_bottom_pets_title" />
+
+</menu>

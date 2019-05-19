@@ -2,41 +2,77 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.runnimal.app.android">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:usesCleartextTraffic="true"
-        android:networkSecurityConfig="@xml/network_security_config"
+        android:name=".RunnimalApplication"
         android:allowBackup="true"
+        android:debuggable="true"
         android:icon="@mipmap/ic_launcher"
         android:label="Runnimal"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:debuggable="true"
+        android:usesCleartextTraffic="true"
         tools:ignore="HardcodedDebugMode">
+
         <activity
-            android:name="com.runnimal.app.android.GodActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:label="@string/title_activity_god"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name="com.runnimal.app.android.LogInActivity"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name="com.runnimal.app.android.SignUpActivity"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name="com.runnimal.app.android.MainActivity"
-            android:screenOrientation="portrait">
+            android:name=".view.activity.MainActivity"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
+        <activity android:name=".view.activity.LoginActivity" />
+
+        <activity android:name=".view.activity.SignUpActivity" />
+
+        <activity android:name=".view.activity.MapActivity" />
+
+        <activity android:name=".view.activity.TrainingsActivity"
+                  android:windowSoftInputMode="stateHidden"/>
+
+        <activity android:name=".view.activity.TrainingDetailActivity" />
+
+        <activity android:name=".view.activity.ChallengesActivity" />
+
+        <activity android:name=".view.activity.PetsActivity" />
+
+        <activity android:name=".view.activity.PetAddActivity" />
+
+        <activity android:name=".view.activity.PetDetailActivity" />
+
+        <activity android:name=".view.activity.PetModifyActivity" />
+
+        <activity android:name=".view.activity.RankingActivity" />
+
+        <activity android:name=".view.activity.OwnerDetailActivity" />
+
+        <activity android:name=".view.activity.OwnerModifyActivity" />
+
+        <activity android:name=".view.activity.FriendsActivity" />
+
+        <activity android:name=".view.activity.SearchActivity" />
+
+        <activity android:name=".view.activity.PetAddOwnerActivity" />
+
+        <activity android:name=".view.activity.FriendRequestsActivity" />
+
+        <activity android:name=".view.activity.SettingsActivity" />
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
 
         <meta-data
             android:name="preloaded_fonts"
