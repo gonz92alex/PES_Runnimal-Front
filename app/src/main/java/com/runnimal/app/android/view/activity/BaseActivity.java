@@ -117,6 +117,10 @@ public abstract class BaseActivity extends AppCompatActivity {
                 closeMenu();
                 startActivity(new Intent(this, SearchActivity.class));
                 return true;
+            } else if (itemId == R.id.menu_logout){
+                closeMenu();
+                //toDo borrar shared preference
+                startActivity(new Intent(this, MainActivity.class));
             }
             return false;
         });

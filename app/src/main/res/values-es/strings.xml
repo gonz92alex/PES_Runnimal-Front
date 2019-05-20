@@ -57,4 +57,10 @@
     <string name="email">email</string>
     <string name="World">Global</string>
     <string name="Local">Local</string>
+    <string name="point_type_filter_park">Parque</string>
+    <string name="point_type_filter_other">Otros</string>
+    <string name="point_type_filter_all">Todo</string>
+    <string name="permission_required_toast">Permisos de localización necesarios</string>
+    <string name="logout">Cerrar sesión</string>
+    <string name="Ranking">Ranking</string>
 </resources>
