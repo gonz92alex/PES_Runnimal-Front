@@ -92,7 +92,7 @@ public class FriendRequestsActivity extends BaseActivity implements FriendReques
     }
 
     private void initializeAdapter() {
-        adapter = new FriendRequestsListAdapter(presenter);
+        adapter = new FriendRequestsListAdapter(presenter, this);
     }
 
     private void initializeRecyclerView() {
@@ -100,5 +100,11 @@ public class FriendRequestsActivity extends BaseActivity implements FriendReques
         usersList.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         usersList.setHasFixedSize(true);
         usersList.setAdapter(adapter);
+    }
+
+
+    public void refresh() {
+        adapter.clearAll();
+        presenter.initialize();
     }
 }

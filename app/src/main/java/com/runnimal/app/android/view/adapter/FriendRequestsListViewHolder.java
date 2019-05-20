@@ -21,6 +21,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class FriendRequestsListViewHolder extends RecyclerView.ViewHolder {
 
     private final FriendRequestsPresenter friendRequestsPresenter;
+    private final FriendRequestsListAdapter adapter;
 
     @BindView(R.id.image_user)
     CircleImageView image;
@@ -34,9 +35,10 @@ public class FriendRequestsListViewHolder extends RecyclerView.ViewHolder {
     Button buttonRechazar;
 
 
-    public FriendRequestsListViewHolder(View itemView, FriendRequestsPresenter friendRequestsPresenter ) {
+    public FriendRequestsListViewHolder(View itemView, FriendRequestsPresenter friendRequestsPresenter, FriendRequestsListAdapter adapter ) {
         super(itemView);
         this.friendRequestsPresenter = friendRequestsPresenter;
+        this.adapter = adapter;
         ButterKnife.bind(this, itemView);
     }
 
@@ -52,11 +54,13 @@ public class FriendRequestsListViewHolder extends RecyclerView.ViewHolder {
     private void onAcceptClick(String id) {
         buttonAceptar.setOnClickListener(view -> {
             friendRequestsPresenter.acceptFriend(id);
+            adapter.refresh();
         });
     }
     private void onRejectClick(String id) {
         buttonRechazar.setOnClickListener(view -> {
             friendRequestsPresenter.rejectFriend(id);
+            adapter.refresh();
         });
     }
 
