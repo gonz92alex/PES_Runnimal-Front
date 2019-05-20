@@ -32,7 +32,6 @@ public abstract class AbstractApiClient {
                 url, //
                 response -> {
                     callback.responseOK(responseFunction.apply(response));
-
                 }, //
                 error -> {
                     Log.d("apiError", error.toString());

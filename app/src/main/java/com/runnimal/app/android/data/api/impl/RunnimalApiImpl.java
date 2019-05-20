@@ -79,6 +79,7 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
         String email = ownerEmail != null ? ownerEmail : SingletonSession.Instance().getMail();
         get("http://nidorana.fib.upc.edu/api/users/" + email + "/pets", //
                 response -> {
+                    if (response.isEmpty()) return jacksonFactory.toList("[]", Pet.class);
                     return jacksonFactory.toList(response, Pet.class);
 
                 }, //
