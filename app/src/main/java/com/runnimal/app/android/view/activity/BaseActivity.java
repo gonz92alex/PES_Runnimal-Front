@@ -119,7 +119,9 @@ public abstract class BaseActivity extends AppCompatActivity {
                 return true;
             } else if (itemId == R.id.menu_logout){
                 closeMenu();
-                //toDo borrar shared preference
+                SharedPreferences prefs =
+                        getSharedPreferences("user", this.getApplicationContext().MODE_PRIVATE);
+                prefs.edit().clear().apply();
                 startActivity(new Intent(this, MainActivity.class));
             }
             return false;
