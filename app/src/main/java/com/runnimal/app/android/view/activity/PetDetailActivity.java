@@ -115,6 +115,12 @@ public class PetDetailActivity extends BaseActivity implements PetDetailPresente
         }
     }
 
+    @Override
+    public void onDeleteOwner() {
+        finish();
+        startActivity(new Intent(this, PetsActivity.class));
+    }
+
 
     private void initializeDagger() {
         RunnimalApplication app = (RunnimalApplication) getApplication();

@@ -1,10 +1,12 @@
 package com.runnimal.app.android.view.presenter;
 
+import android.content.Intent;
 import android.util.Log;
 
 import com.runnimal.app.android.domain.Pet;
 import com.runnimal.app.android.service.MediaService;
 import com.runnimal.app.android.service.PetService;
+import com.runnimal.app.android.view.activity.PetsActivity;
 import com.runnimal.app.android.view.viewmodel.PetViewModel;
 import com.runnimal.app.android.view.viewmodel.converter.PetViewModelConverter;
 
@@ -12,6 +14,9 @@ import javax.inject.Inject;
 
 import io.reactivex.observers.DisposableObserver;
 import lombok.Setter;
+
+import static android.support.v4.content.ContextCompat.getCodeCacheDir;
+import static android.support.v4.content.ContextCompat.startActivity;
 
 public class PetDetailPresenter extends Presenter<PetDetailPresenter.View> {
 
@@ -69,7 +74,7 @@ public class PetDetailPresenter extends Presenter<PetDetailPresenter.View> {
 
                     @Override
                     public void onComplete() {
-
+                        getView().onDeleteOwner();
                     }
                 });
     }
@@ -78,5 +83,6 @@ public class PetDetailPresenter extends Presenter<PetDetailPresenter.View> {
     public interface View extends Presenter.View {
 
         void showPet(PetViewModel pet);
+        void onDeleteOwner();
     }
 }
