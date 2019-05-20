@@ -16,7 +16,7 @@ public class FriendshipViewModelConverter {
         }
 
         FriendshipViewModel friendshipViewModel = new FriendshipViewModel() //
-                .setIdUser(friendship.getId()) //
+                .setIdFriendship(friendship.getId()) //
                 .setAlias(friendship.getUser1().getAlias()) //
                 .setEmail(friendship.getUser1().getEmail());
 
