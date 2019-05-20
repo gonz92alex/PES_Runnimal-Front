@@ -82,6 +82,8 @@ public interface RunnimalApi {
 
     void preLogin(String token, RunnimalApiCallback<Owner> callback);
 
+    void listFriendships(RunnimalApiCallback<List<Friendship>> listRunnimalApiCallback);
+
     interface RunnimalApiCallback<T> {
 
         void responseOK(T response);

@@ -12,6 +12,7 @@ import com.runnimal.app.android.RunnimalApplication;
 import com.runnimal.app.android.view.adapter.FriendsListAdapter;
 import com.runnimal.app.android.view.presenter.FriendsPresenter;
 import com.runnimal.app.android.view.viewmodel.FriendsViewModel;
+import com.runnimal.app.android.view.viewmodel.FriendshipViewModel;
 
 
 import java.util.List;
@@ -30,7 +31,7 @@ public class FriendsActivity extends BaseActivity implements FriendsPresenter.Vi
     SearchView searchView;
     @BindView(R.id.list_friends)
     RecyclerView friendsList;
-    @BindView(R.id.progress_bar)
+    @BindView(R.id.friends_progress_bar)
     ProgressBar progressBar;
 
     @Override
@@ -65,14 +66,14 @@ public class FriendsActivity extends BaseActivity implements FriendsPresenter.Vi
         friendsList.setVisibility(View.VISIBLE);
     }
     @Override
-    public void showFriendsList(List<FriendsViewModel> friendsList) {
+    public void showFriendsList(List<FriendshipViewModel> friendsList) {
         adapter.addAll(friendsList);
         adapter.notifyDataSetChanged();
     }
 
     //esta funcion deberia abrir la pantalla de un user
     @Override
-    public void openUserScreen(FriendsViewModel friend) {
+    public void openUserScreen(FriendshipViewModel friend) {
        // UserDetailActivity.open(this, friend.getId());
     }
 

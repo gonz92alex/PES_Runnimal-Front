@@ -9,6 +9,7 @@ import com.runnimal.app.android.view.presenter.FriendsPresenter;
 import com.runnimal.app.android.view.presenter.TrainingsPresenter;
 import com.runnimal.app.android.view.util.ImageUtils;
 import com.runnimal.app.android.view.viewmodel.FriendsViewModel;
+import com.runnimal.app.android.view.viewmodel.FriendshipViewModel;
 import com.runnimal.app.android.view.viewmodel.TrainingViewModel;
 
 import butterknife.BindView;
@@ -30,13 +31,13 @@ public class FriendsListViewHolder extends RecyclerView.ViewHolder {
         ButterKnife.bind(this, itemView);
     }
 
-    public void render(FriendsViewModel friend) {
+    public void render(FriendshipViewModel friend) {
         onItemClick(friend);
         ImageUtils.setImage(friend.getImageUrl(), image);
-        name.setText(friend.getName());
+        name.setText(friend.getAlias());
     }
 
-    private void onItemClick(final FriendsViewModel friend) {
+    private void onItemClick(final FriendshipViewModel friend) {
         itemView.setOnClickListener(v -> friendsPresenter.onTrainingClicked(friend));
     }
 

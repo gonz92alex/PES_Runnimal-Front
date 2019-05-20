@@ -10,6 +10,7 @@ import com.runnimal.app.android.view.presenter.FriendsPresenter;
 import com.runnimal.app.android.view.presenter.RankingPresenter;
 import com.runnimal.app.android.view.presenter.TrainingsPresenter;
 import com.runnimal.app.android.view.viewmodel.FriendsViewModel;
+import com.runnimal.app.android.view.viewmodel.FriendshipViewModel;
 import com.runnimal.app.android.view.viewmodel.RankingViewModel;
 import com.runnimal.app.android.view.viewmodel.TrainingViewModel;
 
@@ -21,8 +22,8 @@ import java.util.stream.Collectors;
 public class FriendsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private final FriendsPresenter presenter;
-    private final List<FriendsViewModel> friendsList;
-    private final List<FriendsViewModel> filteredList;
+    private final List<FriendshipViewModel> friendsList;
+    private final List<FriendshipViewModel> filteredList;
 
     public FriendsListAdapter(FriendsPresenter presenter) {
         this.presenter = presenter;
@@ -39,7 +40,7 @@ public class FriendsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         FriendsListViewHolder friendsListViewHolder = (FriendsListViewHolder) holder;
-        FriendsViewModel friend = filteredList.get(position);
+        FriendshipViewModel friend = filteredList.get(position);
         friendsListViewHolder.render(friend);
     }
 
@@ -48,7 +49,7 @@ public class FriendsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         return filteredList.size();
     }
 
-    public void addAll(Collection<FriendsViewModel> collection) {
+    public void addAll(Collection<FriendshipViewModel> collection) {
         friendsList.addAll(collection);
         filteredList.addAll(collection);
     }
@@ -58,7 +59,7 @@ public class FriendsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         final String textLowerCase = text.toLowerCase();
         friendsList.stream() //
-                .filter(t -> t.getName().toLowerCase().contains(textLowerCase)) //
+                .filter(t -> t.getAlias().toLowerCase().contains(textLowerCase)) //
                 .collect(Collectors.toCollection(() -> filteredList));
 
         notifyDataSetChanged();

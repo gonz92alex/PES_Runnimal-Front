@@ -149,7 +149,7 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
 
                 }, //
                 callback);
-        Log.d("jajas","http://nidorana.fib.upc.edu/apiusers/"+SingletonSession.Instance().getMail()+"/ranking" );
+
 
     }
 
@@ -192,6 +192,17 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
                     return jacksonFactory.toObject(response, Owner.class);
 
                 }, callback);
+    }
+
+    @Override
+    public void listFriendships(RunnimalApiCallback<List<Friendship>> listRunnimalApiCallback) {
+        get("http://nidorana.fib.upc.edu/api/users/" + SingletonSession.Instance().getMail() + "/friends", //
+                response -> {
+                    return jacksonFactory.toList(response, Friendship.class);
+
+                }, //
+                listRunnimalApiCallback);
+
     }
 
 

@@ -47,4 +47,9 @@ public class FriendshipServiceImpl extends AbstractService implements Friendship
         execute(friendshipRepository.rejectFriend(id),callback);
 
     }
+
+    @Override
+    public void listFriendship(DisposableObserver<List<Friendship>> callback) {
+        execute(friendshipRepository.listFriendship(),callback);
+    }
 }

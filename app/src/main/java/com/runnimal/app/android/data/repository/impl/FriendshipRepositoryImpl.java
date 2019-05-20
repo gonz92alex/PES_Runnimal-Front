@@ -78,4 +78,23 @@ public class FriendshipRepositoryImpl implements FriendshipRepository {
                 });
         });
     }
+
+    @Override
+    public Observable<List<Friendship>> listFriendship() {
+        return Observable.create(emitter -> {
+            api.listFriendships(new RunnimalApi.RunnimalApiCallback<List<Friendship>>() {
+                @Override
+                public void responseOK(List<Friendship> friendships) {
+                    emitter.onNext(friendships);
+                    emitter.onComplete();
+                }
+
+                @Override
+                public void responseError(Exception e) {
+                    emitter.onError(e);
+                }
+            });
+        });
+    }
 }
+
