@@ -9,7 +9,7 @@ import com.runnimal.app.android.R;
 import com.runnimal.app.android.RunnimalApplication;
 import com.runnimal.app.android.domain.Owner;
 import com.runnimal.app.android.util.SingletonSession;
-import com.runnimal.app.android.view.presenter.PreLoginPresenter;
+import com.runnimal.app.android.view.presenter.MainPresenter;
 
 import java.net.URI;
 
@@ -18,9 +18,9 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements PreLoginPresenter.View {
+public class MainActivity extends AppCompatActivity implements MainPresenter.View {
     @Inject
-    PreLoginPresenter presenter;
+    MainPresenter presenter;
 
     @BindView(R.id.button_main_login)
     Button loginButton;
@@ -48,9 +48,6 @@ public class MainActivity extends AppCompatActivity implements PreLoginPresenter
             if (!token.equals("")){
                 presenter.login(token);
             }
-            //Toast.makeText(this, token, Toast.LENGTH_SHORT).show();
-            //
-
     }
 
     private void initializePresenter() {

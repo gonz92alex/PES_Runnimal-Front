@@ -8,13 +8,13 @@ import javax.inject.Inject;
 
 import io.reactivex.observers.DisposableObserver;
 
-public class PreLoginPresenter extends Presenter<PreLoginPresenter.View> {
+public class MainPresenter extends Presenter<MainPresenter.View> {
 
     private OwnerService ownerService;
 
 
     @Inject
-    public PreLoginPresenter(MediaService mediaService, OwnerService ownerService) {
+    public MainPresenter(MediaService mediaService, OwnerService ownerService) {
         super(mediaService);
         this.ownerService = ownerService;
     }
