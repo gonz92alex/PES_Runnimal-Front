@@ -4,7 +4,9 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.location.Location;
 import android.location.LocationManager;
 import android.support.annotation.NonNull;
@@ -31,6 +33,7 @@ import com.runnimal.app.android.util.PermissionUtils;
 import com.runnimal.app.android.view.adapter.CustomInfoWindowAdapter;
 import com.runnimal.app.android.view.domain.InfoWindowData;
 import com.runnimal.app.android.view.presenter.PointsPresenter;
+import com.runnimal.app.android.view.util.ImageUtils;
 import com.runnimal.app.android.view.viewmodel.PointViewModel;
 
 import java.util.List;
@@ -216,7 +219,10 @@ public class MapActivity extends BaseActivity implements
     }
 
     private void initMarkers(List<PointViewModel> points) {
-        BitmapDescriptor pipicanImgDescriptor = BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.pipican));
+        Bitmap originalPipicanImg = BitmapFactory.decodeResource(getResources(), R.drawable.pipican);
+        Bitmap resizedPipicanImg = ImageUtils.resizeImage(originalPipicanImg, 128, 128);
+        BitmapDescriptor pipicanImgDescriptor = BitmapDescriptorFactory.fromBitmap(resizedPipicanImg);
+
         BitmapDescriptor parkImgDescriptor = BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.park));
 
         points.forEach(point -> {
