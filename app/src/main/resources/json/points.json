@@ -7,8 +7,8 @@
     "coord": [41.4103822,2.1941694]
   },
   {
-    "title": "Parque del Clot",
-    "description": "Un parque muy grande con pipican",
+    "title": "Plaça de la Creu Roja",
+    "description": "Un perfecto pipican para tu perro",
     "type": "PIPICAN",
     "photoUrl": "https://lh5.googleusercontent.com/p/AF1QipON8SiE7dM4CmU0yWGzh9vSbqzeQzkIUw1T3TH5=w408-h272-k-no",
     "coord": [41.4080391,2.1880684]
@@ -17,6 +17,6 @@
     "title": "Parque del Clot",
     "description": "Un parque muy bonito",
     "type": "PARK",
-    "coord": [41.4101021,2.1901963]
+    "coord": [41.4079969,2.1903322]
   }
 ]
