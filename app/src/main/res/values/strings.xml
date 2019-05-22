@@ -77,6 +77,9 @@
     <string name="point_type_filter_pipican">Pipican</string>
     <string name="point_type_filter_other">Other</string>
     <string name="logout">Logout</string>
+
+    <string name="map_walk_start">Start walk</string>
+    <string name="map_walk_end">End walk</string>
     <string name="Stats">Statistics</string>
     <string name="Time">Time</string>
     <string name="Distance">Distance</string>
