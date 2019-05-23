@@ -11,6 +11,8 @@ import com.runnimal.app.android.domain.Ranking;
 import com.runnimal.app.android.domain.StatsTraining;
 import com.runnimal.app.android.domain.StatsWalks;
 import com.runnimal.app.android.domain.Training;
+import com.runnimal.app.android.domain.User;
+import com.runnimal.app.android.domain.Walk;
 
 import java.util.List;
 
@@ -77,6 +79,8 @@ public interface RunnimalApi {
     void getStatsTraining(RunnimalApiCallback<StatsTraining> statsTrainingRunnimalApiCallback);
 
     void getStatsWalks(RunnimalApiCallback<StatsWalks> statsWalksRunnimalApiCallback);
+
+    void listWalks(RunnimalApiCallback<List<Walk>> listRunnimalApiCallback);
 
     interface RunnimalApiCallback<T> {
 

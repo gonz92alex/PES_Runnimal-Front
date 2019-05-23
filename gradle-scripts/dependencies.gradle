@@ -59,7 +59,8 @@ ext {
     lombok = buildDependency(lombokPackage, 'lombok', lombokVersion)
 
     mapsDependencies = [
-            google: buildDependency(googleMapsPackage, 'play-services-maps', googleMapsVersion)
+            maps: buildDependency(googleMapsPackage, 'play-services-maps', googleMapsVersion),
+            location: buildDependency(googleMapsPackage, 'play-services-location', googleMapsVersion)
     ]
 
     rxDependencies = [

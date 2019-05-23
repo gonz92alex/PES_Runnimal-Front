@@ -1,0 +1,54 @@
+[
+  {
+    "title": "Mi segundo paseo",
+    "route": [
+      {
+        "latitude": 41.405844,
+        "longitude": 2.192678
+      },
+      {
+        "latitude": 41.406649,
+        "longitude": 2.193751
+      },
+      {
+        "latitude": 41.408459,
+        "longitude": 2.196037
+      },
+      {
+        "latitude": 41.409457,
+        "longitude": 2.194567
+      },
+      {
+        "latitude": 41.407781,
+        "longitude": 2.192470
+      }
+    ],
+    "start": 1558647423000,
+    "end": 1558651523000,
+    "distance": 1200
+  },
+  {
+    "title": "Mi primer paseo",
+    "route": [
+      {
+        "latitude": 41.408328,
+        "longitude": 2.189704
+      },
+      {
+        "latitude": 41.408352,
+        "longitude": 2.188491
+      },
+      {
+        "latitude": 41.407785,
+        "longitude": 2.188261
+      },
+      {
+        "latitude": 41.407793,
+        "longitude": 2.187606
+      }
+    ],
+    "start": 1558592252000,
+    "end": 1558593501000,
+    "distance": 500
+  }
+]

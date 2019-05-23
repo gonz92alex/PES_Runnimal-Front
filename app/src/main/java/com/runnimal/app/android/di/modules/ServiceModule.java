@@ -8,6 +8,8 @@ import com.runnimal.app.android.service.PointService;
 import com.runnimal.app.android.service.RankingService;
 import com.runnimal.app.android.service.StatisticsService;
 import com.runnimal.app.android.service.TrainingService;
+import com.runnimal.app.android.service.WalkService;
+import com.runnimal.app.android.service.impl.FriendsServiceImpl;
 import com.runnimal.app.android.service.impl.FriendshipServiceImpl;
 import com.runnimal.app.android.service.impl.MediaServiceImpl;
 import com.runnimal.app.android.service.impl.OwnerServiceImpl;
@@ -16,6 +18,7 @@ import com.runnimal.app.android.service.impl.PointServiceImpl;
 import com.runnimal.app.android.service.impl.RankingServiceImpl;
 import com.runnimal.app.android.service.impl.StatisticsServiceImpl;
 import com.runnimal.app.android.service.impl.TrainingServiceImpl;
+import com.runnimal.app.android.service.impl.WalkServiceImpl;
 
 import javax.inject.Singleton;
 
@@ -75,4 +78,10 @@ public class ServiceModule {
     StatisticsService statisticsService(StatisticsServiceImpl statisticsService) {
         return statisticsService;
     }
+    @Provides
+    @Singleton
+    WalkService walkService(WalkServiceImpl walkService) {
+        return walkService;
+    }
+
 }

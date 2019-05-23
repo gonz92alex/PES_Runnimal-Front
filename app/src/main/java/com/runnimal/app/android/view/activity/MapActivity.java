@@ -8,7 +8,6 @@ import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationManager;
@@ -30,6 +29,8 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.runnimal.app.android.R;
 import com.runnimal.app.android.RunnimalApplication;
 import com.runnimal.app.android.domain.PointType;
@@ -37,11 +38,14 @@ import com.runnimal.app.android.util.PermissionUtils;
 import com.runnimal.app.android.view.adapter.CustomInfoWindowAdapter;
 import com.runnimal.app.android.view.domain.InfoWindowData;
 import com.runnimal.app.android.view.presenter.PointsPresenter;
+import com.runnimal.app.android.view.presenter.WalkPresenter;
 import com.runnimal.app.android.view.util.ImageUtils;
 import com.runnimal.app.android.view.viewmodel.PointViewModel;
+import com.runnimal.app.android.view.viewmodel.WalkViewModel;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 
@@ -51,12 +55,15 @@ public class MapActivity extends BaseActivity implements
         OnMapReadyCallback,
         ActivityCompat.OnRequestPermissionsResultCallback,
         PointsPresenter.View,
-        GoogleMap.OnMarkerClickListener {
+        GoogleMap.OnMarkerClickListener,
+        WalkPresenter.View {
 
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 6506;
 
     @Inject
     PointsPresenter pointsPresenter;
+    @Inject
+    WalkPresenter walkPresenter;
     CustomInfoWindowAdapter infoWindowAdapter;
 
     @BindView(R.id.radio_button_point_type_all)
@@ -103,6 +110,7 @@ public class MapActivity extends BaseActivity implements
         initFilterButtons();
         initWalkButton();
         pointsPresenter.initialize();
+        walkPresenter.initialize();
     }
 
     @Override
@@ -157,6 +165,27 @@ public class MapActivity extends BaseActivity implements
         }
     }
 
+    @Override
+    public void showWalksList(List<WalkViewModel> walks) {
+        walks.stream() //
+                .map(walk -> {
+                    return walk.getRoute().stream() //
+                            .map(latLon -> new LatLng(latLon.getLatitude(), latLon.getLongitude())) //
+                            .collect(Collectors.toList());
+                }) //
+                .findFirst() //
+                .ifPresent(route -> drawRouteOnMap(map, route));
+    }
+
+    private void drawRouteOnMap(GoogleMap map, List<LatLng> positions) {
+        PolylineOptions options = new PolylineOptions() //
+                .width(5) //
+                .color(Color.BLUE) //
+                .geodesic(true);
+        options.addAll(positions);
+        Polyline polyline = map.addPolyline(options);
+    }
+
     private void initializeDagger() {
         RunnimalApplication app = (RunnimalApplication) getApplication();
         app.getMainComponent().inject(this);
@@ -164,6 +193,7 @@ public class MapActivity extends BaseActivity implements
 
     private void initializePresenter() {
         pointsPresenter.setView(this);
+        walkPresenter.setView(this);
     }
 
     private void initializeAdapter() {
@@ -194,14 +224,13 @@ public class MapActivity extends BaseActivity implements
         AtomicBoolean buttonPressed = new AtomicBoolean(false);
 
         walkButton.setOnClickListener(view -> {
-            if (! buttonPressed.get()) {
+            if (!buttonPressed.get()) {
                 walkButton.setBackgroundResource(R.drawable.btn_light_rounded);
                 walkButton.setTextColor(Color.parseColor("#000000"));
                 walkButton.setText(R.string.map_walk_end);
 
                 buttonPressed.set(true);
-            }
-            else {
+            } else {
                 walkButton.setBackground(background);
                 walkButton.setTextColor(color);
                 walkButton.setText(text);
