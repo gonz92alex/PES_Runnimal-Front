@@ -9,6 +9,7 @@ public class SingletonSession {
     private URI photo;
     private String mail;
     private String id;
+    private String token;
 
     //no outer class can initialize this class's object
     private SingletonSession() {
@@ -54,6 +55,15 @@ public class SingletonSession {
     public String getId() {
         return id;
     }
+
+    public void setToken(String token){
+        this.token=token;
+    }
+
+    public String getToken(){
+        return token;
+    }
+
 
 
 }

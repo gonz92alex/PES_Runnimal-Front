@@ -39,15 +39,16 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
         initializeSignupButton();
     }
 
+    //toDo
     private void getUserData() {
-            SharedPreferences prefs =
+            /*SharedPreferences prefs =
                     getSharedPreferences("user", this.getApplicationContext().MODE_PRIVATE);
             String token =  prefs.getString("token", "");
             // llamada a la api para obtener el usuario y guardarlo.
             System.out.println("TOKEN: "+token);
             if (!token.equals("")){
                 presenter.login(token);
-            }
+            }*/
     }
 
     private void initializePresenter() {

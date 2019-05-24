@@ -1,5 +1,7 @@
 package com.runnimal.app.android.data.api.impl;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.util.Log;
 
@@ -9,6 +11,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.runnimal.app.android.data.api.RunnimalApi;
 import com.runnimal.app.android.data.util.VolleyMultipartRequest;
+import com.runnimal.app.android.util.SingletonSession;
+import com.runnimal.app.android.view.activity.LoginActivity;
 
 import org.json.JSONObject;
 
@@ -37,7 +41,16 @@ public abstract class AbstractApiClient {
                     Log.d("apiError", error.toString());
                     callback.responseError(error);
                 }
-        );
+        ){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("token", SingletonSession.Instance().getToken());
+                Log.d("refactor", "getHeaders: " + SingletonSession.Instance().getToken());
+
+                return params;
+            }
+        };
 
         requestQueue.add(stringRequest);
     }
@@ -65,7 +78,14 @@ public abstract class AbstractApiClient {
                     Log.d("apiError", error.toString());
                     callback.responseError(error);
                 }
-        );
+        ){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("token", SingletonSession.Instance().getToken());
+                return params;
+            }
+        };
 
         requestQueue.add(stringRequest);
     }
@@ -95,6 +115,7 @@ public abstract class AbstractApiClient {
                 // params.put("tags", "ccccc");  add string parameters
                 return params;
             }
+
 
             /*
              *pass files using below method
@@ -134,6 +155,13 @@ public abstract class AbstractApiClient {
             @SneakyThrows
             public byte[] getBody() {
                 return jsonBody.toString().getBytes("utf-8");
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("token", SingletonSession.Instance().getToken());
+                return params;
             }
         };
 

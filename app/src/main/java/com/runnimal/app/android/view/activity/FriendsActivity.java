@@ -74,7 +74,7 @@ public class FriendsActivity extends BaseActivity implements FriendsPresenter.Vi
     //esta funcion deberia abrir la pantalla de un user
     @Override
     public void openUserScreen(FriendshipViewModel friend) {
-       // UserDetailActivity.open(this, friend.getId());
+       OwnerDetailActivity.open(this, friend.getIdUser(), friend.getEmail());
     }
 
     private void initializeDagger() {

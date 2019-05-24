@@ -20,6 +20,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.Single;
 
 public class LoginActivity extends AppCompatActivity implements LoginPresenter.View {
 
@@ -132,9 +133,18 @@ public class LoginActivity extends AppCompatActivity implements LoginPresenter.V
         directLoginButton.setOnClickListener(view -> {
             Intent GodIntent = new Intent(this, MapActivity.class);
             SingletonSession.Instance().setMail("ash@pokemon.com");
-            SingletonSession.Instance().setUsername("Swafta");
+            SingletonSession.Instance().setUsername("Ash");
             SingletonSession.Instance().setId("5c9518c262d914013dd5af3b");
+            SingletonSession.Instance().setToken("6895cdec613feb80657305a90b2");
             SingletonSession.Instance().setPhoto(URI.create("http://nidorana.fib.upc.edu/api/photo/users/" + "ash@pokemon.com"));
+
+            SharedPreferences prefs =
+                    getSharedPreferences("user",Context.MODE_PRIVATE);
+
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putString("token", "6895cdec613feb80657305a90b2");
+            editor.commit();
+
             MapActivity.open(this);
         });
     }
