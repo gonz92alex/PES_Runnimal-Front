@@ -138,12 +138,14 @@ public class LoginActivity extends AppCompatActivity implements LoginPresenter.V
             SingletonSession.Instance().setToken("6895cdec613feb80657305a90b2");
             SingletonSession.Instance().setPhoto(URI.create("http://nidorana.fib.upc.edu/api/photo/users/" + "ash@pokemon.com"));
 
-            SharedPreferences prefs =
-                    getSharedPreferences("user",Context.MODE_PRIVATE);
+            SharedPreferences userDetail = getSharedPreferences("userdetails", MODE_PRIVATE);
 
-            SharedPreferences.Editor editor = prefs.edit();
+            SharedPreferences.Editor editor = userDetail.edit();
             editor.putString("token", "6895cdec613feb80657305a90b2");
-            editor.commit();
+            editor.putString("alias", "Ash");
+            editor.putString("id", "5c9518c262d914013dd5af3b");
+            editor.putString("email", "ash@pokemon.com");
+            editor.apply();
 
             MapActivity.open(this);
         });

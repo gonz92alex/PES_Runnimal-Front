@@ -120,7 +120,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             } else if (itemId == R.id.menu_logout){
                 closeMenu();
                 SharedPreferences prefs =
-                        getSharedPreferences("user", this.getApplicationContext().MODE_PRIVATE);
+                        getSharedPreferences("userdetails", MODE_PRIVATE);
                 prefs.edit().clear().apply();
                 startActivity(new Intent(this, MainActivity.class));
             }

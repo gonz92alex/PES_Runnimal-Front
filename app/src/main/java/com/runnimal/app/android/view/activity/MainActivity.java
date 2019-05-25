@@ -1,8 +1,11 @@
 package com.runnimal.app.android.view.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.Button;
 
 import com.runnimal.app.android.R;
@@ -17,6 +20,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.Single;
 
 public class MainActivity extends AppCompatActivity implements MainPresenter.View {
     @Inject
@@ -32,23 +36,30 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
         super.onCreate(savedInstanceState);
         initializeDagger();
         initializePresenter();
-        getUserData();
         setContentView(R.layout.activity_main);
         bindViews();
+        getUserData();
         initializeLoginButton();
         initializeSignupButton();
     }
 
     //toDo
     private void getUserData() {
-            /*SharedPreferences prefs =
-                    getSharedPreferences("user", this.getApplicationContext().MODE_PRIVATE);
-            String token =  prefs.getString("token", "");
-            // llamada a la api para obtener el usuario y guardarlo.
-            System.out.println("TOKEN: "+token);
-            if (!token.equals("")){
-                presenter.login(token);
-            }*/
+        SharedPreferences prefs = getSharedPreferences("userdetails", MODE_PRIVATE);
+        String token =  prefs.getString("token", "");
+        String id = prefs.getString("id", "");
+        String email = prefs.getString("email", "");
+        String alias = prefs.getString("alias", "");
+
+        if (!token.equals("")){
+            //presenter.login(token);
+            SingletonSession.Instance().setToken(token);
+            SingletonSession.Instance().setMail(email);
+            SingletonSession.Instance().setUsername(alias);
+            SingletonSession.Instance().setId(id);
+            SingletonSession.Instance().setPhoto(URI.create("http://nidorana.fib.upc.edu/api/photo/users/" + email));
+            startActivity(new Intent(this, MapActivity.class));
+        }
     }
 
     private void initializePresenter() {

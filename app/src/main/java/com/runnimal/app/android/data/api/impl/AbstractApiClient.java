@@ -46,8 +46,6 @@ public abstract class AbstractApiClient {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("token", SingletonSession.Instance().getToken());
-                Log.d("refactor", "getHeaders: " + SingletonSession.Instance().getToken());
-
                 return params;
             }
         };
