@@ -50,12 +50,14 @@ android:orientation="horizontal">
 
         <Button
             android:id="@+id/button_aceptar"
-            android:text="V"
+            android:background="@drawable/tickbien"
+            android:layout_marginRight="15dp"
             android:layout_width="40dp"
             android:layout_height="wrap_content" />
+
         <Button
             android:id="@+id/button_rechazar"
-            android:text="X"
+            android:background="@drawable/cross"
             android:layout_width="40dp"
             android:layout_height="wrap_content" />
 
