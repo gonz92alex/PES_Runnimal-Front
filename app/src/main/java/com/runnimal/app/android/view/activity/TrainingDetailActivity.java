@@ -20,6 +20,7 @@ import com.runnimal.app.android.view.adapter.TrainingStepsAdapter;
 import com.runnimal.app.android.view.presenter.TrainingDetailPresenter;
 import com.runnimal.app.android.view.util.ImageUtils;
 import com.runnimal.app.android.view.viewmodel.TrainingViewModel;
+import com.spark.submitbutton.SubmitButton;
 import com.squareup.picasso.Picasso;
 
 import javax.inject.Inject;
@@ -43,7 +44,7 @@ public class TrainingDetailActivity extends BaseActivity implements TrainingDeta
     @BindView(R.id.text_detail_training_description)
     TextView description;
     @BindView(R.id.button_add_points)
-    Button buttonPoints;
+    SubmitButton buttonPoints;
     @BindView(R.id.list_training_steps)
     RecyclerView trainingStepsList;
     @BindView(R.id.training_detail_progress_bar)
@@ -130,7 +131,7 @@ public class TrainingDetailActivity extends BaseActivity implements TrainingDeta
         buttonPoints.setOnClickListener(view -> {
             Log.d("API", "onTrainingDone: ya has realizado el training");
         });
-        buttonPoints.setBackgroundResource(R.drawable.btn_light_rounded);
+        //buttonPoints.setBackgroundResource(R.drawable.btn_light_rounded);
     }
 
 }
