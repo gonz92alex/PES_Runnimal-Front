@@ -1,6 +1,5 @@
 [
   {
-    "title": "Mi segundo paseo",
     "route": [
       {
         "latitude": 41.405844,
@@ -25,10 +24,10 @@
     ],
     "start": 1558647423000,
     "end": 1558651523000,
+    "duration": 3815,
     "distance": 1200
   },
   {
-    "title": "Mi primer paseo",
     "route": [
       {
         "latitude": 41.408328,
@@ -49,6 +48,7 @@
     ],
     "start": 1558592252000,
     "end": 1558593501000,
+    "duration": 1715,
     "distance": 500
   }
 ]

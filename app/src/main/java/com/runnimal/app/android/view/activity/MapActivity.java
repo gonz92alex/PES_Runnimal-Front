@@ -14,6 +14,7 @@ import android.location.LocationManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -22,6 +23,7 @@ import android.widget.RelativeLayout;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.LocationSource;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptor;
@@ -33,6 +35,7 @@ import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.runnimal.app.android.R;
 import com.runnimal.app.android.RunnimalApplication;
+import com.runnimal.app.android.domain.LatLon;
 import com.runnimal.app.android.domain.PointType;
 import com.runnimal.app.android.util.PermissionUtils;
 import com.runnimal.app.android.view.adapter.CustomInfoWindowAdapter;
@@ -56,7 +59,8 @@ public class MapActivity extends BaseActivity implements
         ActivityCompat.OnRequestPermissionsResultCallback,
         PointsPresenter.View,
         GoogleMap.OnMarkerClickListener,
-        WalkPresenter.View {
+        WalkPresenter.View,
+        LocationSource.OnLocationChangedListener {
 
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 6506;
 
@@ -177,6 +181,14 @@ public class MapActivity extends BaseActivity implements
                 .ifPresent(route -> drawRouteOnMap(map, route));
     }
 
+    @Override
+    public void onLocationChanged(Location location) {
+        LatLon latLon = new LatLon();
+        latLon.setLatitude(location.getLatitude());
+        latLon.setLongitude(location.getLongitude());
+        walkPresenter.addPoint(latLon);
+    }
+
     private void drawRouteOnMap(GoogleMap map, List<LatLng> positions) {
         PolylineOptions options = new PolylineOptions() //
                 .width(5) //
@@ -230,12 +242,16 @@ public class MapActivity extends BaseActivity implements
                 walkButton.setText(R.string.map_walk_end);
 
                 buttonPressed.set(true);
+
+                walkPresenter.startWalk();
             } else {
                 walkButton.setBackground(background);
                 walkButton.setTextColor(color);
                 walkButton.setText(text);
 
                 buttonPressed.set(false);
+
+                walkPresenter.endWalk(-1);
             }
         });
     }
@@ -269,12 +285,27 @@ public class MapActivity extends BaseActivity implements
 
     private void centerMap() {
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
         try {
-            Location loc = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-            CameraUpdate center = CameraUpdateFactory.newLatLng(new LatLng(loc.getLatitude(), loc.getLongitude()));
-            CameraUpdate zoom = CameraUpdateFactory.zoomTo(15);
-            map.moveCamera(center);
-            map.animateCamera(zoom);
+            List<String> providers = locationManager.getProviders(true);
+            Location bestLocation = null;
+            for (String provider : providers) {
+                Location location = locationManager.getLastKnownLocation(provider);
+                Log.d("WALK", "last known location, provider: " + provider + ", location: " + "[" + location.getLatitude() + " ," + location.getLongitude() + "]");
+
+                if (location != null && bestLocation == null || location.getAccuracy() < bestLocation.getAccuracy()) {
+                    Log.d("WALK", "found best last known location: " + "[" + location.getLatitude() + " ," + location.getLongitude() + "]");
+                    bestLocation = location;
+                }
+            }
+            if (bestLocation != null) {
+
+                //Location loc = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                CameraUpdate center = CameraUpdateFactory.newLatLng(new LatLng(bestLocation.getLatitude(), bestLocation.getLongitude()));
+                CameraUpdate zoom = CameraUpdateFactory.zoomTo(15);
+                map.moveCamera(center);
+                map.animateCamera(zoom);
+            }
         } catch (SecurityException e) {
         }
     }

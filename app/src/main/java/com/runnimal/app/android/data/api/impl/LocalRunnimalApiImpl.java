@@ -274,5 +274,10 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
         }
     }
 
+    @Override
+    public void createWalk(Walk walk, RunnimalApiCallback<String> callback) {
+        callback.responseOK("1dab12c262d91ab13215a541");
+    }
+
 
 }

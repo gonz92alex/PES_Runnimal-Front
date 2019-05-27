@@ -9,4 +9,6 @@ import io.reactivex.Observable;
 public interface WalkRepository {
 
     Observable<List<Walk>> list();
+
+    Observable<String> save(Walk walk);
 }

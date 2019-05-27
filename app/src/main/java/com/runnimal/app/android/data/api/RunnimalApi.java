@@ -82,6 +82,8 @@ public interface RunnimalApi {
 
     void listWalks(RunnimalApiCallback<List<Walk>> listRunnimalApiCallback);
 
+    void createWalk(Walk walk, RunnimalApiCallback<String> callback);
+
     interface RunnimalApiCallback<T> {
 
         void responseOK(T response);

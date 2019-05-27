@@ -1,5 +1,6 @@
 package com.runnimal.app.android.view.presenter;
 
+import com.runnimal.app.android.domain.LatLon;
 import com.runnimal.app.android.domain.Walk;
 import com.runnimal.app.android.service.MediaService;
 import com.runnimal.app.android.service.WalkService;
@@ -50,6 +51,18 @@ public class WalkPresenter extends Presenter<WalkPresenter.View> {
                 getView().hideLoading();
             }
         });
+    }
+
+    public void startWalk() {
+        walkService.start();
+    }
+
+    public void addPoint(LatLon latLon) {
+        walkService.addPoint(latLon);
+    }
+
+    public void endWalk(int distance) {
+        walkService.end(distance);
     }
 
     public interface View extends Presenter.View {
