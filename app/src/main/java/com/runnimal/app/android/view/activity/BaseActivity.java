@@ -105,10 +105,6 @@ public abstract class BaseActivity extends AppCompatActivity {
                 closeMenu();
                 startActivity(new Intent(this, FriendsActivity.class));
                 return true;
-            } else if (itemId == R.id.menu_ranking) {
-                closeMenu();
-                startActivity(new Intent(this, RankingActivity.class));
-                return true;
             } else if (itemId == R.id.menu_settings) {
                 closeMenu();
                 startActivity(new Intent(this, SettingsActivity.class));
@@ -116,6 +112,10 @@ public abstract class BaseActivity extends AppCompatActivity {
             } else if (itemId == R.id.menu_search) {
                 closeMenu();
                 startActivity(new Intent(this, SearchActivity.class));
+                return true;
+            }else if (itemId == R.id.menu_notifications) {
+                closeMenu();
+                startActivity(new Intent(this, FriendRequestsActivity.class));
                 return true;
             } else if (itemId == R.id.menu_logout){
                 closeMenu();
@@ -137,8 +137,8 @@ public abstract class BaseActivity extends AppCompatActivity {
                     startActivity(new Intent(this, MapActivity.class));
                 } else if (itemId == R.id.menu_bottom_trainings) {
                     startActivity(new Intent(this, TrainingsActivity.class));
-                } else if (itemId == R.id.menu_bottom_challenges) {
-                    startActivity(new Intent(this, FriendRequestsActivity.class));
+                } else if (itemId == R.id.menu_bottom_ranking) {
+                    startActivity(new Intent(this, RankingActivity.class));
                 } else if (itemId == R.id.menu_bottom_pets) {
                     startActivity(new Intent(this, PetsActivity.class));
                 }

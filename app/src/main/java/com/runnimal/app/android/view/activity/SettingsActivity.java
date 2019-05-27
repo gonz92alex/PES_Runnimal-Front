@@ -16,9 +16,8 @@ import butterknife.BindView;
 
 public class SettingsActivity extends BaseActivity {
 
-    @BindView(R.id.button_settings_requests)
 
-    Button settingsButton;
+
     @BindView(R.id.spinner_settings_lang)
     Spinner langSpinner;
 
@@ -34,15 +33,12 @@ public class SettingsActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        initSettingsButton();
+
         initLangButton();
     }
 
-    private void initSettingsButton() {
-        settingsButton.setOnClickListener(view -> {
-            startActivity(new Intent(this, FriendRequestsActivity.class));
-        });
-    }
+
+
 
     private void initLangButton() {
         //TODO: Hacer que seleccione el idioma por defecto, ya que parece que esto no funciona

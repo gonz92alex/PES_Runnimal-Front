@@ -45,7 +45,7 @@ public class RankingActivity extends BaseActivity implements RankingPresenter.Vi
 
     @Override
     protected int getBottomMenuItemId() {
-        return R.id.menu_bottom_challenges;
+        return R.id.menu_bottom_ranking;
     }
 
     @Override
