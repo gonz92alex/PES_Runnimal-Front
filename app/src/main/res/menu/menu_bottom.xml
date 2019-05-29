@@ -12,9 +12,9 @@
         android:title="@string/menu_bottom_trainings_title" />
 
     <item
-        android:id="@+id/menu_bottom_challenges"
+        android:id="@+id/menu_bottom_ranking"
         android:icon="@drawable/menu_bottom_challenges"
-        android:title="@string/menu_bottom_challenges_title" />
+        android:title="@string/Ranking" />
     <item
         android:id="@+id/menu_bottom_pets"
         android:icon="@drawable/menu_bottom_pets"

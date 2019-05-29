@@ -41,7 +41,7 @@ public class SearchActivity extends BaseActivity implements SearchPresenter.View
 
     @Override
     protected int getBottomMenuItemId() {
-        return R.id.menu_bottom_challenges;
+        return -1;
     }
 
     @Override
