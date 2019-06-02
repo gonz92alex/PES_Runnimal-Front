@@ -11,7 +11,6 @@ import com.runnimal.app.android.R;
 import com.runnimal.app.android.RunnimalApplication;
 import com.runnimal.app.android.view.adapter.FriendsListAdapter;
 import com.runnimal.app.android.view.presenter.FriendsPresenter;
-import com.runnimal.app.android.view.viewmodel.FriendsViewModel;
 import com.runnimal.app.android.view.viewmodel.FriendshipViewModel;
 
 

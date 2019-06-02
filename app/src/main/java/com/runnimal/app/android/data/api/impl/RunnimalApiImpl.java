@@ -4,7 +4,6 @@ import android.util.Log;
 
 import com.android.volley.RequestQueue;
 import com.runnimal.app.android.data.api.RunnimalApi;
-import com.runnimal.app.android.domain.Friend;
 import com.runnimal.app.android.domain.FriendRequest;
 import com.runnimal.app.android.domain.Friendship;
 import com.runnimal.app.android.domain.Owner;
@@ -12,7 +11,6 @@ import com.runnimal.app.android.domain.Pet;
 import com.runnimal.app.android.domain.Point;
 import com.runnimal.app.android.domain.Ranking;
 import com.runnimal.app.android.domain.Training;
-import com.runnimal.app.android.domain.User;
 import com.runnimal.app.android.util.JacksonFactory;
 import com.runnimal.app.android.util.SingletonSession;
 
@@ -41,7 +39,17 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
         JSONObject jsonBody = new JSONObject() //
                 .put("email", email) //
                 .put("password", password);
-        post("http://nidorana.fib.upc.edu/api/login/", jsonBody, callback);
+        post("http://nidorana.fib.upc.edu/api/auth/login", jsonBody, callback);
+    }
+
+    @Override
+    @SneakyThrows
+    public void signup(String email, String password, String alias,RunnimalApiCallback<String> callback) {
+        JSONObject jsonBody = new JSONObject() //
+                .put("email", email)
+                .put("password", password)
+                .put("alias", alias);
+        post("http://nidorana.fib.upc.edu/api/auth/signup", jsonBody, callback);
     }
 
     @Override
@@ -159,10 +167,6 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
 
     }
 
-    @Override
-    public void listFriendship(RunnimalApiCallback<List<Friendship>> listRunnimalApiCallback) {
-
-    }
 
     @Override
     public void listFriendshipRequests(RunnimalApiCallback<List<Friendship>> listRunnimalApiCallback) {
@@ -185,15 +189,6 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
         put("http://nidorana.fib.upc.edu/api/friends/" + id, jsonBody, callback);
     }
 
-    @Override
-    public void preLogin(String token, RunnimalApiCallback<Owner> callback) {
-        String url = "http://nidorana.fib.upc.edu/api/login/token/" + token;
-        get(url, //
-                response -> {
-                    return jacksonFactory.toObject(response, Owner.class);
-
-                }, callback);
-    }
 
     @Override
     public void listFriendships(RunnimalApiCallback<List<Friendship>> listRunnimalApiCallback) {
@@ -273,7 +268,7 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
 
     @Override
     public void getFriendRequests(String ownerEmail, RunnimalApiCallback<List<FriendRequest>> callback) {
-        get("http://nidorana.fib.upc.edu/api/" + ownerEmail + "/friendRequests", //
+        get("http://nidorana.fib.upc.edu/api/users/" + ownerEmail + "/friendRequests", //
                 response -> {
                     return jacksonFactory.toList(response, FriendRequest.class);
 
@@ -296,9 +291,9 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
     @SneakyThrows
     public void createFriendRequest(String requestedEmail, RunnimalApiCallback<String> callback) {
         JSONObject jsonBody = new JSONObject() //
-                .put("requestingEmail", SingletonSession.Instance().getMail()) //
-                .put("requestedEmail", requestedEmail);
-        post("http://nidorana.fib.upc.edu/api/friendRequests/new", jsonBody, callback);
+                .put("user1", SingletonSession.Instance().getMail()) //
+                .put("user2", requestedEmail);
+        post("http://nidorana.fib.upc.edu/api/friends", jsonBody, callback);
     }
 
     @Override
@@ -319,24 +314,5 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
 
     ///OTROS?/////
 
-    @Override
-    public void listFriends(RunnimalApiCallback<List<Friend>> listRunnimalApiCallback) {
-
-    }
-
-    @Override
-    public void getFriend(String id, RunnimalApiCallback<Friend> friendRunnimalApiCallback) {
-
-    }
-
-    @Override
-    public void listUsers(RunnimalApiCallback<List<User>> listRunnimalApiCallback) {
-
-    }
-
-    @Override
-    public void getUser(String id, RunnimalApiCallback<User> userRunnimalApiCallback) {
-
-    }
 
 }

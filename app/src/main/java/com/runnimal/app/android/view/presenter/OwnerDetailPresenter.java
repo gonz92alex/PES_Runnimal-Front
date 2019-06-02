@@ -67,7 +67,7 @@ public class OwnerDetailPresenter extends Presenter<OwnerDetailPresenter.View> {
                     @Override
                     public void onNext(List<FriendRequest> requests) {
                         if (requests.stream() //
-                                .anyMatch(r -> r.getRequestedId().equals(currentUserId) || r.getRequestingId().equals(currentUserId))) {
+                                .anyMatch(r -> r.getUser1().getId().equals(currentUserId))) {
                             getView().showFriendRequestState(FriendRequestState.PENDING);
                         } else {
                             checkFriend();
@@ -137,7 +137,7 @@ public class OwnerDetailPresenter extends Presenter<OwnerDetailPresenter.View> {
             @Override
             public void onNext(Boolean isFriend) {
                 if (isFriend) {
-                    getView().showFriendRequestState(FriendRequestState.OK);
+                    getView().showFriendRequestState(FriendRequestState.FRIEND);
                 } else {
                     getView().showFriendRequestState(FriendRequestState.KO);
                 }

@@ -78,8 +78,4 @@ public class OwnerServiceImpl extends AbstractService implements OwnerService {
         execute(ownerRepository.listRequests(), callback);
     }
 
-    @Override
-    public void Prelogin(String token, DisposableObserver<Owner> callback) {
-        execute(ownerRepository.preLogin(token), callback);
-    }
 }

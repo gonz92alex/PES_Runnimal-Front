@@ -11,7 +11,6 @@ public class FriendRequest {
 
     @JsonAlias("_id")
     private String id;
-    private String requestingId;
-    private String requestedId;
-    private FriendRequest state; //TODO: añadir en la API
+    private Owner user1;
+    private FriendRequestState type;
 }

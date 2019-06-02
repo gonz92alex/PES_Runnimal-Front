@@ -29,6 +29,4 @@ public interface OwnerService {
     void deleteFriend(String ownerId, DisposableObserver<String> callback);
 
     void listRequests(DisposableObserver<List<Owner>> callback);
-
-    void Prelogin(String token, DisposableObserver<Owner> stringDisposableObserver);
 }

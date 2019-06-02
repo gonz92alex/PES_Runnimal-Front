@@ -1,0 +1,133 @@
+[
+  {
+    "_id": "5ce2c2ce6588e36c4517e129",
+    "user1": {
+      "_id": "5c9cb65499e42e72babc8d12",
+      "alias": "ArthurBernal",
+      "email": "arthurbernal@pokemon.com",
+      "password": "1234",
+      "__v": 0,
+      "points": 20
+    },
+    "user2": {
+      "_id": "5c9518c262d914013dd5af3b",
+      "alias": "Swafta",
+      "email": "ash@pokemon.com",
+      "password": "pikachu",
+      "__v": 0,
+      "points": 1330
+    },
+    "date": "Mon May 20 2019 15:07:58 GMT+0000 (GMT)",
+    "type": "friend",
+    "__v": 0
+  },
+  {
+    "_id": "5ce2c30d6588e36c4517e12a",
+    "user1": {
+      "_id": "5c95194f62d914013dd5af3d",
+      "alias": "Entrenadora Misty",
+      "email": "misty@pokemon.com",
+      "password": "psyduck",
+      "__v": 0,
+      "points": 60
+    },
+    "user2": {
+      "_id": "5c9518c262d914013dd5af3b",
+      "alias": "Swafta",
+      "email": "ash@pokemon.com",
+      "password": "pikachu",
+      "__v": 0,
+      "points": 1330
+    },
+    "date": "Mon May 20 2019 15:09:01 GMT+0000 (GMT)",
+    "type": "friend",
+    "__v": 0
+  },
+  {
+    "_id": "5ce2c3166588e36c4517e12b",
+    "user1": {
+      "_id": "5c9ccd2b99e42e72babc8d14",
+      "alias": "prueba123213",
+      "email": "algo@prueba.com",
+      "password": "prueba123",
+      "__v": 0,
+      "points": 20
+    },
+    "user2": {
+      "_id": "5c9518c262d914013dd5af3b",
+      "alias": "Swafta",
+      "email": "ash@pokemon.com",
+      "password": "pikachu",
+      "__v": 0,
+      "points": 1330
+    },
+    "date": "Mon May 20 2019 15:09:10 GMT+0000 (GMT)",
+    "type": "friend",
+    "__v": 0
+  },
+  {
+    "_id": "5ce2c38b6588e36c4517e12c",
+    "user1": {
+      "_id": "5c9e464777b0327c1af7789e",
+      "alias": "agusti",
+      "email": "salamero@pokemon.com",
+      "password": "1234",
+      "__v": 0,
+      "points": 20
+    },
+    "user2": {
+      "_id": "5c9518c262d914013dd5af3b",
+      "alias": "Swafta",
+      "email": "ash@pokemon.com",
+      "password": "pikachu",
+      "__v": 0,
+      "points": 1330
+    },
+    "date": "Mon May 20 2019 15:11:07 GMT+0000 (GMT)",
+    "type": "friend",
+    "__v": 0
+  },
+  {
+    "_id": "5ce2c39b6588e36c4517e12d",
+    "user1": {
+      "_id": "5c9e514c77b0327c1af7789f",
+      "alias": "alejandro",
+      "email": "alejandro@gmail.com",
+      "password": "1234",
+      "__v": 0,
+      "points": 20
+    },
+    "user2": {
+      "_id": "5c9518c262d914013dd5af3b",
+      "alias": "Swafta",
+      "email": "ash@pokemon.com",
+      "password": "pikachu",
+      "__v": 0,
+      "points": 1330
+    },
+    "date": "Mon May 20 2019 15:11:23 GMT+0000 (GMT)",
+    "type": "friend",
+    "__v": 0
+  },
+  {
+    "_id": "5ce2ed579451fc6d888b5cc0",
+    "user1": {
+      "_id": "5cdee4d9b283845aecf2d601",
+      "alias": "probaaa",
+      "email": "proba22@pokemon.com",
+      "password": "1234",
+      "__v": 0
+    },
+    "user2": {
+      "_id": "5c9518c262d914013dd5af3b",
+      "alias": "Swafta",
+      "email": "ash@pokemon.com",
+      "password": "pikachu",
+      "__v": 0,
+      "points": 1330
+    },
+    "date": "Mon May 20 2019 18:09:27 GMT+0000 (GMT)",
+    "type": "friend",
+    "__v": 0
+  }
+]

@@ -1,10 +1,8 @@
 package com.runnimal.app.android.data.api.impl;
 
 import android.graphics.Bitmap;
-import android.util.Log;
 
 import com.runnimal.app.android.data.api.RunnimalApi;
-import com.runnimal.app.android.domain.Friend;
 import com.runnimal.app.android.domain.FriendRequest;
 import com.runnimal.app.android.domain.Friendship;
 import com.runnimal.app.android.domain.Owner;
@@ -12,11 +10,8 @@ import com.runnimal.app.android.domain.Pet;
 import com.runnimal.app.android.domain.Point;
 import com.runnimal.app.android.domain.Ranking;
 import com.runnimal.app.android.domain.Training;
-import com.runnimal.app.android.domain.User;
 import com.runnimal.app.android.util.IOUtils;
 import com.runnimal.app.android.util.JacksonFactory;
-
-import org.json.JSONObject;
 
 import java.util.List;
 
@@ -36,6 +31,7 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
     private static final String FRIEND_REQUESTS_FILE = "json/friend-requests.json";
     private static final String POINTS_FILE = "json/points.json";
     private static final String OWNERS_FILE = "json/owners.json";
+    private static final String FRIENDS_FILE = "json/friends.json";
 
     private final JacksonFactory jacksonFactory;
 
@@ -52,6 +48,11 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
         } else {
             callback.responseError(new RuntimeException("Invalid login"));
         }
+    }
+
+    @Override
+    public void signup(String email, String password, String alias, RunnimalApiCallback<String> callback) {
+        //toDO
     }
 
     @Override
@@ -160,34 +161,6 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
     }
 
     @Override
-    public void listFriends(RunnimalApiCallback<List<Friend>> listRunnimalApiCallback) {
-        try {
-            listRunnimalApiCallback.responseOK(jacksonFactory.toList(IOUtils.getResource(RANKINGS_FILE), Friend.class));
-        } catch (Exception e) {
-            listRunnimalApiCallback.responseError(e);
-        }
-    }
-
-    @Override
-    public void getFriend(String id, RunnimalApiCallback<Friend> friendRunnimalApiCallback) {
-
-    }
-
-    @Override
-    public void listUsers(RunnimalApiCallback<List<User>> listRunnimalApiCallback) {
-        try {
-            listRunnimalApiCallback.responseOK(jacksonFactory.toList(IOUtils.getResource(RANKINGS_FILE), User.class));
-        } catch (Exception e) {
-            listRunnimalApiCallback.responseError(e);
-        }
-    }
-
-    @Override
-    public void getUser(String id, RunnimalApiCallback<User> userRunnimalApiCallback) {
-
-    }
-
-    @Override
     public void listOwners(RunnimalApiCallback<List<Owner>> callback) {
         callback.responseOK(jacksonFactory.toList(IOUtils.getResource(OWNERS_FILE), Owner.class));
     }
@@ -225,16 +198,6 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
         }
     }
 
-    @Override
-    public void listFriendship(RunnimalApiCallback<List<Friendship>> listRunnimalApiCallback) {
-        try {
-            listRunnimalApiCallback.responseOK(jacksonFactory.toList(IOUtils.getResource(FRIEND_REQUESTS_FILE), Friendship.class));
-        } catch (Exception e) {
-            listRunnimalApiCallback.responseError(e);
-        }
-
-
-    }
 
     @Override
     public void acceptFriend(String id, RunnimalApiCallback<String> listRunnimalApiCallback) {
@@ -265,14 +228,9 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
     }
 
     @Override
-    public void preLogin(String token, RunnimalApiCallback<Owner> callback) {
-        //callback.responseOK("OK");
-    }
-
-    @Override
     public void listFriendships(RunnimalApiCallback<List<Friendship>> listRunnimalApiCallback) {
         try {
-            listRunnimalApiCallback.responseOK(jacksonFactory.toList(IOUtils.getResource(FRIEND_REQUESTS_FILE), Friendship.class));
+            listRunnimalApiCallback.responseOK(jacksonFactory.toList(IOUtils.getResource(FRIENDS_FILE), Friendship.class));
         } catch (Exception e) {
             listRunnimalApiCallback.responseError(e);
         }

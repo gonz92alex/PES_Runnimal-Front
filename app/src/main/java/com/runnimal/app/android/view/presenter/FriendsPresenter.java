@@ -1,19 +1,11 @@
 package com.runnimal.app.android.view.presenter;
 
-import com.runnimal.app.android.domain.Friend;
 import com.runnimal.app.android.domain.Friendship;
-import com.runnimal.app.android.domain.Training;
-import com.runnimal.app.android.service.FriendsService;
 import com.runnimal.app.android.service.FriendshipService;
 import com.runnimal.app.android.service.MediaService;
-import com.runnimal.app.android.service.TrainingService;
 import com.runnimal.app.android.util.ConverterUtils;
-import com.runnimal.app.android.view.viewmodel.FriendsViewModel;
 import com.runnimal.app.android.view.viewmodel.FriendshipViewModel;
-import com.runnimal.app.android.view.viewmodel.TrainingViewModel;
-import com.runnimal.app.android.view.viewmodel.converter.FriendsViewModelConverter;
 import com.runnimal.app.android.view.viewmodel.converter.FriendshipViewModelConverter;
-import com.runnimal.app.android.view.viewmodel.converter.TrainingViewModelConverter;
 
 import java.util.List;
 

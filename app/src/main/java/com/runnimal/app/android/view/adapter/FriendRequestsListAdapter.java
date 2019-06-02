@@ -6,20 +6,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.runnimal.app.android.R;
-import com.runnimal.app.android.domain.Friend;
-import com.runnimal.app.android.domain.FriendRequest;
 import com.runnimal.app.android.view.activity.FriendRequestsActivity;
 import com.runnimal.app.android.view.presenter.FriendRequestsPresenter;
-import com.runnimal.app.android.view.presenter.SearchPresenter;
 import com.runnimal.app.android.view.viewmodel.FriendshipViewModel;
-import com.runnimal.app.android.view.viewmodel.OwnerViewModel;
-import com.runnimal.app.android.view.viewmodel.SearchViewModel;
 
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class FriendRequestsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 

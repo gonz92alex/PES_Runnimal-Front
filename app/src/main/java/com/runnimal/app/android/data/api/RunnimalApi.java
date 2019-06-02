@@ -2,7 +2,6 @@ package com.runnimal.app.android.data.api;
 
 import android.graphics.Bitmap;
 
-import com.runnimal.app.android.domain.Friend;
 import com.runnimal.app.android.domain.FriendRequest;
 import com.runnimal.app.android.domain.Friendship;
 import com.runnimal.app.android.domain.Owner;
@@ -10,13 +9,14 @@ import com.runnimal.app.android.domain.Pet;
 import com.runnimal.app.android.domain.Point;
 import com.runnimal.app.android.domain.Ranking;
 import com.runnimal.app.android.domain.Training;
-import com.runnimal.app.android.domain.User;
 
 import java.util.List;
 
 public interface RunnimalApi {
 
     void login(String email, String password, RunnimalApiCallback<String> callback);
+
+    void signup(String email, String password, String alias,RunnimalApiCallback<String> callback);
 
     void listTrainings(RunnimalApiCallback<List<Training>> callback);
 
@@ -50,14 +50,6 @@ public interface RunnimalApi {
 
     void uploadImage(Bitmap image, String path, RunnimalApiCallback<String> callback);
 
-    void listFriends(RunnimalApiCallback<List<Friend>> listRunnimalApiCallback);
-
-    void getFriend(String id, RunnimalApiCallback<Friend> friendRunnimalApiCallback);
-
-    void listUsers(RunnimalApiCallback<List<User>> listRunnimalApiCallback);
-
-    void getUser(String id, RunnimalApiCallback<User> userRunnimalApiCallback);
-
     void listOwners(RunnimalApiCallback<List<Owner>> listRunnimalApiCallback);
 
     void addPoint(int points, String email, RunnimalApiCallback<String> stringRunnimalApiCallback);
@@ -70,8 +62,6 @@ public interface RunnimalApi {
 
     void listRequests(RunnimalApiCallback<List<Owner>> listRunnimalApiCallback);
 
-    void listFriendship(RunnimalApiCallback<List<Friendship>> listRunnimalApiCallback);
-
     void acceptFriend(String id, RunnimalApiCallback<String> listRunnimalApiCallback);
 
     void listPoints(RunnimalApiCallback<List<Point>> listRunnimalApiCallback);
@@ -79,8 +69,6 @@ public interface RunnimalApi {
     void listFriendshipRequests(RunnimalApiCallback<List<Friendship>> listRunnimalApiCallback);
 
     void rejectFriendship(String id, RunnimalApiCallback<String> callback);
-
-    void preLogin(String token, RunnimalApiCallback<Owner> callback);
 
     void listFriendships(RunnimalApiCallback<List<Friendship>> listRunnimalApiCallback);
 

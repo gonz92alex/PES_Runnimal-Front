@@ -19,27 +19,6 @@ public class MainPresenter extends Presenter<MainPresenter.View> {
         this.ownerService = ownerService;
     }
 
-    public void login(String token) {
-        ownerService.Prelogin(token, //
-                new DisposableObserver<Owner>() {
-
-                    @Override
-                    public void onNext(Owner owner) {
-                        getView().loginOk(owner);
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        getView().hideLoading();
-                        e.printStackTrace();
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        getView().hideLoading();
-                    }
-                });
-    }
 
     public interface View extends Presenter.View {
 
