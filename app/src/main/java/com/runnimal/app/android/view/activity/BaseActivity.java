@@ -1,5 +1,7 @@
 package com.runnimal.app.android.view.activity;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -20,6 +22,7 @@ import com.runnimal.app.android.util.SingletonSession;
 import com.runnimal.app.android.view.util.ImageUtils;
 
 import java.net.URI;
+import java.util.Calendar;
 
 import butterknife.ButterKnife;
 
@@ -39,6 +42,18 @@ public abstract class BaseActivity extends AppCompatActivity {
         initBottomMenu();
         bindViews();
         initView();
+        notificationDaily();
+    }
+
+    private void notificationDaily() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY,21);
+        calendar.set(Calendar.MINUTE,48);
+        Intent intent = new Intent(getApplicationContext(),NotificationReceiver.class);
+        intent.setAction("MY_NOTIFICATION_MESSAGE");
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(),0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+        AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),alarmManager.INTERVAL_DAY,pendingIntent);
     }
 
 
