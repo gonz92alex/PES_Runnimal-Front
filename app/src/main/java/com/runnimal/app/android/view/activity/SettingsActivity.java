@@ -1,6 +1,8 @@
 package com.runnimal.app.android.view.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,9 +19,11 @@ import butterknife.BindView;
 public class SettingsActivity extends BaseActivity {
 
 
-
+    @BindView(R.id.button_save)
+    Button buttonSave;
     @BindView(R.id.spinner_settings_lang)
     Spinner langSpinner;
+    
 
     @Override
     protected int getLayoutId() {
@@ -33,11 +37,23 @@ public class SettingsActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-
+        initSaveButton();
         initLangButton();
     }
 
+    private void initSaveButton() {
+        buttonSave.setOnClickListener(view -> {
+            String langCode = (String) langSpinner.getSelectedItem();
+            Locale langLocale = Locale.forLanguageTag(langCode);
 
+            Configuration config = new Configuration();
+
+            //TODO: implementar bien
+            Locale.setDefault(langLocale);
+            config.locale = langLocale;
+            getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+        });
+    }
 
 
     private void initLangButton() {
@@ -48,39 +64,6 @@ public class SettingsActivity extends BaseActivity {
                 .findFirst() //
                 .orElse(0);
         langSpinner.setSelection(currentLangPosition);
-
-        langSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String langCode = (String) langSpinner.getSelectedItem();
-                Locale langLocale = Locale.forLanguageTag(langCode);
-
-                Configuration config = new Configuration();
-
-                //TODO: implementar bien
-                Locale.setDefault(langLocale);
-                config.locale = langLocale;
-                getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-                /*
-                Locale.setDefault(langLocale);
-                LocaleList langLocaleList = new LocaleList(langLocale);
-                config.setLocales(langLocaleList);
-                LocaleList.setDefault(langLocaleList);
-                getApplicationContext().createConfigurationContext(config);
-                */
-                /*
-                Locale.setDefault(langLocale);
-                Configuration config = new Configuration();
-                config.setLocale(langLocale);
-                getApplicationContext().createConfigurationContext(config);
-                */
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                return;
-            }
-        });
     }
 
 }

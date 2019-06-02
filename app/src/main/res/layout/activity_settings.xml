@@ -40,6 +40,16 @@
                 </Spinner>
 
             </LinearLayout>
+
+            <Button
+                android:id="@+id/button_save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_green_rounded"
+                android:baselineAligned="false"
+                android:text="@string/Save"
+                android:layout_marginLeft="30dp"
+                android:textColor="@color/colorPrimary" />
         </LinearLayout>
 
         <android.support.design.widget.BottomNavigationView
