@@ -32,7 +32,6 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
     private static final String POINTS_FILE = "json/points.json";
     private static final String OWNERS_FILE = "json/owners.json";
     private static final String FRIENDS_FILE = "json/friends.json";
-    private static final String TOKEN_FILE = "./token";
 
     private final JacksonFactory jacksonFactory;
 
@@ -45,7 +44,7 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
     @SneakyThrows
     public void login(String email, String password, RunnimalApiCallback<String> callback) {
         if (email.equals("ash@pokemon.com") && password.equals("pikachu")) {
-            callback.responseOK(jacksonFactory.toObject(IOUtils.getResource(TOKEN_FILE), String.class));
+            //callback.responseOK(jacksonFactory.toObject(IOUtils.getResource(TOKEN_FILE), String.class));
         } else {
             callback.responseError(new RuntimeException("Invalid login"));
         }
@@ -54,6 +53,7 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
     @Override
     public void signup(String email, String password, String alias, RunnimalApiCallback<String> callback) {
         //toDO
+        callback.responseOK("8895cf3e80bd52ed5067a1b9946");
     }
 
     @Override
@@ -132,7 +132,7 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
 
     @Override
     public void createOwner(Owner owner, RunnimalApiCallback<String> callback) {
-        callback.responseOK("OK");
+        callback.responseOK("8895cf3e80bd52ed5067a1b9946");
     }
 
     @Override

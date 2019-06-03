@@ -153,12 +153,13 @@ public class SignUpActivity extends AppCompatActivity implements SignUpPresenter
     }
     @Override
     public void setToken(String token){
-        SharedPreferences prefs =
-                getSharedPreferences("user",Context.MODE_PRIVATE);
+        Log.d("refactor", "setToken: " + token);
 
-        SharedPreferences.Editor editor = prefs.edit();
+        SingletonSession.Instance().setToken(token);
+
+        SharedPreferences userDetail = getSharedPreferences("userdetails", MODE_PRIVATE);
+        SharedPreferences.Editor editor = userDetail.edit();
         editor.putString("token", token);
-        editor.commit();
-        System.out.println("TOKEN: "+token);
+        editor.apply();
     }
 }
