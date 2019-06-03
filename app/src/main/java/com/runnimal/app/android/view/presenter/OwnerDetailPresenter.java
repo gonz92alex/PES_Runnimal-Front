@@ -60,14 +60,14 @@ public class OwnerDetailPresenter extends Presenter<OwnerDetailPresenter.View> {
     }
 
     public void checkFriendRequestState() {
-        String currentUserId = SingletonSession.Instance().getId();
+        String currentUserEmail = SingletonSession.Instance().getMail();
         ownerService.getFriendRequests(ownerEmail,
                 new DisposableObserver<List<FriendRequest>>() {
 
                     @Override
                     public void onNext(List<FriendRequest> requests) {
                         if (requests.stream() //
-                                .anyMatch(r -> r.getUser1().getId().equals(currentUserId))) {
+                                .anyMatch(r -> r.getUser1().getEmail().equals(currentUserEmail))) {
                             getView().showFriendRequestState(FriendRequestState.PENDING);
                         } else {
                             checkFriend();
