@@ -1,9 +1,12 @@
 package com.runnimal.app.android.view.activity;
 
 import android.app.AlarmManager;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
@@ -31,6 +34,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected DrawerLayout drawerLayout;
     protected NavigationView menuView;
     protected BottomNavigationView bottomMenuView;
+    public static final String  CHANNEL = "channel1";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,19 +46,33 @@ public abstract class BaseActivity extends AppCompatActivity {
         initBottomMenu();
         bindViews();
         initView();
+        createNotificationChannels();
         notificationDaily();
+    }
+
+    private void createNotificationChannels(){
+         if(Build.VERSION.SDK_INT  >= Build.VERSION_CODES.O){
+             NotificationChannel channel = new NotificationChannel(CHANNEL,  "test", NotificationManager.IMPORTANCE_HIGH);
+             channel.setDescription("this is the channel for the notifications");
+
+             NotificationManager manager = getSystemService(NotificationManager.class);
+             manager.createNotificationChannel(channel);
+         }
+
     }
 
     private void notificationDaily() {
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY,21);
-        calendar.set(Calendar.MINUTE,48);
+        calendar.set(Calendar.HOUR_OF_DAY,8);
+        calendar.set(Calendar.MINUTE,8);
         Intent intent = new Intent(getApplicationContext(),NotificationReceiver.class);
         intent.setAction("MY_NOTIFICATION_MESSAGE");
         PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(),0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),alarmManager.INTERVAL_DAY,pendingIntent);
     }
+
+
 
 
 
