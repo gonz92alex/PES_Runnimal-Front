@@ -64,7 +64,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     private void notificationDaily() {
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY,8);
-        calendar.set(Calendar.MINUTE,8);
+        calendar.set(Calendar.MINUTE,15);
         Intent intent = new Intent(getApplicationContext(),NotificationReceiver.class);
         intent.setAction("MY_NOTIFICATION_MESSAGE");
         PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(),0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
