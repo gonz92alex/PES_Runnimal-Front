@@ -1,10 +1,17 @@
 package com.runnimal.app.android.view.presenter;
 
+import android.util.Log;
+
+
 import com.runnimal.app.android.domain.Owner;
 import com.runnimal.app.android.service.MediaService;
 import com.runnimal.app.android.service.OwnerService;
+import com.runnimal.app.android.util.JacksonFactory;
 import com.runnimal.app.android.view.viewmodel.OwnerViewModel;
 import com.runnimal.app.android.view.viewmodel.converter.OwnerViewModelConverter;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import javax.inject.Inject;
 
@@ -26,8 +33,13 @@ public class LoginPresenter extends Presenter<LoginPresenter.View> {
                 new DisposableObserver<String>() {
 
                     @Override
-                    public void onNext(String token) {
-                        getView().loginOk(token);
+                    public void onNext(String jsonRes) {
+                        try {
+                            JSONObject res = new JSONObject(jsonRes);
+                            getView().loginOk(res.getString("token"), res.getJSONObject("user"));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     @Override
@@ -45,6 +57,6 @@ public class LoginPresenter extends Presenter<LoginPresenter.View> {
 
     public interface View extends Presenter.View {
 
-        void loginOk(String token);
+        void loginOk(String token, JSONObject user) throws JSONException;
     }
 }

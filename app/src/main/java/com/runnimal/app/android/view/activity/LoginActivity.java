@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.SingleLineTransformationMethod;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -14,6 +15,9 @@ import com.runnimal.app.android.R;
 import com.runnimal.app.android.RunnimalApplication;
 import com.runnimal.app.android.util.SingletonSession;
 import com.runnimal.app.android.view.presenter.LoginPresenter;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.net.URI;
 
@@ -68,11 +72,12 @@ public class LoginActivity extends AppCompatActivity implements LoginPresenter.V
     }
 
     @Override
-    public void loginOk(String token) {
+    public void loginOk(String token, JSONObject user) throws JSONException {
+        String alias = user.getString("alias");
 
         //Intent LoginIntent = new Intent(this, MapActivity.class);
         //SingletonSession.Instance().setId(owner.getId());
-        //SingletonSession.Instance().setUsername(owner.getAlias());
+        SingletonSession.Instance().setUsername(alias);
         SingletonSession.Instance().setMail(email.getText().toString());
         SingletonSession.Instance().setToken(token);
 

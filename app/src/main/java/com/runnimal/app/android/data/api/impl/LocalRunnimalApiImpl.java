@@ -12,7 +12,9 @@ import com.runnimal.app.android.domain.Ranking;
 import com.runnimal.app.android.domain.Training;
 import com.runnimal.app.android.util.IOUtils;
 import com.runnimal.app.android.util.JacksonFactory;
+import com.runnimal.app.android.util.ConverterUtils;
 
+import java.nio.charset.Charset;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -32,6 +34,7 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
     private static final String POINTS_FILE = "json/points.json";
     private static final String OWNERS_FILE = "json/owners.json";
     private static final String FRIENDS_FILE = "json/friends.json";
+    private static final String LOGIN_FILE = "json/login.json";
 
     private final JacksonFactory jacksonFactory;
 
@@ -44,7 +47,7 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
     @SneakyThrows
     public void login(String email, String password, RunnimalApiCallback<String> callback) {
         if (email.equals("ash@pokemon.com") && password.equals("pikachu")) {
-            //callback.responseOK(jacksonFactory.toObject(IOUtils.getResource(TOKEN_FILE), String.class));
+            callback.responseOK(ConverterUtils.convert_to_string(IOUtils.getResource(LOGIN_FILE), Charset.defaultCharset()));
         } else {
             callback.responseError(new RuntimeException("Invalid login"));
         }
