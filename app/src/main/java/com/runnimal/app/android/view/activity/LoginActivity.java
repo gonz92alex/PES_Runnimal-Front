@@ -82,11 +82,10 @@ public class LoginActivity extends AppCompatActivity implements LoginPresenter.V
         SingletonSession.Instance().setToken(token);
 
         SharedPreferences userDetail = getSharedPreferences("userdetails", MODE_PRIVATE);
-
         SharedPreferences.Editor editor = userDetail.edit();
         editor.putString("token", token);
         editor.putString("email", email.getText().toString());
-        //editor.putString("alias", );
+        editor.putString("alias", alias);
         //editor.putString("id", );
         editor.apply();
 
