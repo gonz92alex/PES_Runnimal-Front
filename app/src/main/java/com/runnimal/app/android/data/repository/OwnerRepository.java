@@ -29,6 +29,4 @@ public interface OwnerRepository {
     Observable<List<Owner>> list();
 
     Observable<List<Owner>>  listRequests();
-
-    Observable<Owner> preLogin(String token);
 }

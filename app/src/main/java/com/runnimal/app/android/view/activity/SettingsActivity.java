@@ -23,7 +23,7 @@ public class SettingsActivity extends BaseActivity {
     Button buttonSave;
     @BindView(R.id.spinner_settings_lang)
     Spinner langSpinner;
-    
+
 
     @Override
     protected int getLayoutId() {

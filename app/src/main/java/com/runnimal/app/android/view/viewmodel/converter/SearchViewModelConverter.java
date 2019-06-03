@@ -1,10 +1,6 @@
 package com.runnimal.app.android.view.viewmodel.converter;
 
-import com.runnimal.app.android.domain.Friend;
-import com.runnimal.app.android.domain.Ranking;
 import com.runnimal.app.android.domain.User;
-import com.runnimal.app.android.view.viewmodel.FriendsViewModel;
-import com.runnimal.app.android.view.viewmodel.RankingViewModel;
 import com.runnimal.app.android.view.viewmodel.SearchViewModel;
 
 import java.util.List;

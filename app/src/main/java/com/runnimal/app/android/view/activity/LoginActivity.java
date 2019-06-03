@@ -144,6 +144,7 @@ public class LoginActivity extends AppCompatActivity implements LoginPresenter.V
             editor.putString("token", "6895cdec613feb80657305a90b2");
             editor.putString("alias", "Ash");
             editor.putString("id", "5c9518c262d914013dd5af3b");
+
             editor.putString("email", "ash@pokemon.com");
             editor.apply();
 
