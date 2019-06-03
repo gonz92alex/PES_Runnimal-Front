@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.method.SingleLineTransformationMethod;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -68,19 +69,22 @@ public class LoginActivity extends AppCompatActivity implements LoginPresenter.V
 
     @Override
     public void loginOk(String token) {
-        /*
-        Intent LoginIntent = new Intent(this, MapActivity.class);
-        SingletonSession.Instance().setId(owner.getId());
-        SingletonSession.Instance().setUsername(owner.getAlias());
-        SingletonSession.Instance().setMail(owner.getEmail());
-        */
-        SharedPreferences prefs =
-                getSharedPreferences("user",Context.MODE_PRIVATE);
 
-        SharedPreferences.Editor editor = prefs.edit();
+        //Intent LoginIntent = new Intent(this, MapActivity.class);
+        //SingletonSession.Instance().setId(owner.getId());
+        //SingletonSession.Instance().setUsername(owner.getAlias());
+        SingletonSession.Instance().setMail(email.getText().toString());
+        SingletonSession.Instance().setToken(token);
+
+        SharedPreferences userDetail = getSharedPreferences("userdetails", MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = userDetail.edit();
         editor.putString("token", token);
-        editor.commit();
-        System.out.println("TOKEN: "+token);
+        editor.putString("email", email.getText().toString());
+        //editor.putString("alias", );
+        //editor.putString("id", );
+        editor.apply();
+
         MapActivity.open(this);
     }
 
@@ -141,7 +145,7 @@ public class LoginActivity extends AppCompatActivity implements LoginPresenter.V
             SharedPreferences userDetail = getSharedPreferences("userdetails", MODE_PRIVATE);
 
             SharedPreferences.Editor editor = userDetail.edit();
-            editor.putString("token", "6895cdec613feb80657305a90b2");
+            editor.putString("token", "8895cf3e80bd52ed5067a1b9946");
             editor.putString("alias", "Ash");
             editor.putString("id", "5c9518c262d914013dd5af3b");
 

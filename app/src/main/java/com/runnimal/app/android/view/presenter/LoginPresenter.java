@@ -26,8 +26,8 @@ public class LoginPresenter extends Presenter<LoginPresenter.View> {
                 new DisposableObserver<String>() {
 
                     @Override
-                    public void onNext(String id) {
-                        getView().loginOk(id);
+                    public void onNext(String token) {
+                        getView().loginOk(token);
                     }
 
                     @Override
