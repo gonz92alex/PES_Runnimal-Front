@@ -66,6 +66,8 @@ public class StatisticsActivity extends BaseActivity implements StatisticsPresen
         presenter.initialize();
     }
 
+    
+
     @Override
     public void showLoading() {
         progressBar.setVisibility(View.VISIBLE);
@@ -80,6 +82,7 @@ public class StatisticsActivity extends BaseActivity implements StatisticsPresen
 
     @Override
     public void showStats(StatisticsViewModel statisticsViewModel) {
+        Log.i("showStats", statisticsViewModel.getNumber());
         trainingNumber.setText(statisticsViewModel.getNumber());
 
     }
