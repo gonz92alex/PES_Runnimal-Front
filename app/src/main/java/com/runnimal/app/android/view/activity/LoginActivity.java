@@ -74,9 +74,10 @@ public class LoginActivity extends AppCompatActivity implements LoginPresenter.V
     @Override
     public void loginOk(String token, JSONObject user) throws JSONException {
         String alias = user.getString("alias");
+        String id = user.getString("_id");
 
         //Intent LoginIntent = new Intent(this, MapActivity.class);
-        //SingletonSession.Instance().setId(owner.getId());
+        SingletonSession.Instance().setId(id);
         SingletonSession.Instance().setUsername(alias);
         SingletonSession.Instance().setMail(email.getText().toString());
         SingletonSession.Instance().setToken(token);
@@ -86,7 +87,7 @@ public class LoginActivity extends AppCompatActivity implements LoginPresenter.V
         editor.putString("token", token);
         editor.putString("email", email.getText().toString());
         editor.putString("alias", alias);
-        //editor.putString("id", );
+        editor.putString("id", id);
         editor.apply();
 
         MapActivity.open(this);
