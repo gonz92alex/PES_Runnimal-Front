@@ -131,7 +131,6 @@ public abstract class AbstractApiClient {
     }
 
     private void bodyRequest(String url, int requestMethod, JSONObject jsonBody, RunnimalApi.RunnimalApiCallback<String> callback) {
-        Log.d("refactor", "delete: " + url + " " + jsonBody.toString() + " " + requestMethod + "=" + Request.Method.DELETE);
         StringRequest stringRequest = new StringRequest( //
                 requestMethod, //
                 url, //

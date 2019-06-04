@@ -36,6 +36,7 @@ public class LoginPresenter extends Presenter<LoginPresenter.View> {
                     public void onNext(String jsonRes) {
                         try {
                             //toDO estaria bien convertirlo a model Owner
+                            Log.d("refactor", "onNext: " + jsonRes);
                             JSONObject res = new JSONObject(jsonRes);
                             getView().loginOk(res.getString("token"), res.getJSONObject("user"));
                         } catch (JSONException e) {

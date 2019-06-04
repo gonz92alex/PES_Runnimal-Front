@@ -1,7 +1,11 @@
 {
-  "token" : "8895cf3e80bd52ed5067a1b9946",
+  "_id": "5cf3e80bd52ed5067a1b9947",
+  "token": "8895cf3e80bd52ed5067a1b9946",
   "user": {
-    "email": "ash@pokemon.com",
-    "alias": "ash"
-  }
+    "_id": "5cf3e80bd52ed5067a1b9946",
+    "alias": "nuevoUser",
+    "email": "nuevoUser@pokemon.com"
+  },
+  "duration": 889,
+  "__v": 0
 }
