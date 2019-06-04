@@ -14,6 +14,7 @@ import lombok.Setter;
 public class TrainingDetailPresenter extends Presenter<TrainingDetailPresenter.View> {
 
     private TrainingService trainingService;
+
     @Setter
     private String trainingId;
 

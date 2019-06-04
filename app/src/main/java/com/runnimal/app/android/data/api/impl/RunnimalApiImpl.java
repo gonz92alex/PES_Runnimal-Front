@@ -10,6 +10,7 @@ import com.runnimal.app.android.domain.Owner;
 import com.runnimal.app.android.domain.Pet;
 import com.runnimal.app.android.domain.Point;
 import com.runnimal.app.android.domain.Ranking;
+import com.runnimal.app.android.domain.StatsTraining;
 import com.runnimal.app.android.domain.Training;
 import com.runnimal.app.android.util.JacksonFactory;
 import com.runnimal.app.android.util.SingletonSession;
@@ -198,6 +199,11 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
 
                 }, //
                 listRunnimalApiCallback);
+
+    }
+
+    @Override
+    public void getStatsTraining(RunnimalApiCallback<StatsTraining> statsTrainingRunnimalApiCallback) {
 
     }
 

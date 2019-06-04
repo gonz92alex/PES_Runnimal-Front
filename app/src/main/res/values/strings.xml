@@ -77,4 +77,5 @@
     <string name="point_type_filter_pipican">Pipican</string>
     <string name="point_type_filter_other">Other</string>
     <string name="logout">Logout</string>
+    <string name="Stats">Statistics</string>
 </resources>

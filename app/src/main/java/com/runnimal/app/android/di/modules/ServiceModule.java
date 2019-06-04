@@ -6,6 +6,7 @@ import com.runnimal.app.android.service.OwnerService;
 import com.runnimal.app.android.service.PetService;
 import com.runnimal.app.android.service.PointService;
 import com.runnimal.app.android.service.RankingService;
+import com.runnimal.app.android.service.StatisticsService;
 import com.runnimal.app.android.service.TrainingService;
 import com.runnimal.app.android.service.impl.FriendshipServiceImpl;
 import com.runnimal.app.android.service.impl.MediaServiceImpl;
@@ -13,6 +14,7 @@ import com.runnimal.app.android.service.impl.OwnerServiceImpl;
 import com.runnimal.app.android.service.impl.PetServiceImpl;
 import com.runnimal.app.android.service.impl.PointServiceImpl;
 import com.runnimal.app.android.service.impl.RankingServiceImpl;
+import com.runnimal.app.android.service.impl.StatisticsServiceImpl;
 import com.runnimal.app.android.service.impl.TrainingServiceImpl;
 
 import javax.inject.Singleton;
@@ -68,4 +70,9 @@ public class ServiceModule {
         return friendshipService;
     }
 
+    @Provides
+    @Singleton
+    StatisticsService statisticsService(StatisticsServiceImpl statisticsService) {
+        return statisticsService;
+    }
 }

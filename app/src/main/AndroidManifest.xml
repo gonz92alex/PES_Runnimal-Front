@@ -72,7 +72,9 @@
         <activity android:name=".view.activity.FriendRequestsActivity" />
 
         <activity android:name=".view.activity.SettingsActivity" />
-        
+
+        <activity android:name=".view.activity.StatisticsActivity" />
+
         <receiver android:name=".view.activity.NotificationReceiver"/>
 
         <uses-library

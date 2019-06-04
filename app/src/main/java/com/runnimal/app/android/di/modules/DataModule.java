@@ -12,6 +12,7 @@ import com.runnimal.app.android.data.repository.OwnerRepository;
 import com.runnimal.app.android.data.repository.PetRepository;
 import com.runnimal.app.android.data.repository.PointRepository;
 import com.runnimal.app.android.data.repository.RankingRepository;
+import com.runnimal.app.android.data.repository.StatisticsRepository;
 import com.runnimal.app.android.data.repository.TrainingRepository;
 import com.runnimal.app.android.data.repository.impl.FriendshipRepositoryImpl;
 import com.runnimal.app.android.data.repository.impl.MediaRepositoryImpl;
@@ -19,6 +20,7 @@ import com.runnimal.app.android.data.repository.impl.OwnerRepositoryImpl;
 import com.runnimal.app.android.data.repository.impl.PetRepositoryImpl;
 import com.runnimal.app.android.data.repository.impl.PointRepositoryImpl;
 import com.runnimal.app.android.data.repository.impl.RankingRepositoryImpl;
+import com.runnimal.app.android.data.repository.impl.StatisticsRepositoryImpl;
 import com.runnimal.app.android.data.repository.impl.TrainingRepositoryImpl;
 
 import javax.inject.Singleton;
@@ -86,6 +88,12 @@ public class DataModule {
     @Singleton
     FriendshipRepository friendshipRepository(FriendshipRepositoryImpl friendshipRepository) {
         return friendshipRepository;
+    }
+
+    @Provides
+    @Singleton
+    StatisticsRepository statisticsRepository(StatisticsRepositoryImpl statisticsRepository) {
+        return statisticsRepository;
     }
 
 }
