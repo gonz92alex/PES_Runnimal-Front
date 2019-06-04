@@ -4,9 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.ScrollView;
 
 import com.runnimal.app.android.R;
 import com.runnimal.app.android.RunnimalApplication;
@@ -26,10 +30,15 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
     @Inject
     MainPresenter presenter;
 
+    @BindView(R.id.container_main)
+    ConstraintLayout container;
     @BindView(R.id.button_main_login)
     Button loginButton;
     @BindView(R.id.button_main_signup)
     Button signupButton;
+
+    @BindView(R.id.main_progress_bar)
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +47,11 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
         initializePresenter();
         setContentView(R.layout.activity_main);
         bindViews();
+        showLoading();
         getUserData();
         initializeLoginButton();
         initializeSignupButton();
+        hideLoading();
     }
 
     //toDo
@@ -98,11 +109,13 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
 
     @Override
     public void showLoading() {
-
+        progressBar.setVisibility(View.VISIBLE);
+        container.setVisibility(View.GONE);
     }
 
     @Override
     public void hideLoading() {
-
+        progressBar.setVisibility(View.GONE);
+        container.setVisibility(View.VISIBLE);
     }
 }
