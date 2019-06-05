@@ -27,13 +27,21 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/colorPrimary"
-                    android:textColor="@color/colorLightBlue"
-                    android:textSize="18sp"
-                    android:text="Puedes compartir tu mascota con otros usuarios añadiendoslos como dueños adicionales!"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorPrimary">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorLightBlue"
+                        android:textSize="18sp"
+                        android:text="@string/additional_owner_explanation"
+                        android:layout_marginStart="3dp"
+                        android:layout_marginBottom="5dp"/>
+                </LinearLayout>
+
+
 
                 <EditText
                     android:id="@+id/pet_add_owner_email"
@@ -49,7 +57,11 @@
                     android:id="@+id/add_owner_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/btn_rounded"
+                    android:layout_marginTop="20dp"
+                    android:textColor="#C5EFF7"
                     android:text="@string/button_pets_add"/>
+
             </LinearLayout>
 
         </ScrollView>

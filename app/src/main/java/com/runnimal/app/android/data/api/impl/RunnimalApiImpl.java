@@ -148,7 +148,7 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
         JSONObject jsonBody = new JSONObject();
 
         Log.d("refactor", "estoy en la llamada a la api");
-        post("http://nidorana.fib.upc.edu/api/users/" + SingletonSession.Instance().getMail() + "/trainnings/5ce04fa2dbb77b12d0c7c2e2" , jsonBody, callback);
+        post("http://nidorana.fib.upc.edu/api/users/" + SingletonSession.Instance().getMail() + "/trainnings/" + trainingId , jsonBody, callback);
     }
 
     @Override

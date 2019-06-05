@@ -85,4 +85,5 @@
     <string name="missing_params">Missing parameters</string>
     <string name="standardError_Msg">Ooops! Something went wrong...</string>
     <string name="isNowOwner">is now an owner</string>
+    <string name="additional_owner_explanation">Puedes compartir tu mascota con otros usuarios añadiendoslos como dueños adicionales!</string>
 </resources>
