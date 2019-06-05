@@ -81,4 +81,6 @@
     <string name="Time">Time</string>
     <string name="Distance">Distance</string>
     <string name="Walks">Walks</string>
+    <string name="fill_all_the_camps">You have to fill all the text camps</string>
+    <string name="missing_params">Missing parameters</string>
 </resources>

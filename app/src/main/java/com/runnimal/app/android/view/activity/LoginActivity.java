@@ -74,19 +74,21 @@ public class LoginActivity extends AppCompatActivity implements LoginPresenter.V
     @Override
     public void loginOk(String token, JSONObject user) throws JSONException {
         String alias = user.getString("alias");
+        String id = user.getString("_id");
 
         //Intent LoginIntent = new Intent(this, MapActivity.class);
-        //SingletonSession.Instance().setId(owner.getId());
+        SingletonSession.Instance().setId(id);
         SingletonSession.Instance().setUsername(alias);
         SingletonSession.Instance().setMail(email.getText().toString());
         SingletonSession.Instance().setToken(token);
+        SingletonSession.Instance().setPhoto(URI.create("http://nidorana.fib.upc.edu/api/photo/users/" + email.getText().toString()));
 
         SharedPreferences userDetail = getSharedPreferences("userdetails", MODE_PRIVATE);
         SharedPreferences.Editor editor = userDetail.edit();
         editor.putString("token", token);
         editor.putString("email", email.getText().toString());
         editor.putString("alias", alias);
-        //editor.putString("id", );
+        editor.putString("id", id);
         editor.apply();
 
         MapActivity.open(this);
@@ -123,13 +125,8 @@ public class LoginActivity extends AppCompatActivity implements LoginPresenter.V
             String passwordTxt = password.getText().toString();
             if (emailTxt.equals("") || passwordTxt.equals("")) {
                 new AlertDialog.Builder(this)
-                        .setTitle("Missing parameters")
-                        .setMessage("You have to fill first all the text camps")
-
-                        // A null listener allows the button to dismiss the dialog and take no further action.
-                        // The dialog is automatically dismissed when a dialog button is clicked.
+                        .setView(R.layout.alert_dialog)
                         .setPositiveButton(android.R.string.ok, null)
-                        .setIcon(android.R.drawable.ic_dialog_alert)
                         .show();
             } else {
                 presenter.login(emailTxt, passwordTxt);
@@ -152,7 +149,6 @@ public class LoginActivity extends AppCompatActivity implements LoginPresenter.V
             editor.putString("token", "8895cf3e80bd52ed5067a1b9946");
             editor.putString("alias", "Ash");
             editor.putString("id", "5c9518c262d914013dd5af3b");
-
             editor.putString("email", "ash@pokemon.com");
             editor.apply();
 

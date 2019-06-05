@@ -67,4 +67,7 @@
     <string name="Time">Time</string>
     <string name="Walks">Walks</string>
     <string name="Distance">Distance</string>
+    <string name="fill_all_the_camps">Please, fill all the text camps</string>
+    <string name="missing_params">Missing parameters</string>
+    <string name="permission_rationale_location">Access to the location service is required to be able to have all the functionalities available, which shows your current location on the map and track your walks.</string>
 </resources>

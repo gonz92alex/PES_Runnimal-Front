@@ -67,5 +67,8 @@
     <string name="Time">Temps</string>
     <string name="Walks">Passejos</string>
     <string name="Distance">Distància</string>
+    <string name="missing_params">Parametres buits</string>
+    <string name="permission_rationale_location">" L'accés al servei de localització és necessari per poder disposar de totes les funcionalitats, com per mostrar la seva ubicació actual al mapa i fer un seguiment de les seves rutes. "</string>
+    <string name="fill_all_the_camps">" Si us plau, ompli tots els camps de text "</string>
 
 </resources>
