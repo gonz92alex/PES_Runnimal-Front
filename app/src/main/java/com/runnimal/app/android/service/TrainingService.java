@@ -12,5 +12,5 @@ public interface TrainingService {
 
     void get(String id, DisposableObserver<Training> callback);
 
-    void addPoints(int points, String email, DisposableObserver<String> stringDisposableObserver);
+    void addPoints(String trainingId, DisposableObserver<String> stringDisposableObserver);
 }

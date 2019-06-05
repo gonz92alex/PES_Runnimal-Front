@@ -20,6 +20,10 @@
             android:icon="@drawable/ic_stat_name"
             android:title="@string/request_title" />
         <item
+            android:id="@+id/menu_stats"
+            android:icon="@drawable/bar"
+            android:title="@string/Stats" />
+        <item
             android:id="@+id/menu_logout"
             android:icon="@drawable/ic_logout"
             android:title="@string/logout" />

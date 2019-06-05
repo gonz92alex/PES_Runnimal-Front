@@ -150,7 +150,12 @@ public abstract class BaseActivity extends AppCompatActivity {
                 closeMenu();
                 startActivity(new Intent(this, FriendRequestsActivity.class));
                 return true;
-            } else if (itemId == R.id.menu_logout){
+            }
+            else if (itemId == R.id.menu_stats) {
+                closeMenu();
+                startActivity(new Intent(this, StatisticsActivity.class));
+                return true;
+            }else if (itemId == R.id.menu_logout){
                 closeMenu();
                 SharedPreferences prefs =
                         getSharedPreferences("userdetails", MODE_PRIVATE);
@@ -171,7 +176,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                 } else if (itemId == R.id.menu_bottom_trainings) {
                     startActivity(new Intent(this, TrainingsActivity.class));
                 } else if (itemId == R.id.menu_bottom_ranking) {
-                    startActivity(new Intent(this, StatisticsActivity.class));
+                    startActivity(new Intent(this, RankingActivity.class));
                 } else if (itemId == R.id.menu_bottom_pets) {
                     startActivity(new Intent(this, PetsActivity.class));
                 }

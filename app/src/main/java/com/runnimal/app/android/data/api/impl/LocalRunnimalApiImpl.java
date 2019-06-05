@@ -174,9 +174,10 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
     }
 
     @Override
-    public void addPoint(int points, String email, RunnimalApiCallback<String> callback) {
-        callback.responseOK("OK");
+    public void addPoint(String trainingId, RunnimalApiCallback<String> stringRunnimalApiCallback) {
+
     }
+
 
     @Override
     public void listLocalRanking(RunnimalApiCallback<List<Ranking>> listRunnimalApiCallback) {

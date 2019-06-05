@@ -54,7 +54,7 @@ public interface RunnimalApi {
 
     void listOwners(RunnimalApiCallback<List<Owner>> listRunnimalApiCallback);
 
-    void addPoint(int points, String email, RunnimalApiCallback<String> stringRunnimalApiCallback);
+    void addPoint( String trainingId, RunnimalApiCallback<String> stringRunnimalApiCallback);
 
     void listLocalRanking(RunnimalApiCallback<List<Ranking>> listRunnimalApiCallback);
 

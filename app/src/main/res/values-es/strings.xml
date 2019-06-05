@@ -64,4 +64,7 @@
     <string name="logout">Cerrar sesión</string>
     <string name="Ranking">Ranking</string>
     <string name="Stats">Estadisticas</string>
+    <string name="Time">Tiempo</string>
+    <string name="Walks">Paseos</string>
+    <string name="Distance">Distancia</string>
 </resources>

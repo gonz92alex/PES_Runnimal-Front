@@ -44,6 +44,10 @@ public class StatisticsActivity extends BaseActivity implements StatisticsPresen
     @Inject
     StatisticsPresenter presenter;
 
+    @BindView(R.id.distance_walks)
+    TextView distanceWalks;
+    @BindView(R.id.time_walks)
+    TextView timeWalks;
     @BindView(R.id.number_walks)
     TextView walksNumber;
     @BindView(R.id.number_trainings)
@@ -93,6 +97,8 @@ public class StatisticsActivity extends BaseActivity implements StatisticsPresen
     public void showStatsWalks(StatisticsWalksViewModel stats) {
         Log.i("showStatsWalks", stats.getNumberWalks());
         walksNumber.setText(stats.getNumberWalks());
+        distanceWalks.setText(stats.getDistanceWalks());
+        timeWalks.setText(stats.getDurationWalks());
 
     }
 

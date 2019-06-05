@@ -57,9 +57,9 @@ public class TrainingRepositoryImpl implements TrainingRepository {
     }
 
     @Override
-    public Observable<String> addPoints(int points, String email) {
+    public Observable<String> addPoints(String trainingId) {
         return Observable.create(emitter -> {
-            api.addPoint(points,email, //
+            api.addPoint(trainingId, //
                     new RunnimalApi.RunnimalApiCallback<String>() {
                         @Override
                         public void responseOK(String response) {

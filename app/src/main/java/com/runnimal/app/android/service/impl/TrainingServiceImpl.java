@@ -38,7 +38,7 @@ public class TrainingServiceImpl extends AbstractService implements TrainingServ
     }
 
     @Override
-    public void addPoints(int points, String email, DisposableObserver<String> callback) {
-        execute(trainingRepository.addPoints(points,email),callback);
+    public void addPoints(String trainingId, DisposableObserver<String> callback) {
+        execute(trainingRepository.addPoints(trainingId),callback);
     }
 }

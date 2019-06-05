@@ -12,5 +12,5 @@ public interface TrainingRepository {
 
     Observable<Training> get(String id);
 
-    Observable<String> addPoints(int points, String email);
+    Observable<String> addPoints(String trainingId);
 }

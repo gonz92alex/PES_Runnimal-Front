@@ -122,7 +122,7 @@ public class TrainingDetailActivity extends BaseActivity implements TrainingDeta
 
     private void initializeAddPointButton(){
         buttonPoints.setOnClickListener(view -> {
-            presenter.addPoints(20, SingletonSession.Instance().getMail());
+            presenter.addPoints(TRAINING_ID_KEY);
         });
     }
 

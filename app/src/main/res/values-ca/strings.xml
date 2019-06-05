@@ -64,5 +64,8 @@
     <string name="logout">Tanca sessió</string>
     <string name="Ranking">Rànquing</string>
     <string name="Stats">Estadistiques</string>
+    <string name="Time">Temps</string>
+    <string name="Walks">Passejos</string>
+    <string name="Distance">Distància</string>
 
 </resources>

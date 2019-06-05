@@ -143,12 +143,12 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
 
     @Override
     @SneakyThrows
-    public void addPoint(int points, String email, RunnimalApiCallback<String> callback) {
+    public void addPoint( String trainingId, RunnimalApiCallback<String> callback) {
+        // api/users/:usermail/trainnings/:trainningid
         JSONObject jsonBody = new JSONObject();
-        jsonBody.put("points", points);
 
-        Log.d("refactor", "http://nidorana.fib.upc.edu/api/users/" + email + "/addpoints");
-        put("http://nidorana.fib.upc.edu/api/users/" + email + "/addpoints", jsonBody, callback);
+        Log.d("refactor", "estoy en la llamada a la api");
+        post("http://nidorana.fib.upc.edu/api/users/" + SingletonSession.Instance().getMail() + "/trainnings/5ce04fa2dbb77b12d0c7c2e2" , jsonBody, callback);
     }
 
     @Override
@@ -205,8 +205,8 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
 
     @Override
     public void getStatsTraining(RunnimalApiCallback<StatsTraining> statsTrainingRunnimalApiCallback) {
-        //api/users/:usermail/trainnings/:trainningid?action=statistics
-      /*  get("http://nidorana.fib.upc.edu/api/users/" + SingletonSession.Instance().getMail() + "/trainnings?action=statistics", //
+        //api/users/:usermail/trainnings?action=statistics
+       get("http://nidorana.fib.upc.edu/api/users/" + SingletonSession.Instance().getMail() + "/trainnings?action=statistics", //
 
 
 
@@ -214,14 +214,25 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
                     return jacksonFactory.toObject(response, StatsTraining.class);
 
                 }, //
-                statsTrainingRunnimalApiCallback);*/
+                statsTrainingRunnimalApiCallback);
 
     }
 
     @Override
     public void getStatsWalks(RunnimalApiCallback<StatsWalks> statsWalksRunnimalApiCallback) {
+        // /api/users/:usermail/walks/statistics
+        get("http://nidorana.fib.upc.edu/api/users/" + SingletonSession.Instance().getMail() + "/walks/statistics", //
+
+
+
+                response -> {
+                    return jacksonFactory.toObject(response, StatsWalks.class);
+
+                }, //
+                statsWalksRunnimalApiCallback);
 
     }
+
 
 
     @Override
