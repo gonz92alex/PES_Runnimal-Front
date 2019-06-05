@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
@@ -25,24 +24,32 @@
                 android:contentDescription="Imagen entrenamiento"
                 android:src="@drawable/image_placeholder"/>
 
-            <TextView
-                android:id="@+id/text_user_alias"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/text_margin"
-                android:layout_gravity="center_vertical"
-                android:textAppearance="?attr/textAppearanceListItem" />
+                android:orientation="vertical"
+                android:layout_gravity="center_vertical">
+                <TextView
+                    android:id="@+id/text_user_alias"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/text_margin"
+                    android:layout_gravity="center_vertical"
+                    android:textAppearance="?attr/textAppearanceListItem" />
 
-            <TextView
-                android:id="@+id/text_user_points"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/text_margin"
-                android:layout_gravity="center_vertical"
-                android:textAppearance="?attr/textAppearanceListItem" />
+                <TextView
+                    android:id="@+id/text_user_points"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/text_margin"
+                    android:layout_gravity="center_vertical"
+                    android:textAppearance="?attr/textAppearanceListItem" />
+            </LinearLayout>
+
+
 
         </LinearLayout>
     </android.support.v7.widget.CardView>
-</LinearLayout>
+</RelativeLayout>
 
 
