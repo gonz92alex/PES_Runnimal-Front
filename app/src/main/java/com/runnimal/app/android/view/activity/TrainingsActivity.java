@@ -52,12 +52,13 @@ public class TrainingsActivity extends BaseActivity implements TrainingsPresente
         initializeAdapter();
         initializeRecyclerView();
         initializeSearch();
-        presenter.initialize();
+
 
         //mandar el idioma de los entrenamientos que nos interesan
         SharedPreferences prefs = getSharedPreferences("language", MODE_PRIVATE);
-        String idioma =  prefs.getString("lan", ""); //toDO pon el por defecto que sea
+        String idioma =  prefs.getString("lan", "ES"); //toDO pon el por defecto que sea
         presenter.setIdioma(idioma);
+        presenter.initialize();
     }
 
     @Override
