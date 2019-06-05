@@ -91,7 +91,10 @@ public class LoginActivity extends AppCompatActivity implements LoginPresenter.V
         editor.putString("id", id);
         editor.apply();
 
-        MapActivity.open(this);
+        Intent intent = new Intent(getApplicationContext(), MapActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
     }
 
     private void bindViews() {
@@ -152,7 +155,10 @@ public class LoginActivity extends AppCompatActivity implements LoginPresenter.V
             editor.putString("email", "ash@pokemon.com");
             editor.apply();
 
-            MapActivity.open(this);
+            Intent intent = new Intent(getApplicationContext(), MapActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            finish();
         });
     }
 }

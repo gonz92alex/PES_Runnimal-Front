@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
             SingletonSession.Instance().setId(id);
             SingletonSession.Instance().setPhoto(URI.create("http://nidorana.fib.upc.edu/api/photo/users/" + email));
             startActivity(new Intent(this, MapActivity.class));
+            finish();
         }
     }
 

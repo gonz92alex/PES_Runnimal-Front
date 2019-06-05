@@ -98,6 +98,14 @@ public class SignUpActivity extends AppCompatActivity implements SignUpPresenter
         SingletonSession.Instance().setUsername(owner.getAlias());
         SingletonSession.Instance().setId(owner.getId());
         SingletonSession.Instance().setPhoto(URI.create("http://nidorana.fib.upc.edu/api/photo/users/" + owner.getEmail()));
+
+        SharedPreferences userDetail = getSharedPreferences("userdetails", MODE_PRIVATE);
+        SharedPreferences.Editor editor = userDetail.edit();
+        editor.putString("email", owner.getEmail());
+        editor.putString("alias", owner.getAlias());
+
+        editor.apply();
+
         MapActivity.open(this);
     }
 
