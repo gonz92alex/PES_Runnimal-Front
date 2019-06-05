@@ -4,6 +4,7 @@ import com.runnimal.app.android.data.api.RunnimalApi;
 import com.runnimal.app.android.data.repository.StatisticsRepository;
 import com.runnimal.app.android.data.repository.TrainingRepository;
 import com.runnimal.app.android.domain.StatsTraining;
+import com.runnimal.app.android.domain.StatsWalks;
 import com.runnimal.app.android.domain.Training;
 
 import java.util.List;
@@ -30,6 +31,25 @@ public class StatisticsRepositoryImpl implements StatisticsRepository {
                         @Override
                         public void responseOK(StatsTraining training) {
                             emitter.onNext(training);
+                            emitter.onComplete();
+                        }
+
+                        @Override
+                        public void responseError(Exception e) {
+                            emitter.onError(e);
+                        }
+                    });
+        });
+    }
+
+    @Override
+    public Observable<StatsWalks> getStatsWalks() {
+        return Observable.create(emitter -> {
+            api.getStatsWalks(
+                    new RunnimalApi.RunnimalApiCallback<StatsWalks>() {
+                        @Override
+                        public void responseOK(StatsWalks walks) {
+                            emitter.onNext(walks);
                             emitter.onComplete();
                         }
 

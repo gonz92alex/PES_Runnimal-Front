@@ -11,8 +11,10 @@ import lombok.experimental.Accessors;
 
 @Data
 @Accessors(chain = true)
-public class StatsTraining {
+public class StatsWalks {
 
     @JsonAlias("_id")
-    private String completedTrainnings; //que alguien haga lo de la url bien
+    private String walksNumber;
+    private String totalduration;
+    private String totaldistance;//que alguien haga lo de la url bien
 }

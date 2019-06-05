@@ -11,6 +11,7 @@ import com.runnimal.app.android.domain.Pet;
 import com.runnimal.app.android.domain.Point;
 import com.runnimal.app.android.domain.Ranking;
 import com.runnimal.app.android.domain.StatsTraining;
+import com.runnimal.app.android.domain.StatsWalks;
 import com.runnimal.app.android.domain.Training;
 import com.runnimal.app.android.util.JacksonFactory;
 import com.runnimal.app.android.util.SingletonSession;
@@ -204,6 +205,21 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
 
     @Override
     public void getStatsTraining(RunnimalApiCallback<StatsTraining> statsTrainingRunnimalApiCallback) {
+        //api/users/:usermail/trainnings/:trainningid?action=statistics
+      /*  get("http://nidorana.fib.upc.edu/api/users/" + SingletonSession.Instance().getMail() + "/trainnings?action=statistics", //
+
+
+
+        response -> {
+                    return jacksonFactory.toObject(response, StatsTraining.class);
+
+                }, //
+                statsTrainingRunnimalApiCallback);*/
+
+    }
+
+    @Override
+    public void getStatsWalks(RunnimalApiCallback<StatsWalks> statsWalksRunnimalApiCallback) {
 
     }
 

@@ -9,6 +9,7 @@ import com.runnimal.app.android.domain.Pet;
 import com.runnimal.app.android.domain.Point;
 import com.runnimal.app.android.domain.Ranking;
 import com.runnimal.app.android.domain.StatsTraining;
+import com.runnimal.app.android.domain.StatsWalks;
 import com.runnimal.app.android.domain.Training;
 
 import java.util.List;
@@ -74,6 +75,8 @@ public interface RunnimalApi {
     void listFriendships(RunnimalApiCallback<List<Friendship>> listRunnimalApiCallback);
 
     void getStatsTraining(RunnimalApiCallback<StatsTraining> statsTrainingRunnimalApiCallback);
+
+    void getStatsWalks(RunnimalApiCallback<StatsWalks> statsWalksRunnimalApiCallback);
 
     interface RunnimalApiCallback<T> {
 

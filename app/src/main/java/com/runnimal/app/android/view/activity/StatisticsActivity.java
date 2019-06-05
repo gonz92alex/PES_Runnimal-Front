@@ -28,6 +28,7 @@ import com.runnimal.app.android.view.util.ImageUtils;
 import com.runnimal.app.android.view.viewmodel.OwnerViewModel;
 import com.runnimal.app.android.view.viewmodel.PetViewModel;
 import com.runnimal.app.android.view.viewmodel.StatisticsViewModel;
+import com.runnimal.app.android.view.viewmodel.StatisticsWalksViewModel;
 import com.runnimal.app.android.view.viewmodel.TrainingViewModel;
 import com.spark.submitbutton.SubmitButton;
 import com.squareup.picasso.Picasso;
@@ -43,7 +44,8 @@ public class StatisticsActivity extends BaseActivity implements StatisticsPresen
     @Inject
     StatisticsPresenter presenter;
 
-
+    @BindView(R.id.number_walks)
+    TextView walksNumber;
     @BindView(R.id.number_trainings)
     TextView trainingNumber;
     @BindView(R.id.progress_bar)
@@ -84,6 +86,13 @@ public class StatisticsActivity extends BaseActivity implements StatisticsPresen
     public void showStats(StatisticsViewModel statisticsViewModel) {
         Log.i("showStats", statisticsViewModel.getNumber());
         trainingNumber.setText(statisticsViewModel.getNumber());
+
+    }
+
+    @Override
+    public void showStatsWalks(StatisticsWalksViewModel stats) {
+        Log.i("showStatsWalks", stats.getNumberWalks());
+        walksNumber.setText(stats.getNumberWalks());
 
     }
 

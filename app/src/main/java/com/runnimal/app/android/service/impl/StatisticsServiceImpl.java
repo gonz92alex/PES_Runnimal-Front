@@ -2,6 +2,7 @@ package com.runnimal.app.android.service.impl;
 
 import com.runnimal.app.android.data.repository.StatisticsRepository;
 import com.runnimal.app.android.domain.StatsTraining;
+import com.runnimal.app.android.domain.StatsWalks;
 import com.runnimal.app.android.service.AbstractService;
 import com.runnimal.app.android.service.StatisticsService;
 
@@ -29,6 +30,11 @@ public class StatisticsServiceImpl extends AbstractService implements Statistics
     @Override
     public void getTrainingStats(DisposableObserver<StatsTraining> callback) {
         execute(statisticsRepository.getStatsTraining(), callback);
+    }
+
+    @Override
+    public void getWalkStats(DisposableObserver<StatsWalks> callback) {
+        execute(statisticsRepository.getStatsWalks(), callback);
     }
 
 }

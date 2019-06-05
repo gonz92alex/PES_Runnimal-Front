@@ -10,6 +10,7 @@ import com.runnimal.app.android.domain.Pet;
 import com.runnimal.app.android.domain.Point;
 import com.runnimal.app.android.domain.Ranking;
 import com.runnimal.app.android.domain.StatsTraining;
+import com.runnimal.app.android.domain.StatsWalks;
 import com.runnimal.app.android.domain.Training;
 import com.runnimal.app.android.util.IOUtils;
 import com.runnimal.app.android.util.JacksonFactory;
@@ -37,6 +38,7 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
     private static final String FRIENDS_FILE = "json/friends.json";
     private static final String LOGIN_FILE = "json/login.json";
     private static final String STATS_FILE = "json/trainingStats.json";
+    private static final String WALK_STATS_FILE = "json/walkStats.json";
 
     private final JacksonFactory jacksonFactory;
 
@@ -248,6 +250,15 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
             statsTrainingRunnimalApiCallback.responseOK(jacksonFactory.toObject(IOUtils.getResource(STATS_FILE), StatsTraining.class));
         } catch (Exception e) {
             statsTrainingRunnimalApiCallback.responseError(e);
+        }
+    }
+
+    @Override
+    public void getStatsWalks(RunnimalApiCallback<StatsWalks> statsWalksRunnimalApiCallback) {
+        try {
+            statsWalksRunnimalApiCallback.responseOK(jacksonFactory.toObject(IOUtils.getResource(WALK_STATS_FILE), StatsWalks.class));
+        } catch (Exception e) {
+            statsWalksRunnimalApiCallback.responseError(e);
         }
     }
 

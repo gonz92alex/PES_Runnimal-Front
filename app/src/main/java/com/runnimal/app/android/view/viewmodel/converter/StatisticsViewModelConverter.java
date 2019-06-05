@@ -16,7 +16,7 @@ public class StatisticsViewModelConverter {
         }
 
         StatisticsViewModel statisticsViewModel = new StatisticsViewModel() //
-                .setNumber(statsTraining.getNumber());
+                .setNumber(statsTraining.getCompletedTrainnings());
 
 
 
