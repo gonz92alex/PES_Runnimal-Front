@@ -77,4 +77,6 @@
     <string name="point_type_filter_pipican">Pipican</string>
     <string name="point_type_filter_other">Other</string>
     <string name="logout">Logout</string>
+    <string name="fill_all_the_camps">You have to fill all the text camps</string>
+    <string name="missing_params">Missing parameters</string>
 </resources>
