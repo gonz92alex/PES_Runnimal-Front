@@ -155,7 +155,9 @@ public abstract class BaseActivity extends AppCompatActivity {
                 SharedPreferences prefs =
                         getSharedPreferences("userdetails", MODE_PRIVATE);
                 prefs.edit().clear().apply();
-                startActivity(new Intent(this, MainActivity.class));
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
             }
             return false;
         });

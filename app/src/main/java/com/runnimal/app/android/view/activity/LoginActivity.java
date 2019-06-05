@@ -81,6 +81,7 @@ public class LoginActivity extends AppCompatActivity implements LoginPresenter.V
         SingletonSession.Instance().setUsername(alias);
         SingletonSession.Instance().setMail(email.getText().toString());
         SingletonSession.Instance().setToken(token);
+        SingletonSession.Instance().setPhoto(URI.create("http://nidorana.fib.upc.edu/api/photo/users/" + email.getText().toString()));
 
         SharedPreferences userDetail = getSharedPreferences("userdetails", MODE_PRIVATE);
         SharedPreferences.Editor editor = userDetail.edit();
@@ -148,7 +149,6 @@ public class LoginActivity extends AppCompatActivity implements LoginPresenter.V
             editor.putString("token", "8895cf3e80bd52ed5067a1b9946");
             editor.putString("alias", "Ash");
             editor.putString("id", "5c9518c262d914013dd5af3b");
-
             editor.putString("email", "ash@pokemon.com");
             editor.apply();
 
