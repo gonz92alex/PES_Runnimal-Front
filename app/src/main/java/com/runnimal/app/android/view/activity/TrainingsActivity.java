@@ -1,5 +1,6 @@
 package com.runnimal.app.android.view.activity;
 
+import android.content.SharedPreferences;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -52,6 +53,11 @@ public class TrainingsActivity extends BaseActivity implements TrainingsPresente
         initializeRecyclerView();
         initializeSearch();
         presenter.initialize();
+
+        //mandar el idioma de los entrenamientos que nos interesan
+        SharedPreferences prefs = getSharedPreferences("language", MODE_PRIVATE);
+        String idioma =  prefs.getString("lan", ""); //toDO pon el por defecto que sea
+        presenter.setIdioma(idioma);
     }
 
     @Override
