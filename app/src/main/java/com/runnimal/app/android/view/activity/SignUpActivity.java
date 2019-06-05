@@ -124,13 +124,8 @@ public class SignUpActivity extends AppCompatActivity implements SignUpPresenter
         createButton.setOnClickListener(view -> {
             if (alias.getText().toString().equals("") || email.getText().toString().equals("") || password.getText().toString().equals("")) {
                 new AlertDialog.Builder(this)
-                        .setTitle("Missing parameters")
-                        .setMessage("You have to fill first all the text camps")
-
-                        // A null listener allows the button to dismiss the dialog and take no further action.
-                        // The dialog is automatically dismissed when a dialog button is clicked.
+                        .setView(R.layout.alert_dialog)
                         .setPositiveButton(android.R.string.ok, null)
-                        .setIcon(android.R.drawable.ic_dialog_alert)
                         .show();
             } else {
                 Owner owner = new Owner() //

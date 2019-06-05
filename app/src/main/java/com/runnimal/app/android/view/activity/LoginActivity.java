@@ -124,13 +124,8 @@ public class LoginActivity extends AppCompatActivity implements LoginPresenter.V
             String passwordTxt = password.getText().toString();
             if (emailTxt.equals("") || passwordTxt.equals("")) {
                 new AlertDialog.Builder(this)
-                        .setTitle(R.string.missing_params)
-                        .setMessage(R.string.fill_all_the_camps)
-
-                        // A null listener allows the button to dismiss the dialog and take no further action.
-                        // The dialog is automatically dismissed when a dialog button is clicked.
+                        .setView(R.layout.alert_dialog)
                         .setPositiveButton(android.R.string.ok, null)
-                        .setIcon(android.R.drawable.ic_dialog_alert)
                         .show();
             } else {
                 presenter.login(emailTxt, passwordTxt);
