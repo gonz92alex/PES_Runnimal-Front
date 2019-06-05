@@ -70,4 +70,6 @@
     <string name="missing_params">Campos vacíos</string>
     <string name="permission_rationale_location">El acceso al servicio de localización es necesario para poder disponer de todas las funcionalidades, como mostrar su ubicación actual en el mapa y realizar un seguimiento de sus rutas.</string>
     <string name="fill_all_the_camps">Porfavor, rellena todos los campos de texto</string>
+    <string name="standardError_Msg">Ups! Algo ha ido mal...</string>
+    <string name="isNowOwner">ha sido añadido como dueño</string>
 </resources>

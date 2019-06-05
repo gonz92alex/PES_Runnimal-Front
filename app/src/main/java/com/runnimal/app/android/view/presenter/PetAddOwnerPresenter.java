@@ -35,7 +35,8 @@ public class PetAddOwnerPresenter extends Presenter<PetAddOwnerPresenter.View> {
 
                     @Override
                     public void onNext(String response) {
-                        Log.d("refactor", "onNext: hecho");
+                        if (!response.isEmpty()) getView().onOwnerAdded();
+                        else getView().onError();
                     }
 
                     @Override
@@ -46,7 +47,7 @@ public class PetAddOwnerPresenter extends Presenter<PetAddOwnerPresenter.View> {
 
                     @Override
                     public void onComplete() {
-                        Log.d("refactor", "onComplete: hecho");
+
                     }
                 });
     }
@@ -54,5 +55,6 @@ public class PetAddOwnerPresenter extends Presenter<PetAddOwnerPresenter.View> {
     public interface View extends Presenter.View {
 
         void onOwnerAdded();
+        void onError();
     }
 }

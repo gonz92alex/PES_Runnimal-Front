@@ -17,7 +17,8 @@ allprojects {
         jcenter()
         maven {
             url 'https://dl.bintray.com/spark/maven'
-        }
+            }
+        maven { url "https://jitpack.io" }
     }
 
     //apply plugin: 'checkstyle'
