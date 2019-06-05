@@ -15,7 +15,6 @@ import com.runnimal.app.android.data.repository.RankingRepository;
 import com.runnimal.app.android.data.repository.StatisticsRepository;
 import com.runnimal.app.android.data.repository.TrainingRepository;
 import com.runnimal.app.android.data.repository.WalkRepository;
-import com.runnimal.app.android.data.repository.impl.FriendsRepositoryImpl;
 import com.runnimal.app.android.data.repository.impl.FriendshipRepositoryImpl;
 import com.runnimal.app.android.data.repository.impl.MediaRepositoryImpl;
 import com.runnimal.app.android.data.repository.impl.OwnerRepositoryImpl;
@@ -84,7 +83,6 @@ public class DataModule {
     PointRepository pointRepository(PointRepositoryImpl pointRepository) {
         return pointRepository;
     }
-
 
 
     @Provides
