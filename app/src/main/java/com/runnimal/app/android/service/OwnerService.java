@@ -22,7 +22,7 @@ public interface OwnerService {
 
     void getFriendRequests(String ownerEmail, DisposableObserver<List<FriendRequest>> callback);
 
-    void isFriend(String friendEmail, DisposableObserver<Boolean> callback);
+    void isFriend(String friendEmail, DisposableObserver<String> callback);
 
     void createFriendRequest(String requestedEmail, DisposableObserver<String> callback);
 

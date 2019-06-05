@@ -148,8 +148,8 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
     }
 
     @Override
-    public void isFriend(String friendEmail, RunnimalApiCallback<Boolean> callback) {
-        callback.responseOK(true);
+    public void isFriend(String friendEmail, RunnimalApiCallback<String> callback) {
+        callback.responseOK("[{\"_id\":\"5cf4329ed8449607555a43c5\",\"user1\":{\"_id\":\"5cf3e80bd52ed5067a1b9946\",\"alias\":\"nuevoUser\",\"email\":\"nuevoUser@pokemon.com\",\"password\":\"$2b$10$hpSFI911JPdWW8Y2TnavautRMVLeXb.EugNQDJME4NPjd18cUr4IG\",\"__v\":0,\"points\":70},\"user2\":{\"_id\":\"5c9518c262d914013dd5af3b\",\"alias\":\"Swafta\",\"email\":\"ash@pokemon.com\",\"password\":\"pikachu\",\"__v\":0,\"points\":1640},\"date\":\"Sun Jun 02 2019 20:33:34 GMT+0000 (Coordinated Universal Time)\",\"type\":\"friend\",\"__v\":0}]");
     }
 
     @Override

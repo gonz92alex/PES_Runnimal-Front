@@ -59,7 +59,7 @@ public class OwnerServiceImpl extends AbstractService implements OwnerService {
     }
 
     @Override
-    public void isFriend(String friendEmail, DisposableObserver<Boolean> callback) {
+    public void isFriend(String friendEmail, DisposableObserver<String> callback) {
         execute(ownerRepository.isFriend(friendEmail), callback);
     }
 

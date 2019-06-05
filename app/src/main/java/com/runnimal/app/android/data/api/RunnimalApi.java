@@ -44,7 +44,7 @@ public interface RunnimalApi {
 
     void getFriendRequests(String ownerEmail, RunnimalApiCallback<List<FriendRequest>> callback);
 
-    void isFriend(String friendEmail, RunnimalApiCallback<Boolean> callback);
+    void isFriend(String friendEmail, RunnimalApiCallback<String> callback);
 
     void createFriendRequest(String requestedEmail, RunnimalApiCallback<String> callback);
 

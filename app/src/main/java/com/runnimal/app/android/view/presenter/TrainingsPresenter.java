@@ -29,6 +29,7 @@ public class TrainingsPresenter extends Presenter<TrainingsPresenter.View> {
     }
 
     public void setIdioma(String idioma){
+        Log.d("refactor", "setIdioma: " + idioma);
         this.idioma = idioma;
     }
 

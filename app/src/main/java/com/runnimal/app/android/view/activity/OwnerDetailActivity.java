@@ -106,7 +106,7 @@ public class OwnerDetailActivity extends BaseActivity implements OwnerDetailPres
             editOrFriendImage.setImageResource(R.drawable.icon_edit);
             initializeEditImageButton(owner);
         } else {
-            ownerProfilePresenter.checkFriendRequestState();
+            ownerProfilePresenter.checkFriend();
         }
     }
 

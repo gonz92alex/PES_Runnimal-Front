@@ -311,12 +311,10 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
     }
 
     @Override
-    public void isFriend(String friendEmail, RunnimalApiCallback<Boolean> callback) {
+    public void isFriend(String friendEmail, RunnimalApiCallback<String> callback) {
         get("http://nidorana.fib.upc.edu/api/friends/" + SingletonSession.Instance().getMail() + "/" + friendEmail, //
                 response -> {
-                    // TODO
-                    return true;
-
+                    return response;
                 }, //
                 callback);
     }
@@ -331,8 +329,9 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
     }
 
     @Override
-    public void deleteFriend(String ownerId, RunnimalApiCallback<String> callback) {
-        delete("http://nidorana.fib.upc.edu/api/friends/" + ownerId, callback);
+    public void deleteFriend(String friendshipId, RunnimalApiCallback<String> callback) {
+        Log.d("refactor", "deleteFriend: " + friendshipId);
+        delete("http://nidorana.fib.upc.edu/api/friends/" + friendshipId, callback);
     }
 
     @Override
