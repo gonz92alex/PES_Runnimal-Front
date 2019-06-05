@@ -20,7 +20,7 @@ public interface RunnimalApi {
 
     void signup(String email, String password, String alias,RunnimalApiCallback<String> callback);
 
-    void listTrainings(RunnimalApiCallback<List<Training>> callback);
+    void listTrainings(String idioma, RunnimalApiCallback<List<Training>> callback);
 
     void getTraining(String id, RunnimalApiCallback<Training> callback);
 

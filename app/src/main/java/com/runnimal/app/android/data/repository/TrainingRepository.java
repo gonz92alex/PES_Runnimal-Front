@@ -8,7 +8,7 @@ import io.reactivex.Observable;
 
 public interface TrainingRepository {
 
-    Observable<List<Training>> list();
+    Observable<List<Training>> list(String idioma);
 
     Observable<Training> get(String id);
 

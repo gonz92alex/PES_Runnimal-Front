@@ -1,6 +1,7 @@
 package com.runnimal.app.android.view.presenter;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.runnimal.app.android.domain.Training;
 import com.runnimal.app.android.service.MediaService;
@@ -35,7 +36,8 @@ public class TrainingsPresenter extends Presenter<TrainingsPresenter.View> {
     public void initialize() {
         super.initialize();
         getView().showLoading();
-        trainingService.list(new DisposableObserver<List<Training>>() {
+        Log.i("idioma1", ""+idioma);
+        trainingService.list(idioma, new DisposableObserver<List<Training>>() {
 
             @Override
             public void onNext(List<Training> trainings) {

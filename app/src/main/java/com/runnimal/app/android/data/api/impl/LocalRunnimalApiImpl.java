@@ -64,7 +64,7 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
     }
 
     @Override
-    public void listTrainings(RunnimalApiCallback<List<Training>> callback) {
+    public void listTrainings(String idioma, RunnimalApiCallback<List<Training>> callback) {
         try {
             callback.responseOK(jacksonFactory.toList(IOUtils.getResource(TRAININGS_FILE), Training.class));
         } catch (Exception e) {

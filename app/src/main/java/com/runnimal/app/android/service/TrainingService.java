@@ -8,7 +8,7 @@ import io.reactivex.observers.DisposableObserver;
 
 public interface TrainingService {
 
-    void list(DisposableObserver<List<Training>> callback);
+    void list(String idioma, DisposableObserver<List<Training>> callback);
 
     void get(String id, DisposableObserver<Training> callback);
 

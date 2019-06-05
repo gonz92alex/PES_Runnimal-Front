@@ -55,7 +55,8 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
     }
 
     @Override
-    public void listTrainings(RunnimalApiCallback<List<Training>> callback) {
+    public void listTrainings(String idioma, RunnimalApiCallback<List<Training>> callback) {
+        Log.i("idioma", "hola" + idioma);
         get("http://nidorana.fib.upc.edu/api/trainnings", //
                 response -> {
                     return jacksonFactory.toList(response, Training.class);

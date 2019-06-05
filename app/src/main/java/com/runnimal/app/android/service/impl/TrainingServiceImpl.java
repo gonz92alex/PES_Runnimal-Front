@@ -28,8 +28,8 @@ public class TrainingServiceImpl extends AbstractService implements TrainingServ
     }
 
     @Override
-    public void list(DisposableObserver<List<Training>> callback) {
-        execute(trainingRepository.list(), callback);
+    public void list(String idioma, DisposableObserver<List<Training>> callback) {
+        execute(trainingRepository.list(idioma), callback);
     }
 
     @Override
