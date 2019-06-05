@@ -46,6 +46,11 @@ public class SettingsActivity extends BaseActivity {
             String langCode = (String) langSpinner.getSelectedItem();
             Locale langLocale = Locale.forLanguageTag(langCode);
 
+            SharedPreferences languageDetail = getSharedPreferences("language", MODE_PRIVATE);
+            SharedPreferences.Editor editor = languageDetail.edit();
+            editor.putString("lan", langCode);
+            editor.apply();
+
             Configuration config = new Configuration();
 
             //TODO: implementar bien
