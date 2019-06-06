@@ -11,7 +11,6 @@ public class WalkViewModelConverter {
                 .setRoute(walk.getRoute()) //
                 .setStart(walk.getStart()) //
                 .setEnd(walk.getEnd()) //
-                .setDuration(walk.getDuration()) //
                 .setDistance(walk.getDistance());
 
         walkViewModel.setOwner(OwnerViewModelConverter.convert(walk.getOwner()));

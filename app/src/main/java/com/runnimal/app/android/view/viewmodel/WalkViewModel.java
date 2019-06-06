@@ -16,7 +16,6 @@ public class WalkViewModel {
     private List<LatLon> route;
     private Instant start;
     private Instant end;
-    private int duration;
     private float distance;
     private OwnerViewModel owner;
 }
