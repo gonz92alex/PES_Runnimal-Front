@@ -1,5 +1,7 @@
 package com.runnimal.app.android.view.presenter;
 
+import android.widget.Toast;
+
 import com.runnimal.app.android.domain.LatLon;
 import com.runnimal.app.android.domain.Walk;
 import com.runnimal.app.android.service.MediaService;
@@ -72,6 +74,7 @@ public class WalkPresenter extends Presenter<WalkPresenter.View> {
 
             @Override
             public void onError(Throwable e) {
+                getView().invalidNewWalk();
             }
 
             @Override
@@ -85,6 +88,8 @@ public class WalkPresenter extends Presenter<WalkPresenter.View> {
         void showWalksList(List<WalkViewModel> walks);
 
         void showNewWalk(WalkViewModel walk);
+
+        void invalidNewWalk();
 
         void drawCurrentRoute(List<LatLon> route);
 

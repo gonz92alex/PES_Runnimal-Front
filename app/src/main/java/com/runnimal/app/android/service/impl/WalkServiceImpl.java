@@ -9,8 +9,12 @@ import com.runnimal.app.android.service.AbstractService;
 import com.runnimal.app.android.service.WalkService;
 
 import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -20,6 +24,10 @@ import io.reactivex.observers.DisposableObserver;
 import lombok.Getter;
 
 public class WalkServiceImpl extends AbstractService implements WalkService {
+
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT) //
+            .withLocale(Locale.forLanguageTag("es-ES")) //
+            .withZone(ZoneId.of("Europe/Paris"));
 
     private final WalkRepository walkRepository;
     @Getter
@@ -58,11 +66,19 @@ public class WalkServiceImpl extends AbstractService implements WalkService {
     @Override
     public void end(float distance, DisposableObserver<Walk> callback) {
         Log.d("WALK", "end");
-        if (route.size() > 10) {
+        if (route.size() > 1) {
             walk.setRoute(route);
             walk.setEnd(Instant.now());
             walk.setDistance(distance);
+            walk.setDuration(-1);
+
+            String title = DATE_TIME_FORMATTER.format(walk.getStart()) + " - " + DATE_TIME_FORMATTER.format(walk.getEnd());
+            walk.setTitle(title);
+
             execute(walkRepository.save(walk), callback);
+        }
+        else {
+            callback.onError(new RuntimeException("Invalid walk"));
         }
     }
 }

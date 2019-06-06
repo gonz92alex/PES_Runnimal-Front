@@ -20,6 +20,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -228,12 +229,15 @@ public class MapActivity extends BaseActivity implements
 
     @Override
     public void showWalksList(List<WalkViewModel> walks) {
-        walks.stream() //
+        List<List<LatLng>> routes = walks.stream() //
                 .map(walk -> {
                     return walk.getRoute().stream() //
                             .map(latLon -> new LatLng(latLon.getLatitude(), latLon.getLongitude())) //
                             .collect(Collectors.toList());
                 }) //
+                .collect(Collectors.toList());
+        routes.stream() //
+                .skip(routes.size() - 1) //
                 .findFirst() //
                 .ifPresent(route -> drawRouteOnMap(map, route, Color.BLUE));
     }
@@ -248,6 +252,12 @@ public class MapActivity extends BaseActivity implements
                         .map(latLon -> new LatLng(latLon.getLatitude(), latLon.getLongitude())) //
                         .collect(Collectors.toList()), //
                 Color.RED);
+    }
+
+    @Override
+    public void invalidNewWalk() {
+        currentWalk.remove();
+        Toast.makeText(this, "Invalid walk", Toast.LENGTH_SHORT).show();
     }
 
     @Override

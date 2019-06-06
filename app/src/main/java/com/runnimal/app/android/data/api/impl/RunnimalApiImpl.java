@@ -344,7 +344,7 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
 
     @Override
     public void listWalks(RunnimalApiCallback<List<Walk>> callback) {
-        get("http://nidorana.fib.upc.edu/api/points", //
+        get("http://nidorana.fib.upc.edu/api/users/" + SingletonSession.Instance().getMail() + "/walks", //
                 response -> {
                     return jacksonFactory.toList(response, Walk.class);
 
@@ -356,7 +356,7 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
     @SneakyThrows
     public void createWalk(Walk walk, RunnimalApiCallback<String> callback) {
         JSONObject jsonBody = new JSONObject(jacksonFactory.toJsonNode(walk).toString()) //
-                .put("owner", SingletonSession.Instance().getMail());
+                .put("usermail", SingletonSession.Instance().getMail());
         post("http://nidorana.fib.upc.edu/api/walks", jsonBody, callback);
     }
 

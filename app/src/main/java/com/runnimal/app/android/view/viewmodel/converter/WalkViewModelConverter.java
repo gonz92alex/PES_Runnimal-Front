@@ -8,6 +8,7 @@ public class WalkViewModelConverter {
     public static WalkViewModel convert(Walk walk) {
 
         WalkViewModel walkViewModel = new WalkViewModel() //
+                .setTitle(walk.getTitle()) //
                 .setRoute(walk.getRoute()) //
                 .setStart(walk.getStart()) //
                 .setEnd(walk.getEnd()) //
