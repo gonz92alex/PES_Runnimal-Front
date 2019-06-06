@@ -99,6 +99,7 @@ public class MapActivity extends BaseActivity implements
     private LocationRequest locationRequest;
     private GoogleApiClient googleApiClient;
     private Location previousLocation;
+    private Location firstLocation;
 
     public static void open(Context context) {
         Intent intent = new Intent(context, MapActivity.class);
@@ -250,6 +251,7 @@ public class MapActivity extends BaseActivity implements
     public void onLocationChanged(Location location) {
         if (isWalkActive) {
             LatLng previousLatLng = null;
+            float distance = 0;
             if (previousLocation != null) {
                 previousLatLng = new LatLng(previousLocation.getLatitude(), previousLocation.getLongitude());
             }
@@ -260,6 +262,9 @@ public class MapActivity extends BaseActivity implements
                 latLon.setLongitude(location.getLongitude());
                 walkPresenter.addPoint(latLon);
 
+                if (previousLocation == null) {
+                    firstLocation = location;
+                }
                 previousLocation = location;
             }
         }
@@ -337,6 +342,7 @@ public class MapActivity extends BaseActivity implements
                 buttonPressed.set(true);
 
                 walkPresenter.startWalk();
+
                 previousLocation = null;
                 isWalkActive = true;
             } else {
@@ -346,7 +352,8 @@ public class MapActivity extends BaseActivity implements
 
                 buttonPressed.set(false);
 
-                walkPresenter.endWalk(-1);
+                walkPresenter.endWalk(firstLocation.distanceTo(previousLocation));
+
                 isWalkActive = false;
             }
         });

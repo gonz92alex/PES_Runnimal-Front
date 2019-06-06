@@ -61,7 +61,7 @@ public class WalkPresenter extends Presenter<WalkPresenter.View> {
         walkService.addPoint(latLon);
     }
 
-    public void endWalk(int distance) {
+    public void endWalk(float distance) {
         walkService.end(distance, new DisposableObserver<Walk>() {
 
             @Override

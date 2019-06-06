@@ -13,6 +13,6 @@ public class Walk {
     private Instant start;
     private Instant end;
     private int duration;
-    private int distance;
+    private float distance;
     private Owner owner;
 }
