@@ -18,5 +18,5 @@ public class Walk {
     private Instant end;
     private float distance;
     private Owner owner; //TODO: User
-    private int duration; //TODO: eliminar
+    private long duration;
 }

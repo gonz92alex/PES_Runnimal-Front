@@ -8,6 +8,7 @@ import com.runnimal.app.android.domain.Walk;
 import com.runnimal.app.android.service.AbstractService;
 import com.runnimal.app.android.service.WalkService;
 
+import java.time.Duration;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -70,7 +71,7 @@ public class WalkServiceImpl extends AbstractService implements WalkService {
             walk.setRoute(route);
             walk.setEnd(Instant.now());
             walk.setDistance(distance);
-            walk.setDuration(-1);
+            walk.setDuration(Duration.between(walk.getStart(), walk.getEnd()).toMinutes());
 
             String title = DATE_TIME_FORMATTER.format(walk.getStart()) + " - " + DATE_TIME_FORMATTER.format(walk.getEnd());
             walk.setTitle(title);
