@@ -425,10 +425,8 @@ public class MapActivity extends BaseActivity implements
             Location bestLocation = null;
             for (String provider : providers) {
                 Location location = locationManager.getLastKnownLocation(provider);
-                Log.d("WALK", "last known location, provider: " + provider + ", location: " + "[" + location.getLatitude() + " ," + location.getLongitude() + "]");
 
-                if (location != null && bestLocation == null || location.getAccuracy() < bestLocation.getAccuracy()) {
-                    Log.d("WALK", "found best last known location: " + "[" + location.getLatitude() + " ," + location.getLongitude() + "]");
+                if (location != null && (bestLocation == null || location.getAccuracy() < bestLocation.getAccuracy())) {
                     bestLocation = location;
                 }
             }
