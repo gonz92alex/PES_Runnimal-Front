@@ -95,6 +95,7 @@ public class MapActivity extends BaseActivity implements
 
     private boolean mPermissionDenied = false;
     private boolean isWalkActive = false;
+    private Polyline currentWalk = null;
     private GoogleMap map;
     private LocationRequest locationRequest;
     private GoogleApiClient googleApiClient;
@@ -240,7 +241,10 @@ public class MapActivity extends BaseActivity implements
 
     @Override
     public void showNewWalk(WalkViewModel walk) {
-        drawRouteOnMap(map, //
+        if (currentWalk != null) {
+            currentWalk.remove();
+        }
+        currentWalk = drawRouteOnMap(map, //
                 walk.getRoute().stream() //
                 .map(latLon -> new LatLng(latLon.getLatitude(), latLon.getLongitude())) //
                 .collect(Collectors.toList()), //
@@ -287,13 +291,13 @@ public class MapActivity extends BaseActivity implements
                 .requestLocationUpdates(googleApiClient, locationRequest, this);
     }
 
-    private void drawRouteOnMap(GoogleMap map, List<LatLng> positions, int color) {
+    private Polyline drawRouteOnMap(GoogleMap map, List<LatLng> positions, int color) {
         PolylineOptions options = new PolylineOptions() //
                 .width(5) //
                 .color(color) //
                 .geodesic(true);
         options.addAll(positions);
-        Polyline polyline = map.addPolyline(options);
+        return map.addPolyline(options);
     }
 
     private void initializeDagger() {
