@@ -17,10 +17,12 @@ import javax.inject.Named;
 
 import io.reactivex.Scheduler;
 import io.reactivex.observers.DisposableObserver;
+import lombok.Getter;
 
 public class WalkServiceImpl extends AbstractService implements WalkService {
 
     private final WalkRepository walkRepository;
+    @Getter
     private final List<LatLon> route;
 
     private Walk walk = null;
@@ -62,6 +64,5 @@ public class WalkServiceImpl extends AbstractService implements WalkService {
             walk.setDistance(distance);
             execute(walkRepository.save(walk), callback);
         }
-        walk = null;
     }
 }

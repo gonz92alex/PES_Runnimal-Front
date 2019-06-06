@@ -59,6 +59,7 @@ public class WalkPresenter extends Presenter<WalkPresenter.View> {
 
     public void addPoint(LatLon latLon) {
         walkService.addPoint(latLon);
+        getView().drawCurrentRoute(walkService.getRoute());
     }
 
     public void endWalk(float distance) {
@@ -84,6 +85,8 @@ public class WalkPresenter extends Presenter<WalkPresenter.View> {
         void showWalksList(List<WalkViewModel> walks);
 
         void showNewWalk(WalkViewModel walk);
+
+        void drawCurrentRoute(List<LatLon> route);
 
     }
 }

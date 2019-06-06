@@ -252,6 +252,18 @@ public class MapActivity extends BaseActivity implements
     }
 
     @Override
+    public void drawCurrentRoute(List<LatLon> route) {
+        if (currentWalk != null) {
+            currentWalk.remove();
+        }
+        currentWalk = drawRouteOnMap(map, //
+                route.stream() //
+                        .map(latLon -> new LatLng(latLon.getLatitude(), latLon.getLongitude())) //
+                        .collect(Collectors.toList()), //
+                Color.GREEN);
+    }
+
+    @Override
     public void onLocationChanged(Location location) {
         if (isWalkActive) {
             LatLng previousLatLng = null;
