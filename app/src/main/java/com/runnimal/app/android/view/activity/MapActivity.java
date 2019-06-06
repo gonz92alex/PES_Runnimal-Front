@@ -16,7 +16,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -246,8 +245,8 @@ public class MapActivity extends BaseActivity implements
         }
         currentWalk = drawRouteOnMap(map, //
                 walk.getRoute().stream() //
-                .map(latLon -> new LatLng(latLon.getLatitude(), latLon.getLongitude())) //
-                .collect(Collectors.toList()), //
+                        .map(latLon -> new LatLng(latLon.getLatitude(), latLon.getLongitude())) //
+                        .collect(Collectors.toList()), //
                 Color.RED);
     }
 
@@ -368,7 +367,9 @@ public class MapActivity extends BaseActivity implements
 
                 buttonPressed.set(false);
 
-                walkPresenter.endWalk(firstLocation.distanceTo(previousLocation));
+                if (firstLocation != null && previousLocation != null) {
+                    walkPresenter.endWalk(firstLocation.distanceTo(previousLocation));
+                }
 
                 isWalkActive = false;
             }
@@ -431,8 +432,6 @@ public class MapActivity extends BaseActivity implements
                 }
             }
             if (bestLocation != null) {
-
-                //Location loc = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
                 CameraUpdate center = CameraUpdateFactory.newLatLng(new LatLng(bestLocation.getLatitude(), bestLocation.getLongitude()));
                 CameraUpdate zoom = CameraUpdateFactory.zoomTo(15);
                 map.moveCamera(center);
