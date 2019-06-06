@@ -29,11 +29,14 @@ public class PetViewModelConverter {
 
         petViewModel.setOwner(OwnerViewModelConverter.convert(pet.getOwner()));
 
-        OwnerViewModel[] ownerViewModels = new OwnerViewModel[pet.getOtherOwners().length];
-        for (int i = 0; i < pet.getOtherOwners().length; i++){
-            ownerViewModels[i] = OwnerViewModelConverter.convert(pet.getOtherOwners()[i]);
+        if (pet.getOtherOwners() != null){
+            OwnerViewModel[] ownerViewModels = new OwnerViewModel[pet.getOtherOwners().length];
+            for (int i = 0; i < pet.getOtherOwners().length; i++){
+                ownerViewModels[i] = OwnerViewModelConverter.convert(pet.getOtherOwners()[i]);
+            }
+            petViewModel.setOtherOwners(ownerViewModels);
         }
-        petViewModel.setOtherOwners(ownerViewModels);
+
 
         return petViewModel;
     }
