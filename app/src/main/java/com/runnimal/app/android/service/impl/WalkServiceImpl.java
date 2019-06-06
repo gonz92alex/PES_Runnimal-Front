@@ -56,10 +56,12 @@ public class WalkServiceImpl extends AbstractService implements WalkService {
     @Override
     public void end(int distance, DisposableObserver<Walk> callback) {
         Log.d("WALK", "end");
-        walk.setRoute(route);
-        walk.setEnd(Instant.now());
-        walk.setDistance(distance);
-        execute(walkRepository.save(walk), callback);
+        if (route.size() > 1) {
+            walk.setRoute(route);
+            walk.setEnd(Instant.now());
+            walk.setDistance(distance);
+            execute(walkRepository.save(walk), callback);
+        }
         walk = null;
     }
 }
