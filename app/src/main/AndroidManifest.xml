@@ -4,6 +4,7 @@
     package="com.runnimal.app.android">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -20,6 +21,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
+        tools:replace="android:label"
         tools:ignore="HardcodedDebugMode">
 
         <activity
@@ -62,13 +64,18 @@
 
         <activity android:name=".view.activity.FriendsActivity" />
 
-        <activity android:name=".view.activity.SearchActivity" />
+        <activity android:name=".view.activity.SearchActivity"
+            android:windowSoftInputMode="stateHidden"/>
 
         <activity android:name=".view.activity.PetAddOwnerActivity" />
 
         <activity android:name=".view.activity.FriendRequestsActivity" />
 
         <activity android:name=".view.activity.SettingsActivity" />
+
+        <activity android:name=".view.activity.StatisticsActivity" />
+
+        <receiver android:name=".view.activity.NotificationReceiver"/>
 
         <uses-library
             android:name="org.apache.http.legacy"

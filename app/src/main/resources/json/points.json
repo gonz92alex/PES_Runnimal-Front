@@ -2,21 +2,21 @@
   {
     "title": "Plaza de la Bicicleta",
     "description": "Podrás contemplar un monumento con bicicletas",
-    "type": "other",
+    "type": "OTHER",
     "photoUrl": "https://lh5.googleusercontent.com/p/AF1QipN5BeJGSc8zZ_JkBUV7jTK92EvU---ZDBrSJdqj=w425-h240-k-no",
     "coord": [41.4103822,2.1941694]
   },
   {
-    "title": "Parque del Clot",
-    "description": "Un parque muy grande con pipican",
-    "type": "pipican",
+    "title": "Plaça de la Creu Roja",
+    "description": "Un perfecto pipican para tu perro",
+    "type": "PIPICAN",
     "photoUrl": "https://lh5.googleusercontent.com/p/AF1QipON8SiE7dM4CmU0yWGzh9vSbqzeQzkIUw1T3TH5=w408-h272-k-no",
     "coord": [41.4080391,2.1880684]
   },
   {
     "title": "Parque del Clot",
     "description": "Un parque muy bonito",
-    "type": "park",
-    "coord": [41.4101021,2.1901963]
+    "type": "PARK",
+    "coord": [41.4079969,2.1903322]
   }
 ]

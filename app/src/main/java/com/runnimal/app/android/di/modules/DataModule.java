@@ -5,26 +5,25 @@ import android.content.Context;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.runnimal.app.android.data.api.RunnimalApi;
-import com.runnimal.app.android.data.api.impl.LocalRunnimalApiImpl;
 import com.runnimal.app.android.data.api.impl.RunnimalApiImpl;
-import com.runnimal.app.android.data.repository.FriendsRepository;
 import com.runnimal.app.android.data.repository.FriendshipRepository;
 import com.runnimal.app.android.data.repository.MediaRepository;
 import com.runnimal.app.android.data.repository.OwnerRepository;
 import com.runnimal.app.android.data.repository.PetRepository;
 import com.runnimal.app.android.data.repository.PointRepository;
 import com.runnimal.app.android.data.repository.RankingRepository;
-import com.runnimal.app.android.data.repository.SearchRepository;
+import com.runnimal.app.android.data.repository.StatisticsRepository;
 import com.runnimal.app.android.data.repository.TrainingRepository;
-import com.runnimal.app.android.data.repository.impl.FriendsRepositoryImpl;
+import com.runnimal.app.android.data.repository.WalkRepository;
 import com.runnimal.app.android.data.repository.impl.FriendshipRepositoryImpl;
 import com.runnimal.app.android.data.repository.impl.MediaRepositoryImpl;
 import com.runnimal.app.android.data.repository.impl.OwnerRepositoryImpl;
 import com.runnimal.app.android.data.repository.impl.PetRepositoryImpl;
 import com.runnimal.app.android.data.repository.impl.PointRepositoryImpl;
 import com.runnimal.app.android.data.repository.impl.RankingRepositoryImpl;
-import com.runnimal.app.android.data.repository.impl.SearchRepositoryImpl;
+import com.runnimal.app.android.data.repository.impl.StatisticsRepositoryImpl;
 import com.runnimal.app.android.data.repository.impl.TrainingRepositoryImpl;
+import com.runnimal.app.android.data.repository.impl.WalkRepositoryImpl;
 
 import javax.inject.Singleton;
 
@@ -78,11 +77,6 @@ public class DataModule {
         return trainingsRepository;
     }
 
-    @Provides
-    @Singleton
-    SearchRepository searchRepository(SearchRepositoryImpl searchRepository) {
-        return searchRepository;
-    }
 
     @Provides
     @Singleton
@@ -93,15 +87,20 @@ public class DataModule {
 
     @Provides
     @Singleton
-    FriendsRepository friendsRepository(FriendsRepositoryImpl friendsRepository) {
-        return friendsRepository;
+    FriendshipRepository friendshipRepository(FriendshipRepositoryImpl friendshipRepository) {
+        return friendshipRepository;
     }
-
 
     @Provides
     @Singleton
-    FriendshipRepository friendshipRepository(FriendshipRepositoryImpl friendshipRepository) {
-        return friendshipRepository;
+    StatisticsRepository statisticsRepository(StatisticsRepositoryImpl statisticsRepository) {
+        return statisticsRepository;
+    }
+
+    @Provides
+    @Singleton
+    WalkRepository walkRepository(WalkRepositoryImpl walkRepository) {
+        return walkRepository;
     }
 
 }

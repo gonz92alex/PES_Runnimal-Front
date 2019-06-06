@@ -2,15 +2,17 @@ package com.runnimal.app.android.data.api;
 
 import android.graphics.Bitmap;
 
-import com.runnimal.app.android.domain.Friend;
 import com.runnimal.app.android.domain.FriendRequest;
 import com.runnimal.app.android.domain.Friendship;
 import com.runnimal.app.android.domain.Owner;
 import com.runnimal.app.android.domain.Pet;
 import com.runnimal.app.android.domain.Point;
 import com.runnimal.app.android.domain.Ranking;
+import com.runnimal.app.android.domain.StatsTraining;
+import com.runnimal.app.android.domain.StatsWalks;
 import com.runnimal.app.android.domain.Training;
 import com.runnimal.app.android.domain.User;
+import com.runnimal.app.android.domain.Walk;
 
 import java.util.List;
 
@@ -18,7 +20,9 @@ public interface RunnimalApi {
 
     void login(String email, String password, RunnimalApiCallback<String> callback);
 
-    void listTrainings(RunnimalApiCallback<List<Training>> callback);
+    void signup(String email, String password, String alias,RunnimalApiCallback<String> callback);
+
+    void listTrainings(String idioma, RunnimalApiCallback<List<Training>> callback);
 
     void getTraining(String id, RunnimalApiCallback<Training> callback);
 
@@ -42,7 +46,7 @@ public interface RunnimalApi {
 
     void getFriendRequests(String ownerEmail, RunnimalApiCallback<List<FriendRequest>> callback);
 
-    void isFriend(String friendEmail, RunnimalApiCallback<Boolean> callback);
+    void isFriend(String friendEmail, RunnimalApiCallback<String> callback);
 
     void createFriendRequest(String requestedEmail, RunnimalApiCallback<String> callback);
 
@@ -50,17 +54,9 @@ public interface RunnimalApi {
 
     void uploadImage(Bitmap image, String path, RunnimalApiCallback<String> callback);
 
-    void listFriends(RunnimalApiCallback<List<Friend>> listRunnimalApiCallback);
-
-    void getFriend(String id, RunnimalApiCallback<Friend> friendRunnimalApiCallback);
-
-    void listUsers(RunnimalApiCallback<List<User>> listRunnimalApiCallback);
-
-    void getUser(String id, RunnimalApiCallback<User> userRunnimalApiCallback);
-
     void listOwners(RunnimalApiCallback<List<Owner>> listRunnimalApiCallback);
 
-    void addPoint(int points, String email, RunnimalApiCallback<String> stringRunnimalApiCallback);
+    void addPoint( String trainingId, RunnimalApiCallback<String> stringRunnimalApiCallback);
 
     void listLocalRanking(RunnimalApiCallback<List<Ranking>> listRunnimalApiCallback);
 
@@ -70,8 +66,6 @@ public interface RunnimalApi {
 
     void listRequests(RunnimalApiCallback<List<Owner>> listRunnimalApiCallback);
 
-    void listFriendship(RunnimalApiCallback<List<Friendship>> listRunnimalApiCallback);
-
     void acceptFriend(String id, RunnimalApiCallback<String> listRunnimalApiCallback);
 
     void listPoints(RunnimalApiCallback<List<Point>> listRunnimalApiCallback);
@@ -79,6 +73,16 @@ public interface RunnimalApi {
     void listFriendshipRequests(RunnimalApiCallback<List<Friendship>> listRunnimalApiCallback);
 
     void rejectFriendship(String id, RunnimalApiCallback<String> callback);
+
+    void listFriendships(RunnimalApiCallback<List<Friendship>> listRunnimalApiCallback);
+
+    void getStatsTraining(RunnimalApiCallback<StatsTraining> statsTrainingRunnimalApiCallback);
+
+    void getStatsWalks(RunnimalApiCallback<StatsWalks> statsWalksRunnimalApiCallback);
+
+    void listWalks(RunnimalApiCallback<List<Walk>> listRunnimalApiCallback);
+
+    void createWalk(Walk walk, RunnimalApiCallback<String> callback);
 
     interface RunnimalApiCallback<T> {
 

@@ -11,6 +11,10 @@ import com.runnimal.app.android.service.OwnerService;
 import com.runnimal.app.android.view.viewmodel.OwnerViewModel;
 import com.runnimal.app.android.view.viewmodel.converter.OwnerViewModelConverter;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.List;
 
 import javax.inject.Inject;
@@ -24,6 +28,8 @@ public class OwnerDetailPresenter extends Presenter<OwnerDetailPresenter.View> {
 
     @Setter
     private String ownerId;
+    @Setter
+    private String friendshipID;
     @Setter
     private String ownerEmail;
 
@@ -44,34 +50,6 @@ public class OwnerDetailPresenter extends Presenter<OwnerDetailPresenter.View> {
                     public void onNext(Owner owner) {
                         OwnerViewModel ownerViewModel = OwnerViewModelConverter.convert(owner);
                         getView().showOwner(ownerViewModel);
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        getView().hideLoading();
-                        e.printStackTrace();
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        getView().hideLoading();
-                    }
-                });
-    }
-
-    public void checkFriendRequestState() {
-        String currentUserId = SingletonSession.Instance().getId();
-        ownerService.getFriendRequests(ownerEmail,
-                new DisposableObserver<List<FriendRequest>>() {
-
-                    @Override
-                    public void onNext(List<FriendRequest> requests) {
-                        if (requests.stream() //
-                                .anyMatch(r -> r.getRequestedId().equals(currentUserId) || r.getRequestingId().equals(currentUserId))) {
-                            getView().showFriendRequestState(FriendRequestState.PENDING);
-                        } else {
-                            checkFriend();
-                        }
                     }
 
                     @Override
@@ -110,7 +88,7 @@ public class OwnerDetailPresenter extends Presenter<OwnerDetailPresenter.View> {
     }
 
     public void deleteFriend() {
-        ownerService.deleteFriend(ownerId,
+        ownerService.deleteFriend(friendshipID,
                 new DisposableObserver<String>() {
 
                     @Override
@@ -131,15 +109,22 @@ public class OwnerDetailPresenter extends Presenter<OwnerDetailPresenter.View> {
                 });
     }
 
-    private void checkFriend() {
-        ownerService.isFriend(ownerEmail, new DisposableObserver<Boolean>() {
-
+    public void checkFriend() {
+        ownerService.isFriend(ownerEmail, new DisposableObserver<String>() {
             @Override
-            public void onNext(Boolean isFriend) {
-                if (isFriend) {
-                    getView().showFriendRequestState(FriendRequestState.OK);
-                } else {
+            public void onNext(String res) {
+                try {
+                    JSONArray jsonArray = new JSONArray(res);
+                    JSONObject jsonObject = jsonArray.getJSONObject(0);
+                    if (jsonObject.getString("type").equals("FRIEND")) {
+                        friendshipID = jsonObject.getString("_id");
+                        getView().showFriendRequestState(FriendRequestState.FRIEND);
+                    } else {
+                        getView().showFriendRequestState(FriendRequestState.PENDING);
+                    }
+                } catch (JSONException e) {
                     getView().showFriendRequestState(FriendRequestState.KO);
+                    e.printStackTrace();
                 }
             }
 

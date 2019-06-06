@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.runnimal.app.android.R;
 import com.runnimal.app.android.RunnimalApplication;
@@ -17,6 +18,7 @@ import com.runnimal.app.android.view.presenter.PetAddOwnerPresenter;
 
 import javax.inject.Inject;
 import butterknife.BindView;
+import es.dmoral.toasty.Toasty;
 
 public class PetAddOwnerActivity extends BaseActivity implements PetAddOwnerPresenter.View {
 
@@ -62,10 +64,8 @@ public class PetAddOwnerActivity extends BaseActivity implements PetAddOwnerPres
         addOwnerButton.setOnClickListener(view -> {
             if (email.getText().toString().equals(""))
                 new AlertDialog.Builder(this)
-                        .setTitle("Missing parameters")
-                        .setMessage("You have to fill first all the text camps")
+                        .setView(R.layout.alert_dialog)
                         .setPositiveButton(android.R.string.ok, null)
-                        .setIcon(android.R.drawable.ic_dialog_alert)
                         .show();
             else{
                 presenter.addOwner(email.getText().toString());
@@ -98,6 +98,12 @@ public class PetAddOwnerActivity extends BaseActivity implements PetAddOwnerPres
 
     @Override
     public void onOwnerAdded() {
-        Log.d("refactor", "onOwnerAdded: ");
+        Toasty.success(this, email.getText().toString() + " " + getText(R.string.isNowOwner), Toast.LENGTH_SHORT, true).show();
+        email.setText("");
+    }
+
+    @Override
+    public void onError() {
+        Toasty.warning(this, R.string.standardError_Msg, Toast.LENGTH_SHORT, true).show();
     }
 }

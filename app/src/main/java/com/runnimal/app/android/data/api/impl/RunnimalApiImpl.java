@@ -4,15 +4,16 @@ import android.util.Log;
 
 import com.android.volley.RequestQueue;
 import com.runnimal.app.android.data.api.RunnimalApi;
-import com.runnimal.app.android.domain.Friend;
 import com.runnimal.app.android.domain.FriendRequest;
 import com.runnimal.app.android.domain.Friendship;
 import com.runnimal.app.android.domain.Owner;
 import com.runnimal.app.android.domain.Pet;
 import com.runnimal.app.android.domain.Point;
 import com.runnimal.app.android.domain.Ranking;
+import com.runnimal.app.android.domain.StatsTraining;
+import com.runnimal.app.android.domain.StatsWalks;
 import com.runnimal.app.android.domain.Training;
-import com.runnimal.app.android.domain.User;
+import com.runnimal.app.android.domain.Walk;
 import com.runnimal.app.android.util.JacksonFactory;
 import com.runnimal.app.android.util.SingletonSession;
 
@@ -41,12 +42,23 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
         JSONObject jsonBody = new JSONObject() //
                 .put("email", email) //
                 .put("password", password);
-        post("http://nidorana.fib.upc.edu/api/login/", jsonBody, callback);
+        post("http://nidorana.fib.upc.edu/api/auth/login", jsonBody, callback);
     }
 
     @Override
-    public void listTrainings(RunnimalApiCallback<List<Training>> callback) {
-        get("http://nidorana.fib.upc.edu/api/trainnings", //
+    @SneakyThrows
+    public void signup(String email, String password, String alias, RunnimalApiCallback<String> callback) {
+        JSONObject jsonBody = new JSONObject() //
+                .put("email", email)
+                .put("password", password)
+                .put("alias", alias);
+        post("http://nidorana.fib.upc.edu/api/auth/signup", jsonBody, callback);
+    }
+
+    @Override
+    public void listTrainings(String idioma, RunnimalApiCallback<List<Training>> callback) {
+        //Log.i("idioma", "hola" + idioma);
+        get("http://nidorana.fib.upc.edu/api/trainnings?lang="+idioma, //
                 response -> {
                     return jacksonFactory.toList(response, Training.class);
 
@@ -77,8 +89,9 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
     @Override
     public void listPets(String ownerEmail, RunnimalApiCallback<List<Pet>> callback) {
         String email = ownerEmail != null ? ownerEmail : SingletonSession.Instance().getMail();
-        get("http://nidorana.fib.upc.edu/api/pets/user/" + email, //
+        get("http://nidorana.fib.upc.edu/api/users/" + email + "/pets", //
                 response -> {
+                    if (response.isEmpty()) return jacksonFactory.toList("[]", Pet.class);
                     return jacksonFactory.toList(response, Pet.class);
 
                 }, //
@@ -132,24 +145,24 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
 
     @Override
     @SneakyThrows
-    public void addPoint(int points, String email, RunnimalApiCallback<String> callback) {
+    public void addPoint(String trainingId, RunnimalApiCallback<String> callback) {
+        // api/users/:usermail/trainnings/:trainningid
         JSONObject jsonBody = new JSONObject();
-        jsonBody.put("points", points);
 
-        Log.d("refactor", "http://nidorana.fib.upc.edu/api/users/" + email + "/addpoints");
-        put("http://nidorana.fib.upc.edu/api/users/" + email + "/addpoints", jsonBody, callback);
+        Log.d("refactor", "estoy en la llamada a la api");
+        post("http://nidorana.fib.upc.edu/api/users/" + SingletonSession.Instance().getMail() + "/trainnings/" + trainingId , jsonBody, callback);
     }
 
     @Override
     public void listLocalRanking(RunnimalApiCallback<List<Ranking>> callback) {
-        get("http://nidorana.fib.upc.edu/api/users/"+SingletonSession.Instance().getMail()+"/ranking", //http://nidorana.fib.upc.edu/api/users/ash@pokemon.com/ranking
+        get("http://nidorana.fib.upc.edu/api/users/" + SingletonSession.Instance().getMail() + "/ranking", //http://nidorana.fib.upc.edu/api/users/ash@pokemon.com/ranking
 
                 response -> {
                     return jacksonFactory.toList(response, Ranking.class);
 
                 }, //
                 callback);
-        Log.d("jajas","http://nidorana.fib.upc.edu/apiusers/"+SingletonSession.Instance().getMail()+"/ranking" );
+
 
     }
 
@@ -158,10 +171,6 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
 
     }
 
-    @Override
-    public void listFriendship(RunnimalApiCallback<List<Friendship>> listRunnimalApiCallback) {
-
-    }
 
     @Override
     public void listFriendshipRequests(RunnimalApiCallback<List<Friendship>> listRunnimalApiCallback) {
@@ -182,6 +191,46 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
             e.printStackTrace();
         }
         put("http://nidorana.fib.upc.edu/api/friends/" + id, jsonBody, callback);
+    }
+
+
+    @Override
+    public void listFriendships(RunnimalApiCallback<List<Friendship>> listRunnimalApiCallback) {
+        get("http://nidorana.fib.upc.edu/api/users/" + SingletonSession.Instance().getMail() + "/friends", //
+                response -> {
+                    return jacksonFactory.toList(response, Friendship.class);
+
+                }, //
+                listRunnimalApiCallback);
+
+    }
+
+    @Override
+    public void getStatsTraining(RunnimalApiCallback<StatsTraining> statsTrainingRunnimalApiCallback) {
+        //api/users/:usermail/trainnings?action=statistics
+        get("http://nidorana.fib.upc.edu/api/users/" + SingletonSession.Instance().getMail() + "/trainnings?action=statistics", //
+
+
+                response -> {
+                    return jacksonFactory.toObject(response, StatsTraining.class);
+
+                }, //
+                statsTrainingRunnimalApiCallback);
+
+    }
+
+    @Override
+    public void getStatsWalks(RunnimalApiCallback<StatsWalks> statsWalksRunnimalApiCallback) {
+        // /api/users/:usermail/walks/statistics
+        get("http://nidorana.fib.upc.edu/api/users/" + SingletonSession.Instance().getMail() + "/walks/statistics", //
+
+
+                response -> {
+                    return jacksonFactory.toObject(response, StatsWalks.class);
+
+                }, //
+                statsWalksRunnimalApiCallback);
+
     }
 
 
@@ -223,7 +272,7 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
     @Override
     @SneakyThrows
     public void createOwner(Owner owner, RunnimalApiCallback<String> callback) {
-        post("http://nidorana.fib.upc.edu/api/login/", new JSONObject(jacksonFactory.toJsonNode(owner).toString()), callback);
+        post("http://nidorana.fib.upc.edu/api/auth/signup", new JSONObject(jacksonFactory.toJsonNode(owner).toString()), callback);
     }
 
 
@@ -251,7 +300,7 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
 
     @Override
     public void getFriendRequests(String ownerEmail, RunnimalApiCallback<List<FriendRequest>> callback) {
-        get("http://nidorana.fib.upc.edu/api/" + ownerEmail + "/friendRequests", //
+        get("http://nidorana.fib.upc.edu/api/users/" + ownerEmail + "/friendRequests", //
                 response -> {
                     return jacksonFactory.toList(response, FriendRequest.class);
 
@@ -260,12 +309,10 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
     }
 
     @Override
-    public void isFriend(String friendEmail, RunnimalApiCallback<Boolean> callback) {
+    public void isFriend(String friendEmail, RunnimalApiCallback<String> callback) {
         get("http://nidorana.fib.upc.edu/api/friends/" + SingletonSession.Instance().getMail() + "/" + friendEmail, //
                 response -> {
-                    // TODO
-                    return true;
-
+                    return response;
                 }, //
                 callback);
     }
@@ -274,14 +321,15 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
     @SneakyThrows
     public void createFriendRequest(String requestedEmail, RunnimalApiCallback<String> callback) {
         JSONObject jsonBody = new JSONObject() //
-                .put("requestingEmail", SingletonSession.Instance().getMail()) //
-                .put("requestedEmail", requestedEmail);
-        post("http://nidorana.fib.upc.edu/api/friendRequests/new", jsonBody, callback);
+                .put("user1", SingletonSession.Instance().getMail()) //
+                .put("user2", requestedEmail);
+        post("http://nidorana.fib.upc.edu/api/friends", jsonBody, callback);
     }
 
     @Override
-    public void deleteFriend(String ownerId, RunnimalApiCallback<String> callback) {
-        delete("http://nidorana.fib.upc.edu/api/friends/" + ownerId, callback);
+    public void deleteFriend(String friendshipId, RunnimalApiCallback<String> callback) {
+        Log.d("refactor", "deleteFriend: " + friendshipId);
+        delete("http://nidorana.fib.upc.edu/api/friends/" + friendshipId, callback);
     }
 
     @Override
@@ -294,27 +342,22 @@ public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
                 callback);
     }
 
-
-    ///OTROS?/////
-
     @Override
-    public void listFriends(RunnimalApiCallback<List<Friend>> listRunnimalApiCallback) {
+    public void listWalks(RunnimalApiCallback<List<Walk>> callback) {
+        get("http://nidorana.fib.upc.edu/api/users/" + SingletonSession.Instance().getMail() + "/walks", //
+                response -> {
+                    return jacksonFactory.toList(response, Walk.class);
 
+                }, //
+                callback);
     }
 
     @Override
-    public void getFriend(String id, RunnimalApiCallback<Friend> friendRunnimalApiCallback) {
-
-    }
-
-    @Override
-    public void listUsers(RunnimalApiCallback<List<User>> listRunnimalApiCallback) {
-
-    }
-
-    @Override
-    public void getUser(String id, RunnimalApiCallback<User> userRunnimalApiCallback) {
-
+    @SneakyThrows
+    public void createWalk(Walk walk, RunnimalApiCallback<String> callback) {
+        JSONObject jsonBody = new JSONObject(jacksonFactory.toJsonNode(walk).toString()) //
+                .put("usermail", SingletonSession.Instance().getMail());
+        post("http://nidorana.fib.upc.edu/api/walks", jsonBody, callback);
     }
 
 }

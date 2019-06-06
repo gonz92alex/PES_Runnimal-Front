@@ -57,5 +57,21 @@
     <string name="email">email</string>
     <string name="World">Global</string>
     <string name="Local">Local</string>
+    <string name="point_type_filter_park">Parc</string>
+    <string name="point_type_filter_other">Altres</string>
+    <string name="point_type_filter_all">Tots</string>
+    <string name="permission_required_toast">Permisos de localització requerits</string>
+    <string name="logout">Tanca sessió</string>
+    <string name="Ranking">Rànquing</string>
+    <string name="Stats">Estadistiques</string>
+    <string name="Time">Temps</string>
+    <string name="Walks">Passejos</string>
+    <string name="Distance">Distància</string>
+    <string name="missing_params">Parametres buits</string>
+    <string name="permission_rationale_location">" L'accés al servei de localització és necessari per poder disposar de totes les funcionalitats, com per mostrar la seva ubicació actual al mapa i fer un seguiment de les seves rutes. "</string>
+    <string name="fill_all_the_camps">" Si us plau, ompli tots els camps de text "</string>
+    <string name="standardError_Msg">Ups! Alguna cosa ha anat malament…</string>
+    <string name="isNowOwner">ha sigut afegit com a amo</string>
+    <string name="additional_owner_explanation">Pots compartir la teva mascota amb altres usuaris afegint-los com a amos adicionals!</string>
 
 </resources>

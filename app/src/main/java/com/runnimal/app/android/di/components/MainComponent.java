@@ -8,6 +8,7 @@ import com.runnimal.app.android.di.modules.ServiceModule;
 import com.runnimal.app.android.view.activity.FriendRequestsActivity;
 import com.runnimal.app.android.view.activity.FriendsActivity;
 import com.runnimal.app.android.view.activity.LoginActivity;
+import com.runnimal.app.android.view.activity.MainActivity;
 import com.runnimal.app.android.view.activity.MapActivity;
 import com.runnimal.app.android.view.activity.OwnerDetailActivity;
 import com.runnimal.app.android.view.activity.OwnerModifyActivity;
@@ -19,6 +20,7 @@ import com.runnimal.app.android.view.activity.PetsActivity;
 import com.runnimal.app.android.view.activity.RankingActivity;
 import com.runnimal.app.android.view.activity.SearchActivity;
 import com.runnimal.app.android.view.activity.SignUpActivity;
+import com.runnimal.app.android.view.activity.StatisticsActivity;
 import com.runnimal.app.android.view.activity.TrainingDetailActivity;
 import com.runnimal.app.android.view.activity.TrainingsActivity;
 
@@ -61,6 +63,10 @@ public interface MainComponent {
     void inject(SearchActivity activity);
 
     void inject(PetAddOwnerActivity activity);
+
+    void inject(MainActivity activity);
+
+    void inject(StatisticsActivity activity);
 
     Context context();
 }

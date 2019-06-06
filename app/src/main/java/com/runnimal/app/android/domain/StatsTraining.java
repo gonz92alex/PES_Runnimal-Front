@@ -11,11 +11,8 @@ import lombok.experimental.Accessors;
 
 @Data
 @Accessors(chain = true)
-public class Friend {
+public class StatsTraining {
 
     @JsonAlias("_id")
-    private String id;
-    private String name;
-    private URI imageUrl; //que alguien haga lo de la url bien
-
+    private String completedTrainnings; //que alguien haga lo de la url bien
 }

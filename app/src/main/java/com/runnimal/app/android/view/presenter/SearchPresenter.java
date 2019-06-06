@@ -1,23 +1,11 @@
 package com.runnimal.app.android.view.presenter;
 
-import com.runnimal.app.android.domain.Friend;
 import com.runnimal.app.android.domain.Owner;
-import com.runnimal.app.android.domain.Training;
-import com.runnimal.app.android.domain.User;
-import com.runnimal.app.android.service.FriendsService;
 import com.runnimal.app.android.service.MediaService;
 import com.runnimal.app.android.service.OwnerService;
-import com.runnimal.app.android.service.SearchService;
-import com.runnimal.app.android.service.TrainingService;
 import com.runnimal.app.android.util.ConverterUtils;
-import com.runnimal.app.android.view.viewmodel.FriendsViewModel;
 import com.runnimal.app.android.view.viewmodel.OwnerViewModel;
-import com.runnimal.app.android.view.viewmodel.SearchViewModel;
-import com.runnimal.app.android.view.viewmodel.TrainingViewModel;
-import com.runnimal.app.android.view.viewmodel.converter.FriendsViewModelConverter;
 import com.runnimal.app.android.view.viewmodel.converter.OwnerViewModelConverter;
-import com.runnimal.app.android.view.viewmodel.converter.SearchViewModelConverter;
-import com.runnimal.app.android.view.viewmodel.converter.TrainingViewModelConverter;
 
 import java.util.List;
 

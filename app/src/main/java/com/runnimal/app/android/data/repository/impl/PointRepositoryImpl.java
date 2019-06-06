@@ -21,6 +21,7 @@ public class PointRepositoryImpl implements PointRepository {
         this.api = api;
     }
 
+    @Override
     public Observable<List<Point>> list() {
         return Observable.create(emitter -> {
             api.listPoints(new RunnimalApi.RunnimalApiCallback<List<Point>>() {

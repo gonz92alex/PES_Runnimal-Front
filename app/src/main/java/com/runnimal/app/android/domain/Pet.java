@@ -27,4 +27,5 @@ public class Pet {
     private PetSize size;
 
     private Owner owner;
+    private Owner[] otherOwners;
 }

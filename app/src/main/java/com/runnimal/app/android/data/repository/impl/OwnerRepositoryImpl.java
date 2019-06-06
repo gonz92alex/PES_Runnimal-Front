@@ -77,6 +77,7 @@ public class OwnerRepositoryImpl implements OwnerRepository {
             });
         });    }
 
+
     @Override
     public Observable<Owner> get(String owner) {
         return Observable.create(emitter -> {
@@ -152,13 +153,13 @@ public class OwnerRepositoryImpl implements OwnerRepository {
         });
     }
 
-    public Observable<Boolean> isFriend(String friendEmail) {
+    public Observable<String> isFriend(String friendEmail) {
         return Observable.create(emitter -> {
             api.isFriend(friendEmail, //
-                    new RunnimalApi.RunnimalApiCallback<Boolean>() {
+                    new RunnimalApi.RunnimalApiCallback<String>() {
                         @Override
-                        public void responseOK(Boolean isFriend) {
-                            emitter.onNext(isFriend);
+                        public void responseOK(String res) {
+                            emitter.onNext(res);
                             emitter.onComplete();
                         }
 

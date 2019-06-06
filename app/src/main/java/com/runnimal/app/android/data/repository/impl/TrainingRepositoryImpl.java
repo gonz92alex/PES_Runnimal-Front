@@ -21,9 +21,9 @@ public class TrainingRepositoryImpl implements TrainingRepository {
         this.api = api;
     }
 
-    public Observable<List<Training>> list() {
+    public Observable<List<Training>> list(String idioma) {
         return Observable.create(emitter -> {
-            api.listTrainings(new RunnimalApi.RunnimalApiCallback<List<Training>>() {
+            api.listTrainings(idioma, new RunnimalApi.RunnimalApiCallback<List<Training>>() {
                 @Override
                 public void responseOK(List<Training> trainings) {
                     emitter.onNext(trainings);
@@ -57,9 +57,9 @@ public class TrainingRepositoryImpl implements TrainingRepository {
     }
 
     @Override
-    public Observable<String> addPoints(int points, String email) {
+    public Observable<String> addPoints(String trainingId) {
         return Observable.create(emitter -> {
-            api.addPoint(points,email, //
+            api.addPoint(trainingId, //
                     new RunnimalApi.RunnimalApiCallback<String>() {
                         @Override
                         public void responseOK(String response) {

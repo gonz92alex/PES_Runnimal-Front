@@ -1,23 +1,23 @@
 package com.runnimal.app.android.di.modules;
 
-import com.runnimal.app.android.service.FriendsService;
 import com.runnimal.app.android.service.FriendshipService;
 import com.runnimal.app.android.service.MediaService;
 import com.runnimal.app.android.service.OwnerService;
 import com.runnimal.app.android.service.PetService;
 import com.runnimal.app.android.service.PointService;
 import com.runnimal.app.android.service.RankingService;
-import com.runnimal.app.android.service.SearchService;
+import com.runnimal.app.android.service.StatisticsService;
 import com.runnimal.app.android.service.TrainingService;
-import com.runnimal.app.android.service.impl.FriendsServiceImpl;
+import com.runnimal.app.android.service.WalkService;
 import com.runnimal.app.android.service.impl.FriendshipServiceImpl;
 import com.runnimal.app.android.service.impl.MediaServiceImpl;
 import com.runnimal.app.android.service.impl.OwnerServiceImpl;
 import com.runnimal.app.android.service.impl.PetServiceImpl;
 import com.runnimal.app.android.service.impl.PointServiceImpl;
 import com.runnimal.app.android.service.impl.RankingServiceImpl;
-import com.runnimal.app.android.service.impl.SearchServiceImpl;
+import com.runnimal.app.android.service.impl.StatisticsServiceImpl;
 import com.runnimal.app.android.service.impl.TrainingServiceImpl;
+import com.runnimal.app.android.service.impl.WalkServiceImpl;
 
 import javax.inject.Singleton;
 
@@ -59,17 +59,6 @@ public class ServiceModule {
         return trainingService;
     }
 
-    @Provides
-    @Singleton
-    FriendsService friendsService(FriendsServiceImpl friendsService) {
-        return friendsService;
-    }
-
-    @Provides
-    @Singleton
-    SearchService searchService(SearchServiceImpl searchService) {
-        return searchService;
-    }
 
     @Provides
     @Singleton
@@ -81,6 +70,18 @@ public class ServiceModule {
     @Singleton
     FriendshipService friendshipService(FriendshipServiceImpl friendshipService) {
         return friendshipService;
+    }
+
+    @Provides
+    @Singleton
+    StatisticsService statisticsService(StatisticsServiceImpl statisticsService) {
+        return statisticsService;
+    }
+
+    @Provides
+    @Singleton
+    WalkService walkService(WalkServiceImpl walkService) {
+        return walkService;
     }
 
 }

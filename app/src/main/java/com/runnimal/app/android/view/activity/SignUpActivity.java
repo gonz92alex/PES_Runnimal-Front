@@ -98,6 +98,14 @@ public class SignUpActivity extends AppCompatActivity implements SignUpPresenter
         SingletonSession.Instance().setUsername(owner.getAlias());
         SingletonSession.Instance().setId(owner.getId());
         SingletonSession.Instance().setPhoto(URI.create("http://nidorana.fib.upc.edu/api/photo/users/" + owner.getEmail()));
+
+        SharedPreferences userDetail = getSharedPreferences("userdetails", MODE_PRIVATE);
+        SharedPreferences.Editor editor = userDetail.edit();
+        editor.putString("email", owner.getEmail());
+        editor.putString("alias", owner.getAlias());
+
+        editor.apply();
+
         MapActivity.open(this);
     }
 
@@ -124,13 +132,8 @@ public class SignUpActivity extends AppCompatActivity implements SignUpPresenter
         createButton.setOnClickListener(view -> {
             if (alias.getText().toString().equals("") || email.getText().toString().equals("") || password.getText().toString().equals("")) {
                 new AlertDialog.Builder(this)
-                        .setTitle("Missing parameters")
-                        .setMessage("You have to fill first all the text camps")
-
-                        // A null listener allows the button to dismiss the dialog and take no further action.
-                        // The dialog is automatically dismissed when a dialog button is clicked.
+                        .setView(R.layout.alert_dialog)
                         .setPositiveButton(android.R.string.ok, null)
-                        .setIcon(android.R.drawable.ic_dialog_alert)
                         .show();
             } else {
                 Owner owner = new Owner() //
@@ -153,12 +156,13 @@ public class SignUpActivity extends AppCompatActivity implements SignUpPresenter
     }
     @Override
     public void setToken(String token){
-        SharedPreferences prefs =
-                getSharedPreferences("user",Context.MODE_PRIVATE);
+        Log.d("refactor", "setToken: " + token);
 
-        SharedPreferences.Editor editor = prefs.edit();
+        SingletonSession.Instance().setToken(token);
+
+        SharedPreferences userDetail = getSharedPreferences("userdetails", MODE_PRIVATE);
+        SharedPreferences.Editor editor = userDetail.edit();
         editor.putString("token", token);
-        editor.commit();
-        System.out.println("TOKEN: "+token);
+        editor.apply();
     }
 }

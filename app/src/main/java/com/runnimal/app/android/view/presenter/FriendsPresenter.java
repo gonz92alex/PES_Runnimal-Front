@@ -1,15 +1,11 @@
 package com.runnimal.app.android.view.presenter;
 
-import com.runnimal.app.android.domain.Friend;
-import com.runnimal.app.android.domain.Training;
-import com.runnimal.app.android.service.FriendsService;
+import com.runnimal.app.android.domain.Friendship;
+import com.runnimal.app.android.service.FriendshipService;
 import com.runnimal.app.android.service.MediaService;
-import com.runnimal.app.android.service.TrainingService;
 import com.runnimal.app.android.util.ConverterUtils;
-import com.runnimal.app.android.view.viewmodel.FriendsViewModel;
-import com.runnimal.app.android.view.viewmodel.TrainingViewModel;
-import com.runnimal.app.android.view.viewmodel.converter.FriendsViewModelConverter;
-import com.runnimal.app.android.view.viewmodel.converter.TrainingViewModelConverter;
+import com.runnimal.app.android.view.viewmodel.FriendshipViewModel;
+import com.runnimal.app.android.view.viewmodel.converter.FriendshipViewModelConverter;
 
 import java.util.List;
 
@@ -19,10 +15,10 @@ import io.reactivex.observers.DisposableObserver;
 
 public class FriendsPresenter extends Presenter<FriendsPresenter.View> {
 
-    private FriendsService friendsService;
+    private FriendshipService friendsService;
 
     @Inject
-    public FriendsPresenter(MediaService mediaService, FriendsService friendsService) {
+    public FriendsPresenter(MediaService mediaService, FriendshipService friendsService) {
         super(mediaService);
         this.friendsService = friendsService;
     }
@@ -30,11 +26,11 @@ public class FriendsPresenter extends Presenter<FriendsPresenter.View> {
     public void initialize() {
         super.initialize();
         getView().showLoading();
-        friendsService.list(new DisposableObserver<List<Friend>>() {
+        friendsService.listFriendship(new DisposableObserver<List<Friendship>>() {
 
             @Override
-            public void onNext(List<Friend> friends) {
-                List<FriendsViewModel> friendsViewModels = ConverterUtils.convert(friends, FriendsViewModelConverter::convert);
+            public void onNext(List<Friendship> friends) {
+                List<FriendshipViewModel> friendsViewModels = ConverterUtils.convert(friends, FriendshipViewModelConverter::convert);
                 getView().showFriendsList(friendsViewModels);
             }
 
@@ -51,14 +47,14 @@ public class FriendsPresenter extends Presenter<FriendsPresenter.View> {
         });
     }
 
-    public void onTrainingClicked(FriendsViewModel friend) {
+    public void onTrainingClicked(FriendshipViewModel friend) {
         getView().openUserScreen(friend);
     }
 
     public interface View extends Presenter.View {
 
-        void showFriendsList(List<FriendsViewModel> friendsList);
+        void showFriendsList(List<FriendshipViewModel> friendsList);
 
-        void openUserScreen(FriendsViewModel training);
+        void openUserScreen(FriendshipViewModel training);
     }
 }

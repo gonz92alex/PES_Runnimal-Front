@@ -8,6 +8,9 @@ import com.runnimal.app.android.service.OwnerService;
 import com.runnimal.app.android.view.viewmodel.OwnerViewModel;
 import com.runnimal.app.android.view.viewmodel.converter.OwnerViewModelConverter;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import javax.inject.Inject;
 
 import io.reactivex.observers.DisposableObserver;
@@ -28,7 +31,13 @@ public class SignUpPresenter extends Presenter<SignUpPresenter.View> {
                     @Override
                     public void onNext(String message) {
                         getView().successfullyCreated(OwnerViewModelConverter.convert(owner));
-                        getView().setToken(message);
+                        try {
+                            JSONObject res = new JSONObject(message);
+                            getView().setToken(res.getString("token"));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
                     }
 
                     @Override

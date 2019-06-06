@@ -13,4 +13,6 @@ public interface FriendshipRepository {
 
     Observable<String> acceptFriend(String id);
     Observable<String> rejectFriend(String id);
+
+    Observable<List<Friendship>> listFriendship();
 }

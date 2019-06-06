@@ -21,6 +21,7 @@ import java.time.LocalDate;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import io.reactivex.Single;
 
 public class PetDetailActivity extends BaseActivity implements PetDetailPresenter.View {
 
@@ -110,9 +111,17 @@ public class PetDetailActivity extends BaseActivity implements PetDetailPresente
             initializeAddOwnerButton(pet);
         }
         else{
-            editImage.setImageResource(R.drawable.ic_remove);
-            initializeEditImageButton(pet, 1);
+            if (pet.checkOwner(SingletonSession.Instance().getMail())){
+                editImage.setImageResource(R.drawable.ic_remove);
+                initializeEditImageButton(pet, 1);
+            }
         }
+    }
+
+    @Override
+    public void onDeleteOwner() {
+        finish();
+        startActivity(new Intent(this, PetsActivity.class));
     }
 
 

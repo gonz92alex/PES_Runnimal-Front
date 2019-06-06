@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.method.SingleLineTransformationMethod;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -14,12 +16,16 @@ import com.runnimal.app.android.RunnimalApplication;
 import com.runnimal.app.android.util.SingletonSession;
 import com.runnimal.app.android.view.presenter.LoginPresenter;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.net.URI;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.Single;
 
 public class LoginActivity extends AppCompatActivity implements LoginPresenter.View {
 
@@ -66,21 +72,29 @@ public class LoginActivity extends AppCompatActivity implements LoginPresenter.V
     }
 
     @Override
-    public void loginOk(String token) {
-        /*
-        Intent LoginIntent = new Intent(this, MapActivity.class);
-        SingletonSession.Instance().setId(owner.getId());
-        SingletonSession.Instance().setUsername(owner.getAlias());
-        SingletonSession.Instance().setMail(owner.getEmail());
-        */
-        SharedPreferences prefs =
-                getSharedPreferences("user",Context.MODE_PRIVATE);
+    public void loginOk(String token, JSONObject user) throws JSONException {
+        String alias = user.getString("alias");
+        String id = user.getString("_id");
 
-        SharedPreferences.Editor editor = prefs.edit();
+        //Intent LoginIntent = new Intent(this, MapActivity.class);
+        SingletonSession.Instance().setId(id);
+        SingletonSession.Instance().setUsername(alias);
+        SingletonSession.Instance().setMail(email.getText().toString());
+        SingletonSession.Instance().setToken(token);
+        SingletonSession.Instance().setPhoto(URI.create("http://nidorana.fib.upc.edu/api/photo/users/" + email.getText().toString()));
+
+        SharedPreferences userDetail = getSharedPreferences("userdetails", MODE_PRIVATE);
+        SharedPreferences.Editor editor = userDetail.edit();
         editor.putString("token", token);
-        editor.commit();
-        System.out.println("TOKEN: "+token);
-        MapActivity.open(this);
+        editor.putString("email", email.getText().toString());
+        editor.putString("alias", alias);
+        editor.putString("id", id);
+        editor.apply();
+
+        Intent intent = new Intent(getApplicationContext(), MapActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
     }
 
     private void bindViews() {
@@ -114,13 +128,8 @@ public class LoginActivity extends AppCompatActivity implements LoginPresenter.V
             String passwordTxt = password.getText().toString();
             if (emailTxt.equals("") || passwordTxt.equals("")) {
                 new AlertDialog.Builder(this)
-                        .setTitle("Missing parameters")
-                        .setMessage("You have to fill first all the text camps")
-
-                        // A null listener allows the button to dismiss the dialog and take no further action.
-                        // The dialog is automatically dismissed when a dialog button is clicked.
+                        .setView(R.layout.alert_dialog)
                         .setPositiveButton(android.R.string.ok, null)
-                        .setIcon(android.R.drawable.ic_dialog_alert)
                         .show();
             } else {
                 presenter.login(emailTxt, passwordTxt);
@@ -132,10 +141,24 @@ public class LoginActivity extends AppCompatActivity implements LoginPresenter.V
         directLoginButton.setOnClickListener(view -> {
             Intent GodIntent = new Intent(this, MapActivity.class);
             SingletonSession.Instance().setMail("ash@pokemon.com");
-            SingletonSession.Instance().setUsername("Swafta");
+            SingletonSession.Instance().setUsername("Ash");
             SingletonSession.Instance().setId("5c9518c262d914013dd5af3b");
+            SingletonSession.Instance().setToken("6895cdec613feb80657305a90b2");
             SingletonSession.Instance().setPhoto(URI.create("http://nidorana.fib.upc.edu/api/photo/users/" + "ash@pokemon.com"));
-            MapActivity.open(this);
+
+            SharedPreferences userDetail = getSharedPreferences("userdetails", MODE_PRIVATE);
+
+            SharedPreferences.Editor editor = userDetail.edit();
+            editor.putString("token", "8895cf3e80bd52ed5067a1b9946");
+            editor.putString("alias", "Ash");
+            editor.putString("id", "5c9518c262d914013dd5af3b");
+            editor.putString("email", "ash@pokemon.com");
+            editor.apply();
+
+            Intent intent = new Intent(getApplicationContext(), MapActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            finish();
         });
     }
 }

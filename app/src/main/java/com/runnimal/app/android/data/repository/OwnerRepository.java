@@ -20,7 +20,7 @@ public interface OwnerRepository {
 
     Observable<List<FriendRequest>> getFriendRequests(String ownerEmail);
 
-    Observable<Boolean> isFriend(String friendEmail);
+    Observable<String> isFriend(String friendEmail);
 
     Observable<String> createFriendRequest(String requestedEmail);
 

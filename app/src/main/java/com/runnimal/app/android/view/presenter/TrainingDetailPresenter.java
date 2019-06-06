@@ -14,6 +14,7 @@ import lombok.Setter;
 public class TrainingDetailPresenter extends Presenter<TrainingDetailPresenter.View> {
 
     private TrainingService trainingService;
+
     @Setter
     private String trainingId;
 
@@ -49,8 +50,8 @@ public class TrainingDetailPresenter extends Presenter<TrainingDetailPresenter.V
                 });
     }
 
-    public void addPoints(int points, String email) {
-        trainingService.addPoints(points, email, //
+    public void addPoints(String trainingId) {
+        trainingService.addPoints(trainingId, //
                 new DisposableObserver<String>() {
 
                     @Override

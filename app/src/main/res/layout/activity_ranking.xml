@@ -69,7 +69,7 @@
                 android:layout_below="@+id/cabecera"
                 app:layoutManager="LinearLayoutManager"
                 tools:context=".view.activity.PetsActivity"
-                tools:listitem="@layout/content_pets_row" />
+                tools:listitem="@layout/content_ranking_row" />
 
 
         <ProgressBar

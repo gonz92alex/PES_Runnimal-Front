@@ -25,4 +25,12 @@ public class PetViewModel {
     private Pet.PetSize size;
 
     private OwnerViewModel owner;
+    private OwnerViewModel[] otherOwners;
+
+    public boolean checkOwner(String mail) {
+        for (int i = 0; i < otherOwners.length; i++){
+            if (otherOwners[i].getEmail().equals(mail)) return true;
+        }
+        return false;
+    }
 }

@@ -6,28 +6,25 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.runnimal.app.android.R;
-import com.runnimal.app.android.domain.Friend;
-import com.runnimal.app.android.domain.FriendRequest;
+import com.runnimal.app.android.view.activity.FriendRequestsActivity;
 import com.runnimal.app.android.view.presenter.FriendRequestsPresenter;
-import com.runnimal.app.android.view.presenter.SearchPresenter;
 import com.runnimal.app.android.view.viewmodel.FriendshipViewModel;
-import com.runnimal.app.android.view.viewmodel.OwnerViewModel;
-import com.runnimal.app.android.view.viewmodel.SearchViewModel;
 
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class FriendRequestsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private final FriendRequestsPresenter presenter;
+    private final FriendRequestsActivity friendRequestsActivity;
     private final List<FriendshipViewModel> usersList;
     private final List<FriendshipViewModel> filteredList;
 
-    public FriendRequestsListAdapter(FriendRequestsPresenter presenter) {
+    public FriendRequestsListAdapter(FriendRequestsPresenter presenter, FriendRequestsActivity friendRequestsActivity) {
         this.presenter = presenter;
+        this.friendRequestsActivity = friendRequestsActivity;
         this.usersList = new ArrayList<>();
         this.filteredList = new ArrayList<>();
     }
@@ -37,7 +34,7 @@ public class FriendRequestsListAdapter extends RecyclerView.Adapter<RecyclerView
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.content_request_row, parent, false);
-        return new FriendRequestsListViewHolder(view, presenter);
+        return new FriendRequestsListViewHolder(view, presenter, this);
     }
 
     @Override
@@ -57,4 +54,13 @@ public class FriendRequestsListAdapter extends RecyclerView.Adapter<RecyclerView
         filteredList.addAll(collection);
     }
 
+
+    public void refresh() {
+        friendRequestsActivity.refresh();
+    }
+
+    public void clearAll() {
+        usersList.clear();
+        filteredList.clear();
+    }
 }

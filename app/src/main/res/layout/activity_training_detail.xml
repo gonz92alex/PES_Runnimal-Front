@@ -58,7 +58,7 @@
                 <LinearLayout
                     android:id="@+id/layout_cabecera"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="1dp"
                     android:background="@color/colorPrimary"
                     android:orientation="vertical"
@@ -79,9 +79,11 @@
                         android:id="@+id/text_detail_training_description"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:singleLine="false"
+                        android:ellipsize="marquee"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="8dp"
-                        android:textSize="24sp" />
+                        android:textSize="20sp" />
 
                 </LinearLayout>
 
@@ -111,18 +113,24 @@
                     app:layout_constraintTop_toBottomOf="@+id/text_detail_training_steps_title"
                     tools:listitem="@layout/content_training_detail_step" />
 
-                <Button
+                <com.spark.submitbutton.SubmitButton
                     android:id="@+id/button_add_points"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="53dp"
+                    android:layout_height="551dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="32dp"
                     android:layout_marginEnd="8dp"
-                    android:background="@drawable/btn_green_rounded"
                     android:text="@string/Completed"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/list_training_steps" />
+                    app:layout_constraintTop_toBottomOf="@+id/list_training_steps"
+                    android:textColor="@color/gray"
+                    app:sub_btn_background="@color/white"
+                    app:sub_btn_duration="3000"
+                    app:sub_btn_line_color="#00FF7F"
+                    app:sub_btn_ripple_color="#00FF7F"
+                    app:sub_btn_tick_color="@color/white"/>
+
 
             </android.support.constraint.ConstraintLayout>
         </ScrollView>

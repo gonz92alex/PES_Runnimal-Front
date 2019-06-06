@@ -13,5 +13,7 @@ public interface FriendshipService {
 
     void acceptFriend(String id, DisposableObserver<String> listDisposableObserver);
     void rejectFriend(String id, DisposableObserver<String> listDisposableObserver);
+
+    void listFriendship(DisposableObserver<List<Friendship>> listDisposableObserver);
 }
 

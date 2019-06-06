@@ -1,5 +1,8 @@
 package com.runnimal.app.android.view.presenter;
 
+import android.content.Context;
+import android.util.Log;
+
 import com.runnimal.app.android.domain.Training;
 import com.runnimal.app.android.service.MediaService;
 import com.runnimal.app.android.service.TrainingService;
@@ -16,6 +19,8 @@ import io.reactivex.observers.DisposableObserver;
 public class TrainingsPresenter extends Presenter<TrainingsPresenter.View> {
 
     private TrainingService trainingService;
+    private String idioma;
+
 
     @Inject
     public TrainingsPresenter(MediaService mediaService, TrainingService trainingService) {
@@ -23,11 +28,17 @@ public class TrainingsPresenter extends Presenter<TrainingsPresenter.View> {
         this.trainingService = trainingService;
     }
 
+    public void setIdioma(String idioma){
+        Log.d("refactor", "setIdioma: " + idioma);
+        this.idioma = idioma;
+    }
+
     @Override
     public void initialize() {
         super.initialize();
         getView().showLoading();
-        trainingService.list(new DisposableObserver<List<Training>>() {
+        Log.i("idioma1", ""+idioma);
+        trainingService.list(idioma, new DisposableObserver<List<Training>>() {
 
             @Override
             public void onNext(List<Training> trainings) {
