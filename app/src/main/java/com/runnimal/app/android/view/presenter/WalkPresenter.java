@@ -62,12 +62,28 @@ public class WalkPresenter extends Presenter<WalkPresenter.View> {
     }
 
     public void endWalk(int distance) {
-        walkService.end(distance);
+        walkService.end(distance, new DisposableObserver<Walk>() {
+
+            @Override
+            public void onNext(Walk walk) {
+                getView().showNewWalk(WalkViewModelConverter.convert(walk));
+            }
+
+            @Override
+            public void onError(Throwable e) {
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
     }
 
     public interface View extends Presenter.View {
 
         void showWalksList(List<WalkViewModel> walks);
+
+        void showNewWalk(WalkViewModel walk);
 
     }
 }

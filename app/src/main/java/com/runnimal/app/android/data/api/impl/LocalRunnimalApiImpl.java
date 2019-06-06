@@ -279,5 +279,4 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
         callback.responseOK("1dab12c262d91ab13215a541");
     }
 
-
 }

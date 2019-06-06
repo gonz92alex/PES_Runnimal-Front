@@ -50,7 +50,7 @@ dependencies {
     annotationProcessor lombok
 
     implementation mapsDependencies.maps
-    //implementation mapsDependencies.location
+    implementation mapsDependencies.location
 
     implementation daggerDependencies.dagger
     annotationProcessor daggerDependencies.daggerCompiler

@@ -15,5 +15,5 @@ public interface WalkService {
 
     void addPoint(LatLon latLon);
 
-    void end(int distance);
+    void end(int distance, DisposableObserver<Walk> callback);
 }

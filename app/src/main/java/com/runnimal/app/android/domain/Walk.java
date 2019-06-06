@@ -8,6 +8,7 @@ import lombok.Data;
 @Data
 public class Walk {
 
+    private String id;
     private List<LatLon> route;
     private Instant start;
     private Instant end;

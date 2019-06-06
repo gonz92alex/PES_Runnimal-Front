@@ -40,12 +40,13 @@ public class WalkRepositoryImpl implements WalkRepository {
     }
 
     @Override
-    public Observable<String> save(Walk walk) {
+    public Observable<Walk> save(Walk walk) {
         return Observable.create(emitter -> {
             api.createWalk(walk, new RunnimalApi.RunnimalApiCallback<String>() {
                 @Override
-                public void responseOK(String message) {
-                    emitter.onNext(message);
+                public void responseOK(String id) {
+                    walk.setId(id);
+                    emitter.onNext(walk);
                     emitter.onComplete();
                 }
 

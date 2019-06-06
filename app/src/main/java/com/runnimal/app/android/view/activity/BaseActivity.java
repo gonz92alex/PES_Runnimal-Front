@@ -72,10 +72,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),alarmManager.INTERVAL_DAY,pendingIntent);
     }
 
-
-
-
-
     // Remove inter-activity transition to avoid screen tossing on tapping bottom menu_bottom items
     @Override
     public void onPause() {

@@ -11,7 +11,9 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationManager;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
@@ -20,10 +22,16 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.LocationSource;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptor;
@@ -60,9 +68,13 @@ public class MapActivity extends BaseActivity implements
         PointsPresenter.View,
         GoogleMap.OnMarkerClickListener,
         WalkPresenter.View,
-        LocationSource.OnLocationChangedListener {
+        LocationListener,
+        GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener {
 
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 6506;
+    private static final long INTERVAL = 1000 * 10;
+    private static final long FASTEST_INTERVAL = 1000 * 5;
 
     @Inject
     PointsPresenter pointsPresenter;
@@ -82,7 +94,11 @@ public class MapActivity extends BaseActivity implements
     Button walkButton;
 
     private boolean mPermissionDenied = false;
+    private boolean isWalkActive = false;
     private GoogleMap map;
+    private LocationRequest locationRequest;
+    private GoogleApiClient googleApiClient;
+    private Location previousLocation;
 
     public static void open(Context context) {
         Intent intent = new Intent(context, MapActivity.class);
@@ -93,6 +109,19 @@ public class MapActivity extends BaseActivity implements
     public boolean onMarkerClick(final Marker marker) {
         infoWindowAdapter.onMarkerClicked(map, marker);
         return true;
+    }
+
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+        startLocationUpdates();
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
     }
 
     @Override
@@ -117,6 +146,33 @@ public class MapActivity extends BaseActivity implements
         walkPresenter.initialize();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        googleApiClient.connect();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        googleApiClient.disconnect();
+    }
+
+    /*
+        @Override
+        public void onPause() {
+            super.onPause();
+            LocationServices.FusedLocationApi.removeLocationUpdates(googleApiClient, this);
+        }
+
+        @Override
+        public void onResume() {
+            super.onResume();
+            if (googleApiClient.isConnected()) {
+                startLocationUpdates();
+            }
+        }
+    */
     @Override
     public void onMapReady(GoogleMap map) {
         this.map = map;
@@ -178,21 +234,58 @@ public class MapActivity extends BaseActivity implements
                             .collect(Collectors.toList());
                 }) //
                 .findFirst() //
-                .ifPresent(route -> drawRouteOnMap(map, route));
+                .ifPresent(route -> drawRouteOnMap(map, route, Color.BLUE));
+    }
+
+    @Override
+    public void showNewWalk(WalkViewModel walk) {
+        drawRouteOnMap(map, //
+                walk.getRoute().stream() //
+                .map(latLon -> new LatLng(latLon.getLatitude(), latLon.getLongitude())) //
+                .collect(Collectors.toList()), //
+                Color.RED);
     }
 
     @Override
     public void onLocationChanged(Location location) {
-        LatLon latLon = new LatLon();
-        latLon.setLatitude(location.getLatitude());
-        latLon.setLongitude(location.getLongitude());
-        walkPresenter.addPoint(latLon);
+        if (isWalkActive) {
+            LatLng previousLatLng = null;
+            if (previousLocation != null) {
+                previousLatLng = new LatLng(previousLocation.getLatitude(), previousLocation.getLongitude());
+            }
+            LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+            if (previousLatLng == null || !previousLatLng.equals(latLng)) {
+                LatLon latLon = new LatLon();
+                latLon.setLatitude(location.getLatitude());
+                latLon.setLongitude(location.getLongitude());
+                walkPresenter.addPoint(latLon);
+
+                previousLocation = location;
+            }
+        }
     }
 
-    private void drawRouteOnMap(GoogleMap map, List<LatLng> positions) {
+    private void startLocationUpdates() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) !=
+                PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        PendingResult<Status> pendingResult = LocationServices.FusedLocationApi
+                .requestLocationUpdates(googleApiClient, locationRequest, this);
+    }
+
+    private void drawRouteOnMap(GoogleMap map, List<LatLng> positions, int color) {
         PolylineOptions options = new PolylineOptions() //
                 .width(5) //
-                .color(Color.BLUE) //
+                .color(color) //
                 .geodesic(true);
         options.addAll(positions);
         Polyline polyline = map.addPolyline(options);
@@ -244,6 +337,8 @@ public class MapActivity extends BaseActivity implements
                 buttonPressed.set(true);
 
                 walkPresenter.startWalk();
+                previousLocation = null;
+                isWalkActive = true;
             } else {
                 walkButton.setBackground(background);
                 walkButton.setTextColor(color);
@@ -252,13 +347,29 @@ public class MapActivity extends BaseActivity implements
                 buttonPressed.set(false);
 
                 walkPresenter.endWalk(-1);
+                isWalkActive = false;
             }
         });
     }
 
     private void initMap() {
+        createLocationRequest();
+
+        googleApiClient = new GoogleApiClient.Builder(this)
+                .addApi(LocationServices.API)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .build();
+
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+    }
+
+    protected void createLocationRequest() {
+        locationRequest = LocationRequest.create();
+        locationRequest.setInterval(INTERVAL);
+        locationRequest.setFastestInterval(FASTEST_INTERVAL);
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
     }
 
     private void enableMyLocation() {
