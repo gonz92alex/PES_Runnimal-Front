@@ -107,6 +107,10 @@ public class MapActivity extends BaseActivity implements
         context.startActivity(intent);
     }
 
+    public static void open(Context context, WalkViewModel walk) {
+
+    }
+
     @Override
     public boolean onMarkerClick(final Marker marker) {
         infoWindowAdapter.onMarkerClicked(map, marker);
@@ -270,6 +274,10 @@ public class MapActivity extends BaseActivity implements
                         .map(latLon -> new LatLng(latLon.getLatitude(), latLon.getLongitude())) //
                         .collect(Collectors.toList()), //
                 Color.GREEN);
+    }
+
+    @Override
+    public void openWalkScreen(WalkViewModel walk) {
     }
 
     @Override

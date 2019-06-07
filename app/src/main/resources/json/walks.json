@@ -1,5 +1,6 @@
 [
   {
+    "title": "Paseo de prueba 1",
     "route": [
       {
         "latitude": 41.405844,
@@ -28,6 +29,7 @@
     "distance": 1200
   },
   {
+    "title": "Paseo de prueba 2",
     "route": [
       {
         "latitude": 41.408328,

@@ -13,14 +13,18 @@ import android.widget.TextView;
 
 import com.runnimal.app.android.R;
 import com.runnimal.app.android.RunnimalApplication;
-import com.runnimal.app.android.util.SingletonSession;
 import com.runnimal.app.android.domain.FriendRequestState;
+import com.runnimal.app.android.domain.LatLon;
+import com.runnimal.app.android.util.SingletonSession;
 import com.runnimal.app.android.view.adapter.PetsListAdapter;
+import com.runnimal.app.android.view.adapter.WalksListAdapter;
 import com.runnimal.app.android.view.presenter.OwnerDetailPresenter;
 import com.runnimal.app.android.view.presenter.PetsPresenter;
+import com.runnimal.app.android.view.presenter.WalkPresenter;
 import com.runnimal.app.android.view.util.ImageUtils;
 import com.runnimal.app.android.view.viewmodel.OwnerViewModel;
 import com.runnimal.app.android.view.viewmodel.PetViewModel;
+import com.runnimal.app.android.view.viewmodel.WalkViewModel;
 
 import java.util.List;
 
@@ -28,7 +32,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 
-public class OwnerDetailActivity extends BaseActivity implements OwnerDetailPresenter.View, PetsPresenter.View {
+public class OwnerDetailActivity extends BaseActivity implements OwnerDetailPresenter.View, PetsPresenter.View, WalkPresenter.View {
 
     private final static String OWNER_ID_KEY = "owner_id_key";
     private final static String OWNER_EMAIL_KEY = "owner_email_key";
@@ -38,6 +42,9 @@ public class OwnerDetailActivity extends BaseActivity implements OwnerDetailPres
     @Inject
     PetsPresenter petsPresenter;
     PetsListAdapter petsListAdapter;
+    @Inject
+    WalkPresenter walkPresenter;
+    WalksListAdapter walksListAdapter;
 
     @BindView(R.id.container_owner_detail)
     ScrollView container;
@@ -49,6 +56,8 @@ public class OwnerDetailActivity extends BaseActivity implements OwnerDetailPres
     TextView alias;
     @BindView(R.id.list_owner_detail_pets)
     RecyclerView petList;
+    @BindView(R.id.list_owner_detail_walks)
+    RecyclerView walksList;
     @BindView(R.id.image_owner_detail_edit_or_friend)
     ImageView editOrFriendImage;
 
@@ -77,10 +86,13 @@ public class OwnerDetailActivity extends BaseActivity implements OwnerDetailPres
         initializeDagger();
         initializeOwnerProfilePresenter();
         initializePetsPresenter();
+        initializeWalkPresenter();
         initializePetsListAdapter();
+        initializeWalksListAdapter();
         initializeRecyclerView();
         ownerProfilePresenter.initialize();
         petsPresenter.initialize();
+        walkPresenter.initialize();
     }
 
     @Override
@@ -146,6 +158,29 @@ public class OwnerDetailActivity extends BaseActivity implements OwnerDetailPres
         PetDetailActivity.open(this, pet.getName(), pet.getOwner().getEmail());
     }
 
+    @Override
+    public void showWalksList(List<WalkViewModel> walks) {
+        walksListAdapter.addAll(walks);
+        walksListAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showNewWalk(WalkViewModel walk) {
+    }
+
+    @Override
+    public void invalidNewWalk() {
+    }
+
+    @Override
+    public void drawCurrentRoute(List<LatLon> route) {
+    }
+
+    @Override
+    public void openWalkScreen(WalkViewModel walk) {
+        MapActivity.open(this, walk);
+    }
+
     private void initializeDagger() {
         RunnimalApplication app = (RunnimalApplication) getApplication();
         app.getMainComponent().inject(this);
@@ -165,8 +200,16 @@ public class OwnerDetailActivity extends BaseActivity implements OwnerDetailPres
         petsPresenter.setOwnerEmail(ownerEmail);
     }
 
+    private void initializeWalkPresenter() {
+        walkPresenter.setView(this);
+    }
+
     private void initializePetsListAdapter() {
         petsListAdapter = new PetsListAdapter(petsPresenter);
+    }
+
+    private void initializeWalksListAdapter() {
+        walksListAdapter = new WalksListAdapter(walkPresenter);
     }
 
     private void initializeRecyclerView() {
@@ -174,6 +217,11 @@ public class OwnerDetailActivity extends BaseActivity implements OwnerDetailPres
         petList.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         petList.setHasFixedSize(true);
         petList.setAdapter(petsListAdapter);
+
+        walksList.setLayoutManager(new LinearLayoutManager(this));
+        walksList.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        walksList.setHasFixedSize(true);
+        walksList.setAdapter(walksListAdapter);
     }
 
     private void initializeEditImageButton(OwnerViewModel owner) {

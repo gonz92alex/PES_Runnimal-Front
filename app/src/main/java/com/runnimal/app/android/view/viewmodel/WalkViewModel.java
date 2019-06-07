@@ -19,4 +19,5 @@ public class WalkViewModel {
     private Instant end;
     private float distance;
     private OwnerViewModel owner;
+    private long duration;
 }
