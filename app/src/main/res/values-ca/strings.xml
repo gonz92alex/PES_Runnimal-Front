@@ -73,5 +73,6 @@
     <string name="standardError_Msg">Ups! Alguna cosa ha anat malament…</string>
     <string name="isNowOwner">ha sigut afegit com a amo</string>
     <string name="additional_owner_explanation">Pots compartir la teva mascota amb altres usuaris afegint-los com a amos adicionals!</string>
+    <string name="email_example">xxx@yyyy.zzz</string>
 
 </resources>
