@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
             SingletonSession.Instance().setMail(email);
             SingletonSession.Instance().setUsername(alias);
             SingletonSession.Instance().setId(id);
-            SingletonSession.Instance().setPhoto(URI.create("http://nidorana.fib.upc.edu/api/photo/users/" + email));
+            SingletonSession.Instance().setPhoto(URI.create("http://nidoqueen.fib.upc.edu/api/photo/users/" + email));
 
             //cargar idioma guardado en las preferencias
             SharedPreferences prefsLan = getSharedPreferences("language", MODE_PRIVATE);
@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
         SingletonSession.Instance().setMail(owner.getEmail());
         SingletonSession.Instance().setUsername(owner.getAlias());
         SingletonSession.Instance().setId(owner.getId());
-        SingletonSession.Instance().setPhoto(URI.create("http://nidorana.fib.upc.edu/api/photo/users/" + owner.getEmail()));
+        SingletonSession.Instance().setPhoto(URI.create("http://nidoqueen.fib.upc.edu/api/photo/users/" + owner.getEmail()));
         MapActivity.open(this);
     }
 

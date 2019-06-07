@@ -23,7 +23,7 @@ public class fileUploader {
 
     private RequestQueue rQueue;
     private Activity activity;
-    String upload_URL = "http://nidorana.fib.upc.edu/api/photo";
+    String upload_URL = "http://nidoqueen.fib.upc.edu/api/photo";
 
     public fileUploader(Activity activity, String endpoint){
         this.activity = activity;
@@ -36,7 +36,6 @@ public class fileUploader {
                 new Response.Listener<NetworkResponse>() {
                     @Override
                     public void onResponse(NetworkResponse response) {
-                        Log.d("ressssssoo",new String(response.data));
                         rQueue.getCache().clear();
                     }
                 },
