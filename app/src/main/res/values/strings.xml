@@ -78,6 +78,7 @@
     <string name="point_type_filter_other">Other</string>
     <string name="logout">Logout</string>
 
+    <string name="walks_title">Walks</string>
     <string name="map_walk_start">Start walk</string>
     <string name="map_walk_end">End walk</string>
     <string name="Stats">Statistics</string>

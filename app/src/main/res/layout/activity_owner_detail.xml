@@ -79,10 +79,10 @@
 
                     <ImageView
                         android:id="@+id/image_owner_detail_edit_or_friend"
-                        android:layout_marginEnd="5dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="5dp"
                         android:visibility="visible" />
                 </RelativeLayout>
 
@@ -91,6 +91,34 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/profile_layout"
+                    android:orientation="horizontal" />
+
+                <RelativeLayout
+                    android:id="@+id/walks_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/list_owner_detail_pets"
+                    android:background="@color/colorPrimary"
+                    android:elevation="0dp"
+                    android:paddingBottom="0dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:textColor="#fff"
+                        android:textSize="32sp"
+                        android:text="@string/walks_title"
+                        tools:ignore="UnknownId" />
+                </RelativeLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/list_owner_detail_walks"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/walks_layout"
                     android:orientation="horizontal" />
             </RelativeLayout>
         </ScrollView>

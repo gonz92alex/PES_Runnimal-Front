@@ -13,10 +13,12 @@ import lombok.experimental.Accessors;
 @Accessors(chain =  true)
 public class WalkViewModel {
 
+    private String id;
     private String title;
     private List<LatLon> route;
     private Instant start;
     private Instant end;
     private float distance;
     private OwnerViewModel owner;
+    private long duration;
 }
