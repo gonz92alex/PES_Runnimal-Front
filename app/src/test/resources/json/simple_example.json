@@ -1,0 +1,16 @@
+{
+  "people": [
+    {
+      "name": "name1",
+      "surname": "surname1",
+      "instant": 1554672125000
+    },
+    {
+      "name": "name2",
+      "surname": "surname2",
+      "instant": 1554672125000,
+      "date": "2019-04-03T08:03:12"
+    }
+  ],
+  "unused": "not exists in model"
+}

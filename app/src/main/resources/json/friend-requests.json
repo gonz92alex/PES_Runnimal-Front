@@ -1,0 +1,15 @@
+[
+  {
+    "_id": "5cf4329ed8449607555a43c5",
+    "user1": {
+      "_id": "5c9518c262d914013dd5af3bSOBRA",
+      "alias": "Misty",
+      "email": "misty@pokemon.com",
+      "password": "$2b$10$hpSFI911JPdWW8Y2TnavautRMVLeXb.EugNQDJME4NPjd18cUr4IG",
+      "__v": 0
+    },
+    "date": "Sun Jun 02 2019 20:33:34 GMT+0000 (Coordinated Universal Time)",
+    "type": "PENDING",
+    "__v": 0
+  }
+]

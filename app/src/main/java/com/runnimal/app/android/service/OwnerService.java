@@ -1,0 +1,32 @@
+package com.runnimal.app.android.service;
+
+import com.runnimal.app.android.domain.FriendRequest;
+import com.runnimal.app.android.domain.Friendship;
+import com.runnimal.app.android.domain.Owner;
+
+import java.util.List;
+
+import io.reactivex.observers.DisposableObserver;
+
+public interface OwnerService {
+
+    void login(String email, String password, DisposableObserver<String> callback);
+
+    void list(DisposableObserver<List<Owner>> callback);
+
+    void get(String id, DisposableObserver<Owner> callback);
+
+    void modify(Owner owner, DisposableObserver<String> callback);
+
+    void create(Owner owner, DisposableObserver<String> callback);
+
+    void getFriendRequests(String ownerEmail, DisposableObserver<List<FriendRequest>> callback);
+
+    void isFriend(String friendEmail, DisposableObserver<String> callback);
+
+    void createFriendRequest(String requestedEmail, DisposableObserver<String> callback);
+
+    void deleteFriend(String ownerId, DisposableObserver<String> callback);
+
+    void listRequests(DisposableObserver<List<Owner>> callback);
+}

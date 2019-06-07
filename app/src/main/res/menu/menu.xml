@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/menu_friends"
+            android:icon="@drawable/menu_friends_icon"
+            android:title="@string/menu_friends_title" />
+        <item
+            android:id="@+id/menu_settings"
+            android:icon="@drawable/engranaje"
+            android:title="@string/menu_settings_title" />
+        <item
+            android:id="@+id/menu_search"
+            android:icon="@android:drawable/ic_menu_search"
+            android:title="@string/menu_search_title" />
+        <item
+            android:id="@+id/menu_notifications"
+            android:icon="@drawable/ic_stat_name"
+            android:title="@string/request_title" />
+        <item
+            android:id="@+id/menu_stats"
+            android:icon="@drawable/bar"
+            android:title="@string/Stats" />
+        <item
+            android:id="@+id/menu_logout"
+            android:icon="@drawable/ic_logout"
+            android:title="@string/logout" />
+    </group>
+</menu>

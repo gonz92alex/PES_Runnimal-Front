@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Runnimal</string>
     <string name="back" translatable="false">Enrere</string>
     <string name="Login" translatable="false">inicar sessió</string>
     <string name="title_notifications">Notificacions</string>
-    <string name="title_entrenamientos">Entrenaments</string>
-    <string name="title_mapa">Mapa</string>
-    <string name="title_mascotas">Mascotes</string>
-    <string name="title_retos">Reptes</string>
+    <string name="menu_friends_title">Amics</string>
+    <string name="menu_ranking_title">Ranking</string>
+    <string name="menu_settings_title">Ajustos</string>
+    <string name="menu_search_title">Cerca</string>
+    <string name="menu_bottom_trainings_title">Entrenaments</string>
+    <string name="menu_bottom_map_title">Mapa</string>
+    <string name="menu_bottom_pets_title">Mascotes</string>
+    <string name="menu_bottom_challenges_title">Reptes</string>
     <string name="title_profile">Perfil</string>
     <string name="title_home">Principal</string>
     <string name="title_activity_god">GodActivity</string>
@@ -16,8 +20,8 @@
     <string name="Create_Account">Crea un compte</string>
     <string name="sign_in_with">Entrar amb</string>
     <string name="or">o</string>
-    <string name="my_pets">Les meves mascotes</string>
-    <string name="Add">Afegir</string>
+    <string name="text_pets_title">Les meves mascotes</string>
+    <string name="button_pets_add">Afegir</string>
     <string name="Name">Nom</string>
     <string name="format_email">usuari@example.com</string>
     <string name="alias">Álies</string>
@@ -25,7 +29,7 @@
     <string name="weight">Pes</string>
     <string name="age">Edat</string>
     <string name="sign_up">Registrar-se</string>
-    <string name="steps">"Passos "</string>
+    <string name="detail_training_steps">"Passos "</string>
     <string name="UserProfile">Perfil d\'usuari</string>
     <string name="Modify">Modificar</string>
     <string name="Save">Guardar</string>
@@ -46,6 +50,28 @@
     <string name="Reject">Rebutjar</string>
     <string name="Accept">Acceptar</string>
     <string name="Friends">Amics</string>
-    <string name="Solicitudes">Solicituts</string>
+    <string name="request_title">Solicituts</string>
+    <string name="settings_lang_title">Idioma</string>
+    <string name="Delete">Esborrar</string>
+    <string name="Completed">Completat</string>
+    <string name="email">email</string>
+    <string name="World">Global</string>
+    <string name="Local">Local</string>
+    <string name="point_type_filter_park">Parc</string>
+    <string name="point_type_filter_other">Altres</string>
+    <string name="point_type_filter_all">Tots</string>
+    <string name="permission_required_toast">Permisos de localització requerits</string>
+    <string name="logout">Tanca sessió</string>
+    <string name="Ranking">Rànquing</string>
+    <string name="Stats">Estadistiques</string>
+    <string name="Time">Temps</string>
+    <string name="Walks">Passejos</string>
+    <string name="Distance">Distància</string>
+    <string name="missing_params">Parametres buits</string>
+    <string name="permission_rationale_location">" L'accés al servei de localització és necessari per poder disposar de totes les funcionalitats, com per mostrar la seva ubicació actual al mapa i fer un seguiment de les seves rutes. "</string>
+    <string name="fill_all_the_camps">" Si us plau, ompli tots els camps de text "</string>
+    <string name="standardError_Msg">Ups! Alguna cosa ha anat malament…</string>
+    <string name="isNowOwner">ha sigut afegit com a amo</string>
+    <string name="additional_owner_explanation">Pots compartir la teva mascota amb altres usuaris afegint-los com a amos adicionals!</string>
 
 </resources>

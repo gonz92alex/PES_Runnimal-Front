@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Runnimal</string>
     <string name="back" translatable="false">Back</string>
     <string name="Login" translatable="false">Login</string>
     <string name="title_profile">Profile</string>
     <string name="title_notifications">Notifications</string>
-    <string name="title_entrenamientos">Trainings</string>
-    <string name="title_mapa">Map</string>
-    <string name="title_mascotas">Pets</string>
-    <string name="title_retos">Challenges</string>
+    <string name="menu_friends_title">Friends</string>
+    <string name="menu_ranking_title">Ranking</string>
+    <string name="menu_settings_title">Settings</string>
+    <string name="menu_search_title">Search</string>
+    <string name="menu_bottom_trainings_title">Trainings</string>
+    <string name="menu_bottom_map_title">Map</string>
+    <string name="menu_bottom_pets_title">Pets</string>
+    <string name="menu_bottom_challenges_title">Challenges</string>
     <string name="title_home">Home</string>
     <string name="title_activity_god">GodActivity</string>
     <string name="Password">Password</string>
@@ -16,8 +20,8 @@
     <string name="Create_Account">Create account</string>
     <string name="sign_in_with">Sign in with</string>
     <string name="or">or</string>
-    <string name="my_pets">My pets</string>
-    <string name="Add">Add</string>
+    <string name="text_pets_title">My pets</string>
+    <string name="button_pets_add">Add</string>
     <string name="Name">Name</string>
     <string name="format_email">user@example.com</string>
     <string name="alias">Alias</string>
@@ -25,7 +29,7 @@
     <string name="weight">Weight</string>
     <string name="age">Age</string>
     <string name="sign_up">Sign Up</string>
-    <string name="steps">Steps</string>
+    <string name="detail_training_steps">Steps</string>
     <string name="UserProfile">User profile</string>
     <string name="Modify">Modify</string>
     <string name="Save">Save</string>
@@ -46,5 +50,27 @@
     <string name="Reject">Reject</string>
     <string name="Accept">Accept</string>
     <string name="Friends">Friends</string>
-    <string name="Solicitudes">Requests</string>
+    <string name="request_title">Requests</string>
+    <string name="settings_lang_title">Language</string>
+    <string name="Delete">Delete</string>
+    <string name="Completed">Completed</string>
+    <string name="email">email</string>
+    <string name="World">World</string>
+    <string name="Local">Local</string>
+    <string name="point_type_filter_park">Park</string>
+    <string name="point_type_filter_other">Other</string>
+    <string name="point_type_filter_all">All</string>
+    <string name="permission_required_toast">Location permission is required for use this APP.</string>
+    <string name="logout">Logout</string>
+    <string name="Ranking">Ranking</string>
+    <string name="Stats">Statistics</string>
+    <string name="Time">Time</string>
+    <string name="Walks">Walks</string>
+    <string name="Distance">Distance</string>
+    <string name="fill_all_the_camps">Please, fill all the text camps</string>
+    <string name="missing_params">Missing parameters</string>
+    <string name="permission_rationale_location">Access to the location service is required to be able to have all the functionalities available, which shows your current location on the map and track your walks.</string>
+    <string name="standardError_Msg">Ooops! Something went wrong…</string>
+    <string name="isNowOwner">is now an owner</string>
+    <string name="additional_owner_explanation">You can share your pet with other users by adding them as an additional owner!</string>
 </resources>
