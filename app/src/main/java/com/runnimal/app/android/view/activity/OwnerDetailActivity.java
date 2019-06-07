@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -61,6 +62,9 @@ public class OwnerDetailActivity extends BaseActivity implements OwnerDetailPres
     @BindView(R.id.image_owner_detail_edit_or_friend)
     ImageView editOrFriendImage;
 
+    @BindView(R.id.walks_layout)
+    RelativeLayout walksLayout;
+
     @BindView(R.id.owner_detail_progress_bar)
     ProgressBar progressBar;
 
@@ -92,7 +96,6 @@ public class OwnerDetailActivity extends BaseActivity implements OwnerDetailPres
         initializeRecyclerView();
         ownerProfilePresenter.initialize();
         petsPresenter.initialize();
-        walkPresenter.initialize();
     }
 
     @Override
@@ -117,7 +120,9 @@ public class OwnerDetailActivity extends BaseActivity implements OwnerDetailPres
         if (SingletonSession.Instance().getMail().equals(owner.getEmail())) {
             editOrFriendImage.setImageResource(R.drawable.icon_edit);
             initializeEditImageButton(owner);
+            walkPresenter.initialize();
         } else {
+            walksLayout.setVisibility(View.GONE);
             ownerProfilePresenter.checkFriend();
         }
     }
