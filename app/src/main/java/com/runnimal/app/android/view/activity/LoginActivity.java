@@ -42,8 +42,6 @@ public class LoginActivity extends AppCompatActivity implements LoginPresenter.V
     TextView signUpButton;
     @BindView(R.id.button_login)
     Button loginButton;
-    @BindView(R.id.button_login_direct)
-    Button directLoginButton;
 
     public static void open(Context context) {
         Intent intent = new Intent(context, LoginActivity.class);
@@ -60,7 +58,6 @@ public class LoginActivity extends AppCompatActivity implements LoginPresenter.V
         initializeBackButton();
         initializeSignUpButton();
         initializeLoginButton();
-        initializeDirectLoginButton();
     }
 
     @Override
@@ -137,28 +134,4 @@ public class LoginActivity extends AppCompatActivity implements LoginPresenter.V
         });
     }
 
-    private void initializeDirectLoginButton() {
-        directLoginButton.setOnClickListener(view -> {
-            Intent GodIntent = new Intent(this, MapActivity.class);
-            SingletonSession.Instance().setMail("ash@pokemon.com");
-            SingletonSession.Instance().setUsername("Ash");
-            SingletonSession.Instance().setId("5c9518c262d914013dd5af3b");
-            SingletonSession.Instance().setToken("6895cdec613feb80657305a90b2");
-            SingletonSession.Instance().setPhoto(URI.create("http://nidorana.fib.upc.edu/api/photo/users/" + "ash@pokemon.com"));
-
-            SharedPreferences userDetail = getSharedPreferences("userdetails", MODE_PRIVATE);
-
-            SharedPreferences.Editor editor = userDetail.edit();
-            editor.putString("token", "8895cf3e80bd52ed5067a1b9946");
-            editor.putString("alias", "Ash");
-            editor.putString("id", "5c9518c262d914013dd5af3b");
-            editor.putString("email", "ash@pokemon.com");
-            editor.apply();
-
-            Intent intent = new Intent(getApplicationContext(), MapActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
-            finish();
-        });
-    }
 }

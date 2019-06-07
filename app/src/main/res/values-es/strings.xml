@@ -73,4 +73,5 @@
     <string name="standardError_Msg">Ups! Algo ha ido mal…</string>
     <string name="isNowOwner">ha sido añadido como dueño</string>
     <string name="additional_owner_explanation">Puedes compartir tu mascota con otros usuarios añadiendoslos como dueños adicionales!</string>
+    <string name="email_example">xxx@yyyy.zzz</string>
 </resources>

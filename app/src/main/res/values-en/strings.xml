@@ -73,4 +73,5 @@
     <string name="standardError_Msg">Ooops! Something went wrong…</string>
     <string name="isNowOwner">is now an owner</string>
     <string name="additional_owner_explanation">You can share your pet with other users by adding them as an additional owner!</string>
+    <string name="email_example">xxx@yyyy.zzz</string>
 </resources>
