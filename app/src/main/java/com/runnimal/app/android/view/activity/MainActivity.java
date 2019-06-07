@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
 
             //cargar idioma guardado en las preferencias
             SharedPreferences prefsLan = getSharedPreferences("language", MODE_PRIVATE);
-            String langCode =  prefsLan.getString("lan", "EN");
+            String langCode =  prefsLan.getString("lan", "ES");
             Locale langLocale = Locale.forLanguageTag(langCode);
             Configuration config = new Configuration();
             //TODO: implementar bien
