@@ -21,11 +21,11 @@
             android:text="@string/back"
             android:textColor="#164849"
             android:textColorLink="@color/colorPrimaryDark"
-            android:textSize="20dp"
+            android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/image_sign_up"
             android:layout_width="170dp"
             android:layout_height="170dp"
@@ -53,7 +53,8 @@
             android:paddingEnd="40dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/image_sign_up" />
+            app:layout_constraintTop_toBottomOf="@+id/image_sign_up"
+            android:autofillHints="" />
 
         <EditText
             android:id="@+id/text_sign_up_email"
@@ -70,7 +71,8 @@
             android:paddingEnd="40dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_sign_up_alias" />
+            app:layout_constraintTop_toBottomOf="@+id/text_sign_up_alias"
+            android:autofillHints="" />
 
         <EditText
             android:id="@+id/text_sign_up_password"
@@ -88,7 +90,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_sign_up_email" />
+            app:layout_constraintTop_toBottomOf="@+id/text_sign_up_email"
+            android:autofillHints="" />
 
         <Button
             android:id="@+id/button_sign_up_ok"
