@@ -140,19 +140,19 @@ public class LoginActivity extends AppCompatActivity implements LoginPresenter.V
     private void initializeDirectLoginButton() {
         directLoginButton.setOnClickListener(view -> {
             Intent GodIntent = new Intent(this, MapActivity.class);
-            SingletonSession.Instance().setMail("ash@pokemon.com");
-            SingletonSession.Instance().setUsername("Ash");
-            SingletonSession.Instance().setId("5c9518c262d914013dd5af3b");
-            SingletonSession.Instance().setToken("6895cdec613feb80657305a90b2");
-            SingletonSession.Instance().setPhoto(URI.create("http://nidorana.fib.upc.edu/api/photo/users/" + "ash@pokemon.com"));
+            SingletonSession.Instance().setMail("alvaro.luque@gmail.com");
+            SingletonSession.Instance().setUsername("Alvaro");
+            SingletonSession.Instance().setId("5cf95c32ba47662e41729ba0");
+            SingletonSession.Instance().setToken("1445cf95c32ba47662e41729b9f");
+            SingletonSession.Instance().setPhoto(URI.create("http://nidorana.fib.upc.edu/api/photo/users/" + "alvaro.luque@gmail.com"));
 
             SharedPreferences userDetail = getSharedPreferences("userdetails", MODE_PRIVATE);
 
             SharedPreferences.Editor editor = userDetail.edit();
-            editor.putString("token", "8895cf3e80bd52ed5067a1b9946");
-            editor.putString("alias", "Ash");
-            editor.putString("id", "5c9518c262d914013dd5af3b");
-            editor.putString("email", "ash@pokemon.com");
+            editor.putString("token", "1445cf95c32ba47662e41729b9f");
+            editor.putString("alias", "Alvaro");
+            editor.putString("id", "5cf95c32ba47662e41729ba0");
+            editor.putString("email", "alvaro.luque@gmail.com");
             editor.apply();
 
             Intent intent = new Intent(getApplicationContext(), MapActivity.class);
