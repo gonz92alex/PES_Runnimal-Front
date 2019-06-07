@@ -75,6 +75,7 @@ public class MapActivity extends BaseActivity implements
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 6506;
     private static final long INTERVAL = 1000 * 10;
     private static final long FASTEST_INTERVAL = 1000 * 5;
+    private final static String WALK_ID_KEY = "walk_id_key"; //lo que le llega es el nombre de la pet
 
     @Inject
     PointsPresenter pointsPresenter;
@@ -104,6 +105,12 @@ public class MapActivity extends BaseActivity implements
 
     public static void open(Context context) {
         Intent intent = new Intent(context, MapActivity.class);
+        context.startActivity(intent);
+    }
+
+    public static void open(Context context, WalkViewModel walk) {
+        Intent intent = new Intent(context, MapActivity.class);
+        intent.putExtra(WALK_ID_KEY, walk.getId());
         context.startActivity(intent);
     }
 
@@ -145,7 +152,14 @@ public class MapActivity extends BaseActivity implements
         initFilterButtons();
         initWalkButton();
         pointsPresenter.initialize();
-        walkPresenter.initialize();
+
+        String walkId = getIntent().getExtras() != null ? getIntent().getExtras().getString(WALK_ID_KEY) : null;
+        if (walkId == null) {
+            walkPresenter.initialize();
+        }
+        else {
+            walkPresenter.initialize(walkId);
+        }
     }
 
     @Override
@@ -257,7 +271,7 @@ public class MapActivity extends BaseActivity implements
     @Override
     public void invalidNewWalk() {
         currentWalk.remove();
-        Toast.makeText(this, "Invalid walk", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Invalid walk, too short!", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -270,6 +284,10 @@ public class MapActivity extends BaseActivity implements
                         .map(latLon -> new LatLng(latLon.getLatitude(), latLon.getLongitude())) //
                         .collect(Collectors.toList()), //
                 Color.GREEN);
+    }
+
+    @Override
+    public void openWalkScreen(WalkViewModel walk) {
     }
 
     @Override
