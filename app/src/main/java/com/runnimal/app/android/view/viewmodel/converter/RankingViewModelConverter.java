@@ -22,7 +22,7 @@ public class RankingViewModelConverter {
                 .setPoints(ranking.getPoints())
                 .setEmail(ranking.getEmail());
 
-        ownerViewModel.setImageUrl(URI.create("http://nidorana.fib.upc.edu/api/photo/users/" + ranking.getEmail()));
+        ownerViewModel.setImageUrl(URI.create("http://nidoqueen.fib.upc.edu/api/photo/users/" + ranking.getEmail()));
 
         return ownerViewModel;
     }
