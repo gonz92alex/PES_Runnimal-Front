@@ -1,5 +1,6 @@
 [
   {
+    "id": "1",
     "title": "Paseo de prueba 1",
     "route": [
       {
@@ -29,6 +30,7 @@
     "distance": 1200
   },
   {
+    "id": "2",
     "title": "Paseo de prueba 2",
     "route": [
       {

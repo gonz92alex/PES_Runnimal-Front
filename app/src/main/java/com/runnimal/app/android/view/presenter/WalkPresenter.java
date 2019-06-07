@@ -11,6 +11,7 @@ import com.runnimal.app.android.view.viewmodel.PetViewModel;
 import com.runnimal.app.android.view.viewmodel.WalkViewModel;
 import com.runnimal.app.android.view.viewmodel.converter.WalkViewModelConverter;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -41,6 +42,34 @@ public class WalkPresenter extends Presenter<WalkPresenter.View> {
             public void onNext(List<Walk> walks) {
                 List<WalkViewModel> walkViewModels = ConverterUtils.convert(walks, WalkViewModelConverter::convert);
                 getView().showWalksList(walkViewModels);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                getView().hideLoading();
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onComplete() {
+                getView().hideLoading();
+            }
+        });
+    }
+
+    public void initialize(String walkId) {
+        super.initialize();
+        getView().showLoading();
+        walkService.list(new DisposableObserver<List<Walk>>() {
+
+            @Override
+            public void onNext(List<Walk> walks) {
+                walks.stream() //
+                        .filter(walk -> walk.getId().equals(walkId)) //
+                        .findFirst() //
+                        .ifPresent(walk -> {
+                            getView().showWalksList(Arrays.asList(WalkViewModelConverter.convert(walk)));
+                        });
             }
 
             @Override
