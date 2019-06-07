@@ -3,6 +3,7 @@ package com.runnimal.app.android.view.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +20,7 @@ import com.runnimal.app.android.util.SingletonSession;
 import com.runnimal.app.android.view.presenter.MainPresenter;
 
 import java.net.URI;
+import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -69,6 +71,17 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
             SingletonSession.Instance().setUsername(alias);
             SingletonSession.Instance().setId(id);
             SingletonSession.Instance().setPhoto(URI.create("http://nidorana.fib.upc.edu/api/photo/users/" + email));
+
+            //cargar idioma guardado en las preferencias
+            SharedPreferences prefsLan = getSharedPreferences("language", MODE_PRIVATE);
+            String langCode =  prefsLan.getString("lan", "EN");
+            Locale langLocale = Locale.forLanguageTag(langCode);
+            Configuration config = new Configuration();
+            //TODO: implementar bien
+            Locale.setDefault(langLocale);
+            config.locale = langLocale;
+            getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+
             startActivity(new Intent(this, MapActivity.class));
             finish();
         }

@@ -29,7 +29,7 @@ import lombok.SneakyThrows;
 public class RunnimalApiImpl extends AbstractApiClient implements RunnimalApi {
 
     private final JacksonFactory jacksonFactory;
-    private final String URL = "http://nidorana.fib.upc.edu/api";
+    private final String URL = "http://nidoqueen.fib.upc.edu/api";
 
     @Inject
     public RunnimalApiImpl(RequestQueue requestQueue, JacksonFactory jacksonFactory) {

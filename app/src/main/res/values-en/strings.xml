@@ -74,4 +74,7 @@
     <string name="isNowOwner">is now an owner</string>
     <string name="additional_owner_explanation">You can share your pet with other users by adding them as an additional owner!</string>
     <string name="email_example">xxx@yyyy.zzz</string>
+    <string name="walks_title">Walks</string>
+    <string name="map_walk_start">Start</string>
+    <string name="map_walk_end">End walk</string>
 </resources>

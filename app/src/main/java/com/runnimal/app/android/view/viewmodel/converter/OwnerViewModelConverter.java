@@ -18,7 +18,7 @@ public class OwnerViewModelConverter {
                 .setAlias(owner.getAlias()) //
                 .setEmail(owner.getEmail());
 
-        ownerViewModel.setImageUrl(URI.create("http://nidorana.fib.upc.edu/api/photo/users/" + owner.getEmail()));
+        ownerViewModel.setImageUrl(URI.create("http://nidoqueen.fib.upc.edu/api/photo/users/" + owner.getEmail()));
 
         return ownerViewModel;
     }
