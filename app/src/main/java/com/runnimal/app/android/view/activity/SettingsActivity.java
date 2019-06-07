@@ -40,7 +40,7 @@ public class SettingsActivity extends BaseActivity {
         initSaveButton();
         initLangButton();
         SharedPreferences prefs = getSharedPreferences("language", MODE_PRIVATE);
-        int pos =  prefs.getInt("lanPos", 0);
+        int pos =  prefs.getInt("lanPos", 1);
         langSpinner.setSelection(pos);
     }
 
