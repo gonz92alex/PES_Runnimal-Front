@@ -39,6 +39,9 @@ public class SettingsActivity extends BaseActivity {
     protected void initView() {
         initSaveButton();
         initLangButton();
+        SharedPreferences prefs = getSharedPreferences("language", MODE_PRIVATE);
+        int pos =  prefs.getInt("lanPos", 0);
+        langSpinner.setSelection(pos);
     }
 
     private void initSaveButton() {
@@ -49,6 +52,7 @@ public class SettingsActivity extends BaseActivity {
             SharedPreferences languageDetail = getSharedPreferences("language", MODE_PRIVATE);
             SharedPreferences.Editor editor = languageDetail.edit();
             editor.putString("lan", langCode);
+            editor.putInt("lanPos", langSpinner.getSelectedItemPosition());
             editor.apply();
 
             Configuration config = new Configuration();

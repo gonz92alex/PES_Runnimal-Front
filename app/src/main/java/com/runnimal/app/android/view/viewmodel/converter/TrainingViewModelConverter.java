@@ -20,7 +20,7 @@ public class TrainingViewModelConverter {
                 .setDescription(training.getDescription());
         trainingViewModel.getSteps().addAll(training.getSteps());
 
-        trainingViewModel.setImageUrl(URI.create("http://nidorana.fib.upc.edu/api/photo/trainnings/" + training.getId()));
+        trainingViewModel.setImageUrl(URI.create("http://nidoqueen.fib.upc.edu/api/photo/trainnings/" + training.getId()));
 
         return trainingViewModel;
     }

@@ -74,5 +74,8 @@
     <string name="isNowOwner">ha sigut afegit com a amo</string>
     <string name="additional_owner_explanation">Pots compartir la teva mascota amb altres usuaris afegint-los com a amos adicionals!</string>
     <string name="email_example">xxx@yyyy.zzz</string>
+    <string name="walks_title">Passejos</string>
+    <string name="map_walk_start">Començar</string>
+    <string name="map_walk_end">Terminar</string>
 
 </resources>

@@ -74,4 +74,7 @@
     <string name="isNowOwner">ha sido añadido como dueño</string>
     <string name="additional_owner_explanation">Puedes compartir tu mascota con otros usuarios añadiendoslos como dueños adicionales!</string>
     <string name="email_example">xxx@yyyy.zzz</string>
+    <string name="walks_title">Paseos</string>
+    <string name="map_walk_end">Terminar</string>
+    <string name="map_walk_start">Comenzar</string>
 </resources>
