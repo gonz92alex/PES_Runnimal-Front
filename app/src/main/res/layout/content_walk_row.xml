@@ -22,23 +22,27 @@
                 android:id="@+id/walk_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Title"
                 android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/walk_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/walk_duration"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Duration"
-                android:textSize="14sp" />
+                android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/walk_distance"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Distance"
-                android:textSize="14sp" />
+                android:textSize="13sp" />
 
         </LinearLayout>
     </android.support.v7.widget.CardView>
